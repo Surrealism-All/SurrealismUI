@@ -1,0 +1,39 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230905
+* @version:0.0.1
+* @type:interface
+* @description: 
+* SURText作为最简单的文本不含有特殊工作
+* 它是SurrealismUI中最简单，最常见的组件
+* @callback: 
+* @function:
+* 1. get-content()->string 👎
+* ============================================
+*/
+
+import {ROOT_STYLES} from "../../themes/index.slint";
+export component Span inherits Text{
+  //normal
+  text: content;
+  color: ROOT-STYLES.sur-theme-colors.primary.normal;
+  // font styles:
+  font-weight: ROOT-STYLES.sur-font.font-weight;
+  font-size: ROOT-STYLES.sur-font.font-size;
+  font-family: ROOT-STYLES.sur-font.font-family;
+  font-italic: ROOT-STYLES.sur-font.font-italic;
+  letter-spacing: ROOT-STYLES.sur-font.letter-spacing;
+  //alignment: 
+  horizontal-alignment: left;
+  vertical-alignment: center;
+  //wrap
+  wrap: no-wrap;
+  overflow: elide;
+  //props
+  in-out property <string> content : "SURText";
+  //functions
+  public function get-content()->string {
+    self.content
+  }
+}

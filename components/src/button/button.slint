@@ -1,0 +1,68 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230905
+* @version:0.0.1
+* @type:interface
+* @description: 
+* SURButton是一个按钮组件,你可以随意的对它进行常规的属性操作
+* @callback: 
+* 1. clicked : 按钮点击事件
+* @function:
+* ============================================
+*/
+
+
+import {GridBox, HorizontalBox} from "std-widgets.slint";
+import {SURText} from "../text/index.slint";
+import {ROOT-STYLES} from "../../themes/index.slint";
+export component Button inherits Rectangle {
+  //padding
+  padding-right: ROOT-STYLES.sur-padding.normal.left-right;
+  padding-left: ROOT-STYLES.sur-padding.normal.left-right;
+  padding-top:  ROOT-STYLES.sur-padding.normal.top-bottom;
+  padding-bottom: ROOT-STYLES.sur-padding.normal.top-bottom;
+  //normal
+  height: txt.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
+  width: txt.width + ROOT-STYLES.sur-padding.normal.left-right * 2;
+  background: ROOT-STYLES.sur-theme-colors.primary.weaker;
+  //border
+  border-radius: ROOT-STYLES.sur-border.normal.border-radius;
+  border-color: ROOT-STYLES.sur-theme-colors.primary.deeper;
+  border-width: ROOT-STYLES.sur-border.normal.border-width;
+  //shadow
+  opacity: 90%;
+  drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.normal;
+  drop-shadow-offset-x: 0px;
+  drop-shadow-offset-y: 0px;
+  drop-shadow-blur: 2px;
+  // props
+  in property <length> font-size : ROOT-STYLES.sur-font.font-size;
+  in property <int> font-weight : ROOT-STYLES.sur-font.font-weight;
+  in property <bool> font-italic: ROOT-STYLES.sur-font.font-italic;
+  in property <string> font-family : ROOT-STYLES.sur-font.font-family;
+  private property <length> letter-spacing : ROOT-STYLES.sur-font.letter-spacing;
+  in-out property <string> name : "SURButton";
+  //callbacks
+  callback clicked();
+  clicked => {
+    debug("Button Clicked!")
+  }
+  // Elements
+  TouchArea {
+    height: parent.height;
+    width: parent.width;
+    mouse-cursor: pointer;
+    clicked => {
+      parent.clicked()
+    }
+    txt:= SURText {
+      font-weight: root.font-weight;
+      font-italic: root.font-italic;
+      font-family: root.font-family;
+      font-size: root.font-size;
+      letter-spacing: root.letter-spacing;
+      content: root.name;
+    } 
+  }
+}

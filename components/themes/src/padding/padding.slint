@@ -1,0 +1,30 @@
+import {Level} from "../common.slint";
+
+struct PaddingItem {
+  top-bottom:length,
+  left-right:length,
+  same:length
+}
+
+struct ThemePadding {
+  small: PaddingItem,
+  normal:PaddingItem,
+  large:PaddingItem
+}
+
+struct BorderItem {
+  border-radius:length,
+  border-width:length
+}
+
+struct ThemeBorder {
+    small:BorderItem,
+    normal:BorderItem,
+    large:BorderItem,
+    circle:length
+}
+
+export { 
+  ThemePadding,ThemeBorder
+}
+

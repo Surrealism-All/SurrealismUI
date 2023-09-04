@@ -1,0 +1,32 @@
+import {ThemeColor} from "./src/color/color.slint";
+import {ThemeFont} from "./src/font/font.slint";
+import {ThemePadding,ThemeBorder} from "./src/padding/padding.slint";
+
+export global ROOT_STYLES {
+  out property <ThemeFont> sur-font:{
+    font-family:"Alimama DongFangDaKai",
+    font-weight:400,
+    font-size:16px,
+    font-italic:false,
+    letter-spacing:1px,
+  };
+  out property <ThemeColor> sur-theme-colors : {
+    primary:{name:"primary",weakest:#b3bfef,weaker:#8da0ea,normal:#506ad6,deeper:#3e56b7,deepest:#1d2f7a},
+    success:{name:"primary",weakest:#b4efb3,weaker:#89e587,normal:#4fc54d,deeper:#44c242,deepest:#19b217},
+    info:{name:"primary",weakest:#b3bfef,weaker:#8da0ea,normal:#506ad6,deeper:#3e56b7,deepest:#1d2f7a},
+    warning:{name:"primary",weakest:#b3bfef,weaker:#8da0ea,normal:#506ad6,deeper:#3e56b7,deepest:#1d2f7a},
+    error:{name:"primary",weakest:#b3bfef,weaker:#8da0ea,normal:#506ad6,deeper:#3e56b7,deepest:#1d2f7a},
+    dark:{name:"primary",weakest:#2f323d,weaker:#171922,normal:#1a1c26,deeper:#0f121c,deepest:#101114}
+  };
+  out property <ThemePadding> sur-padding : {
+    small: {top-bottom:sur-font.font-size / 4,left-right:sur-font.font-size / 3.2,same:sur-font.font-size / 3.6},
+    normal:{top-bottom:sur-font.font-size / 2,left-right:sur-font.font-size / 1.6,same:sur-font.font-size / 1.8},
+    large:{top-bottom:sur-font.font-size / 1.2,left-right:sur-font.font-size / 1,same:sur-font.font-size / 1.1}
+  };
+  out property <ThemeBorder> sur-border:{
+    small:{border-radius:4px,border-width:1px},
+    normal:{border-radius:6px,border-width:1.2px},
+    large:{border-radius:9px,border-width:1.8px},
+    circle:1000in
+  };
+}
