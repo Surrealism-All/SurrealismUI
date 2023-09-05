@@ -1,13 +1,5 @@
-```
-{"L12":"#E0F0F8","L11":"#CEE6F5","L10":"#BCDCF2","L9":"#A9D0EF","L8":"#96C4ED","L7":"#82B6EB","L6":"#6EA6EA","L5":"#5A96E9","L4":"#4584E9","L3":"#3070E8","L2":"#1A5BE9","L1":"#134ADB","BASE":"#0F3CC9","D1":"#0E38BD","D2":"#0D35B2","D3":"#0D31A6","D4":"#0C2E9A","D5":"#0B2A8E","D6":"#0A2783","D7":"#092377","D8":"#09206B","D9":"#081C60","D10":"#071954","D11":"#061549","D12":"#05123D"}
-```
+# SurrealismUI
 
-L8
+SurrealismUI是一个完全使用Slint进行构建的Slint第三方组件库
 
-L4
-
-2
-
-base
-
-D4
+SurrealismUI is a third-party component library built entirely using Slint

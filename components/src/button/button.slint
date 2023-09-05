@@ -14,19 +14,20 @@
 
 
 import {SURText} from "../text/index.slint";
-import {ROOT-STYLES,Themes} from "../../themes/index.slint";
+import {SURIcon} from "../icon/index.slint";
+import {ROOT-STYLES,Themes,Icons} from "../../themes/index.slint";
+import { HorizontalBox } from "std-widgets.slint";
 export component Button inherits Rectangle {
-  //padding
+   //padding
   padding-right: ROOT-STYLES.sur-padding.normal.left-right;
   padding-left: ROOT-STYLES.sur-padding.normal.left-right;
   padding-top:  ROOT-STYLES.sur-padding.normal.top-bottom;
   padding-bottom: ROOT-STYLES.sur-padding.normal.top-bottom;
-  //normal
-  height: txt.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
-  width: txt.width + ROOT-STYLES.sur-padding.normal.left-right * 2;
+  height: container.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
+  width: container.width+ ROOT-STYLES.sur-padding.normal.left-right * 2;
   background: ROOT-STYLES.sur-theme-colors.primary.normal;
   //border
-  border-radius: ROOT-STYLES.sur-border.normal.border-radius;
+  border-radius: !circle?ROOT-STYLES.sur-border.normal.border-radius:self.height / 2;
   border-color: ROOT-STYLES.sur-theme-colors.primary.deeper;
   border-width: ROOT-STYLES.sur-border.normal.border-width;
   //shadow
@@ -37,10 +38,14 @@ export component Button inherits Rectangle {
   drop-shadow-blur: 2px;
   // props
   in property <Themes> theme : Themes.Primary;
+  in property <Icons> icon : Icons.Null;
+  in-out property <brush> font-color;
+  in-out property <brush> icon-color;
   in property <length> font-size : ROOT-STYLES.sur-font.font-size;
   in property <int> font-weight : ROOT-STYLES.sur-font.font-weight;
   in property <bool> font-italic: ROOT-STYLES.sur-font.font-italic;
   in property <string> font-family : ROOT-STYLES.sur-font.font-family;
+  in property <bool> circle :false;
   private property <length> letter-spacing : ROOT-STYLES.sur-font.letter-spacing;
   in-out property <string> content : "SURButton";
   // button states for themes
@@ -49,31 +54,43 @@ export component Button inherits Rectangle {
         root.background : !area.has-hover?ROOT-STYLES.sur-theme-colors.primary.normal : ROOT-STYLES.sur-theme-colors.primary.deeper;
         root.border-color: ROOT-STYLES.sur-theme-colors.primary.deeper;
         root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
+        font-color: ROOT-STYLES.sur-theme-colors.primary.font;
+        icon-color : ROOT-STYLES.sur-theme-colors.primary.font;
       }
       success when theme == Themes.Success: {
         root.background : !area.has-hover?ROOT-STYLES.sur-theme-colors.success.normal:ROOT-STYLES.sur-theme-colors.success.deeper;
         root.border-color: ROOT-STYLES.sur-theme-colors.success.deeper;
         root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
+        font-color: ROOT-STYLES.sur-theme-colors.success.font;
+        icon-color: ROOT-STYLES.sur-theme-colors.success.font;
       }
       info when theme == Themes.Info: {
         root.background : !area.has-hover?ROOT-STYLES.sur-theme-colors.info.normal:ROOT-STYLES.sur-theme-colors.info.deeper;
         root.border-color: ROOT-STYLES.sur-theme-colors.info.deeper;
         root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
+        font-color: ROOT-STYLES.sur-theme-colors.info.font;
+        icon-color: ROOT-STYLES.sur-theme-colors.info.font;
       }
       warning when theme == Themes.Warning: {
         root.background : !area.has-hover?ROOT-STYLES.sur-theme-colors.warning.normal:ROOT-STYLES.sur-theme-colors.warning.deeper;
         root.border-color: ROOT-STYLES.sur-theme-colors.warning.deeper;
         root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
+        font-color: ROOT-STYLES.sur-theme-colors.warning.font;
+        icon-color: ROOT-STYLES.sur-theme-colors.warning.font;
       }
       error when theme == Themes.Error: {
         root.background : !area.has-hover?ROOT-STYLES.sur-theme-colors.error.normal:ROOT-STYLES.sur-theme-colors.error.deeper;
         root.border-color: ROOT-STYLES.sur-theme-colors.error.deeper;
         root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
+        font-color: ROOT-STYLES.sur-theme-colors.error.font;
+        icon-color: ROOT-STYLES.sur-theme-colors.error.font;
       }
       dark when theme == Themes.Dark: {
         root.background : !area.has-hover?ROOT-STYLES.sur-theme-colors.dark.normal:ROOT-STYLES.sur-theme-colors.dark.deeper;
         root.border-color: ROOT-STYLES.sur-theme-colors.dark.deeper;
         root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
+        font-color: ROOT-STYLES.sur-theme-colors.dark.font;
+        icon-color: ROOT-STYLES.sur-theme-colors.dark.font;
       }
   ]
   // animation
@@ -96,22 +113,38 @@ export component Button inherits Rectangle {
     // self.background = ROOT-STYLES.sur-theme-colors.dark.normal;
   }
   // Elements
-  area:=TouchArea {
-    height: parent.height;
-    width: parent.width;
-    mouse-cursor: pointer;
-    clicked => {
-      parent.clicked()
-    }
-    txt:= SURText {
+  container:= HorizontalLayout {
+  spacing: 0;
+  alignment:center;
+  //normal
+  height: txt.height;
+  padding: 0;
+  width:root.icon!=Icons.Null? txt.width+ root.font-size*2  : txt.width ;
+    if root.icon!=Icons.Null: sur-icon:=SURIcon {
+      height: root.font-size;
+      width: root.font-size;
       theme:root.theme;
-      font-weight: root.font-weight;
-      font-italic: root.font-italic;
-      font-family: root.font-family;
-      font-size: root.font-size;
+      icon: root.icon;
+      icon-color: root.icon-color;
+    }
+    area:=TouchArea {
+      height: parent.height;
+      width: parent.width;
+      mouse-cursor: pointer;
+      clicked => {
+        root.clicked()
+      }
       
-      letter-spacing: root.letter-spacing;
-      content: root.content;
-    } 
+      txt:= SURText {
+        theme:root.theme;
+        font-weight: root.font-weight;
+        font-italic: root.font-italic;
+        font-family: root.font-family;
+        font-size: root.font-size;
+        letter-spacing: root.letter-spacing;
+        content: root.content;
+        color: root.font-color;
+      } 
+    }
   }
 }
