@@ -13,9 +13,8 @@
 */
 
 
-import {GridBox, HorizontalBox} from "std-widgets.slint";
 import {SURText} from "../text/index.slint";
-import {ROOT-STYLES} from "../../themes/index.slint";
+import {ROOT-STYLES,Themes} from "../../themes/index.slint";
 export component Button inherits Rectangle {
   //padding
   padding-right: ROOT-STYLES.sur-padding.normal.left-right;
@@ -25,31 +24,79 @@ export component Button inherits Rectangle {
   //normal
   height: txt.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
   width: txt.width + ROOT-STYLES.sur-padding.normal.left-right * 2;
-  background: ROOT-STYLES.sur-theme-colors.primary.weaker;
+  background: ROOT-STYLES.sur-theme-colors.primary.normal;
   //border
   border-radius: ROOT-STYLES.sur-border.normal.border-radius;
   border-color: ROOT-STYLES.sur-theme-colors.primary.deeper;
   border-width: ROOT-STYLES.sur-border.normal.border-width;
   //shadow
-  opacity: 90%;
+  opacity: ROOT-STYLES.sur-opacity;
   drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.normal;
   drop-shadow-offset-x: 0px;
   drop-shadow-offset-y: 0px;
   drop-shadow-blur: 2px;
   // props
+  in property <Themes> theme : Themes.Primary;
   in property <length> font-size : ROOT-STYLES.sur-font.font-size;
   in property <int> font-weight : ROOT-STYLES.sur-font.font-weight;
   in property <bool> font-italic: ROOT-STYLES.sur-font.font-italic;
   in property <string> font-family : ROOT-STYLES.sur-font.font-family;
   private property <length> letter-spacing : ROOT-STYLES.sur-font.letter-spacing;
-  in-out property <string> name : "SURButton";
+  in-out property <string> content : "SURButton";
+  // button states for themes
+  states [
+      primary when theme == Themes.Primary: {
+        root.background : !area.has-hover?ROOT-STYLES.sur-theme-colors.primary.normal : ROOT-STYLES.sur-theme-colors.primary.deeper;
+        root.border-color: ROOT-STYLES.sur-theme-colors.primary.deeper;
+        root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
+      }
+      success when theme == Themes.Success: {
+        root.background : !area.has-hover?ROOT-STYLES.sur-theme-colors.success.normal:ROOT-STYLES.sur-theme-colors.success.deeper;
+        root.border-color: ROOT-STYLES.sur-theme-colors.success.deeper;
+        root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
+      }
+      info when theme == Themes.Info: {
+        root.background : !area.has-hover?ROOT-STYLES.sur-theme-colors.info.normal:ROOT-STYLES.sur-theme-colors.info.deeper;
+        root.border-color: ROOT-STYLES.sur-theme-colors.info.deeper;
+        root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
+      }
+      warning when theme == Themes.Warning: {
+        root.background : !area.has-hover?ROOT-STYLES.sur-theme-colors.warning.normal:ROOT-STYLES.sur-theme-colors.warning.deeper;
+        root.border-color: ROOT-STYLES.sur-theme-colors.warning.deeper;
+        root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
+      }
+      error when theme == Themes.Error: {
+        root.background : !area.has-hover?ROOT-STYLES.sur-theme-colors.error.normal:ROOT-STYLES.sur-theme-colors.error.deeper;
+        root.border-color: ROOT-STYLES.sur-theme-colors.error.deeper;
+        root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
+      }
+      dark when theme == Themes.Dark: {
+        root.background : !area.has-hover?ROOT-STYLES.sur-theme-colors.dark.normal:ROOT-STYLES.sur-theme-colors.dark.deeper;
+        root.border-color: ROOT-STYLES.sur-theme-colors.dark.deeper;
+        root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
+      }
+  ]
+  // animation
+  animate background {
+    duration: ROOT-STYLES.sur-an-duration;
+    easing: ROOT-STYLES.sur-an-easing;
+  }
+  animate height {
+    duration: ROOT-STYLES.sur-an-duration;
+    easing: ROOT-STYLES.sur-an-easing;
+  }
+  animate width {
+    duration: ROOT-STYLES.sur-an-duration;
+    easing: ROOT-STYLES.sur-an-easing;
+  }
   //callbacks
   callback clicked();
   clicked => {
-    debug("Button Clicked!")
+    debug("Button Clicked!");
+    // self.background = ROOT-STYLES.sur-theme-colors.dark.normal;
   }
   // Elements
-  TouchArea {
+  area:=TouchArea {
     height: parent.height;
     width: parent.width;
     mouse-cursor: pointer;
@@ -57,12 +104,14 @@ export component Button inherits Rectangle {
       parent.clicked()
     }
     txt:= SURText {
+      theme:root.theme;
       font-weight: root.font-weight;
       font-italic: root.font-italic;
       font-family: root.font-family;
       font-size: root.font-size;
+      
       letter-spacing: root.letter-spacing;
-      content: root.name;
+      content: root.content;
     } 
   }
 }

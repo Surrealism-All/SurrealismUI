@@ -13,11 +13,11 @@
 * ============================================
 */
 
-import {ROOT_STYLES} from "../../themes/index.slint";
+import {ROOT_STYLES,Themes} from "../../themes/index.slint";
 export component Span inherits Text{
   //normal
   text: content;
-  color: ROOT-STYLES.sur-theme-colors.primary.normal;
+  color: ROOT-STYLES.sur-theme-colors.primary.weakest;
   // font styles:
   font-weight: ROOT-STYLES.sur-font.font-weight;
   font-size: ROOT-STYLES.sur-font.font-size;
@@ -31,9 +31,30 @@ export component Span inherits Text{
   wrap: no-wrap;
   overflow: elide;
   //props
+  in property <Themes> theme : Themes.Primary;
   in-out property <string> content : "SURText";
   //functions
   public function get-content()->string {
     self.content
   }
+  states [
+    primary when theme == Themes.Primary: {
+      root.color : ROOT-STYLES.sur-theme-colors.primary.font;
+    }
+    success when theme == Themes.Success: {
+      root.color : ROOT-STYLES.sur-theme-colors.success.font;
+    }
+    info when theme == Themes.Info: {
+      root.color : ROOT-STYLES.sur-theme-colors.info.font;
+    }
+    warning when theme == Themes.Warning: {
+      root.color : ROOT-STYLES.sur-theme-colors.warning.font;
+    }
+    error when theme == Themes.Error: {
+      root.color : ROOT-STYLES.sur-theme-colors.error.font;
+    }
+    dark when theme == Themes.Dark: {
+      root.color : ROOT-STYLES.sur-theme-colors.dark.font;
+    }
+]
 }

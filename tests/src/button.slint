@@ -1,10 +1,51 @@
 import {SURButton} from "../../components/index.slint";
-
+import {Themes} from "../../components/themes/index.slint";
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
+  
   SURButton {
+    x: 20px;
+    y: 10px;
     font-size: 20px;
     font-weight:700;
+    theme:Themes.Dark;
+    clicked => {
+      self.content = "clicked"
+    }
+  }
+  SURButton {
+    x: 20px;
+    y: 100px;
+    font-size: 20px;
+    font-weight:700;
+    theme:Themes.Success;
+  }
+  SURButton {
+    x: 20px;
+    y: 200px;
+    font-size: 20px;
+    font-weight:700;
+    theme:Themes.Primary;
+  }
+  SURButton {
+    x: 20px;
+    y: 300px;
+    font-weight:700;
+    theme:Themes.Info;
+  }
+  SURButton {
+    x: 200px;
+    y: 100px;
+    font-size: 12px;
+    font-weight:700;
+    theme:Themes.Error;
+  }
+  SURButton {
+    x: 200px;
+    y: 200px;
+    font-size: 20px;
+    font-weight:700;
+    theme:Themes.Warning;
   }
 }

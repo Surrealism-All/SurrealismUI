@@ -1,6 +1,18 @@
 import {ThemeColor} from "./src/color/color.slint";
 import {ThemeFont} from "./src/font/font.slint";
 import {ThemePadding,ThemeBorder} from "./src/padding/padding.slint";
+import {Size,SizeStruct} from "./src/common.slint";
+import { Icons } from "./src/icon.slint";
+export { Icons,Size}
+
+export enum Themes{
+  Primary,
+  Success,
+  Info,
+  Warning,
+  Error,
+  Dark
+}
 
 export global ROOT_STYLES {
   out property <ThemeFont> sur-font:{
@@ -10,13 +22,15 @@ export global ROOT_STYLES {
     font-italic:false,
     letter-spacing:1px,
   };
-  out property <ThemeColor> sur-theme-colors : {
-    primary:{name:"primary",weakest:#b3bfef,weaker:#8da0ea,normal:#506ad6,deeper:#3e56b7,deepest:#1d2f7a},
-    success:{name:"primary",weakest:#b4efb3,weaker:#89e587,normal:#4fc54d,deeper:#44c242,deepest:#19b217},
-    info:{name:"primary",weakest:#b3bfef,weaker:#8da0ea,normal:#506ad6,deeper:#3e56b7,deepest:#1d2f7a},
-    warning:{name:"primary",weakest:#b3bfef,weaker:#8da0ea,normal:#506ad6,deeper:#3e56b7,deepest:#1d2f7a},
-    error:{name:"primary",weakest:#b3bfef,weaker:#8da0ea,normal:#506ad6,deeper:#3e56b7,deepest:#1d2f7a},
-    dark:{name:"primary",weakest:#2f323d,weaker:#171922,normal:#1a1c26,deeper:#0f121c,deepest:#101114}
+  out property <brush> font-light : #ffffff;
+  out property <brush> font-black : #000;
+  in-out property <ThemeColor> sur-theme-colors : {
+    primary:{name:"primary",weakest:#96C4ED,weaker:#4584E9,normal:#1A5BE9,deeper:#0F3CC9,deepest:#1d2f7a,font:#bbdbf6},
+    success:{name:"success",weakest:#B0E5DC,weaker:#7FD5A2,normal:#66CD7A,deeper:#4FC54D,deepest:#33956B,font:#e0fcf7},
+    info:{name:"info",weakest:#E6E5E6,weaker:#DEDDDE,normal:#d7d7d7,deeper:#bcbcbc,deepest:#878787,font:#ffffff},
+    warning:{name:"warning",weakest:#e48d73,weaker:#f07651,normal:#f06b42,deeper:#e95a2e,deepest:#e63819,font:#fdd1c3},
+    error:{name:"error",weakest:#e9a9a7,weaker:#DC8472,normal:#e34e47,deeper:#D03D46,deepest:#9e2929,font:#fbe3d4},
+    dark:{name:"dark",weakest:#2f323d,weaker:#171922,normal:#1a1c26,deeper:#0f121c,deepest:#101114,font:#73788c}
   };
   out property <ThemePadding> sur-padding : {
     small: {top-bottom:sur-font.font-size / 4,left-right:sur-font.font-size / 3.2,same:sur-font.font-size / 3.6},
@@ -29,4 +43,14 @@ export global ROOT_STYLES {
     large:{border-radius:9px,border-width:1.8px},
     circle:1000in
   };
+  out property <percent> sur-opacity : 86%;
+  out property <duration> sur-an-duration :450ms;
+  out property <easing> sur-an-easing : ease-in-out;
+  in-out property <SizeStruct> sur-size:{
+    small:12px,
+    normal:16px,
+    large:20px,
+  };
 }
+
+

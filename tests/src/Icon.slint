@@ -1,0 +1,54 @@
+import {SURIcon} from "../../components/index.slint";
+import {Icons,Size,Themes} from "../../components/themes/index.slint";
+component TestWindow inherits Window {
+  height: 400px;
+  width: 400px;
+  SURIcon{
+    x: 0;
+    y: 0;
+    icon: Icons.Abnormal;
+    theme: Themes.Primary;
+  }
+  SURIcon{
+    x: 30px;
+    y: 0;
+    icon: Icons.Add;
+    theme: Themes.Success;
+  }
+  SURIcon{
+    x: 60px;
+    y: 0;
+    height: 30px;
+    width: 30px;
+    icon: Icons.Baby-car-seat;
+    theme: Themes.Error;
+  }
+  SURIcon{
+    x: 0;
+    y: 100px;
+    icon: Icons.Abnormal;
+    theme: Themes.Dark;
+  }
+  SURIcon{
+    height: 24px;
+    width: 24px;
+    x: 30px;
+    y: 100px;
+    icon: Icons.Add;
+    theme: Themes.Info;
+  }
+  SURIcon{
+    height: 24px;
+    width: 24px;
+    x: 60px;
+    y: 100px;
+    icon: Icons.Vacation;
+    theme: Themes.Warning;
+    clicked=>{
+      debug("clicked");
+      self.theme= Themes.Error;
+      self.height += 2px;
+      self.width += 2px;
+    }
+  }
+}

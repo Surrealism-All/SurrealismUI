@@ -1,7 +1,12 @@
-struct Level{
-    small:length,
-    normal:length,
-    large:length,
+enum Size{
+    Small,
+    Normal,
+    Large
 }
 
-export { Level }
+struct SizeStruct {
+    small:length,
+    normal:length,
+    large:length
+}
+export { Size,SizeStruct }

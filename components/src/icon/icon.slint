@@ -1,0 +1,112 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230905
+* @version:0.0.1
+* @type:interface
+* @description: 
+* SURIcon是一个图标
+* ============================================
+*/
+import {IconItem,IconSources} from "./dev.slint";
+import {Icons,ROOT_STYLES,Themes} from "../../themes/index.slint";
+
+export component Icon inherits Rectangle {
+  //default icon size
+  height: ROOT-STYLES.sur-size.normal;
+  width: ROOT-STYLES.sur-size.normal;
+  padding: 0;
+  
+  //params
+  in property <Icons> icon;
+  in property <Themes> theme : Themes.Primary;
+  in-out property <brush> icon-color :ROOT-STYLES.sur-theme-colors.primary.weakest;
+  private property <image> src;
+  private property <[IconItem]> icon-datas : IconSources.icons;
+  // get icon src from for iter item
+  pure function get_icon(item:IconItem)->image {
+      if(item.name==icon){
+        item.icon
+      }else{
+        @image-url("")
+      }
+  }
+  callback clicked;
+  clicked => {}
+  states [
+    primary when theme == Themes.Primary: {
+      icon-color :ROOT-STYLES.sur-theme-colors.primary.weakest;
+      out{
+        animate  * {
+          duration: ROOT-STYLES.sur-an-duration;
+          easing: ROOT-STYLES.sur-an-easing;
+        }
+      }
+    }
+    success when theme == Themes.Success: {
+      icon-color :ROOT-STYLES.sur-theme-colors.success.weakest;
+      out{
+        animate  * {
+          duration: ROOT-STYLES.sur-an-duration;
+          easing: ROOT-STYLES.sur-an-easing;
+        }
+      }
+    }
+    info when theme == Themes.Info: {
+      icon-color :ROOT-STYLES.sur-theme-colors.info.weakest;
+      out{
+        animate  * {
+          duration: ROOT-STYLES.sur-an-duration;
+          easing: ROOT-STYLES.sur-an-easing;
+        }
+      }
+    }
+    warning when theme == Themes.Warning: {
+      icon-color :ROOT-STYLES.sur-theme-colors.warning.weakest;
+      out{
+        animate  * {
+          duration: ROOT-STYLES.sur-an-duration;
+          easing: ROOT-STYLES.sur-an-easing;
+        }
+      }
+    }
+    error when theme == Themes.Error: {
+      icon-color :ROOT-STYLES.sur-theme-colors.error.weakest;
+      out{
+        animate  * {
+          duration: ROOT-STYLES.sur-an-duration;
+          easing: ROOT-STYLES.sur-an-easing;
+        }
+      }
+    }
+    dark when theme == Themes.Dark: {
+      icon-color :ROOT-STYLES.sur-theme-colors.dark.weakest;
+      out{
+        animate  * {
+          duration: ROOT-STYLES.sur-an-duration;
+          easing: ROOT-STYLES.sur-an-easing;
+        }
+      }
+    }
+  ]
+  
+  // for iter to match then get icon source
+  for item in icon-datas: img:=TouchArea{
+    mouse-cursor: pointer;
+    clicked => {
+      root.clicked()
+    }
+    Image {
+      source: root.get-icon(item);
+      height: root.height;
+      width: root.width;
+      colorize: root.icon-color;
+      
+    }
+  }
+}
+
+
+
+
+
