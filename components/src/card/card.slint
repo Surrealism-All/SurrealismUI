@@ -1,0 +1,62 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230907
+* @version:0.0.1
+* @type:interface
+* @description:
+* # SURCard
+* A very simple universal card without any layout or restrictions
+* you can add anything you want to the card
+* ## properties
+* - in property <Themes> theme : Surrealism theme
+* ## functions
+* - pure public function count-height(h:length) -> length : a cheap way to calculate height
+* - pure public function count-width(w:length) -> length : a cheap way to calculate width
+* ============================================
+*/
+
+
+import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
+
+export component Card inherits Rectangle{
+
+  border-radius: ROOT-STYLES.sur-border.small.border-radius;
+  padding: ROOT-STYLES.sur-padding.normal.same;
+  drop-shadow-offset-x: 0;
+  drop-shadow-offset-y: 0;
+  drop-shadow-blur: 6px;
+  in property <Themes> theme : Themes.Primary;
+  pure public function count-height(h:length) -> length {
+    h + 2 * ROOT-STYLES.sur-padding.normal.same
+  }
+  pure public function count-width(w:length) -> length {
+    w + 2 * ROOT-STYLES.sur-padding.normal.same
+  }
+  states [
+    primary when theme == Themes.Primary: {
+      root.background : ROOT-STYLES.sur-theme-colors.primary.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
+    }
+    success when theme == Themes.Success: {
+      root.background : ROOT-STYLES.sur-theme-colors.success.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
+    }
+    info when theme == Themes.Info: {
+      root.background : ROOT-STYLES.sur-theme-colors.info.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
+    }
+    warning when theme == Themes.Warning: {
+      root.background : ROOT-STYLES.sur-theme-colors.warning.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
+    }
+    error when theme == Themes.Error: {
+      root.background : ROOT-STYLES.sur-theme-colors.error.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
+    }
+    dark when theme == Themes.Dark: {
+      root.background : ROOT-STYLES.sur-theme-colors.dark.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
+    }
+  ]
+}
