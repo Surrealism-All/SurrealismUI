@@ -5,15 +5,36 @@
 * @version:0.0.1
 * @type:interface
 * @description:
-* SURScroll inherits ScrollView 
-* you can set it scroll-x | scroll-y | both | none 
-* do not set : none 
-* 根据计算得出scrollbar的宽度为14px
+* # SURInput
+* This is a basic input box, often used in forms, divided into two types: text and password
+* ## properties:
+* - in property <string> placeholder: default placeholder which you wanna show when no content
+* - in property <Themes> theme: Surrealism themes
+* - in property <Icons> icon: icon you wanna show in front (use >= v0.1.0) ⛔
+* - in property <length> input-width: Please do not use width to adjust the length of the input box , use this property to instead
+* - in property <length> font-size: font size 
+* - in property <bool> disabled: can input be edited
+* - in property <bool> clearable: can input be cleared
+* - in property <bool> password: can the password input display the password
+* - out property <bool> has-focus : input is focused or not
+* - private property <brush> placeholder-color : placeholder color
+* - in-out property <InputType> type : input type (text or password)
+* - in-out property <brush> font-color : font color
+* - in-out property <brush> icon-color : icon color
+* - in-out property <string> content : the content of the input
+* ## functions:
+* - pure public function get() ->string : get content
+* - public function set(content:string) : set content
+* - pure public function count-width()->length : count input real width ⛔
+* ## callbacks:
+* - callback accepted(string) : run when pressed down Enter key
+* - callback changed(string) : run when content changed
+* - callback clear() : empty content
 * ============================================
 */
 
 
-import { ScrollView , LineEdit} from "std-widgets.slint";
+import { ScrollView} from "std-widgets.slint";
 import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
 import { SURText } from "../text/index.slint";
 import {SURIcon} from "../icon/index.slint";
@@ -31,20 +52,24 @@ export component Input inherits Rectangle{
   in property <bool> clearable:false;
   //use eye-icon
   in property <bool> password:false;
+  out property <bool> has-focus<=>input.has-focus;
   private property <brush> placeholder-color;
   in-out property <InputType> type : InputType.text;
   in-out property <brush> font-color;
   in-out property <brush> icon-color;
   in-out property <string> content <=> input.text;
-  // functions' properties
-  // private property <int> icon-num : 0;
-  // private property <length> component-width : count-width();
   //callbacks
   callback accepted(string);
   callback changed(string);
   callback clear();
   clear => {
     root.content = "";
+  }
+  pure public function get() ->string{
+      self.content
+  }
+  public function set(content:string) {
+      self.content = content
   }
   //functions
   pure public function count-width()->length {
@@ -154,6 +179,7 @@ export component Input inherits Rectangle{
         text: "";
         wrap: no-wrap;
         input-type: root.type;
+        
         accepted => {
           root.accepted(root.content)
         }

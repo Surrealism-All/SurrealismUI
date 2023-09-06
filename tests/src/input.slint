@@ -1,10 +1,10 @@
 import {SURText,SURInput,SURButton, SURIcon} from "../../components/index.slint";
 import {Themes} from "../../components/themes/index.slint";
-import { TextEdit , LineEdit} from "std-widgets.slint";
 
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
+  
   SURInput{
     y: 20px;
     placeholder :"please enter your username";
@@ -15,8 +15,9 @@ component TestWindow inherits Window {
     changed(change-res)=>{
       debug(change-res);
     }
+    
   }
-  SURInput{
+  w:=SURInput{
     y: 80px;
     theme:Themes.Success;
     type:InputType.password;

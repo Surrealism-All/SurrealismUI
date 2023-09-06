@@ -5,11 +5,15 @@
 * @version:0.0.1
 * @type:interface
 * @description: 
-* SURText作为最简单的文本不含有特殊工作
-* 它是SurrealismUI中最简单，最常见的组件
-* @callback: 
-* @function:
-* 1. get-content()->string 👎
+* # SURText
+* It is the simplest and most common component in SurrealismUI
+* ## properties:
+* - in property <Themes> theme : Surrealism themes
+* - in-out property <string> content : the content in SURText
+* ## callbacks: 
+* ## functions:
+* - pure public function get()->string : get content
+* - public function set(content:string) : set content
 * ============================================
 */
 
@@ -34,7 +38,10 @@ export component Span inherits Text{
   in property <Themes> theme : Themes.Primary;
   in-out property <string> content : "SURText";
   //functions
-  public function get-content()->string {
+  public function set(content:string) {
+    self.content = content;
+  }
+  pure public function get()->string {
     self.content
   }
   states [

@@ -5,7 +5,17 @@
 * @version:0.0.1
 * @type:interface
 * @description: 
-* SURIcon是一个图标
+* # SURIcon
+* there are 2658 different icons in SURIcon from : https://github.com/bytedance/iconpark
+* ## properties:
+* - in property <Icons> icon : icon types
+* - in property <Themes> theme : Surrealism theme
+* - in-out property <brush> icon-color : icon color 
+* - private property <[IconItem]> icon-datas : source icon datas ⛔
+* ## callbacks: 
+* - callback clicked : run if you click the icon
+* ## functions:
+* - pure function get_icon(item:IconItem)->image : get icon src from for iter item ⛔
 * ============================================
 */
 import {IconItem,IconSources} from "./dev.slint";
@@ -20,7 +30,6 @@ export component Icon inherits Rectangle {
   in property <Icons> icon : Icons.Null;
   in property <Themes> theme : Themes.Primary;
   in-out property <brush> icon-color;
-  private property <image> src;
   private property <[IconItem]> icon-datas : IconSources.icons;
   // get icon src from for iter item
   pure function get_icon(item:IconItem)->image {

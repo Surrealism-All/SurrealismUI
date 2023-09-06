@@ -1,13 +1,18 @@
 import {SURText} from "../../components/index.slint";
+import {Themes} from "../../components/themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
   SURText {
-    x: 0;
+    x: 100px;
     y: 0;
-    width: 130px;
     content: "hello world";
+  }
+  SURText {
+    x:100px;
+    y:100px;
+    theme:Themes.Error;
   }
  
 }

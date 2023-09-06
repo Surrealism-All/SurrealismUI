@@ -1,0 +1,44 @@
+import {ROOT-STYLES} from "../../components/themes/index.slint";
+component TestWindow inherits Window {
+  height: 200px;
+  width: 700px;
+  HorizontalLayout {
+    height: 200px;
+    width: root.width;
+    Rectangle {
+      height: parent.height;
+      width: root.width / 7;
+      background:ROOT-STYLES.sur-theme-colors.dark.opacity;
+    }
+    Rectangle {
+      height: parent.height;
+      width: root.width / 7;
+      background:ROOT-STYLES.sur-theme-colors.dark.font;
+    }
+    Rectangle {
+      height: parent.height;
+      width: root.width / 7;
+      background:ROOT-STYLES.sur-theme-colors.dark.weakest;
+    }
+    Rectangle {
+      height: parent.height;
+      width: root.width / 7;
+      background:ROOT-STYLES.sur-theme-colors.dark.weaker;
+    }
+    Rectangle {
+      height: parent.height;
+      width: root.width / 7;
+      background:ROOT-STYLES.sur-theme-colors.dark.normal;
+    }
+    Rectangle {
+      height: parent.height;
+      width: root.width / 7;
+      background:ROOT-STYLES.sur-theme-colors.dark.deeper;
+    }
+    Rectangle {
+      height: parent.height;
+      width: root.width / 7;
+      background:ROOT-STYLES.sur-theme-colors.dark.deepest;
+    }
+  }
+}
