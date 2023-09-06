@@ -1,17 +1,24 @@
 import {SURText,SURButton} from "../components/index.slint";
+import { ScrollView } from "std-widgets.slint";
 
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
-  SURText {
-    x: 0;
-    y: 0;
-    width: 130px;
-    content: "hello world";
-  }
-  SURButton {
-    font-size: 20px;
-    font-weight:700;
-    
+  ScrollView { 
+    height: 300px;
+    width: 300px;
+    viewport-height: 500px;
+    viewport-width: 500px;
+    SURText {
+      x: 0;
+      y: 0;
+      width: 130px;
+      content: "hello world";
+    }
+    SURButton {
+      font-size: 20px;
+      font-weight:700;
+      
+    }
   }
 }

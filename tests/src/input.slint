@@ -1,0 +1,49 @@
+import {SURText,SURInput,SURButton, SURIcon} from "../../components/index.slint";
+import {Themes} from "../../components/themes/index.slint";
+import { TextEdit , LineEdit} from "std-widgets.slint";
+
+component TestWindow inherits Window {
+  height: 400px;
+  width: 400px;
+  SURInput{
+    y: 20px;
+    placeholder :"please enter your username";
+    input-width:360px;
+    accepted(res)=>{
+      debug("content in input:" + res);
+    }
+    changed(change-res)=>{
+      debug(change-res);
+    }
+  }
+  SURInput{
+    y: 80px;
+    theme:Themes.Success;
+    type:InputType.password;
+    password:true;
+  }
+  SURInput{
+    y: 140px;
+    theme:Themes.Error;
+    disabled:true;
+    content:"disabled";
+  }
+  SURInput{
+    y: 200px;
+    theme:Themes.Dark;
+  }
+
+  SURInput{
+    y: 260px;
+    theme:Themes.Warning;
+    clearable:true;
+  }
+  SURInput{
+    y: 320px;
+    theme:Themes.Info;
+    type:InputType.password;
+    clearable:true;
+    password:true;
+  }
+  
+}

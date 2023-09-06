@@ -1,0 +1,207 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230906
+* @version:0.0.1
+* @type:interface
+* @description:
+* SURScroll inherits ScrollView 
+* you can set it scroll-x | scroll-y | both | none 
+* do not set : none 
+* 根据计算得出scrollbar的宽度为14px
+* ============================================
+*/
+
+
+import { ScrollView , LineEdit} from "std-widgets.slint";
+import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
+import { SURText } from "../text/index.slint";
+import {SURIcon} from "../icon/index.slint";
+export component Input inherits Rectangle{
+  height:input.height;
+  width: count-width();
+  clip: false;
+  border-radius: ROOT-STYLES.sur-border.small.border-radius;
+  in property <string> placeholder : "please input";
+  in property <Themes> theme : Themes.Primary;
+  in property <Icons> icon : Icons.Null;
+  in property <length> input-width : 16rem;
+  in property <length> font-size : ROOT-STYLES.sur-font.font-size;
+  in property <bool> disabled:false;
+  in property <bool> clearable:false;
+  //use eye-icon
+  in property <bool> password:false;
+  private property <brush> placeholder-color;
+  in-out property <InputType> type : InputType.text;
+  in-out property <brush> font-color;
+  in-out property <brush> icon-color;
+  in-out property <string> content <=> input.text;
+  // functions' properties
+  // private property <int> icon-num : 0;
+  // private property <length> component-width : count-width();
+  //callbacks
+  callback accepted(string);
+  callback changed(string);
+  callback clear();
+  clear => {
+    root.content = "";
+  }
+  //functions
+  pure public function count-width()->length {
+    if(root.clearable&&root.password){
+      return input-view.width + ROOT-STYLES.sur-padding.normal.same * 2 + ROOT-STYLES.sur-font.font-size * 2 + ROOT-STYLES.sur-padding.small.same * 2;
+    }else if((root.clearable&&!root.password)||(!root.clearable&&root.password)){
+      return input-view.width + ROOT-STYLES.sur-padding.normal.same * 2 + ROOT-STYLES.sur-font.font-size + ROOT-STYLES.sur-padding.small.same * 1;
+    }
+    return input-view.width  + ROOT-STYLES.sur-padding.normal.same * 2;
+  }
+  states [
+    primary when theme == Themes.Primary: {
+      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.primary.opacity : ROOT-STYLES.sur-theme-colors.primary.deeper;
+      root.border-color: ROOT-STYLES.sur-theme-colors.primary.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
+      font-color: ROOT-STYLES.sur-theme-colors.primary.font;
+      icon-color : ROOT-STYLES.sur-theme-colors.primary.font;
+      input.selection-background-color : ROOT-STYLES.sur-theme-colors.primary.normal;
+      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.primary.font;
+      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.primary.weakest;
+      hight-light.width : !input.has-focus? 0px:input.width;
+      // input.text : !input.has-focus?root.placeholder:"";
+      root.placeholder-color : ROOT-STYLES.sur-theme-colors.primary.weakest;
+    }
+    success when theme == Themes.Success: {
+      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.success.opacity:ROOT-STYLES.sur-theme-colors.success.deeper;
+      root.border-color: ROOT-STYLES.sur-theme-colors.success.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
+      font-color: ROOT-STYLES.sur-theme-colors.success.font;
+      icon-color: ROOT-STYLES.sur-theme-colors.success.font;
+      input.selection-background-color : ROOT-STYLES.sur-theme-colors.success.normal;
+      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.success.font;
+      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.success.weakest;
+      hight-light.width : !input.has-focus? 0px:input.width;
+      root.placeholder-color : ROOT-STYLES.sur-theme-colors.success.weaker;
+    }
+    info when theme == Themes.Info: {
+      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.info.opacity:ROOT-STYLES.sur-theme-colors.info.deeper;
+      root.border-color: ROOT-STYLES.sur-theme-colors.info.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
+      font-color: ROOT-STYLES.sur-theme-colors.info.font;
+      icon-color: ROOT-STYLES.sur-theme-colors.info.font;
+      input.selection-background-color : ROOT-STYLES.sur-theme-colors.info.normal;
+      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.info.font;
+      hight-light.background : ROOT-STYLES.sur-theme-colors.info.weaker;
+      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.info.weakest;
+      hight-light.width : !input.has-focus? 0px:input.width;
+      root.placeholder-color : ROOT-STYLES.sur-theme-colors.info.weaker;
+    }
+    warning when theme == Themes.Warning: {
+      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.warning.opacity:ROOT-STYLES.sur-theme-colors.warning.deeper;
+      root.border-color: ROOT-STYLES.sur-theme-colors.warning.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
+      font-color: ROOT-STYLES.sur-theme-colors.warning.font;
+      icon-color: ROOT-STYLES.sur-theme-colors.warning.font;
+      input.selection-background-color : ROOT-STYLES.sur-theme-colors.warning.normal;
+      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.warning.font;
+      hight-light.background : ROOT-STYLES.sur-theme-colors.warning.weaker;
+      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.warning.weakest;
+      hight-light.width : !input.has-focus? 0px:input.width;
+      root.placeholder-color : ROOT-STYLES.sur-theme-colors.warning.weaker;
+    }
+    error when theme == Themes.Error: {
+      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.error.opacity:ROOT-STYLES.sur-theme-colors.error.deeper;
+      root.border-color: ROOT-STYLES.sur-theme-colors.error.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
+      font-color: ROOT-STYLES.sur-theme-colors.error.font;
+      icon-color: ROOT-STYLES.sur-theme-colors.error.font;
+      input.selection-background-color : ROOT-STYLES.sur-theme-colors.error.normal;
+      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.error.font;
+      hight-light.background : ROOT-STYLES.sur-theme-colors.error.weaker;
+      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.error.weakest;
+      hight-light.width : !input.has-focus? 0px:input.width;
+      root.placeholder-color : ROOT-STYLES.sur-theme-colors.error.weaker;
+    }
+    dark when theme == Themes.Dark: {
+      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.dark.opacity:ROOT-STYLES.sur-theme-colors.dark.deeper;
+      root.border-color: ROOT-STYLES.sur-theme-colors.dark.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
+      font-color: ROOT-STYLES.sur-theme-colors.dark.font;
+      icon-color: ROOT-STYLES.sur-theme-colors.dark.font;
+      input.selection-background-color : ROOT-STYLES.sur-theme-colors.dark.normal;
+      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.dark.font;
+      hight-light.background : ROOT-STYLES.sur-theme-colors.dark.weaker;
+      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.dark.weakest;
+      hight-light.width : !input.has-focus? 0px:input.width;
+      root.placeholder-color : ROOT-STYLES.sur-theme-colors.dark.weaker;
+    }
+  ]
+  
+  view:=HorizontalLayout{
+    spacing: 0;
+    padding-left:ROOT-STYLES.sur-padding.normal.same ;
+    padding-right: ROOT-STYLES.sur-padding.normal.same;
+    
+    input-view:=Rectangle{
+      width: input.width;
+      input:=TextInput {
+        single-line: true;
+        horizontal-alignment: left;
+        vertical-alignment: center;
+        height: ROOT-STYLES.sur-font.font-size * 2;
+        width: root.input-width;
+        font-size: 16px;
+        read-only: root.disabled;
+        color: root.font-color;
+        text: "";
+        wrap: no-wrap;
+        input-type: root.type;
+        accepted => {
+          root.accepted(root.content)
+        }
+        edited => {
+          root.changed(root.content)
+        }
+        if root.content=="" :place-holder:= SURText { 
+          theme: root.theme;
+          content: root.placeholder;
+          font-size: root.font-size;
+          color: root.placeholder-color;
+          width: input.width  - input.font-size ;
+        }
+      }
+      hight-light:= Rectangle {
+        y: root.height - self.height  * 2;
+        height: 2px;
+        width: input.width;
+        border-radius: 1px;
+        animate width {
+          duration: ROOT-STYLES.sur-an-duration;
+          easing: ROOT-STYLES.sur-an-easing;
+        }
+      }
+    }
+    if root.password: eye-icon:= Rectangle{
+      eye:=SURIcon {
+        theme: root.theme;
+        icon:Preview-close;
+        clicked => {
+          if(self.icon==Icons.Preview-close){
+            root.type = InputType.text;
+            self.icon = Icons.Preview-open
+          }else{
+            root.type = InputType.password;
+            self.icon = Icons.Preview-close
+          }
+        }
+      }
+    }
+    if root.clearable:clear-icon:= Rectangle {
+      SURIcon{
+        theme: root.theme;
+        icon: Close-one;
+        clicked => {
+          root.clear();
+        }
+      }
+    }
+  }
+}

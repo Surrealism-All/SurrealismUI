@@ -25,12 +25,12 @@ export global ROOT_STYLES {
   out property <brush> font-light : #ffffff;
   out property <brush> font-black : #000;
   in-out property <ThemeColor> sur-theme-colors : {
-    primary:{name:"primary",weakest:#96C4ED,weaker:#4584E9,normal:#1A5BE9,deeper:#0F3CC9,deepest:#1d2f7a,font:#bbdbf6},
-    success:{name:"success",weakest:#B0E5DC,weaker:#7FD5A2,normal:#66CD7A,deeper:#4FC54D,deepest:#33956B,font:#e0fcf7},
-    info:{name:"info",weakest:#E6E5E6,weaker:#DEDDDE,normal:#d7d7d7,deeper:#bcbcbc,deepest:#878787,font:#ffffff},
-    warning:{name:"warning",weakest:#e48d73,weaker:#f07651,normal:#f06b42,deeper:#e95a2e,deepest:#e63819,font:#fdd1c3},
-    error:{name:"error",weakest:#e9a9a7,weaker:#DC8472,normal:#e34e47,deeper:#D03D46,deepest:#9e2929,font:#fbe3d4},
-    dark:{name:"dark",weakest:#2f323d,weaker:#171922,normal:#1a1c26,deeper:#0f121c,deepest:#101114,font:#73788c}
+    primary:{name:"primary",weakest:#96C4ED,weaker:#4584E9,normal:#1A5BE9,deeper:#0F3CC9,deepest:#1d2f7a,font:#bbdbf6,opacity:#1A5BE988},
+    success:{name:"success",weakest:#B0E5DC,weaker:#7FD5A2,normal:#66CD7A,deeper:#4aa949,deepest:#33956B,font:#e0fcf7,opacity:#7de39187},
+    info:{name:"info",weakest:#E6E5E6,weaker:#DEDDDE,normal:#d7d7d7,deeper:#bcbcbc,deepest:#878787,font:#ffffff,opacity:#d7d7d788},
+    warning:{name:"warning",weakest:#e48d73,weaker:#f07651,normal:#f06b42,deeper:#e95a2e,deepest:#e63819,font:#fdd1c3,opacity:#f06b4288},
+    error:{name:"error",weakest:#e9a9a7,weaker:#DC8472,normal:#e34e47,deeper:#D03D46,deepest:#9e2929,font:#fbe3d4,opacity:#e34e4788},
+    dark:{name:"dark",weakest:#2f323d,weaker:#171922,normal:#1a1c26,deeper:#0f121c,deepest:#101114,font:#73788c,opacity:#262a3987}
   };
   out property <ThemePadding> sur-padding : {
     small: {top-bottom:sur-font.font-size / 3.8,left-right:sur-font.font-size / 3.2,same:sur-font.font-size / 3.6},
@@ -51,6 +51,7 @@ export global ROOT_STYLES {
     normal:16px,
     large:20px,
   };
+  out property <length> scroll-bar-width : 14px;
 }
 
 
