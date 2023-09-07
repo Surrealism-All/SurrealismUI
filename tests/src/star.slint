@@ -1,0 +1,45 @@
+import {SURStar} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+
+component TestWindow inherits Window {
+  height: 400px;
+  width: 400px;
+  SURStar {
+    y: 20px;
+  }
+  SURStar {
+    score: 4.2;
+    y: 60px;
+    theme: Error;
+  }
+  SURStar {
+    score : 3.8;
+    disabled: true;
+    y: 100px;
+    theme: Success;
+  }
+  SURStar {
+    max-score : 7;
+    score : 6.8;
+    y: 140px;
+    theme: Info;
+  }
+  SURStar {
+    max-score : 10;
+    score : 7.2;
+    y: 180px;
+    no-theme:true;
+    clicked(whole,half) => {
+      t.n = whole;
+      t.m = half;
+    }
+    
+  }
+  t:=Text{
+    y: 250px;
+    font-size: 18px;
+    in-out property <int> n;
+    in-out property <int> m;
+    text: "whole stars:"+ n + " half stars:" + m;
+  }
+}

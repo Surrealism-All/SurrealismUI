@@ -40,7 +40,7 @@ Built in 6 theme colors in SurrealismUI
 6. deeper：#0F3CC9
 7. deepest：\#1d2f7a
 
-![image-20230907010143373](E:\Rust\try\surrealism-ui\README\imgs\image-20230907010143373.png)
+![image-20230907010143373](.\README\imgs\image-20230907010143373.png)
 
 #### success
 
@@ -52,7 +52,7 @@ Built in 6 theme colors in SurrealismUI
 6. deeper：\#4aa949
 7. deepest：\#33956B
 
-![image-20230907010935247](E:\Rust\try\surrealism-ui\README\imgs\image-20230907010935247.png)
+![image-20230907010935247](.\README\imgs\image-20230907010935247.png)
 
 #### info
 
@@ -64,7 +64,7 @@ Built in 6 theme colors in SurrealismUI
 6. deeper：\#bcbcbc
 7. deepest：\#878787
 
-![image-20230907011024366](E:\Rust\try\surrealism-ui\README\imgs\image-20230907011024366.png)
+![image-20230907011024366](.\README\imgs\image-20230907011024366.png)
 
 #### warning
 
@@ -76,7 +76,7 @@ Built in 6 theme colors in SurrealismUI
 6. deeper：\#e95a2e
 7. deepest：\#e63819
 
-![image-20230907011054687](E:\Rust\try\surrealism-ui\README\imgs\image-20230907011054687.png)
+![image-20230907011054687](.\README\imgs\image-20230907011054687.png)
 
 #### error
 
@@ -88,7 +88,7 @@ Built in 6 theme colors in SurrealismUI
 6. deeper：\#D03D46
 7. deepest：\#9e2929
 
-![image-20230907011118330](E:\Rust\try\surrealism-ui\README\imgs\image-20230907011118330.png)
+![image-20230907011118330](.\README\imgs\image-20230907011118330.png)
 
 #### dark
 
@@ -100,7 +100,7 @@ Built in 6 theme colors in SurrealismUI
 6. deeper：#0f121c
 7. deepest：#101114
 
-![image-20230907011139226](E:\Rust\try\surrealism-ui\README\imgs\image-20230907011139226.png)
+![image-20230907011139226](.\README\imgs\image-20230907011139226.png)
 
 ## Components
 
@@ -137,7 +137,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230907013446133](E:\Rust\try\surrealism-ui\README\imgs\image-20230907013446133.png)
+![image-20230907013446133](.\README\imgs\image-20230907013446133.png)
 
  ### SURIcon
  there are 2658 different icons in SURIcon from : https://github.com/bytedance/iconpark
@@ -213,7 +213,129 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230907014520907](E:\Rust\try\surrealism-ui\README\imgs\image-20230907014520907.png)
+![image-20230907014520907](.\README\imgs\image-20230907014520907.png)
+
+ ### SURCard
+ A very simple universal card without any layout or restrictions
+ you can add anything you want to the card
+ #### properties
+ - `in property <Themes> theme` : Surrealism theme
+ #### functions
+ - `pure public function count-height(h:length) -> length` : a cheap way to calculate height
+ - `pure public function count-width(w:length) -> length` : a cheap way to calculate width
+
+#### example
+
+```
+import {SURButton,SURCard} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+
+component TestWindow inherits Window {
+  height: 400px;
+  width: 400px;
+  SURCard { 
+    y: 20px;
+    height: 40px;
+    width: 160px;
+   }
+   SURCard { 
+    y: 80px;
+    height: 40px;
+    width: 160px;
+    theme: Themes.Warning;
+   }
+   SURCard { 
+    y: 200px;
+    height: self.count-height(160px);
+    width: self.count-width(200px);
+    theme: Themes.Error;
+    SURButton {
+
+    }
+   }
+}
+```
+
+![image-20230907143804602](.\README\imgs\image-20230907143804602.png)
+
+ ### SURButton 
+ SURButton is a button component that you can freely perform regular attribute operations on
+ #### properties
+ - `in property <Themes> theme`: Surrealism Themes
+ - `in property <Icons> icon` : Icons.Null : do button has icon
+ - `in-out property <brush> font-color `: button content color
+ - `in-out property <brush> icon-color` : button icon color
+ - `in property <length> font-size` : font size
+ - `in property <int> font-weight` : font weight
+ - `in property <bool> font-italic`: font italic
+ - `in property <string> font-family` : font family
+ - `in property <bool> circle` : set the button as a rounded button
+ - `private property <length> letter-spacing` : content letter-spacing ⛔
+ - `in-out property <string> content` : the content of the button 
+ #### functions
+ #### callbacks 
+ - `clicked` : run if you click the button
+
+#### example
+
+```
+import {SURButton} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+component TestWindow inherits Window {
+  height: 400px;
+  width: 400px;
+  
+  SURButton {
+    x: 20px;
+    y: 10px;
+    font-size: 20px;
+    font-weight:700;
+    theme:Themes.Dark;
+    icon:Icons.Mini-sd-card;
+    clicked => {
+      self.content = "clicked"
+    }
+  }
+  SURButton {
+    x: 20px;
+    y: 100px;
+    font-size: 20px;
+    font-weight:700;
+    theme:Themes.Success;
+    circle:true;
+  }
+  SURButton {
+    x: 20px;
+    y: 200px;
+    font-size: 20px;
+    font-weight:700;
+    theme:Themes.Primary;
+  }
+  SURButton {
+    x: 20px;
+    y: 300px;
+    font-weight:700;
+    theme:Themes.Info;
+  }
+  SURButton {
+    x: 200px;
+    y: 100px;
+    font-size: 12px;
+    font-weight:700;
+    theme:Themes.Error;
+    icon:Icons.Magic-hat;
+  }
+  SURButton {
+    x: 200px;
+    y: 200px;
+    font-size: 20px;
+    font-weight:700;
+    theme:Themes.Warning;
+  }
+}
+```
+
+![image-20230907144512434](.\README\imgs\image-20230907144512434.png)
 
  ### SURInput
 
@@ -297,4 +419,71 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230907012550038](E:\Rust\try\surrealism-ui\README\imgs\image-20230907012550038.png)
+![image-20230907012550038](.\README\imgs\image-20230907012550038.png)
+
+ ### SURStar
+ SURStar is a scoring component
+ #### properties
+ - `in property <bool> no-theme` : use Surrealism Theme or not
+ - `in property <float> score` : the real score
+ - `in property <Themes> theme` : Themes.Primary;
+ - `in property <bool> disabled` : can be scored if disabled is false
+ - `in property <float> max-score` : max score (how many stars you wanna show)
+ #### functions
+ - `pure function get-half-stars()->bool `: count the number of half stars ⛔
+ - `pure function get-whole-stars()->int` : count the number of whole stars ⛔
+ - `pure function get-empty-stars()->int` : count the number of empty stars ⛔
+ #### callbacks
+ - `callback clicked(float,float)` : get how many whole stars and half stars
+
+#### example
+
+```
+import {SURStar} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+
+component TestWindow inherits Window {
+  height: 400px;
+  width: 400px;
+  SURStar {
+    y: 20px;
+  }
+  SURStar {
+    score: 4.2;
+    y: 60px;
+    theme: Error;
+  }
+  SURStar {
+    score : 3.8;
+    disabled: true;
+    y: 100px;
+    theme: Success;
+  }
+  SURStar {
+    max-score : 7;
+    score : 6.8;
+    y: 140px;
+    theme: Info;
+  }
+  SURStar {
+    max-score : 10;
+    score : 7.2;
+    y: 180px;
+    no-theme:true;
+    clicked(whole,half) => {
+      t.n = whole;
+      t.m = half;
+    }
+    
+  }
+  t:=Text{
+    y: 250px;
+    font-size: 18px;
+    in-out property <int> n;
+    in-out property <int> m;
+    text: "whole stars:"+ n + " half stars:" + m;
+  }
+}
+```
+
+![image-20230907143639667](.\README\imgs\image-20230907143639667.png)
