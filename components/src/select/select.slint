@@ -1,0 +1,33 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230907
+* @version:0.0.1
+* @type:interface
+* @description:
+* # SURSelect
+* 
+* ## properties
+* - in property <bool> no-theme : use Surrealism Theme or not
+* - in property <float> score : the real score
+* - in property <Themes> theme : Themes.Primary;
+* - in property <bool> disabled : can be scored if disabled is false
+* - in property <float> max-score : max score (how many stars you wanna show)
+* ## functions
+* - pure function get-half-stars()->bool : count the number of half stars ⛔
+* - pure function get-whole-stars()->int : count the number of whole stars ⛔
+* - pure function get-empty-stars()->int : count the number of empty stars ⛔
+* ## callbacks
+* - callback clicked(float,float) : get how many whole stars and half stars
+* ============================================
+*/
+import {ROOT_STYLES,Themes} from "../../themes/index.slint";
+export component Select inherits  Rectangle{
+  in property <float> value;
+  in property <float> max;
+  in property <float> min;
+  in property <float> step;
+  in property <Themes> theme;
+  
+}
+    

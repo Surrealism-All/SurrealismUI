@@ -487,3 +487,48 @@ component TestWindow inherits Window {
 ```
 
 ![image-20230907143639667](.\README\imgs\image-20230907143639667.png)
+
+ ### SURTag
+ A small tag used to display data
+ #### properties
+ - `in property <string> content` : the content of the tag
+ - see card's properties
+ #### functions
+ see card's functions
+ #### callbacks
+ - `callback clicked()` : run if you click the tag
+
+#### example
+
+```
+import {SURTag} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+
+component TestWindow inherits Window {
+  height: 400px;
+  width: 400px;
+  SURTag {
+    y: 40px;
+  }
+  SURTag {
+    content:"error!";
+    y:80px;
+    theme:Themes.Error;
+  }
+  SURTag {
+    y:120px;
+    theme:Themes.Dark;
+    clicked=>{
+      self.font-color= #ddff00;
+    }
+  }
+  SURTag {
+    content:"success";
+    y:160px;
+    font-color:#3670d5;
+    theme:Themes.Success;
+  }
+}
+```
+
+![image-20230907171859046](E:\Rust\try\surrealism-ui\README\imgs\image-20230907171859046.png)

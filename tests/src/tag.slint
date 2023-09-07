@@ -1,0 +1,28 @@
+import {SURTag} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+
+component TestWindow inherits Window {
+  height: 400px;
+  width: 400px;
+  SURTag {
+    y: 40px;
+  }
+  SURTag {
+    content:"error!";
+    y:80px;
+    theme:Themes.Error;
+  }
+  SURTag {
+    y:120px;
+    theme:Themes.Dark;
+    clicked=>{
+      self.font-color= #ddff00;
+    }
+  }
+  SURTag {
+    content:"success";
+    y:160px;
+    font-color:#3670d5;
+    theme:Themes.Success;
+  }
+}
