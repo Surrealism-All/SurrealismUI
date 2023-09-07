@@ -1,0 +1,113 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230907
+* @version:0.0.1
+* @type:interface
+* @description:
+* # SURCollapseItem
+* SURCollapseItem is a component of SURCollapse, without which SURCollapse will not work
+* You can customize the components or use the default text display method in it
+* ## properties
+* - in property <length> item-height: set height of detail
+* - in property <string> name : collapse header;
+* - in property <string> detail : the content of detail
+* - in property <bool> define : define detail or not (if you wanan show something special use true!)
+* - in property <Themes> theme : Surrealism Themes
+* - private property <bool> show : show details or not ⛔
+* ## functions
+* - pure public function get-height()->length : get collapse header height
+* ## callbacks
+* - callback clicked() : run if you show collapse detail
+* ============================================
+*/
+
+import { SURCard } from "../card/index.slint";
+import { SURText } from "../text/index.slint";
+import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
+import { SURIcon } from "../icon/index.slint";
+export component CollapseItem inherits Rectangle{
+  height: header.height;
+  in property <length> item-height:100px;
+  in property <string> name : "collapse";
+  in property <string> detail : "collapse details";
+  in property <bool> define : false;
+  in property <Themes> theme : Themes.Primary;
+  private property <bool> show:false;
+  pure public function get-height()->length {
+      header.height
+  }
+  callback clicked();
+  init => {
+    details.height = 0;
+    // root.height=header.height;
+  }
+  view:=VerticalLayout {
+    height: root.height;
+    spacing: 0;
+    header:=SURCard{
+      
+      theme: root.theme;
+      height: self.count-height(ROOT-STYLES.sur-font.font-size);
+      border-radius: 0;
+      area:=TouchArea {
+        mouse-cursor: pointer;
+        clicked => {
+          root.show=!root.show;
+          if(show){
+            icon.icon = Icons.Down-one;
+            root.height = root.item-height;
+            details.height = root.height - header.height;
+            details.visible = true;
+            
+          }else{
+            icon.icon = Icons.Right-one;
+            root.height = header.height;
+            details.height = 0;
+            details.visible = false;
+          }
+          root.clicked();
+        }
+      }
+      HorizontalLayout {
+        alignment: space-between;
+        width: parent.width;
+        padding-left: ROOT-STYLES.sur-padding.normal.left-right;
+        padding-right: ROOT-STYLES.sur-padding.normal.left-right;
+        name:=SURText { 
+          theme: root.theme;
+          content: root.name;
+          font-weight: 700;
+        }
+        icon-view:=Rectangle{
+          width:icon.width ;
+          icon:=SURIcon { 
+            theme: root.theme;
+            height: 20px;
+            width: 20px;
+            icon:Icons.Right-one;
+            clicked => {
+             area.clicked()
+            }
+          }
+        }
+      }
+    }
+    details:=SURCard{
+      height: root.item-height;
+      visible: false;
+      border-radius: 0;
+      drop-shadow-blur: 0;
+      theme: root.theme;
+      padding: ROOT-STYLES.sur-padding.normal.same;
+      if !define : txt:=SURText {
+        width: parent.width - ROOT-STYLES.sur-padding.normal.same * 2;
+        content: root.detail;
+        font-size: 14px;
+        wrap: word-wrap;
+        horizontal-alignment: left;
+      }
+      @children
+    }
+  }
+}

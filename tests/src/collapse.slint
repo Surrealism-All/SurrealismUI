@@ -1,0 +1,59 @@
+import {SURCollapse,SURCollapseItem,SURButton,SURTable,SURTableColumn} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+
+
+component TestWindow inherits Window {
+  height: 500px;
+  width: 400px;
+  SURCollapse {
+    y: 10px;
+    // you can set 0 , it has no impact
+    // recommend use the following way
+    height: item1.get-height() * 2;
+    width: 360px;
+    item1:=SURCollapseItem {
+      name:"Feedback";
+      detail:" Operation feedback: enable the users to clearly perceive their operations by style updates and interactive effects";
+      
+    }
+    SURCollapseItem {
+      theme: Themes.Error;
+      define:true;
+      SURButton { 
+
+      }
+    }
+    SURCollapseItem {
+      name:"table";
+      theme: Themes.Dark;
+      define:true;
+      item-height:200px;
+      SURTable {
+        
+        height: col1.get-height();
+        width: 300px;
+        theme:Themes.Dark;
+        col1:=SURTableColumn {
+          border:false;
+          theme:Themes.Error;
+          width: 100px;
+          name:"id";
+          // row-height:60px;
+          datas: ["101","102","103"];
+        }
+        SURTableColumn {
+          theme:Themes.Success;
+          width: 100px;
+          name:"name";
+          datas: ["Mat","Jarry","Kaven"];
+        }
+        SURTableColumn {
+          theme:Themes.Error;
+          width: 100px;
+          name:"age";
+          datas: ["16","23","18"];
+        }
+      }
+    }
+  }
+}

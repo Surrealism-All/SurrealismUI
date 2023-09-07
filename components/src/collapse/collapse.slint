@@ -1,0 +1,32 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230907
+* @version:0.0.1
+* @type:interface
+* @description:
+* # SURCollapse
+* SURCollapse is a foldable panel
+* This is the outter of the Collapse, what really works is SURCollapseItem
+* The outter only serves as a standard layout , this is a zero cost construction
+* ## properties
+* - see SURCard
+* ## functions
+* - see SURCard
+* ## callbacks
+* - see SURCard
+* ============================================
+*/
+
+import { SURCard } from "../card/index.slint";
+import {Themes} from "../../themes/index.slint";
+
+export component Collapse inherits SURCard { 
+  
+  VerticalLayout {
+    spacing: 0px;
+    width: root.width;
+    height: root.height;
+    @children
+  }
+} 

@@ -680,3 +680,98 @@ component TestWindow inherits Window {
 ```
 
 ![image-20230908031228567](.\README\imgs\image-20230908031228567.png)
+
+### SURCollapse
+SURCollapse is a foldable panel
+
+This is the outter of the Collapse, what really works is SURCollapseItem
+
+The outter only serves as a standard layout , this is a zero cost construction
+
+#### properties
+- see SURCard
+#### functions
+- see SURCard
+#### callbacks
+- see SURCard
+
+### SURCollapseItem
+SURCollapseItem is a component of SURCollapse, without which SURCollapse will not work
+You can customize the components or use the default text display method in it
+#### properties
+- `in property <length> item-height`: set height of detail
+- `in property <string> name` : collapse header;
+- `in property <string> detail` : the content of detail
+- `in property <bool> define` : define detail or not (if you wanan show something special use true!)
+- `in property <Themes> theme` : Surrealism Themes
+- `private property <bool> show` : show details or not ⛔
+#### functions
+- `pure public function get-height()->length`: get collapse header height
+#### callbacks
+- `callback clicked()` : run if you show collapse detail
+
+#### example
+
+```
+import {SURCollapse,SURCollapseItem,SURButton,SURTable,SURTableColumn} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+
+
+component TestWindow inherits Window {
+  height: 500px;
+  width: 400px;
+  SURCollapse {
+    y: 10px;
+    // you can set 0 , it has no impact
+    // recommend use the following way
+    height: item1.get-height() * 2;
+    width: 360px;
+    item1:=SURCollapseItem {
+      name:"Feedback";
+      detail:" Operation feedback: enable the users to clearly perceive their operations by style updates and interactive effects";
+      
+    }
+    SURCollapseItem {
+      theme: Themes.Error;
+      define:true;
+      SURButton { 
+
+      }
+    }
+    SURCollapseItem {
+      name:"table";
+      theme: Themes.Dark;
+      define:true;
+      item-height:200px;
+      SURTable {
+        
+        height: col1.get-height();
+        width: 300px;
+        theme:Themes.Dark;
+        col1:=SURTableColumn {
+          border:false;
+          theme:Themes.Error;
+          width: 100px;
+          name:"id";
+          // row-height:60px;
+          datas: ["101","102","103"];
+        }
+        SURTableColumn {
+          theme:Themes.Success;
+          width: 100px;
+          name:"name";
+          datas: ["Mat","Jarry","Kaven"];
+        }
+        SURTableColumn {
+          theme:Themes.Error;
+          width: 100px;
+          name:"age";
+          datas: ["16","23","18"];
+        }
+      }
+    }
+  }
+}
+```
+
+![image-20230908052613844](E:\Rust\try\surrealism-ui\README\imgs\image-20230908052613844.png)
