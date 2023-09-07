@@ -532,3 +532,56 @@ component TestWindow inherits Window {
 ```
 
 ![image-20230907171859046](E:\Rust\try\surrealism-ui\README\imgs\image-20230907171859046.png)
+
+ ### SURHeader
+ SURHeader is a simple header component that is generated based on routing information
+ #### properties
+ - `in property <Themes> theme` : Surrealism Themes
+ - `in property <Route> route` : detail routes , like:`{home:"Surrealism",routes:["user","info"]};`
+ - `in property <length> font-size` : font size
+ #### functions
+ #### callbacks
+ - `callback to(int,string)` : to page (it depends on you)
+ - `callback back()` : back to main page (it depends on you)
+
+#### example
+
+```
+import {SURHeader} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+
+component TestWindow inherits Window {
+  height: 400px;
+  width: 400px;
+  SURHeader {
+    x:0px;
+    y: 40px;
+  }
+  SURHeader {
+    x:0px;
+    y: 80px;
+    theme: Error;
+  }
+  SURHeader {
+    x:0px;
+    y: 120px;
+    theme: Info;
+    to(index,route)=>{
+      txt.name = route;
+      txt.index = index;
+    }
+    back=>{
+      txt.name = "back";
+    }
+  }
+  txt:=Text{
+    font-size: 18px;
+    in-out property <int> index;
+    in-out property <string> name;
+    text: "route-index:" + index + " route-name:" + name;
+  }
+}
+```
+
+![image-20230907184150495](E:\Rust\try\surrealism-ui\README\imgs\image-20230907184150495.png)
+

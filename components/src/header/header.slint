@@ -1,0 +1,93 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230907
+* @version:0.0.1
+* @type:interface
+* @description:
+* # SURHeader
+* SURHeader is a simple header component that is generated based on routing information
+* ## properties
+* - in property <Themes> theme : Surrealism Themes
+* - in property <Route> route : detail routes , like:`{home:"Surrealism",routes:["user","info"]};`
+* - in property <length> font-size : font size
+* ## functions
+* ## callbacks
+* - callback to(int,string) : to page (it depends on you)
+* - callback back() : back to main page (it depends on you)
+* ============================================
+*/
+import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
+import { SURIcon } from "../icon/index.slint";
+import { SURText } from "../text/index.slint";
+
+export struct Route {
+    home : string,
+    routes: [string]
+}
+
+component HeaderItem inherits HorizontalLayout{
+  width:icon-view.width + txt-view.width + ROOT-STYLES.sur-padding.small.same;
+  height: icon-view.height;
+  spacing: ROOT-STYLES.sur-padding.small.same;
+  in property <string> name <=>txt.text;
+  in property <Themes> theme : Themes.Primary;
+  in property <length> font-size<=>txt.font-size;
+  callback clicked(string);
+  
+  icon-view:=Rectangle{
+    width: icon.width;
+    icon:=SURIcon{
+      height: font-size;
+      width: font-size;
+      theme: root.theme;
+      icon: Icons.Right-one;
+      clicked => {
+        root.clicked(root.name)
+      }
+    }
+  }
+  txt-view:=Rectangle{
+    width: txt.width;
+    txt:=SURText{ 
+      theme: root.theme;
+    }
+  }
+}
+
+export component Header inherits HorizontalLayout {
+  height: ROOT-STYLES.sur-font.font-size;
+  spacing: ROOT-STYLES.sur-padding.small.same;
+  in property <Themes> theme : Themes.Primary;
+  in property <Route> route : {home:"Surrealism",routes:["user","info"]};
+  in property <length> font-size : ROOT-STYLES.sur-font.font-size;
+  callback to(int,string);
+  callback back();
+  back-view:=Rectangle{
+    width: back-icon.width;
+    back-icon:=SURIcon { 
+      theme: root.theme;
+      icon: Icons.Link-left;
+      clicked => {
+        root.back();
+      }
+    }
+  }
+  name-view:=Rectangle{
+    width: name.width;
+    name:=SURText{ 
+      theme: root.theme;
+      content: root.route.home;
+    }
+  }
+  for r[index] in route.routes: HeaderItem{
+    name: r;
+    height: root.height;
+    theme: root.theme;
+    font-size: root.font-size;
+    clicked(route-name) => {
+      root.to(index,route-name);
+    }
+  }
+
+}
