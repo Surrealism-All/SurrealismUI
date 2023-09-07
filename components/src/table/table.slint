@@ -1,0 +1,32 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230907
+* @version:0.0.1
+* @type:interface
+* @description:
+* # SURTable
+* This is the outter of the Table, and the column data of the table is separated from the outter
+* The outter only serves as a standard layout , this is a zero cost construction
+* ## properties
+* - see SURCard
+* ## functions
+* - see SURCard
+* ## callbacks
+* - see SURCard
+* ============================================
+*/
+
+import { StandardTableView } from "std-widgets.slint";
+import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
+import { SURCard } from "../card/index.slint";
+
+export component Table inherits SURCard { 
+  border-radius: 0;
+  
+  view:=HorizontalLayout {
+    spacing: 0px;
+    width: root.width;
+    @children
+  }
+}

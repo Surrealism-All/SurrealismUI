@@ -1,0 +1,67 @@
+import {SURTable,SURTableColumn} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+
+component TestWindow inherits Window {
+  height: 400px;
+  width: 440px;
+  t1:=SURTable {
+    x: 10px;
+    y: 10px;
+    // you can use this way to get height
+    // it depends on how many datas in column
+    height: col1.get-height();
+    width: 300px;
+    theme:Themes.Error;
+    col1:=SURTableColumn {
+      border:false;
+      theme:Themes.Error;
+      width: 100px;
+      name:"id";
+      // row-height:60px;
+      datas: ["101","102","103"];
+    }
+    SURTableColumn {
+      theme:Themes.Error;
+      width: 100px;
+      name:"name";
+      datas: ["Mat","Jarry","Kaven"];
+    }
+    SURTableColumn {
+      theme:Themes.Error;
+      width: 100px;
+      name:"age";
+      datas: ["16","23","18"];
+    }
+  }
+  t2:=SURTable {
+    x: 10px;
+    y: t1.height + 20px;
+    // you can use this way to get height
+    // it depends on how many datas in column
+    height: tcol1.get-height();
+    width: 350px;
+    theme:Themes.Primary;
+    tcol1:=SURTableColumn {
+      border:false;
+      theme:Themes.Primary;
+      width: 100px;
+      name:"id";
+      // row-height:60px;
+      datas: ["101","102","103"];
+    }
+    SURTableColumn {
+      theme:Themes.Primary;
+      width: 100px;
+      name:"name";
+      datas: ["Mat","Jarry","Kaven"];
+    }
+    SURTableColumn {
+      theme:Themes.Primary;
+      width: 150px;
+      name:"Operations";
+      // cheat datas
+      datas: [" "," "," "];
+      operation-enabled:true;
+    }
+  }
+}

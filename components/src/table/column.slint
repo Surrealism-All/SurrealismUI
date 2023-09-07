@@ -1,0 +1,107 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230907
+* @version:0.0.1
+* @type:interface
+* @description:
+* # SURTableColumn
+* SURTableColumn is a component of SURTable, and each SURTableColumn forms a complete column of the table
+* If it's gone, the table will become a card with a horizontal layout
+* ## properties
+* - in property <bool> border : add border or not
+* - in property <string> name : table header name
+* - in property <[string]> datas : table datas
+* - in property <brush> header-background : define header background
+* - in property <brush> row-background : define row background
+* - in property <Themes> theme : Surrealism Themes
+* - in property <length> header-height : define header height
+* - in property <length> row-height : define each row height
+* - in property <bool> operation-enabled: enable operation
+* - in property <[{name:string,theme:Themes}]> operation : the operations you wanna do
+* ## functions
+* - function count() ->int : count the number of row ⛔
+* - pure public function get-height()->length : auto count the height of the table and return height
+* ## callbacks
+* - callback clicked(int,string) : run if operation-enabled is true , you will get which operation button you clicked
+* ============================================
+*/
+
+import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
+import { SURCard } from "../card/index.slint";
+import { SURText } from "../text/index.slint";
+import { SURButton } from "../button/index.slint";
+
+
+export component TableColumn inherits Rectangle{
+  in property <bool> border : false;
+  in property <string> name;
+  in property <[string]> datas;
+  in property <brush> header-background;
+  in property <brush> row-background;
+  in property <Themes> theme : Themes.Primary;
+  in property <length> header-height : header-row.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
+  in property <length> row-height;
+  in property <bool> operation-enabled:false;
+  in property <[{name:string,theme:Themes}]> operation : [{name:"edit",theme:Themes.Primary},{name:"del",theme:Themes.Warning}];
+  function count() ->int{
+     root.datas.length + 1 
+  }
+  pure public function get-height()->length {
+      // default
+      if(row-height==0){
+        header-height * count()
+      }else{
+        // define
+        header-height  + row-height * datas.length
+      }
+  }
+  callback clicked(int,string);
+  view:=VerticalLayout {
+    height: root.height;
+    spacing: 0;
+    column-header:=SURCard{
+      background: header-background;
+      drop-shadow-blur: !border?0:6px;
+      theme: root.theme;
+      height: header-height;
+      border-radius: 0;
+      header-row:=SURText { 
+        width: root.width;
+        theme: root.theme;
+        text: root.name;
+        font-weight: 700;
+      }
+    }
+    for data[index] in datas: SURCard { 
+      theme: root.theme;
+      // height: header-height==row-height?root.row-height:(root.height - root.header-height) / root.datas.length;
+      height:root.row-height==0?data-row.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2 : root.row-height;
+      border-radius: 0;
+      drop-shadow-blur: !border?0:6px;
+      background: row-background;
+      data-row:=SURText {
+        visible: !operation-enabled;
+        width: root.width;
+        theme: root.theme;
+        content: data;
+      }
+      if operation-enabled:operation-btn:=HorizontalLayout{
+        alignment: space-around;
+        for op[index] in operation: Rectangle{
+          height:parent.height;
+          width: btn.width;
+          btn:=SURButton { 
+            theme: op.theme;
+            content: op.name;
+            height: ROOT-STYLES.sur-font.tag-size + ROOT-STYLES.sur-padding.small.same * 2;
+            font-size: ROOT-STYLES.sur-font.tag-size;
+            clicked => {
+              root.clicked(index,op.name)
+            }
+          }
+        }
+      }
+    }
+  }
+}

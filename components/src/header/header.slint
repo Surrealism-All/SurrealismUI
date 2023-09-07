@@ -28,7 +28,7 @@ export struct Route {
 
 component HeaderItem inherits HorizontalLayout{
   width:icon-view.width + txt-view.width + ROOT-STYLES.sur-padding.small.same;
-  height: icon-view.height;
+  height: root.font-size;
   spacing: ROOT-STYLES.sur-padding.small.same;
   in property <string> name <=>txt.text;
   in property <Themes> theme : Themes.Primary;
@@ -58,6 +58,8 @@ component HeaderItem inherits HorizontalLayout{
 export component Header inherits HorizontalLayout {
   height: ROOT-STYLES.sur-font.font-size;
   spacing: ROOT-STYLES.sur-padding.small.same;
+  padding-left: ROOT-STYLES.sur-padding.small.same;
+  
   in property <Themes> theme : Themes.Primary;
   in property <Route> route : {home:"Surrealism",routes:["user","info"]};
   in property <length> font-size : ROOT-STYLES.sur-font.font-size;

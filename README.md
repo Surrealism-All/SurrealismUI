@@ -10,15 +10,6 @@ SurrealismUI is a third-party component library built entirely using Slint
 
 ## Themes
 
-在SurrealismUI中内置了6个主题色
-
-- primary
-- success
-- info
-- warning
-- error
-- dark
-
 Built in 6 theme colors in SurrealismUI
 
 - primary
@@ -531,7 +522,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230907171859046](E:\Rust\try\surrealism-ui\README\imgs\image-20230907171859046.png)
+![image-20230907171859046](.\README\imgs\image-20230907171859046.png)
 
  ### SURHeader
  SURHeader is a simple header component that is generated based on routing information
@@ -583,5 +574,109 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230907184150495](E:\Rust\try\surrealism-ui\README\imgs\image-20230907184150495.png)
+![image-20230907184150495](.\README\imgs\image-20230907184150495.png)
 
+ ### SURTable
+This is the outter of the Table, and the column data of the table is separated from the outter
+The outter only serves as a standard layout , this is a zero cost construction
+
+ #### properties
+ - see SURCard
+ #### functions
+ - see SURCard
+ #### callbacks
+ - see SURCard
+
+### SURTableColumn
+SURTableColumn is a component of SURTable, and each SURTableColumn forms a complete column of the table
+If it's gone, the table will become a card with a horizontal layout
+#### properties
+- `in property <bool> border` : add border or not
+- `in property <string> name` : table header name
+- `in property <[string]> datas` : table datas
+- `in property <brush> header-background` : define header background
+- `in property <brush> row-background` : define row background
+- `in property <Themes> theme` : Surrealism Themes
+- `in property <length> header-height `: define header height
+- `in property <length> row-height` : define each row height
+- `in property <bool> operation-enabled`: enable operation
+- `in property <[{name:string,theme:Themes}]> operation` : the operations you wanna do
+#### functions
+- `function count() ->int` : count the number of row ⛔
+- `pure public function get-height()->length` : auto count the height of the table and return height
+#### callbacks
+- `callback clicked(int,string)` : run if operation-enabled is true , you will get which operation button you clicked
+
+#### example
+
+```
+import {SURTable,SURTableColumn} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+
+component TestWindow inherits Window {
+  height: 400px;
+  width: 440px;
+  t1:=SURTable {
+    x: 10px;
+    y: 10px;
+    // you can use this way to get height
+    // it depends on how many datas in column
+    height: col1.get-height();
+    width: 300px;
+    theme:Themes.Error;
+    col1:=SURTableColumn {
+      border:false;
+      theme:Themes.Error;
+      width: 100px;
+      name:"id";
+      // row-height:60px;
+      datas: ["101","102","103"];
+    }
+    SURTableColumn {
+      theme:Themes.Error;
+      width: 100px;
+      name:"name";
+      datas: ["Mat","Jarry","Kaven"];
+    }
+    SURTableColumn {
+      theme:Themes.Error;
+      width: 100px;
+      name:"age";
+      datas: ["16","23","18"];
+    }
+  }
+  t2:=SURTable {
+    x: 10px;
+    y: t1.height + 20px;
+    // you can use this way to get height
+    // it depends on how many datas in column
+    height: tcol1.get-height();
+    width: 350px;
+    theme:Themes.Primary;
+    tcol1:=SURTableColumn {
+      border:false;
+      theme:Themes.Primary;
+      width: 100px;
+      name:"id";
+      // row-height:60px;
+      datas: ["101","102","103"];
+    }
+    SURTableColumn {
+      theme:Themes.Primary;
+      width: 100px;
+      name:"name";
+      datas: ["Mat","Jarry","Kaven"];
+    }
+    SURTableColumn {
+      theme:Themes.Primary;
+      width: 150px;
+      name:"Operations";
+      // cheat datas
+      datas: [" "," "," "];
+      operation-enabled:true;
+    }
+  }
+}
+```
+
+![image-20230908031228567](.\README\imgs\image-20230908031228567.png)
