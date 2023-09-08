@@ -1,8 +1,49 @@
-import {SURSelect} from "../../components/index.slint";
+import {SURSelect,ValueType} from "../../components/index.slint";
 import {Themes,Icons} from "../../components/themes/index.slint";
 
 component TestWindow inherits Window {
-  height: 400px;
+  height: 440px;
   width: 400px;
-  
+  SURSelect {
+    y: 20px;
+    ranges-string: [
+      {id:0,label:"Shangai",value:"s01"},
+      {id:1,label:"Los Angeles",value:"l02"},
+      {id:2,label:"New York",value:"n03"},
+      {id:3,label:"Hong Kong",value:"h04"},
+    ];
+  }
+  SURSelect {
+    y: 200px;
+    theme: Error;
+    ranges-float: [
+      {id:0,label:"Shangai",value:0.1},
+      {id:1,label:"Los Angeles",value:0.2},
+      {id:2,label:"New York",value:0.3},
+      {id:3,label:"Hong Kong",value:0.4},
+    ];
+    changed(index,id,label,value,value-type)=>{
+      if(value-type==ValueType.String){
+        t.vt = "string";
+      }else if(value-type==ValueType.Float){
+        t.vt = "float"
+      }else{
+        t.vt = "int"
+      }
+      t.index = index;
+      t.id = id;
+      t.label = label;
+      t.value = value;
+    }
+  }
+  t:=Text{
+    y: 400px;
+    font-size: 16px;
+    in-out property <int> index;
+    in-out property <int> id;
+    in-out property <string> label;
+    in-out property <string> vt;
+    in-out property <string> value;
+    text: @tr("Index:{} Id:{} Label:{} Value:{} ValueType:{}",index,id,label,value,vt);
+  }
 }

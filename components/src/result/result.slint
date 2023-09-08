@@ -1,0 +1,103 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230907
+* @version:0.0.1
+* @type:interface
+* @description:
+* # SURResult
+* SURResult helps you easily build a quick prompt , you can build it in popup window
+* ## properties
+* - in property <length> icon-size: icon size
+* - in-out property <string> btn : the content of the button
+* - in-out property <string> content : content of the result
+* - in property <ResType> res-type : Result type
+* - in-out property <Icons> icon: Icon of the result
+* ## functions
+* ## callbacks
+* - callback clicked() : run if you click the button
+* ============================================
+*/
+
+import {SURCard} from "../card/index.slint";
+import {SURIcon} from "../icon/index.slint";
+import {SURButton} from "../button/index.slint";
+import {SURText} from "../text/index.slint";
+import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
+
+export enum ResType{
+  Primary,
+  Success,
+  Info,
+  Error,
+  Warning,
+}
+
+export component Result inherits SURCard { 
+  height: 200px;
+  width: 140px;
+  in property <length> icon-size:48px;
+  in-out property <string> btn;
+  in-out property <string> content;
+  in property <ResType> res-type:ResType.Success;
+  in-out property <Icons> icon:Icons.Success;
+  callback clicked();
+  init => {
+    if(res-type==ResType.Primary){
+      self.theme = Themes.Primary;
+      self.btn = "PRIMARY";
+      self.icon = Icons.Smiling-face;
+      self.content = "This is a primary message!";
+    }else if (res-type==ResType.Success){
+      self.theme = Themes.Success;
+      self.btn = "SUCCESS";
+      self.content = "This is a success message!";
+      self.icon = Icons.Success;
+    }else if (res-type==ResType.Info){
+      self.theme = Themes.Info;
+      self.btn = "INFO";
+      self.icon = Icons.Info;
+      self.content = "This is a info message!";
+    }else if (res-type==ResType.Error){
+      self.theme = Themes.Error;
+      self.btn = "ERROR";
+      self.icon = Icons.Close-one;
+      self.content = "This is a error message!"
+    }else if (res-type==ResType.Warning){
+      self.theme = Themes.Warning;
+      self.btn = "WARNING";
+      self.icon = Icons.Attention;
+      self.content = "This is a warning message!"
+    }
+  }
+  VerticalLayout {
+    alignment: space-around;
+    Rectangle {
+      height: icon.height;
+      width: root.width;
+      icon:=SURIcon { 
+        height: root.icon-size;
+        width: root.icon-size;
+        theme: root.theme;
+        icon: root.icon;
+        
+      }
+    }
+    SURText { 
+      theme: root.theme;
+      content: root.content;
+      wrap: word-wrap;
+    }
+    Rectangle {
+      height: button.height;
+      width: root.width;
+      button:=SURButton { 
+        theme: root.theme;
+        content: root.btn;
+        clicked => {
+          root.clicked()
+        }
+      }
+    }
+  }
+}

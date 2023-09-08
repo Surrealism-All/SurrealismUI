@@ -774,4 +774,125 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230908052613844](E:\Rust\try\surrealism-ui\README\imgs\image-20230908052613844.png)
+![image-20230908052613844](.\README\imgs\image-20230908052613844.png)
+
+### SURResult
+SURResult helps you easily build a quick prompt , you can build it in popup window
+#### properties
+- `in property <length> icon-size`: icon size
+- `in-out property <string> btn `: the content of the button
+- `in-out property <string> content` : content of the result
+- `in property <ResType> res-type` : Result type
+- `in-out property <Icons> icon`: Icon of the result
+#### functions
+#### callbacks
+- `callback clicked()` : run if you click the button
+
+```
+import {SURResult,ResType} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+
+component TestWindow inherits Window {
+  height: 660px;
+  width: 400px;
+  SURResult {
+    x: 10px;
+    y: 10px;
+  }
+  SURResult {
+    x: 200px;
+    y: 10px;
+    res-type:ResType.Primary;
+  }
+  SURResult {
+    x: 200px;
+    y: 220px;
+    res-type:ResType.Info;
+  }
+  SURResult {
+    x: 10px;
+    y: 220px;
+    res-type:ResType.Warning;
+  }
+
+  SURResult {
+    x: 10px;
+    y: 430px;
+    res-type:ResType.Error;
+  }
+}
+```
+
+![image-20230908064301162](.\README\imgs\image-20230908064301162.png)
+
+### SURSelect
+SURSelect is a selector that provides three types of optional input parameter values
+#### properties
+- `in property <Themes> theme` : Surrealism Themes
+- `in property <[{id:int,label:string,value:string}]> ranges-string` : select list range (type string)
+- `in property <[{id:int,label:string,value:int}]> ranges-int` :  select list range (type int)
+- `in property <[{id:int,label:string,value:float}]> ranges-float` :  select list range (type float)
+- `in property <string> placeholder` : placeholder of the select
+- `private property <brush> input-color` : the color of the select content ⛔
+- `private property <bool> open` : open the select list or not ⛔
+- `private property <int> range-type` : the type of the range value ⛔
+#### functions
+- `pure public function count-width(len:length)->length` : auto count the width of the select
+#### callbacks
+- `callback changed(int,int,string,string,ValueType)` : run if you choose an item of list
+
+#### example
+
+```
+import {SURSelect,ValueType} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+
+component TestWindow inherits Window {
+  height: 440px;
+  width: 400px;
+  SURSelect {
+    y: 20px;
+    ranges-string: [
+      {id:0,label:"Shangai",value:"s01"},
+      {id:1,label:"Los Angeles",value:"l02"},
+      {id:2,label:"New York",value:"n03"},
+      {id:3,label:"Hong Kong",value:"h04"},
+    ];
+  }
+  SURSelect {
+    y: 200px;
+    theme: Error;
+    ranges-float: [
+      {id:0,label:"Shangai",value:0.1},
+      {id:1,label:"Los Angeles",value:0.2},
+      {id:2,label:"New York",value:0.3},
+      {id:3,label:"Hong Kong",value:0.4},
+    ];
+    changed(index,id,label,value,value-type)=>{
+      if(value-type==ValueType.String){
+        t.vt = "string";
+      }else if(value-type==ValueType.Float){
+        t.vt = "float"
+      }else{
+        t.vt = "int"
+      }
+      t.index = index;
+      t.id = id;
+      t.label = label;
+      t.value = value;
+    }
+  }
+  t:=Text{
+    y: 400px;
+    font-size: 16px;
+    in-out property <int> index;
+    in-out property <int> id;
+    in-out property <string> label;
+    in-out property <string> vt;
+    in-out property <string> value;
+    text: @tr("Index:{} Id:{} Label:{} Value:{} ValueType:{}",index,id,label,value,vt);
+  }
+}
+```
+
+![image-20230908121607945](.\README\imgs\image-20230908121607945.png)

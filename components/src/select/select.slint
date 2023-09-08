@@ -6,28 +6,258 @@
 * @type:interface
 * @description:
 * # SURSelect
-* 
+* SURSelect is a selector that provides three types of optional input parameter values
 * ## properties
-* - in property <bool> no-theme : use Surrealism Theme or not
-* - in property <float> score : the real score
-* - in property <Themes> theme : Themes.Primary;
-* - in property <bool> disabled : can be scored if disabled is false
-* - in property <float> max-score : max score (how many stars you wanna show)
+* - in property <Themes> theme : Surrealism Themes
+* - in property <[{id:int,label:string,value:string}]> ranges-string : select list range (type string)
+* - in property <[{id:int,label:string,value:int}]> ranges-int :  select list range (type int)
+* - in property <[{id:int,label:string,value:float}]> ranges-float :  select list range (type float)
+* - in property <string> placeholder : placeholder of the select
+* - private property <brush> input-color : the color of the select content ⛔
+* - private property <bool> open : open the select list or not ⛔
+* - private property <int> range-type : the type of the range value ⛔
 * ## functions
-* - pure function get-half-stars()->bool : count the number of half stars ⛔
-* - pure function get-whole-stars()->int : count the number of whole stars ⛔
-* - pure function get-empty-stars()->int : count the number of empty stars ⛔
+* - pure public function count-width(len:length)->length : auto count the width of the select
 * ## callbacks
-* - callback clicked(float,float) : get how many whole stars and half stars
+* - callback changed(int,int,string,string,ValueType) : run if you choose an item of list
 * ============================================
 */
-import {ROOT_STYLES,Themes} from "../../themes/index.slint";
-export component Select inherits  Rectangle{
-  in property <float> value;
-  in property <float> max;
-  in property <float> min;
-  in property <float> step;
+
+import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
+import { SURCard } from "../card/index.slint";
+import { SURText } from "../text/index.slint";
+import { SURIcon } from "../icon/index.slint";
+import { ListView } from "std-widgets.slint";
+
+export enum ValueType {
+    String,
+    Float,
+    Int
+}
+
+component Selector inherits TouchArea {
+  in-out property <string> content;
+  in-out property <bool> open : false;
   in property <Themes> theme;
-  
+  mouse-cursor: pointer;
+  callback show();
+  clicked => {
+    open = !open;
+    if(open){
+      open-icon.icon = Icons.Up;
+    }else{
+      open-icon.icon = Icons.Down;
+    }
+    show()
+  }
+  HorizontalLayout {
+    height: root.height;
+    padding-left: ROOT-STYLES.sur-padding.normal.left-right;
+    padding-right: ROOT-STYLES.sur-padding.normal.left-right;
+    
+    input:=SURText { 
+      horizontal-alignment: left;
+      content: root.content;
+      // color: root.font-color;
+    }
+    Rectangle {
+      height: root.height;
+      width: open-icon.width;
+      open-icon:=SURIcon { 
+        icon: Down;
+        clicked => {
+          root.clicked();
+        }
+      }
+    }
+  }
+}
+
+export component Select inherits Rectangle {
+  padding-left: ROOT-STYLES.sur-padding.normal.left-right;
+  padding-right: ROOT-STYLES.sur-padding.normal.left-right;
+  width: count-width(160px);
+  height: ROOT-STYLES.sur-font.font-size + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
+  border-radius: ROOT-STYLES.sur-border.small.border-radius;
+  in property <Themes> theme;
+  in property <[{id:int,label:string,value:string}]> ranges-string;
+  in property <[{id:int,label:string,value:int}]> ranges-int;
+  in property <[{id:int,label:string,value:float}]> ranges-float;
+  in property <string> placeholder : "please select";
+  private property <brush> input-color;
+  private property <bool> open : false;
+  private property <int> range-type;
+  pure public function count-width(len:length)->length {
+      len + ROOT-STYLES.sur-padding.normal.left-right * 2
+  }
+  callback changed(int,int,string,string,ValueType);
+  init => {
+    if(ranges-string.length!=0){
+      range-type = 0;
+    }else if(ranges-float.length!=0){
+      range-type = 1;
+    }else if(ranges-int.length!=0){
+      range-type = 2
+    }
+  }
+  states [
+    primary when theme == Themes.Primary: {
+      root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.primary.normal:ROOT-STYLES.sur-theme-colors.primary.opacity;
+      root.border-color: ROOT-STYLES.sur-theme-colors.primary.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
+      input-color :focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.primary.font:ROOT-STYLES.sur-theme-colors.primary.weakest;
+    }
+    success when theme == Themes.Success: {
+      root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.success.normal:ROOT-STYLES.sur-theme-colors.success.opacity;
+      root.border-color: ROOT-STYLES.sur-theme-colors.success.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
+      input-color :focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.success.font:ROOT-STYLES.sur-theme-colors.success.weakest;
+
+    }
+    info when theme == Themes.Info: {
+      root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.info.normal:ROOT-STYLES.sur-theme-colors.info.opacity;
+      root.border-color: ROOT-STYLES.sur-theme-colors.info.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
+      input-color :focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.info.font:ROOT-STYLES.sur-theme-colors.info.weakest;
+
+    }
+    warning when theme == Themes.Warning: {
+      root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.warning.normal:ROOT-STYLES.sur-theme-colors.warning.opacity;
+      root.border-color: ROOT-STYLES.sur-theme-colors.warning.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
+      input-color :focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.warning.font:ROOT-STYLES.sur-theme-colors.warning.weakest;
+
+    }
+    error when theme == Themes.Error: {
+      root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.error.normal:ROOT-STYLES.sur-theme-colors.error.opacity;
+      root.border-color: ROOT-STYLES.sur-theme-colors.error.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
+      input-color :focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.error.font:ROOT-STYLES.sur-theme-colors.error.weakest;
+
+    }
+    dark when theme == Themes.Dark: {
+      root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.dark.normal:ROOT-STYLES.sur-theme-colors.dark.opacity;
+      root.border-color: ROOT-STYLES.sur-theme-colors.dark.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
+      input-color :focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.dark.font:ROOT-STYLES.sur-theme-colors.dark.weakest;
+    }
+  ]
+  focus-scope:=FocusScope {
+    z: 1111;
+  }
+  if range-type==0:string-range:= Selector{
+    theme: root.theme;
+    content: root.placeholder;
+    show => {
+      s-list.height = 120px;
+      
+    }
+    s-list:=SURCard {
+      height: 120px;
+      width: root.width;
+      theme: root.theme;
+      y: root.height + ROOT-STYLES.sur-padding.small.same;
+      visible:string-range.open;
+      init => {
+        self.height = 0;
+        // self.visible = false;
+      }
+      ListView { 
+        for range[index] in root.ranges-string : TouchArea{
+          z: 1112;
+          height: s-list-item.height;
+          clicked => {
+            string-range.content = range.label;
+            root.changed(index,range.id,range.label,@tr("{}",range.value),ValueType.String);
+          }
+          s-list-item:= Rectangle {
+            height: s-label.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
+            padding-left: ROOT-STYLES.sur-padding.normal.left-right ;
+            padding-right: ROOT-STYLES.sur-padding.normal.left-right ;
+           
+            s-label:=SURText {
+              content: range.label;
+            }
+          }
+        }
+      } 
+    }
+  }
+  if range-type==1:float-range:= Selector{
+    theme: root.theme;
+    content: root.placeholder;
+    show => {
+      f-list.height = 120px;
+      
+    }
+    f-list:=SURCard {
+      height: 120px;
+      width: root.width;
+      theme: root.theme;
+      y: root.height + ROOT-STYLES.sur-padding.small.same;
+      visible:float-range.open;
+      init => {
+        self.height = 0;
+        // self.visible = false;
+      }
+      ListView { 
+        for range[index] in root.ranges-float : TouchArea{
+          z: 1112;
+          height: f-list-item.height;
+          clicked => {
+            float-range.content = range.label;
+            root.changed(index,range.id,range.label,@tr("{}",range.value),ValueType.Float);
+          }
+          f-list-item:= Rectangle {
+            height: f-label.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
+            padding-left: ROOT-STYLES.sur-padding.normal.left-right ;
+            padding-right: ROOT-STYLES.sur-padding.normal.left-right ;
+           
+            f-label:=SURText {
+              content: range.label;
+            }
+          }
+        }
+      } 
+    }
+  }
+  if range-type==2:int-range:= Selector{
+    theme: root.theme;
+    content: root.placeholder;
+    show => {
+      i-list.height = 120px;
+      
+    }
+    i-list:=SURCard {
+      height: 120px;
+      width: root.width;
+      theme: root.theme;
+      y: root.height + ROOT-STYLES.sur-padding.small.same;
+      visible:int-range.open;
+      init => {
+        self.height = 0;
+        // self.visible = false;
+      }
+      ListView { 
+        for range[index] in root.ranges-int : TouchArea{
+          z: 1112;
+          height: i-list-item.height;
+          clicked => {
+            int-range.content = range.label;
+            root.changed(index,range.id,range.label,@tr("{}",range.value),ValueType.Int);
+          }
+          i-list-item:= Rectangle {
+            height: i-label.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
+            padding-left: ROOT-STYLES.sur-padding.normal.left-right ;
+            padding-right: ROOT-STYLES.sur-padding.normal.left-right ;
+           
+            i-label:=SURText {
+              content: range.label;
+            }
+          }
+        }
+      } 
+    }
+  }
 }
     

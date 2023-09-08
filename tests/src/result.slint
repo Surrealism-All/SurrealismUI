@@ -1,0 +1,32 @@
+import {SURResult,ResType} from "../../components/index.slint";
+import {Themes,Icons} from "../../components/themes/index.slint";
+
+component TestWindow inherits Window {
+  height: 660px;
+  width: 400px;
+  SURResult {
+    x: 10px;
+    y: 10px;
+  }
+  SURResult {
+    x: 200px;
+    y: 10px;
+    res-type:ResType.Primary;
+  }
+  SURResult {
+    x: 200px;
+    y: 220px;
+    res-type:ResType.Info;
+  }
+  SURResult {
+    x: 10px;
+    y: 220px;
+    res-type:ResType.Warning;
+  }
+
+  SURResult {
+    x: 10px;
+    y: 430px;
+    res-type:ResType.Error;
+  }
+}
