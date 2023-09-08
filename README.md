@@ -1,4 +1,11 @@
+<img src="https://img.shields.io/badge/SurrealismUI-0.0.1-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 # SurrealismUI
+
+- author：syf20020816@outlook.com
+- createDate：20230908
+- updateDate：20230908
+- version：0.0.1
+- email：syf20020816@outlook.com
 
 SurrealismUI是一个完全使用Slint进行构建的Slint第三方组件库
 
