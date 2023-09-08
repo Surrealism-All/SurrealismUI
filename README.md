@@ -115,8 +115,8 @@ Built in 6 theme colors in SurrealismUI
 #### example
 
 ```
-import {SURText} from "../../components/index.slint";
-import {Themes} from "../../components/themes/index.slint";
+import {SURText} from "surrealism-ui/index.slint";
+import {Themes} from "surrealism-ui/themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -152,8 +152,8 @@ component TestWindow inherits Window {
 #### example
 
 ```
-import {SURIcon} from "../../components/index.slint";
-import {Icons,Size,Themes} from "../../components/themes/index.slint";
+import {SURIcon} from "surrealism-ui/index.slint";
+import {Icons,Size,Themes} from "surrealism-ui/themes/index.slint";
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
@@ -225,8 +225,8 @@ component TestWindow inherits Window {
 #### example
 
 ```
-import {SURButton,SURCard} from "../../components/index.slint";
-import {Themes,Icons} from "../../components/themes/index.slint";
+import {SURButton,SURCard} from "surrealism-ui/index.slint";
+import {Themes,Icons} from "surrealism-ui/themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -277,8 +277,8 @@ component TestWindow inherits Window {
 #### example
 
 ```
-import {SURButton} from "../../components/index.slint";
-import {Themes,Icons} from "../../components/themes/index.slint";
+import {SURButton} from "surrealism-ui/index.slint";
+import {Themes,Icons} from "surrealism-ui/themes/index.slint";
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
@@ -365,8 +365,8 @@ component TestWindow inherits Window {
 #### example
 
 ```slint
-import {SURText,SURInput,SURButton, SURIcon} from "../../components/index.slint";
-import {Themes} from "../../components/themes/index.slint";
+import {SURText,SURInput,SURButton, SURIcon} from "surrealism-ui/index.slint";
+import {Themes} from "surrealism-ui/themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -437,8 +437,8 @@ component TestWindow inherits Window {
 #### example
 
 ```
-import {SURStar} from "../../components/index.slint";
-import {Themes,Icons} from "../../components/themes/index.slint";
+import {SURStar} from "surrealism-ui/index.slint";
+import {Themes,Icons} from "surrealism-ui/themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -499,8 +499,8 @@ component TestWindow inherits Window {
 #### example
 
 ```
-import {SURTag} from "../../components/index.slint";
-import {Themes,Icons} from "../../components/themes/index.slint";
+import {SURTag} from "surrealism-ui/index.slint";
+import {Themes,Icons} from "surrealism-ui/themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -545,8 +545,8 @@ component TestWindow inherits Window {
 #### example
 
 ```
-import {SURHeader} from "../../components/index.slint";
-import {Themes,Icons} from "../../components/themes/index.slint";
+import {SURHeader} from "surrealism-ui/index.slint";
+import {Themes,Icons} from "surrealism-ui/themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -617,8 +617,8 @@ If it's gone, the table will become a card with a horizontal layout
 #### example
 
 ```
-import {SURTable,SURTableColumn} from "../../components/index.slint";
-import {Themes,Icons} from "../../components/themes/index.slint";
+import {SURTable,SURTableColumn} from "surrealism-ui/index.slint";
+import {Themes,Icons} from "surrealism-ui/themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -720,8 +720,8 @@ You can customize the components or use the default text display method in it
 #### example
 
 ```
-import {SURCollapse,SURCollapseItem,SURButton,SURTable,SURTableColumn} from "../../components/index.slint";
-import {Themes,Icons} from "../../components/themes/index.slint";
+import {SURCollapse,SURCollapseItem,SURButton,SURTable,SURTableColumn} from "surrealism-ui/index.slint";
+import {Themes,Icons} from "surrealism-ui/themes/index.slint";
 
 
 component TestWindow inherits Window {
@@ -796,8 +796,8 @@ SURResult helps you easily build a quick prompt , you can build it in popup wind
 - `callback clicked()` : run if you click the button
 
 ```
-import {SURResult,ResType} from "../../components/index.slint";
-import {Themes,Icons} from "../../components/themes/index.slint";
+import {SURResult,ResType} from "surrealism-ui/index.slint";
+import {Themes,Icons} from "surrealism-ui/themes/index.slint";
 
 component TestWindow inherits Window {
   height: 660px;
@@ -851,8 +851,8 @@ SURSelect is a selector that provides three types of optional input parameter va
 #### example
 
 ```
-import {SURSelect,ValueType} from "../../components/index.slint";
-import {Themes,Icons} from "../../components/themes/index.slint";
+import {SURSelect,ValueType} from "surrealism-ui/index.slint";
+import {Themes,Icons} from "surrealism-ui/themes/index.slint";
 
 component TestWindow inherits Window {
   height: 440px;
