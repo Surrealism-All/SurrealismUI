@@ -1,0 +1,35 @@
+import { SURCard } from "../card/index.slint";
+import { SURIcon } from "../icon/index.slint";
+import {ROOT_STYLES,Themes,PaddingSize,PaddingItem,Shadows,Borders,BorderItem} from "../../themes/index.slint";
+
+export component Avatar inherits SURCard { 
+  border:Circle-Normal;
+  // padding: self.card-padding.same;
+  card-height:avatar-size;
+  card-width:avatar-size;
+  in property <length> avatar-size : ROOT-STYLES.sur-size.normal * 2;
+  in property <image> avatar;
+  padding-size: Normal;
+  clip: true;
+  init => {
+    self.card-padding = ROOT-STYLES.get-padding(self.padding-size);
+    self.padding = self.card-padding.same;
+    self.padding-top = self.card-padding.same;
+    self.padding-bottom = self.card-padding.same;
+    self.padding-left = self.card-padding.same;
+    self.padding-right = self.card-padding.same;
+  }
+  SURIcon {
+    visible: avatar==@image-url("")?true:false;
+    height: avatar-size;
+    width: avatar-size;
+    icon: Avatar;
+    theme: root.theme;
+  }
+  Image {
+    height: root.height;
+    width: root.width;
+    source: avatar;
+    image-fit: ImageFit.cover;
+  }
+}

@@ -28,7 +28,7 @@ export component Icon inherits Rectangle {
   padding: 0;
   //params
   in property <Icons> icon : Icons.Null;
-  in property <Themes> theme : Themes.Primary;
+  in property <Themes> theme : Themes.Light;
   in-out property <brush> icon-color;
   private property <[IconItem]> icon-datas : IconSources.icons;
   // get icon src from for iter item
@@ -42,8 +42,17 @@ export component Icon inherits Rectangle {
   callback clicked;
   clicked => {}
   states [
+    light when theme == Themes.Light: {
+      icon-color :ROOT-STYLES.sur-theme-colors.light.font;
+      out{
+        animate  * {
+          duration: ROOT-STYLES.sur-an-duration;
+          easing: ROOT-STYLES.sur-an-easing;
+        }
+      }
+    }
     primary when theme == Themes.Primary: {
-      icon-color :ROOT-STYLES.sur-theme-colors.primary.weakest;
+      icon-color :ROOT-STYLES.sur-theme-colors.primary.font;
       out{
         animate  * {
           duration: ROOT-STYLES.sur-an-duration;
@@ -52,7 +61,7 @@ export component Icon inherits Rectangle {
       }
     }
     success when theme == Themes.Success: {
-      icon-color :ROOT-STYLES.sur-theme-colors.success.weakest;
+      icon-color :ROOT-STYLES.sur-theme-colors.success.font;
       out{
         animate  * {
           duration: ROOT-STYLES.sur-an-duration;
@@ -61,7 +70,7 @@ export component Icon inherits Rectangle {
       }
     }
     info when theme == Themes.Info: {
-      icon-color :ROOT-STYLES.sur-theme-colors.info.weakest;
+      icon-color :ROOT-STYLES.sur-theme-colors.info.font;
       out{
         animate  * {
           duration: ROOT-STYLES.sur-an-duration;
@@ -70,7 +79,7 @@ export component Icon inherits Rectangle {
       }
     }
     warning when theme == Themes.Warning: {
-      icon-color :ROOT-STYLES.sur-theme-colors.warning.weakest;
+      icon-color :ROOT-STYLES.sur-theme-colors.warning.font;
       out{
         animate  * {
           duration: ROOT-STYLES.sur-an-duration;
@@ -79,7 +88,7 @@ export component Icon inherits Rectangle {
       }
     }
     error when theme == Themes.Error: {
-      icon-color :ROOT-STYLES.sur-theme-colors.error.weakest;
+      icon-color :ROOT-STYLES.sur-theme-colors.error.font;
       out{
         animate  * {
           duration: ROOT-STYLES.sur-an-duration;
@@ -88,7 +97,7 @@ export component Icon inherits Rectangle {
       }
     }
     dark when theme == Themes.Dark: {
-      icon-color :ROOT-STYLES.sur-theme-colors.dark.weakest;
+      icon-color :ROOT-STYLES.sur-theme-colors.dark.font;
       out{
         animate  * {
           duration: ROOT-STYLES.sur-an-duration;

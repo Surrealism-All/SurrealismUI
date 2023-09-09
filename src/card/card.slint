@@ -28,10 +28,12 @@ enum Alignment{
 export component Card inherits Rectangle{
   height: ROOT-STYLES.count-height(card-height,self.padding-top);
   width: ROOT-STYLES.count-width(card-width,self.padding-left);
-  border-radius: ROOT-STYLES.sur-border.normal.border-radius;
+  border-radius: ROOT-STYLES.get-border(border).border-radius;
+  border-width : ROOT-STYLES.get-border(border).border-width;
   padding: ROOT-STYLES.sur-padding.normal.same;
-  
-  drop-shadow-blur: 6px;
+  drop-shadow-offset-x : ROOT-STYLES.get-shadow-x(shadow);
+  drop-shadow-offset-y : ROOT-STYLES.get-shadow-y(shadow);
+  drop-shadow-blur : ROOT-STYLES.get-shadow-blur(shadow);
   in property <Themes> theme : Themes.Light;
   in property <Alignment> alignment : Alignment.Horizontal;
   in property <length> card-height:ROOT-STYLES.sur-font.font-size;
@@ -39,49 +41,49 @@ export component Card inherits Rectangle{
   in property <PaddingSize> padding-size:Normal;
   in property <Shadows> shadow : Shadows.Low1;
   in property <Borders> border : Borders.Normal;
-  private property <PaddingItem> card-padding;
-  
+  in-out property <PaddingItem> card-padding;
   init => {
     self.card-padding = ROOT-STYLES.get-padding(padding-size);
     self.padding-top = self.card-padding.top-bottom;
     self.padding-bottom = self.card-padding.top-bottom;
     self.padding-left = self.card-padding.left-right;
     self.padding-right = self.card-padding.left-right;
-    self.drop-shadow-offset-x = ROOT-STYLES.get-shadow-x(shadow);
-    self.drop-shadow-offset-y = ROOT-STYLES.get-shadow-y(shadow);
-    self.drop-shadow-blur = ROOT-STYLES.get-shadow-blur(shadow);
-    self.border-radius = ROOT-STYLES.get-border(border).border-radius;
-    self.border-width = ROOT-STYLES.get-border(border).border-width;
   }
   states [
     light when theme == Themes.Light: {
       root.background : ROOT-STYLES.sur-theme-colors.light.normal;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.light.deepest;
       root.border-color : ROOT-STYLES.sur-theme-colors.light.normal;
+      root.drop-shadow-color : ROOT-STYLES.sur-theme-colors.light.deepest;
     }
     primary when theme == Themes.Primary: {
       root.background : ROOT-STYLES.sur-theme-colors.primary.normal;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.primary.normal;
     }
     success when theme == Themes.Success: {
       root.background : ROOT-STYLES.sur-theme-colors.success.normal;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.success.normal;
     }
     info when theme == Themes.Info: {
       root.background : ROOT-STYLES.sur-theme-colors.info.normal;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.info.normal;
     }
     warning when theme == Themes.Warning: {
       root.background : ROOT-STYLES.sur-theme-colors.warning.normal;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.warning.normal;
     }
     error when theme == Themes.Error: {
       root.background : ROOT-STYLES.sur-theme-colors.error.normal;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.error.normal;
     }
     dark when theme == Themes.Dark: {
       root.background : ROOT-STYLES.sur-theme-colors.dark.normal;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.dark.normal;
     }
   ]
   if alignment == Alignment.Horizontal: h-layout:= HorizontalLayout{

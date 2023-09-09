@@ -1,0 +1,39 @@
+import {SURAvatar} from "../../index.slint";
+import {Themes,Icons,ROOT-STYLES} from "../../themes/index.slint";
+
+component TestWindow inherits Window {
+  height: 400px;
+  width: 400px;
+  background: #F5F5F5;
+  SURAvatar {
+    x: 20px;
+    y: 100px;
+  }
+  SURAvatar {
+    x:20px;
+    y: 200px;
+    avatar-size : ROOT-STYLES.sur-size.small * 2;
+    padding-size : Small;
+    theme: Primary;
+  }
+  SURAvatar {
+    x: 200px;
+    y: 100px;
+    theme: Warning;
+  }
+  SURAvatar {
+    x: 200px;
+    y: 200px;
+    avatar-size : ROOT-STYLES.sur-size.small * 2;
+    padding-size : Small;
+    theme: Error;
+  }
+  SURAvatar {
+    y: 300px;
+    avatar-size : ROOT-STYLES.sur-size.large * 2;
+    padding-size : Large;
+    theme: Dark;
+    avatar:@image-url("../../README/imgs/logo.png");
+  }
+  
+}

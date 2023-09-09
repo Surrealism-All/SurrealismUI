@@ -10,6 +10,7 @@ component TestWindow inherits Window {
     y: 20px;
     card-width:text.width;
     text:=SURText {
+      content: "SURCard";
     }
    }
    SURCard { 
@@ -18,13 +19,11 @@ component TestWindow inherits Window {
     card-height:120px;
     theme: Themes.Warning;
    }
-  //  SURCard { 
-  //   y: 200px;
-  //   height: self.count-height(160px);
-  //   width: self.count-width(200px);
-  //   theme: Themes.Error;
-  //   SURButton {
-
-  //   }
-  //  }
+   SURCard { 
+    y: 240px;
+    theme: Themes.Dark;
+    card-width:240px;
+    card-height:120px;
+    border: X-Large;
+   }
 }
