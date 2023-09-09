@@ -7,6 +7,8 @@
 - version：0.0.1
 - email：syf20020816@outlook.com
 
+<img src="https://github.com/syf20020816/Surrealism/blob/main/logo.png">
+
 SurrealismUI是一个完全使用Slint进行构建的Slint第三方组件库
 
 SurrealismUI is a third-party component library built entirely using Slint
@@ -38,7 +40,7 @@ Built in 6 theme colors in SurrealismUI
 6. deeper：#0F3CC9
 7. deepest：\#1d2f7a
 
-![image-20230907010143373](.\README\imgs\image-20230907010143373.png)
+![image-20230907010143373](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907010143373.png)
 
 #### success
 
@@ -50,7 +52,7 @@ Built in 6 theme colors in SurrealismUI
 6. deeper：\#4aa949
 7. deepest：\#33956B
 
-![image-20230907010935247](.\README\imgs\image-20230907010935247.png)
+![image-20230907010935247](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907010935247.png)
 
 #### info
 
@@ -62,7 +64,7 @@ Built in 6 theme colors in SurrealismUI
 6. deeper：\#bcbcbc
 7. deepest：\#878787
 
-![image-20230907011024366](.\README\imgs\image-20230907011024366.png)
+![image-20230907011024366](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907011024366.png)
 
 #### warning
 
@@ -74,7 +76,7 @@ Built in 6 theme colors in SurrealismUI
 6. deeper：\#e95a2e
 7. deepest：\#e63819
 
-![image-20230907011054687](.\README\imgs\image-20230907011054687.png)
+![image-20230907011054687](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907011054687.png)
 
 #### error
 
@@ -86,7 +88,7 @@ Built in 6 theme colors in SurrealismUI
 6. deeper：\#D03D46
 7. deepest：\#9e2929
 
-![image-20230907011118330](.\README\imgs\image-20230907011118330.png)
+![image-20230907011118330](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907011118330.png)
 
 #### dark
 
@@ -98,7 +100,7 @@ Built in 6 theme colors in SurrealismUI
 6. deeper：#0f121c
 7. deepest：#101114
 
-![image-20230907011139226](.\README\imgs\image-20230907011139226.png)
+![image-20230907011139226](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907011139226.png)
 
 ## Components
 
@@ -135,7 +137,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230907013446133](.\README\imgs\image-20230907013446133.png)
+![image-20230907013446133](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907013446133.png)
 
  ### SURIcon
  there are 2658 different icons in SURIcon from : https://github.com/bytedance/iconpark
@@ -211,7 +213,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230907014520907](.\README\imgs\image-20230907014520907.png)
+![image-20230907014520907](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907014520907.png)
 
  ### SURCard
  A very simple universal card without any layout or restrictions
@@ -255,7 +257,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230907143804602](.\README\imgs\image-20230907143804602.png)
+![image-20230907143804602](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907143804602.png)
 
  ### SURButton 
  SURButton is a button component that you can freely perform regular attribute operations on
@@ -334,7 +336,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230907144512434](.\README\imgs\image-20230907144512434.png)
+![image-20230907144512434](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907144512434.png)
 
  ### SURInput
 
@@ -418,7 +420,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230907012550038](.\README\imgs\image-20230907012550038.png)
+![image-20230907012550038](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907012550038.png)
 
  ### SURStar
  SURStar is a scoring component
@@ -485,7 +487,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230907143639667](.\README\imgs\image-20230907143639667.png)
+![image-20230907143639667](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907143639667.png)
 
  ### SURTag
  A small tag used to display data
@@ -530,7 +532,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230907171859046](.\README\imgs\image-20230907171859046.png)
+![image-20230907171859046](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907171859046.png)
 
  ### SURHeader
  SURHeader is a simple header component that is generated based on routing information
@@ -582,7 +584,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230907184150495](.\README\imgs\image-20230907184150495.png)
+![image-20230907184150495](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230907184150495.png)
 
  ### SURTable
 This is the outter of the Table, and the column data of the table is separated from the outter
@@ -687,7 +689,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230908031228567](.\README\imgs\image-20230908031228567.png)
+![image-20230908031228567](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230908031228567.png)
 
 ### SURCollapse
 SURCollapse is a foldable panel
@@ -782,7 +784,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230908052613844](.\README\imgs\image-20230908052613844.png)
+![image-20230908052613844](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230908052613844.png)
 
 ### SURResult
 SURResult helps you easily build a quick prompt , you can build it in popup window
@@ -831,7 +833,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230908064301162](.\README\imgs\image-20230908064301162.png)
+![image-20230908064301162](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230908064301162.png)
 
 ### SURSelect
 SURSelect is a selector that provides three types of optional input parameter values
@@ -903,4 +905,4 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230908121607945](.\README\imgs\image-20230908121607945.png)
+![image-20230908121607945](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230908121607945.png)
