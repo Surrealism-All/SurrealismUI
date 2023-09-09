@@ -90,21 +90,22 @@ export global ROOT_STYLES {
   };
   out property <ThemeSpace> sur-spacing:{
     none:0,
-    len-20px:2px,
-    len-40px:4px,
-    len-60px:6px,
-    len-80px:8px,
-    len-120px:12px,
-    len-160px:16px,
-    len-200px:20px,
-    len-240px:24px,
-    len-280px:28px,
-    len-320px:32px,
-    len-360px:36px,
-    len-400px:40px,
-    len-480px:48px,
-    len-520px:52px,
-    len-560px:56px,
+    len20:2px,
+    len40:4px,
+    len60:6px,
+    len80:8px,
+    len120:12px,
+    len160:16px,
+    len200:20px,
+    len240:24px,
+    len280:28px,
+    len320:32px,
+    len360:36px,
+    len400:40px,
+    len440:44px,
+    len480:48px,
+    len520:52px,
+    len560:56px,
   };
   // 计算组件高度
   pure public function count-height(h:length,padding:length)->length {
@@ -189,6 +190,43 @@ export global ROOT_STYLES {
         ROOT-STYLES.sur-border.circle.x-large
       }else{
         ROOT-STYLES.sur-border.none
+      }
+  }
+  pure public function get-space(w:length) -> length{
+      if(w>=560px){
+        ROOT-STYLES.sur-spacing.len560
+      }else if(w>=520px){
+        ROOT-STYLES.sur-spacing.len520
+      }else if(w>=480px){
+        ROOT-STYLES.sur-spacing.len480
+      }else if(w>=440px){
+        ROOT-STYLES.sur-spacing.len440
+      }else if(w>=400px){
+        ROOT-STYLES.sur-spacing.len400
+      }else if(w>=360px){
+        ROOT-STYLES.sur-spacing.len360
+      }else if(w>=320px){
+        ROOT-STYLES.sur-spacing.len320
+      }else if(w>=280px){
+        ROOT-STYLES.sur-spacing.len280
+      }else if(w>=240px){
+        ROOT-STYLES.sur-spacing.len240
+      }else if(w>=200px){
+        ROOT-STYLES.sur-spacing.len200
+      }else if(w>=160px){
+        ROOT-STYLES.sur-spacing.len160
+      }else if(w>=120px){
+        ROOT-STYLES.sur-spacing.len120
+      }else if(w>=80px){
+        ROOT-STYLES.sur-spacing.len80
+      }else if(w>=60px){
+        ROOT-STYLES.sur-spacing.len60
+      }else if(w>=40px){
+        ROOT-STYLES.sur-spacing.len40
+      }else if(w>=20px){
+        ROOT-STYLES.sur-spacing.len20
+      }else{
+        ROOT-STYLES.sur-spacing.none
       }
   }
 }

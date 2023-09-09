@@ -35,7 +35,6 @@ export component Card inherits Rectangle{
   drop-shadow-offset-y : ROOT-STYLES.get-shadow-y(shadow);
   drop-shadow-blur : ROOT-STYLES.get-shadow-blur(shadow);
   in property <Themes> theme : Themes.Light;
-  in property <Alignment> alignment : Alignment.Horizontal;
   in property <length> card-height:ROOT-STYLES.sur-font.font-size;
   in property <length> card-width;
   in property <PaddingSize> padding-size:Normal;
@@ -86,10 +85,5 @@ export component Card inherits Rectangle{
       root.border-color : ROOT-STYLES.sur-theme-colors.dark.normal;
     }
   ]
-  if alignment == Alignment.Horizontal: h-layout:= HorizontalLayout{
-    spacing: 0;
-  }
-  if alignment == Alignment.Vertical: v-layout:= VerticalLayout{
-    spacing: 0;
-  }
+  @children
 }
