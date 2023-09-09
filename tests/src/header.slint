@@ -3,23 +3,23 @@ import {Themes,Icons} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
-  width: 400px;
+  width: 660px;
   SURHeader {
-    x:0px;
+    x:10px;
     y: 40px;
   }
   SURHeader {
-    x:0px;
-    y: 80px;
+    x:10px;
+    y: 100px;
     theme: Error;
     route:{
       home:"slint",routes:["components","dist","v1.2.0"]
     };
   }
   SURHeader {
-    x:0px;
-    y: 120px;
-    theme: Info;
+    x:10px;
+    y: 160px;
+    theme: Primary;
     to(index,route)=>{
       txt.name = route;
       txt.index = index;
@@ -29,6 +29,7 @@ component TestWindow inherits Window {
     }
   }
   txt:=Text{
+    y: 260px;
     font-size: 18px;
     in-out property <int> index;
     in-out property <string> name;

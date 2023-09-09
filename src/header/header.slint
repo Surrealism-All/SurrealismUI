@@ -20,6 +20,7 @@
 import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
 import { SURIcon } from "../icon/index.slint";
 import { SURText } from "../text/index.slint";
+import { SURCard } from "../card/index.slint";
 
 export struct Route {
     home : string,
@@ -45,6 +46,7 @@ component HeaderItem inherits HorizontalLayout{
       clicked => {
         root.clicked(root.name)
       }
+      
     }
   }
   txt-view:=Rectangle{
@@ -55,41 +57,46 @@ component HeaderItem inherits HorizontalLayout{
   }
 }
 
-export component Header inherits HorizontalLayout {
-  height: ROOT-STYLES.sur-font.font-size;
-  spacing: ROOT-STYLES.sur-padding.small.same;
-  padding-left: ROOT-STYLES.sur-padding.small.same;
-  
-  in property <Themes> theme : Themes.Primary;
+export component Header inherits SURCard { 
+  card-width: 560px;
+  in property <length> spacing : ROOT-STYLES.get-space(root.width / 2);
   in property <Route> route : {home:"Surrealism",routes:["user","info"]};
   in property <length> font-size : ROOT-STYLES.sur-font.font-size;
   callback to(int,string);
   callback back();
-  back-view:=Rectangle{
-    width: back-icon.width;
-    back-icon:=SURIcon { 
-      theme: root.theme;
-      icon: Icons.Link-left;
-      clicked => {
-        root.back();
+  layout:= HorizontalLayout {
+    height: root.font-size;
+    width: root.width;
+    spacing: root.spacing;
+    padding-left: ROOT-STYLES.sur-padding.small.same;
+    back-view:=Rectangle{
+      width: back-icon.width;
+      back-icon:=SURIcon { 
+        theme: root.theme;
+        icon: Icons.Link-left;
+        clicked => {
+          root.back();
+        }
       }
     }
-  }
-  name-view:=Rectangle{
-    width: name.width;
-    name:=SURText{ 
-      theme: root.theme;
-      content: root.route.home;
+    name-view:=Rectangle{
+      width: name.width;
+      name:=SURText{ 
+        theme: root.theme;
+        content: root.route.home;
+      }
     }
-  }
-  for r[index] in route.routes: HeaderItem{
-    name: r;
-    height: root.height;
-    theme: root.theme;
-    font-size: root.font-size;
-    clicked(route-name) => {
-      root.to(index,route-name);
+    for r[index] in route.routes: Rectangle{
+      HeaderItem{
+        name: r;
+        height: root.height;
+        theme: root.theme;
+        font-size: root.font-size;
+        clicked(route-name) => {
+          root.to(index,route-name);
+        }
+      }
     }
+  
   }
-
 }

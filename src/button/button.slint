@@ -34,8 +34,66 @@ import { HorizontalBox } from "std-widgets.slint";
 export component Button inherits SURCard {
   
   card-width: layout.width;
+  theme: Light;
   in property <Icons> icon : Icons.Null;
+  in property <length> font-size:ROOT-STYLES.sur-font.font-size;
+  in property <length> letter-spacing : ROOT-STYLES.sur-font.letter-spacing;
+  in property <bool> font-italic:ROOT-STYLES.sur-font.font-italic;
+  in property <int> font-weight:ROOT-STYLES.sur-font.font-weight;
+  in property <string> font-family:ROOT-STYLES.sur-font.font-family;
   in-out property <string> content : "SURButton";
+  
+  states [
+    light when self.theme == Themes.Light: {
+      root.background : toucharea.has-hover?ROOT-STYLES.light-deeper(ROOT-STYLES.sur-theme-colors.light.normal):ROOT-STYLES.sur-theme-colors.light.normal;
+      root.border-color : ROOT-STYLES.sur-theme-colors.light.normal;
+      root.drop-shadow-color : ROOT-STYLES.sur-theme-colors.light.deepest;
+      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
+      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
+    }
+    primary when self.theme == Themes.Primary: {
+      root.background : toucharea.has-hover?ROOT-STYLES.primary-deeper(ROOT-STYLES.sur-theme-colors.primary.normal):ROOT-STYLES.sur-theme-colors.primary.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.primary.normal;
+      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
+      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
+    }
+    success when self.theme == Themes.Success: {
+      root.background : toucharea.has-hover?ROOT-STYLES.success-deeper(ROOT-STYLES.sur-theme-colors.success.normal):ROOT-STYLES.sur-theme-colors.success.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.success.normal;
+      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
+      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
+    }
+    info when self.theme == Themes.Info: {
+      root.background : toucharea.has-hover?ROOT-STYLES.info-deeper(ROOT-STYLES.sur-theme-colors.info.normal):ROOT-STYLES.sur-theme-colors.info.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.info.normal;
+      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
+      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
+    }
+    warning when self.theme == Themes.Warning: {
+      root.background : toucharea.has-hover?ROOT-STYLES.warning-deeper(ROOT-STYLES.sur-theme-colors.warning.normal):ROOT-STYLES.sur-theme-colors.warning.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.warning.normal;
+      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
+      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
+    }
+    error when self.theme == Themes.Error: {
+      root.background : toucharea.has-hover?ROOT-STYLES.error-deeper(ROOT-STYLES.sur-theme-colors.error.normal):ROOT-STYLES.sur-theme-colors.error.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.error.normal;
+      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
+      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
+    }
+    dark when self.theme == Themes.Dark: {
+      root.background : toucharea.has-hover?ROOT-STYLES.dark-deeper(ROOT-STYLES.sur-theme-colors.dark.normal):ROOT-STYLES.sur-theme-colors.dark.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.dark.normal;
+      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
+      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
+    }
+  ]
   // animation
   animate background {
     duration: ROOT-STYLES.sur-an-duration;
@@ -49,9 +107,17 @@ export component Button inherits SURCard {
     duration: ROOT-STYLES.sur-an-duration;
     easing: ROOT-STYLES.sur-an-easing;
   }
+  animate drop-shadow-blur {
+    duration: ROOT-STYLES.sur-an-duration;
+    easing: ROOT-STYLES.sur-an-easing;
+  }
+  animate drop-shadow-offset-y {
+    duration: ROOT-STYLES.sur-an-duration;
+    easing: ROOT-STYLES.sur-an-easing;
+  }
   // //callbacks
   callback clicked();
-  TouchArea {
+  toucharea:=TouchArea {
     mouse-cursor: pointer;
     clicked => {
       root.clicked();
@@ -64,6 +130,8 @@ export component Button inherits SURCard {
     spacing: btn-icon.visible?ROOT-STYLES.get-space(self.width):0;
     icon-container:= Rectangle {
       btn-icon:= SURIcon {
+        height: root.icon==Icons.Null?0:root.font-size;
+        width: root.icon==Icons.Null?0:root.font-size;
         theme:root.theme;
         icon: root.icon;
         visible: root.icon==Icons.Null?false:true;
@@ -74,6 +142,11 @@ export component Button inherits SURCard {
       btn-txt:=SURText{
         theme:root.theme;
         content: root.content;
+        font-size: root.font-size;
+        font-family: root.font-family;
+        font-weight: root.font-weight;
+        font-italic: root.font-italic;
+        letter-spacing: root.letter-spacing;
       }
     }
   }

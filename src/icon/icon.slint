@@ -27,6 +27,7 @@ export component Icon inherits Rectangle {
   width: icon!=Icons.Null? ROOT-STYLES.sur-size.normal:0;
   padding: 0;
   //params
+  out property <bool> has-hover<=>toucharea.has-hover;
   in property <Icons> icon : Icons.Null;
   in property <Themes> theme : Themes.Light;
   in-out property <brush> icon-color;
@@ -106,20 +107,19 @@ export component Icon inherits Rectangle {
       }
     }
   ]
-  
-  // for iter to match then get icon source
-  for item in icon-datas: img:=TouchArea{
+  toucharea:=TouchArea{
     mouse-cursor: pointer;
     clicked => {
       root.clicked()
     }
-    Image {
-      source: root.get-icon(item);
-      height: root.height;
-      width: root.width;
-      colorize: root.icon-color;
-      
-    }
+  }
+  
+  // for iter to match then get icon source
+  for item in icon-datas: img:=Image {
+    source: root.get-icon(item);
+    height: root.height;
+    width: root.width;
+    colorize: root.icon-color;
   }
 }
 

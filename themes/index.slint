@@ -23,7 +23,7 @@ export global ROOT_STYLES {
     font-weight:400,
     font-size:16px,
     font-italic:false,
-    letter-spacing:1px,
+    letter-spacing:0,
     tag-size:12px
   };
   out property <brush> font-light : #ffffff;
@@ -32,7 +32,7 @@ export global ROOT_STYLES {
     light:{name:"light",weakest:#F6F6F6,weaker:#E0E0E0,normal:#FFFFFF,deeper:#F5F5F5,deepest:#C8C8C6,font:#212121,opacity:#E0E0E088},
     primary:{name:"primary",weakest:#88D0EC,weaker:#6CB8F7,normal:#3AA1F5,deeper:#1891F3,deepest:#0B86F1,font:#e5ffff,opacity:#3AA1F588},
     success:{name:"success",weakest:#8FCEC4,weaker:#61BF84,normal:#38A762,deeper:#21964A,deepest:#118A3D,font:#e5fffb,opacity:#38A76288},
-    info:{name:"info",weakest:#F6F6F6,weaker:#E0E0E0,normal:#E0E0E0,deeper:#D2D2D2,deepest:#BDBDBD,font:#ffffff,opacity:#E0E0E088},
+    info:{name:"info",weakest:#F6F6F6,weaker:#E0E0E0,normal:#E0E0E0,deeper:#D2D2D2,deepest:#BDBDBD,font:#484848,opacity:#E0E0E088},
     warning:{name:"warning",weakest:#ffd5bd,weaker:#FCBD99,normal:#F9A677,deeper:#F9955C,deepest:#F8894A,font:#fff4ec,opacity:#F9A67788},
     error:{name:"error",weakest:#e9a9a7,weaker:#F294B3,normal:#EE6F9A,deeper:#EB5889,deepest:#EA467E,font:#ffe5e4,opacity:#EE6F9A88},
     dark:{name:"dark",weakest:#707070,weaker:#616161,normal:#424242,deeper:#242424,deepest:#000000,font:#BDBDBD,opacity:#42424288}
@@ -64,7 +64,7 @@ export global ROOT_STYLES {
     low:{shadow1:28%,shadow2:14%},
     high:{shadow1:28%,shadow2:20%}
   };
-  out property <duration> sur-an-duration :450ms;
+  out property <duration> sur-an-duration :200ms;
   out property <easing> sur-an-easing : ease-in-out;
   in-out property <SizeStruct> sur-size:{
     small:12px,
@@ -228,6 +228,100 @@ export global ROOT_STYLES {
       }else{
         ROOT-STYLES.sur-spacing.none
       }
+  }
+  pure public function deeper(theme:Themes,color:brush)->brush {
+      if(theme==Themes.Light){
+        ROOT-STYLES.light-deeper(color)
+      }else if(theme==Themes.Primary){
+        ROOT-STYLES.primary-deeper(color)
+      }else if(theme==Themes.Success){
+        ROOT-STYLES.success-deeper(color)
+      }else if(theme==Themes.Info){
+        ROOT-STYLES.info-deeper(color)
+      }else if(theme==Themes.Warning){
+        ROOT-STYLES.warning-deeper(color)
+      }else if(theme==Themes.Error){
+        ROOT-STYLES.error-deeper(color)
+      }else{
+        ROOT-STYLES.dark-deeper(color)
+      }
+  }
+  pure function light-deeper(color:brush)->brush {
+    if(color==ROOT-STYLES.sur-theme-colors.light.weakest){
+      ROOT-STYLES.sur-theme-colors.light.weaker
+    }else if(color==ROOT-STYLES.sur-theme-colors.light.weaker){
+      ROOT-STYLES.sur-theme-colors.light.normal
+    }else if(color==ROOT-STYLES.sur-theme-colors.light.normal){
+      ROOT-STYLES.sur-theme-colors.light.deeper
+    }else{
+      ROOT-STYLES.sur-theme-colors.light.deepest
+    }
+  }
+  pure function primary-deeper(color:brush)->brush {
+    if(color==ROOT-STYLES.sur-theme-colors.primary.weakest){
+      ROOT-STYLES.sur-theme-colors.primary.weaker
+    }else if(color==ROOT-STYLES.sur-theme-colors.primary.weaker){
+      ROOT-STYLES.sur-theme-colors.primary.normal
+    }else if(color==ROOT-STYLES.sur-theme-colors.primary.normal){
+      ROOT-STYLES.sur-theme-colors.primary.deeper
+    }else{
+      ROOT-STYLES.sur-theme-colors.primary.deepest
+    }
+  }
+  pure function success-deeper(color:brush)->brush {
+    if(color==ROOT-STYLES.sur-theme-colors.success.weakest){
+      ROOT-STYLES.sur-theme-colors.success.weaker
+    }else if(color==ROOT-STYLES.sur-theme-colors.success.weaker){
+      ROOT-STYLES.sur-theme-colors.success.normal
+    }else if(color==ROOT-STYLES.sur-theme-colors.success.normal){
+      ROOT-STYLES.sur-theme-colors.success.deeper
+    }else{
+      ROOT-STYLES.sur-theme-colors.success.deepest
+    }
+  }
+  pure function info-deeper(color:brush)->brush {
+    if(color==ROOT-STYLES.sur-theme-colors.info.weakest){
+      ROOT-STYLES.sur-theme-colors.info.weaker
+    }else if(color==ROOT-STYLES.sur-theme-colors.info.weaker){
+      ROOT-STYLES.sur-theme-colors.info.normal
+    }else if(color==ROOT-STYLES.sur-theme-colors.info.normal){
+      ROOT-STYLES.sur-theme-colors.info.deeper
+    }else{
+      ROOT-STYLES.sur-theme-colors.info.deepest
+    }
+  }
+  pure function warning-deeper(color:brush)->brush {
+    if(color==ROOT-STYLES.sur-theme-colors.warning.weakest){
+      ROOT-STYLES.sur-theme-colors.warning.weaker
+    }else if(color==ROOT-STYLES.sur-theme-colors.warning.weaker){
+      ROOT-STYLES.sur-theme-colors.warning.normal
+    }else if(color==ROOT-STYLES.sur-theme-colors.warning.normal){
+      ROOT-STYLES.sur-theme-colors.warning.deeper
+    }else{
+      ROOT-STYLES.sur-theme-colors.warning.deepest
+    }
+  }
+  pure function error-deeper(color:brush)->brush {
+    if(color==ROOT-STYLES.sur-theme-colors.error.weakest){
+      ROOT-STYLES.sur-theme-colors.error.weaker
+    }else if(color==ROOT-STYLES.sur-theme-colors.error.weaker){
+      ROOT-STYLES.sur-theme-colors.error.normal
+    }else if(color==ROOT-STYLES.sur-theme-colors.error.normal){
+      ROOT-STYLES.sur-theme-colors.error.deeper
+    }else{
+      ROOT-STYLES.sur-theme-colors.error.deepest
+    }
+  }
+  pure function dark-deeper(color:brush)->brush {
+    if(color==ROOT-STYLES.sur-theme-colors.dark.weakest){
+      ROOT-STYLES.sur-theme-colors.dark.weaker
+    }else if(color==ROOT-STYLES.sur-theme-colors.dark.weaker){
+      ROOT-STYLES.sur-theme-colors.dark.normal
+    }else if(color==ROOT-STYLES.sur-theme-colors.dark.normal){
+      ROOT-STYLES.sur-theme-colors.dark.deeper
+    }else{
+      ROOT-STYLES.sur-theme-colors.dark.deepest
+    }
   }
 }
 
