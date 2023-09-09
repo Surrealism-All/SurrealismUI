@@ -216,6 +216,7 @@ component TestWindow inherits Window {
  ### SURCard
  A very simple universal card without any layout or restrictions
  you can add anything you want to the card
+
  #### properties
  - `in property <Themes> theme` : Surrealism theme
  #### functions
@@ -337,7 +338,7 @@ component TestWindow inherits Window {
 
  ### SURInput
 
- This is a basic input box, often used in forms, divided into two types` : text and password
+ This is a basic input box, often used in forms, divided into two types : text and password
  #### properties :
  - `in property <string> placeholder` : default placeholder which you wanna show when no content
  - `in property <Themes> theme` : Surrealism themes

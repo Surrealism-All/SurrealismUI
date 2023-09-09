@@ -17,27 +17,51 @@
 */
 
 
-import {ROOT_STYLES,Themes} from "../../themes/index.slint";
+import {ROOT_STYLES,Themes,PaddingSize,PaddingItem,Shadows,Borders,BorderItem} from "../../themes/index.slint";
+
+enum Alignment{
+  Horizontal,
+  Vertical
+}
+
 
 export component Card inherits Rectangle{
-
-  border-radius: ROOT-STYLES.sur-border.small.border-radius;
+  height: ROOT-STYLES.count-height(card-height,self.padding-top);
+  width: ROOT-STYLES.count-width(card-width,self.padding-left);
+  border-radius: ROOT-STYLES.sur-border.normal.border-radius;
   padding: ROOT-STYLES.sur-padding.normal.same;
-  drop-shadow-offset-x: 0;
-  drop-shadow-offset-y: 0;
+  
   drop-shadow-blur: 6px;
-  in property <Themes> theme : Themes.Primary;
-  pure public function count-height(h:length) -> length {
-    h + 2 * ROOT-STYLES.sur-padding.normal.same
-  }
-  pure public function count-width(w:length) -> length {
-    w + 2 * ROOT-STYLES.sur-padding.normal.same
+  in property <Themes> theme : Themes.Light;
+  in property <Alignment> alignment : Alignment.Horizontal;
+  in property <length> card-height:ROOT-STYLES.sur-font.font-size;
+  in property <length> card-width;
+  in property <PaddingSize> padding-size:Normal;
+  in property <Shadows> shadow : Shadows.Low1;
+  in property <Borders> border : Borders.Normal;
+  private property <PaddingItem> card-padding;
+  
+  init => {
+    self.card-padding = ROOT-STYLES.get-padding(padding-size);
+    self.padding-top = self.card-padding.top-bottom;
+    self.padding-bottom = self.card-padding.top-bottom;
+    self.padding-left = self.card-padding.left-right;
+    self.padding-right = self.card-padding.left-right;
+    self.drop-shadow-offset-x = ROOT-STYLES.get-shadow-x(shadow);
+    self.drop-shadow-offset-y = ROOT-STYLES.get-shadow-y(shadow);
+    self.drop-shadow-blur = ROOT-STYLES.get-shadow-blur(shadow);
+    self.border-radius = ROOT-STYLES.get-border(border).border-radius;
+    self.border-width = ROOT-STYLES.get-border(border).border-width;
   }
   states [
+    light when theme == Themes.Light: {
+      root.background : ROOT-STYLES.sur-theme-colors.light.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.light.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.light.normal;
+    }
     primary when theme == Themes.Primary: {
       root.background : ROOT-STYLES.sur-theme-colors.primary.normal;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
-      
     }
     success when theme == Themes.Success: {
       root.background : ROOT-STYLES.sur-theme-colors.success.normal;
@@ -60,4 +84,10 @@ export component Card inherits Rectangle{
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
     }
   ]
+  if alignment == Alignment.Horizontal: h-layout:= HorizontalLayout{
+    spacing: 0;
+  }
+  if alignment == Alignment.Vertical: v-layout:= VerticalLayout{
+    spacing: 0;
+  }
 }

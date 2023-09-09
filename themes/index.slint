@@ -1,11 +1,14 @@
 import {ThemeColor} from "./src/color/color.slint";
 import {ThemeFont} from "./src/font/font.slint";
-import {ThemePadding,ThemeBorder} from "./src/padding/padding.slint";
+import {ThemePadding,ThemeBorder,PaddingSize,PaddingItem,Borders,BorderItem} from "./src/padding/padding.slint";
+import { ThemeSpace } from "./src/spacing/spacing.slint";
 import {Size,SizeStruct} from "./src/common.slint";
 import { Icons } from "./src/icon.slint";
-export { Icons,Size}
+import { Shadows } from "./src/shadow/shadow.slint";
+export { Icons,Size,PaddingSize,PaddingItem,Shadows,Borders,BorderItem}
 
 export enum Themes{
+  Light,
   Primary,
   Success,
   Info,
@@ -26,33 +29,168 @@ export global ROOT_STYLES {
   out property <brush> font-light : #ffffff;
   out property <brush> font-black : #000;
   in-out property <ThemeColor> sur-theme-colors : {
-    primary:{name:"primary",weakest:#96C4ED,weaker:#4584E9,normal:#1A5BE9,deeper:#0F3CC9,deepest:#1d2f7a,font:#bbdbf6,opacity:#1A5BE988},
-    success:{name:"success",weakest:#B0E5DC,weaker:#7FD5A2,normal:#66CD7A,deeper:#4aa949,deepest:#33956B,font:#e9fffb,opacity:#7de39187},
-    info:{name:"info",weakest:#E6E5E6,weaker:#DEDDDE,normal:#cecece,deeper:#bcbcbc,deepest:#878787,font:#ffffff,opacity:#d7d7d788},
-    warning:{name:"warning",weakest:#e48d73,weaker:#f07651,normal:#f06b42,deeper:#e95a2e,deepest:#e63819,font:#fdd1c3,opacity:#dd5f32c9},
-    error:{name:"error",weakest:#e9a9a7,weaker:#DC8472,normal:#e34e47,deeper:#D03D46,deepest:#9e2929,font:#fbe3d4,opacity:#e34e4788},
-    dark:{name:"dark",weakest:#2f323d,weaker:#171922,normal:#1a1c26,deeper:#0f121c,deepest:#101114,font:#73788c,opacity:#262a3987}
+    light:{name:"light",weakest:#F6F6F6,weaker:#E0E0E0,normal:#FFFFFF,deeper:#F5F5F5,deepest:#C8C8C6,font:#212121,opacity:#E0E0E088},
+    primary:{name:"primary",weakest:#88D0EC,weaker:#6CB8F7,normal:#3AA1F5,deeper:#1891F3,deepest:#0B86F1,font:#e5ffff,opacity:#3AA1F588},
+    success:{name:"success",weakest:#8FCEC4,weaker:#61BF84,normal:#38A762,deeper:#21964A,deepest:#118A3D,font:#e5fffb,opacity:#38A76288},
+    info:{name:"info",weakest:#F6F6F6,weaker:#E0E0E0,normal:#E0E0E0,deeper:#D2D2D2,deepest:#BDBDBD,font:#ffffff,opacity:#E0E0E088},
+    warning:{name:"warning",weakest:#ffd5bd,weaker:#FCBD99,normal:#F9A677,deeper:#F9955C,deepest:#F8894A,font:#fff4ec,opacity:#F9A67788},
+    error:{name:"error",weakest:#e9a9a7,weaker:#F294B3,normal:#EE6F9A,deeper:#EB5889,deepest:#EA467E,font:#ffe5e4,opacity:#EE6F9A88},
+    dark:{name:"dark",weakest:#707070,weaker:#616161,normal:#424242,deeper:#242424,deepest:#000000,font:#BDBDBD,opacity:#42424288}
   };
   out property <ThemePadding> sur-padding : {
-    small: {top-bottom:sur-font.font-size / 3.8,left-right:sur-font.font-size / 3.2,same:sur-font.font-size / 3.6},
-    normal:{top-bottom:sur-font.font-size / 1.8,left-right:sur-font.font-size / 1.6,same:sur-font.font-size / 1.7},
-    large:{top-bottom:sur-font.font-size / 1.2,left-right:sur-font.font-size / 1,same:sur-font.font-size / 1.1}
+    small: {top-bottom:8px,left-right:12px,same:8px},
+    normal:{top-bottom:12px,left-right:16px,same:12px},
+    large:{top-bottom:16px,left-right:24px,same:16px}
   };
+  
   out property <ThemeBorder> sur-border:{
-    small:{border-radius:4px,border-width:1px},
-    normal:{border-radius:6px,border-width:1.2px},
-    large:{border-radius:9px,border-width:1.8px},
-    circle:1000in,
+    none:{border-radius:0px,border-width:0px},
+    small:{border-radius:2px,border-width:1px},
+    normal:{border-radius:4px,border-width:2px},
+    large:{border-radius:8px,border-width:4px},
+    x-large:{border-radius:12px,border-width:6px},
+    circle:{
+      none:{border-radius:1000in,border-width:0px},
+      small:{border-radius:1000in,border-width:1px},
+      normal:{border-radius:1000in,border-width:2px},
+      large:{border-radius:1000in,border-width:4px},
+      x-large:{border-radius:1000in,border-width:6px},
+    }
   };
-  out property <percent> sur-opacity : 86%;
+  out property <{
+    low:{shadow1:percent,shadow2:percent},
+    high:{shadow1:percent,shadow2:percent}
+  }> sur-opacity : {
+    low:{shadow1:28%,shadow2:14%},
+    high:{shadow1:28%,shadow2:20%}
+  };
   out property <duration> sur-an-duration :450ms;
   out property <easing> sur-an-easing : ease-in-out;
   in-out property <SizeStruct> sur-size:{
     small:12px,
     normal:16px,
-    large:20px,
+    large:24px,
+    largest:48px
   };
   out property <length> scroll-bar-width : 14px;
+  out property <{
+    low1:{x:length,y:length,blur:length},
+    low2:{x:length,y:length,blur:length},
+    low3:{x:length,y:length,blur:length},
+    high1:{x:length,y:length,blur:length},
+    high2:{x:length,y:length,blur:length},
+    high-empty:{x:length,y:length,blur:length}
+  }> sur-shadow:{
+    low1:{x:0,y:1px,blur:2px},
+    low2:{x:0,y:2px,blur:4px},
+    low3:{x:0,y:4px,blur:8px},
+    high1:{x:0,y:4px,blur:14px},
+    high2:{x:0,y:8px,blur:28px},
+    high-empty:{x:0,y:0px,blur:28px}
+  };
+  out property <ThemeSpace> sur-spacing:{
+    none:0,
+    len-20px:2px,
+    len-40px:4px,
+    len-60px:6px,
+    len-80px:8px,
+    len-120px:12px,
+    len-160px:16px,
+    len-200px:20px,
+    len-240px:24px,
+    len-280px:28px,
+    len-320px:32px,
+    len-360px:36px,
+    len-400px:40px,
+    len-480px:48px,
+    len-520px:52px,
+    len-560px:56px,
+  };
+  // 计算组件高度
+  pure public function count-height(h:length,padding:length)->length {
+      return h + padding * 2;
+  }
+  // 计算组件宽度
+  pure public function count-width(w:length,padding:length)->length {
+    return w + padding * 2;
+  }
+  pure public function get-padding(size:PaddingSize)->PaddingItem {
+      if(size==PaddingSize.Small){
+        ROOT-STYLES.sur-padding.small
+      }else if(size==PaddingSize.Normal){
+        ROOT-STYLES.sur-padding.normal
+      }else{
+        ROOT-STYLES.sur-padding.large
+      }
+  }
+  pure public function get-shadow-x(shadow:Shadows)->length {
+      if(shadow==Shadows.Low1){
+        ROOT-STYLES.sur-shadow.low1.x
+      }else if(shadow==Shadows.Low2){
+        ROOT-STYLES.sur-shadow.low2.x
+      }else if(shadow==Shadows.Low3){
+        ROOT-STYLES.sur-shadow.low3.x
+      }else if(shadow==Shadows.High1){
+        ROOT-STYLES.sur-shadow.high1.x
+      }else if(shadow==Shadows.High2){
+        ROOT-STYLES.sur-shadow.high2.x
+      }else {
+        ROOT-STYLES.sur-shadow.high-empty.x
+      }
+  }
+  pure public function get-shadow-y(shadow:Shadows)->length {
+    if(shadow==Shadows.Low1){
+      ROOT-STYLES.sur-shadow.low1.y
+    }else if(shadow==Shadows.Low2){
+      ROOT-STYLES.sur-shadow.low2.y
+    }else if(shadow==Shadows.Low3){
+      ROOT-STYLES.sur-shadow.low3.y
+    }else if(shadow==Shadows.High1){
+      ROOT-STYLES.sur-shadow.high1.y
+    }else if(shadow==Shadows.High2){
+      ROOT-STYLES.sur-shadow.high2.y
+    }else {
+      ROOT-STYLES.sur-shadow.high-empty.y
+    }
+  }
+  pure public function get-shadow-blur(shadow:Shadows)->length {
+    if(shadow==Shadows.Low1){
+      ROOT-STYLES.sur-shadow.low1.blur
+    }else if(shadow==Shadows.Low2){
+      ROOT-STYLES.sur-shadow.low2.blur
+    }else if(shadow==Shadows.Low3){
+      ROOT-STYLES.sur-shadow.low3.blur
+    }else if(shadow==Shadows.High1){
+      ROOT-STYLES.sur-shadow.high1.blur
+    }else if(shadow==Shadows.High2){
+      ROOT-STYLES.sur-shadow.high2.blur
+    }else {
+      ROOT-STYLES.sur-shadow.high-empty.blur
+    }
+  }
+  pure public function get-border(border:Borders)->BorderItem {
+      if(border==Borders.Small){
+        ROOT-STYLES.sur-border.small
+      }else if(border==Borders.Normal){
+        ROOT-STYLES.sur-border.normal
+      }else if(border==Borders.Large){
+        ROOT-STYLES.sur-border.large
+      }else if(border==Borders.X-Large){
+        ROOT-STYLES.sur-border.x-large
+      }else if(border==Borders.Circle-None){
+        ROOT-STYLES.sur-border.circle.none
+      }else if(border==Borders.Circle-Small){
+        ROOT-STYLES.sur-border.circle.small
+      }else if(border==Borders.Circle-Normal){
+        ROOT-STYLES.sur-border.circle.normal
+      }else if(border==Borders.Circle-Large){
+        ROOT-STYLES.sur-border.circle.large
+      }else if(border==Borders.Circle-X-Large){
+        ROOT-STYLES.sur-border.circle.x-large
+      }else{
+        ROOT-STYLES.sur-border.none
+      }
+  }
 }
 
 

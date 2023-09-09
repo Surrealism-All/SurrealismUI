@@ -20,7 +20,6 @@
 import {ROOT_STYLES,Themes} from "../../themes/index.slint";
 export component Span inherits Text{
   //normal
-  
   text: content;
   color: ROOT-STYLES.sur-theme-colors.primary.weakest;
   // font styles:
@@ -36,7 +35,7 @@ export component Span inherits Text{
   wrap: no-wrap;
   overflow: elide;
   //props
-  in property <Themes> theme : Themes.Primary;
+  in property <Themes> theme : Themes.Light;
   in-out property <string> content : "SURText";
   //functions
   public function set(content:string) {
@@ -46,6 +45,9 @@ export component Span inherits Text{
     self.content
   }
   states [
+    light when theme == Themes.Light: {
+      root.color : ROOT-STYLES.sur-theme-colors.light.font;
+    }
     primary when theme == Themes.Primary: {
       root.color : ROOT-STYLES.sur-theme-colors.primary.font;
     }

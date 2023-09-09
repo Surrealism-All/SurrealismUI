@@ -4,10 +4,30 @@ struct PaddingItem {
   same:length
 }
 
+enum PaddingSize{
+  Small,
+  Normal,
+  Large
+}
+
+
 struct ThemePadding {
   small: PaddingItem,
   normal:PaddingItem,
   large:PaddingItem
+}
+
+enum Borders{
+  None,
+  Small,
+  Normal,
+  Large,
+  X-Large,
+  Circle-None,
+  Circle-Small,
+  Circle-Normal,
+  Circle-Large,
+  Circle-X-Large,
 }
 
 struct BorderItem {
@@ -16,13 +36,21 @@ struct BorderItem {
 }
 
 struct ThemeBorder {
+    none:BorderItem,
     small:BorderItem,
     normal:BorderItem,
     large:BorderItem,
-    circle:length
+    x-large:BorderItem,
+    circle:{
+      none:BorderItem,
+      small:BorderItem,
+      normal:BorderItem,
+      large:BorderItem,
+      x-large:BorderItem,
+    }
 }
 
 export { 
-  ThemePadding,ThemeBorder
+  ThemePadding,ThemeBorder,PaddingSize,PaddingItem,Borders,BorderItem
 }
 
