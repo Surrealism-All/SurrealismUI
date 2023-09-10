@@ -1,57 +1,129 @@
 import {SURIcon} from "../../index.slint";
 import {Icons,Size,Themes} from "../../themes/index.slint";
-component TestWindow inherits Window {
+export component TestIcon inherits Window {
   height: 400px;
   width: 400px;
-  SURIcon{
-    x: 10px;
-    y: 20px;
-    icon: Icons.Abnormal;
-    theme: Themes.Primary;
-  }
-  SURIcon{
-    x: 60px;
-    y: 20px;
-    icon: Icons.Add;
-    theme: Themes.Success;
-  }
-  SURIcon{
-    x: 100px;
-    y: 20px;
-    height: 30px;
-    width: 30px;
-    icon: Icons.Baby-car-seat;
-    theme: Themes.Error;
-    
-  }
-  SURIcon{
-    x: 10px;
-    y: 100px;
-    icon: Icons.T-shirt;
-    theme: Themes.Dark;
-    height: 30px;
-    width: 30px;
-  }
-  SURIcon{
-    height: 24px;
-    width: 24px;
-    x: 60px;
-    y: 100px;
-    icon: Icons.Baby-meal;
-    theme: Themes.Info;
-  }
-  SURIcon{
-    height: 24px;
-    width: 24px;
-    x: 100px;
-    y: 100px;
-    icon: Icons.Vacation;
-    theme: Themes.Warning;
-    clicked=>{
-      debug("clicked");
-      self.theme= Themes.Error;
-      self.height += 2px;
-      self.width += 2px;
+  GridLayout {
+    spacing: 40px;
+    Row{
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.Abnormal;
+        theme: Themes.Primary;
+      }
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.Add;
+        theme: Themes.Success;
+      }
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.Baby-car-seat;
+        theme: Themes.Error;
+      }
+      SURIcon{
+        icon: Icons.T-shirt;
+        theme: Themes.Dark;
+        height: 30px;
+        width: 30px;
+      }
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.Baby-meal;
+        theme: Themes.Info;
+      }
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.Vacation;
+        theme: Themes.Warning;
+        clicked=>{
+          debug("clicked");
+          self.theme= Themes.Error;
+          self.height += 2px;
+          self.width += 2px;
+        }
+      }
+    }
+    Row{
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.Eagle;
+        theme: Themes.Primary;
+      }
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.Earth;
+        theme: Themes.Success;
+      }
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.Waistline;
+        theme: Themes.Error;
+      }
+      SURIcon{
+        icon: Icons.Warehousing;
+        theme: Themes.Dark;
+        height: 30px;
+        width: 30px;
+      }
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.Quadrangular-pyramid;
+        theme: Themes.Info;
+      }
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.File-question;
+        theme: Themes.Warning;
+      }
+    }
+    Row{
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.S-turn-right;
+        theme: Themes.Primary;
+      }
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.Sailing;
+        theme: Themes.Success;
+      }
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.Adobe-photoshop;
+        theme: Themes.Error;
+      }
+      SURIcon{
+        icon: Icons.Zip;
+        theme: Themes.Dark;
+        height: 30px;
+        width: 30px;
+      }
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.Off-screen;
+        theme: Themes.Info;
+      }
+      SURIcon{
+        height: 30px;
+        width: 30px;
+        icon: Icons.Page;
+        theme: Themes.Warning;
+      }
     }
   }
 }

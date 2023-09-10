@@ -1,37 +1,37 @@
 import {SURResult,ResType} from "../../index.slint";
 import {Themes,Icons} from "../../themes/index.slint";
 
-component TestWindow inherits Window {
-  height: 720px;
-  width: 400px;
+export component TestResult inherits Window {
+  height: 500px;
+  width: 800px;
   SURResult {
     x: 10px;
     y: 10px;
   }
   SURResult {
-    x: 200px;
+    x: 220px;
     y: 10px;
     res-type:ResType.Primary;
   }
   SURResult {
-    x: 200px;
-    y: 245px;
+    x: 220px;
+    y: 260px;
     res-type:ResType.Info;
   }
   SURResult {
     x: 10px;
-    y: 245px;
+    y: 260px;
     res-type:ResType.Warning;
   }
 
   SURResult {
-    x: 10px;
-    y: 480px;
+    x: 440px;
+    y: 10px;
     res-type:ResType.Error;
   }
   SURResult {
-    x: 200px;
-    y: 480px;
+    x: 440px;
+    y: 260px;
     res-type:ResType.Help;
   }
 }

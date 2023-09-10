@@ -1,24 +1,181 @@
-import {SURText,SURButton} from "/index.slint";
-import { ScrollView } from "std-widgets.slint";
-
-component TestWindow inherits Window {
-  height: 400px;
-  width: 400px;
-  ScrollView { 
-    height: 300px;
-    width: 300px;
-    viewport-height: 500px;
-    viewport-width: 500px;
-    SURText {
-      x: 0;
-      y: 0;
-      width: 130px;
-      content: "hello world";
-    }
-    SURButton {
-      // font-size: 20px;
-      // font-weight:700;
-      
-    }
+import { TabWidget , ScrollView} from "std-widgets.slint";
+import {SURText,SURLink} from "../index.slint";
+import { TestColor } from "./src/color.slint";
+import {TestIcon} from "./src/Icon.slint";
+import {TestCard} from "./src/card.slint";
+import {TestButton} from "./src/button.slint";
+import {TestInput} from "./src/input.slint";
+import { TestResult } from "./src/result.slint";
+import {TestTable} from "./src/table.slint";
+export component MyLib inherits Window {
+    height: 720px;
+    width: 1080px;
+    background: #cdcdcd;
+    TabWidget {
+      Tab {
+        title: "Theme Colors";
+        SURText {
+          x: 16px;
+          y: 16px;
+          content: "Surrealism UI V0.1.0 - Theme Colors";
+          font-weight: 700;
+          font-size: 32px;
+        }
+        SURLink {
+          x: 16px;
+          y: 60px;
+          content: "syf20020816@outlook.com";
+          font-weight: 700;
+          theme: Error;
+          funny:true;
+        }
+        ScrollView { 
+          y: 100px;
+          height: 560px;
+          width: 1024px;
+          viewport-height: 1400px;
+          TestColor {
+            
+          }
+        }
+      }
+      Tab {
+        title: "Icons";
+        SURText {
+          x: 16px;
+          y: 16px;
+          content: "Surrealism UI V0.1.0 - Theme Icons";
+          font-weight: 700;
+          font-size: 32px;
+        }
+        SURText {
+          x: 16px;
+          y: 60px;
+          content: " there are 2658 different icons in SURIcon from : https://github.com/bytedance/iconpark";
+          font-weight: 700;
+        }
+        Rectangle {
+          y:150px;
+          height: icons.height;
+          width: icons.width;
+          icons:=TestIcon {
+            
+          }
+        }
+      }
+      Tab {
+        title: "Cards";
+        SURText {
+          x: 16px;
+          y: 16px;
+          content: "Surrealism UI V0.1.0 - Theme Cards";
+          font-weight: 700;
+          font-size: 32px;
+        }
+        SURText {
+          x: 16px;
+          y: 60px;
+          content: "A very simple universal card without any layout or restrictions , you can add anything you want to the card";
+          font-weight: 700;
+        }
+        Rectangle {
+          y:100px;
+          height: view.height;
+          width: view.width;
+          view:=TestCard{
+          }
+        }
+      }
+      Tab {
+        title: "Buttons";
+        SURText {
+          x: 16px;
+          y: 16px;
+          content: "Surrealism UI V0.1.0 - Theme Buttons";
+          font-weight: 700;
+          font-size: 32px;
+        }
+        SURText {
+          x: 16px;
+          y: 60px;
+          content: "SURButton is a button component that you can freely perform regular attribute operations on";
+          font-weight: 700;
+        }
+        Rectangle {
+          y:100px;
+          height: view2.height;
+          width: view2.width;
+          view2:=TestButton{
+          }
+        }
+      }
+      Tab {
+        title: "Inputs";
+        SURText {
+          x: 16px;
+          y: 16px;
+          content: "Surrealism UI V0.1.0 - Theme Inputs";
+          font-weight: 700;
+          font-size: 32px;
+        }
+        SURText {
+          x: 16px;
+          y: 60px;
+          content: "This is a basic input box, often used in forms, divided into two types : text and password";
+          font-weight: 700;
+        }
+        Rectangle {
+          y:100px;
+          height: view3.height;
+          width: view3.width;
+          view3:=TestInput{}
+        }
+      }
+      Tab {
+        title: "Results";
+        SURText {
+          x: 16px;
+          y: 16px;
+          content: "Surrealism UI V0.1.0 - Theme Results";
+          font-weight: 700;
+          font-size: 32px;
+        }
+        SURText {
+          x: 16px;
+          y: 60px;
+          content: "SURResult helps you easily build a quick prompt , you can build it in popup window";
+          font-weight: 700;
+        }
+        Rectangle {
+          y:100px;
+          height: view4.height;
+          width: view4.width;
+          view4:=TestResult{}
+        }
+      }
+      Tab {
+        title: "Tables";
+        SURText {
+          x: 16px;
+          y: 16px;
+          content: "Surrealism UI V0.1.0 - Theme Tables";
+          font-weight: 700;
+          font-size: 32px;
+        }
+        SURText {
+          x: 16px;
+          y: 60px;
+          content: "This is the outter of the Table, and the column data of the table is separated from the outter . The outter only serves as a standard layout , this is a zero cost construction";
+          font-weight: 700;
+          wrap:word-wrap;
+          width:1024px;
+        }
+        Rectangle {
+          y:100px;
+          height: view5.height;
+          width: view5.width;
+          view5:=TestTable{}
+        }
+      }
   }
 }

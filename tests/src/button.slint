@@ -1,6 +1,6 @@
 import {SURButton} from "/index.slint";
 import {Themes,Icons} from "/themes/index.slint";
-component TestWindow inherits Window {
+component TestButton inherits Window {
   height: 400px;
   width: 400px;
   SURButton {
@@ -25,26 +25,26 @@ component TestWindow inherits Window {
   SURButton {
     x: 20px;
     y: 100px;
-
+    content:"Success";
     theme:Themes.Success;
 
   }
   SURButton {
     x: 20px;
     y: 200px;
-
+    content:"Primary";
     theme:Themes.Primary;
   }
   SURButton {
     x: 20px;
     y: 300px;
-   
+    content:"Info";
     theme:Themes.Info;
   }
   SURButton {
     x: 200px;
     y: 100px;
-   
+    content:"Error?";
     theme:Themes.Error;
     icon:Icons.Magic-hat;
   }

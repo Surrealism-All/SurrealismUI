@@ -1,11 +1,11 @@
 import {SURTable,SURTableColumn} from "../../index.slint";
 import {Themes,Icons} from "../../themes/index.slint";
 
-component TestWindow inherits Window {
-  height: 400px;
-  width: 440px;
+export component TestTable inherits Window {
+  height: 500px;
+  width: 500px;
   t1:=SURTable {
-    x: 10px;
+
     y: 10px;
     // you can use this way to get height
     // it depends on how many datas in column
@@ -34,8 +34,8 @@ component TestWindow inherits Window {
     }
   }
   t2:=SURTable {
-    x: 10px;
-    y: t1.height + 20px;
+
+    y: t1.height + 40px;
     // you can use this way to get height
     // it depends on how many datas in column
     height: tcol1.get-height();

@@ -1,30 +1,41 @@
 import {SURButton,SURCard,SURText} from "../../index.slint";
 import {Themes,Icons} from "../../themes/index.slint";
 
-component TestWindow inherits Window {
-  height: 400px;
-  width: 400px;
+component TestCard inherits Window {
+  height: 560px;
+  width: 900px;
   background: #F5F5F5;
   
   SURCard { 
+    x:20px;
     y: 20px;
     card-width:text.width;
     text:=SURText {
-      
       content: "SURCard";
     }
    }
    SURCard { 
-    y: 80px;
+    x:400px;
+    y: 20px;
     card-width:240px;
     card-height:120px;
     theme: Themes.Warning;
    }
    SURCard { 
+    x:20px;
     y: 240px;
     theme: Themes.Dark;
     card-width:240px;
     card-height:120px;
     border: X-Large;
+   }
+
+   SURCard { 
+    x:400px;
+    y: 240px;
+    theme: Themes.Primary;
+    card-width:240px;
+    card-height:120px;
+    border: Large;
    }
 }
