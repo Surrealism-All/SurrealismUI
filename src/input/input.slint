@@ -44,7 +44,7 @@ export component Input inherits Rectangle{
   clip: false;
   border-radius: ROOT-STYLES.sur-border.small.border-radius;
   in property <string> placeholder : "please input";
-  in property <Themes> theme : Themes.Primary;
+  in property <Themes> theme : Themes.Light;
   in property <Icons> icon : Icons.Null;
   in property <length> input-width : 16rem;
   in property <length> font-size : ROOT-STYLES.sur-font.font-size;
@@ -81,6 +81,18 @@ export component Input inherits Rectangle{
     return input-view.width  + ROOT-STYLES.sur-padding.normal.same * 2;
   }
   states [
+    light when theme == Themes.Light: {
+      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.light.opacity : ROOT-STYLES.sur-theme-colors.light.deeper;
+      root.border-color: ROOT-STYLES.sur-theme-colors.light.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.light.deepest;
+      font-color: ROOT-STYLES.sur-theme-colors.light.font;
+      icon-color : ROOT-STYLES.sur-theme-colors.light.font;
+      input.selection-background-color : ROOT-STYLES.sur-theme-colors.light.normal;
+      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.light.font;
+      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.light.deepest;
+      hight-light.width : !input.has-focus? 0px:input.width;
+      root.placeholder-color : ROOT-STYLES.sur-theme-colors.light.weakest;
+    }
     primary when theme == Themes.Primary: {
       root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.primary.opacity : ROOT-STYLES.sur-theme-colors.primary.deeper;
       root.border-color: ROOT-STYLES.sur-theme-colors.primary.deeper;
@@ -91,7 +103,6 @@ export component Input inherits Rectangle{
       input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.primary.font;
       hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.primary.weakest;
       hight-light.width : !input.has-focus? 0px:input.width;
-      // input.text : !input.has-focus?root.placeholder:"";
       root.placeholder-color : ROOT-STYLES.sur-theme-colors.primary.weakest;
     }
     success when theme == Themes.Success: {

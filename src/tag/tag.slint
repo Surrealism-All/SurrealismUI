@@ -29,6 +29,9 @@ export component Tag inherits SURCard {
   border-radius: ROOT-STYLES.sur-border.large.border-radius;
   border-width: ROOT-STYLES.sur-border.small.border-width;
   states [
+    light when self.theme == Themes.Primary: {
+      root.border-color: ROOT-STYLES.sur-theme-colors.light.weaker;
+    }
     primary when self.theme == Themes.Primary: {
       root.border-color: ROOT-STYLES.sur-theme-colors.primary.weaker;
     }
@@ -52,10 +55,13 @@ export component Tag inherits SURCard {
   in property <string> content : "Tag";
   callback clicked();
   inner:=SURText{
+    theme: root.theme;
+    z:12;
     content: root.content;
     font-size: ROOT-STYLES.sur-font.tag-size;
   }
   TouchArea {
+    z: 13;
     clicked => {
       root.clicked();
     }

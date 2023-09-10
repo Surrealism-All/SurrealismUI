@@ -28,6 +28,7 @@ import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
 import { SURIcon } from "../icon/index.slint";
 export component CollapseItem inherits Rectangle{
   height: header.height;
+  background: transparent;
   in property <length> item-height:100px;
   in property <string> name : "collapse";
   in property <string> detail : "collapse details";
@@ -40,15 +41,16 @@ export component CollapseItem inherits Rectangle{
   callback clicked();
   init => {
     details.height = 0;
-    // root.height=header.height;
   }
   view:=VerticalLayout {
     height: root.height;
+    width: header.width;
     spacing: 0;
     header:=SURCard{
-      
+      z: 11;
       theme: root.theme;
-      // height: self.count-height(ROOT-STYLES.sur-font.font-size);
+      card-width: root.width - self.padding-left * 2;
+      card-height: ROOT-STYLES.sur-font.font-size;
       border-radius: 0;
       area:=TouchArea {
         mouse-cursor: pointer;
@@ -94,18 +96,20 @@ export component CollapseItem inherits Rectangle{
       }
     }
     details:=SURCard{
-      height: root.item-height;
+      card-height: root.item-height;
+      card-width: header.card-width;
       visible: false;
       border-radius: 0;
       drop-shadow-blur: 0;
       theme: root.theme;
       padding: ROOT-STYLES.sur-padding.normal.same;
       if !define : txt:=SURText {
-        width: parent.width - ROOT-STYLES.sur-padding.normal.same * 2;
+        horizontal-alignment:TextHorizontalAlignment.left;
+        width: header.width - ROOT-STYLES.sur-padding.normal.same * 2;
         content: root.detail;
         font-size: 14px;
         wrap: word-wrap;
-        horizontal-alignment: left;
+        
       }
       @children
     }

@@ -2,7 +2,7 @@ import {SURResult,ResType} from "../../index.slint";
 import {Themes,Icons} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
-  height: 660px;
+  height: 720px;
   width: 400px;
   SURResult {
     x: 10px;
@@ -15,18 +15,23 @@ component TestWindow inherits Window {
   }
   SURResult {
     x: 200px;
-    y: 220px;
+    y: 245px;
     res-type:ResType.Info;
   }
   SURResult {
     x: 10px;
-    y: 220px;
+    y: 245px;
     res-type:ResType.Warning;
   }
 
   SURResult {
     x: 10px;
-    y: 430px;
+    y: 480px;
     res-type:ResType.Error;
+  }
+  SURResult {
+    x: 200px;
+    y: 480px;
+    res-type:ResType.Help;
   }
 }

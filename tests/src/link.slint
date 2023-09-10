@@ -1,0 +1,35 @@
+import {SURLink} from "../../index.slint";
+import {Themes,Icons} from "../../themes/index.slint";
+
+component TestWindow inherits Window {
+  height: 420px;
+  width: 400px;
+  
+  SURLink {
+    y: 100px;
+    theme: Dark;
+  }
+  SURLink {
+    y: 160px;
+    funny:true;
+    theme: Warning;
+    content: "funny for link!";
+  }
+  SURLink {
+    y: 220px;
+    theme: Primary;
+    icon: Icons.Share-one;
+    content: "share one";
+  }
+  SURLink {
+    y: 280px;
+    funny:true;
+    theme: Error;
+    icon : Icons.Share-sys;
+    font-size: 24px;
+    content: "share sys";
+    clicked=>{
+      debug("share sys!")
+    }
+  }
+}

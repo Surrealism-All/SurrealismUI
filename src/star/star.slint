@@ -63,7 +63,7 @@ export component Star inherits Rectangle{
   height: area.height;
   width: area.width;
   in property <bool> no-theme : false;
-  in property <float> score : 5;
+  in-out property <float> score : 5;
   in property <Themes> theme : Themes.Primary;
   in property <bool> disabled : false;
   in property <float> max-score : 5;
@@ -77,8 +77,46 @@ export component Star inherits Rectangle{
   pure function get-empty-stars() -> int {
     Math.round(max-score - score)
   }
+  public function add-half() {
+    if(area.whole-stars-number == max-score){
+      area.whole-stars-number = max-score;
+      area.half-stars-number = 0;
+      area.empty-stars-number = 0;
+      return;
+    }else {
+      area.half-stars-number += 1;
+      if(area.half-stars-number==1){
+        area.empty-stars-number -= 1;
+      }else{
+        area.half-stars-number = 0;
+        area.whole-stars-number += 1;
+      }
+     
+      // 
+    }
+  }
+  public function add-one() {
+    if((area.whole-stars-number + area.half-stars-number) == max-score){
+      area.whole-stars-number = max-score;
+      area.half-stars-number = 0;
+      area.empty-stars-number = 0;
+      return;
+    }else {
+      area.whole-stars-number +=1;
+      area.empty-stars-number -= 1;
+    }
+  }
+  public function clear() {
+    area.whole-stars-number = 0;
+    area.half-stars-number = 0;
+    area.empty-stars-number = max-score;
+  }
+  public function full() {
+    area.whole-stars-number = max-score;
+    area.half-stars-number = 0;
+    area.empty-stars-number = 0;
+  }
   callback clicked(float,float);
-  
   area:=TouchArea {
     height: view.height;
     width:view.width ;
@@ -116,7 +154,7 @@ export component Star inherits Rectangle{
     view:= HorizontalBox { 
       height: ROOT-STYLES.sur-font.font-size;
       spacing: ROOT-STYLES.sur-font.font-size / 2;
-      width: ROOT-STYLES.sur-font.font-size * (3 * max-score + 1) /2;
+      width: ROOT-STYLES.sur-font.font-size * (3 * max-score + 1) / 2 ;
       padding-left: ROOT-STYLES.sur-font.font-size / 2;
       padding-right: ROOT-STYLES.sur-font.font-size / 2;
       padding-top: 0;

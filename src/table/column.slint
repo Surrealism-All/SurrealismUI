@@ -37,8 +37,8 @@ export component TableColumn inherits Rectangle{
   in property <bool> border : false;
   in property <string> name;
   in property <[string]> datas;
-  in property <brush> header-background;
-  in property <brush> row-background;
+  in-out property <brush> header-background;
+  in-out property <brush> row-background;
   in property <Themes> theme : Themes.Primary;
   in property <length> header-height : header-row.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
   in property <length> row-height;
@@ -57,12 +57,61 @@ export component TableColumn inherits Rectangle{
       }
   }
   callback clicked(int,string);
+  init => {
+    if(border){column-header.border-width = 2px; }else{column-header.border-width= 0;}
+  }
+  states [
+    light when theme == Themes.Light: {
+      root.header-background : ROOT-STYLES.sur-theme-colors.light.deeper;
+      root.row-background : ROOT-STYLES.sur-theme-colors.light.normal;
+      root.border-color : ROOT-STYLES.sur-theme-colors.light.normal;
+      root.drop-shadow-color : ROOT-STYLES.sur-theme-colors.light.deepest;
+      
+    }
+    primary when theme == Themes.Primary: {
+      root.header-background : ROOT-STYLES.sur-theme-colors.primary.deeper;
+      root.row-background : ROOT-STYLES.sur-theme-colors.primary.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.primary.normal;
+    }
+    success when theme == Themes.Success: {
+      root.header-background : ROOT-STYLES.sur-theme-colors.success.deeper;
+      root.row-background : ROOT-STYLES.sur-theme-colors.success.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.success.normal;
+    }
+    info when theme == Themes.Info: {
+      root.header-background : ROOT-STYLES.sur-theme-colors.info.deeper;
+      root.row-background : ROOT-STYLES.sur-theme-colors.info.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.info.normal;
+    }
+    warning when theme == Themes.Warning: {
+      root.header-background : ROOT-STYLES.sur-theme-colors.warning.deeper;
+      root.row-background : ROOT-STYLES.sur-theme-colors.warning.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.warning.normal;
+    }
+    error when theme == Themes.Error: {
+      root.header-background : ROOT-STYLES.sur-theme-colors.error.deeper;
+      root.row-background : ROOT-STYLES.sur-theme-colors.error.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.error.normal;
+    }
+    dark when theme == Themes.Dark: {
+      root.header-background: ROOT-STYLES.sur-theme-colors.dark.normal;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
+      root.border-color : ROOT-STYLES.sur-theme-colors.dark.normal;
+    }
+  ]
   view:=VerticalLayout {
     height: root.height;
     spacing: 0;
     column-header:=SURCard{
+      z: 11;
+      card-width: parent.width - self.padding-left * 2;
       background: header-background;
-      drop-shadow-blur: !border?0:6px;
+      drop-shadow-blur: !border?0:2px;
       theme: root.theme;
       height: header-height;
       border-radius: 0;
@@ -74,11 +123,13 @@ export component TableColumn inherits Rectangle{
       }
     }
     for data[index] in datas: SURCard { 
+      z: 10;
       theme: root.theme;
       // height: header-height==row-height?root.row-height:(root.height - root.header-height) / root.datas.length;
-      height:root.row-height==0?data-row.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2 : root.row-height;
+      card-height:root.row-height==0?data-row.height : root.row-height;
+      card-width: column-header.card-width;
       border-radius: 0;
-      drop-shadow-blur: !border?0:6px;
+      drop-shadow-blur: 0;
       background: row-background;
       data-row:=SURText {
         visible: !operation-enabled;

@@ -30,7 +30,7 @@ export component Card inherits Rectangle{
   width: ROOT-STYLES.count-width(card-width,self.padding-left);
   border-radius: ROOT-STYLES.get-border(border).border-radius;
   border-width : ROOT-STYLES.get-border(border).border-width;
-  padding: ROOT-STYLES.sur-padding.normal.same;
+  // padding: ROOT-STYLES.sur-padding.normal.same;
   drop-shadow-offset-x : ROOT-STYLES.get-shadow-x(shadow);
   drop-shadow-offset-y : ROOT-STYLES.get-shadow-y(shadow);
   drop-shadow-blur : ROOT-STYLES.get-shadow-blur(shadow);
@@ -86,6 +86,18 @@ export component Card inherits Rectangle{
       root.border-color : ROOT-STYLES.sur-theme-colors.dark.normal;
     }
   ]
-  
+  // animation
+  animate background {
+    duration: ROOT-STYLES.sur-an-duration;
+    easing: ROOT-STYLES.sur-an-easing;
+  }
+  animate height {
+    duration: ROOT-STYLES.sur-an-duration;
+    easing: ROOT-STYLES.sur-an-easing;
+  }
+  animate width {
+    duration: ROOT-STYLES.sur-an-duration;
+    easing: ROOT-STYLES.sur-an-easing;
+  }
   @children
 }

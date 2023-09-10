@@ -1,4 +1,4 @@
-import {SURStar} from "../../index.slint";
+import {SURStar,SURButton} from "../../index.slint";
 import {Themes,Icons} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
@@ -7,10 +7,19 @@ component TestWindow inherits Window {
   SURStar {
     y: 20px;
   }
-  SURStar {
-    score: 4.2;
+  hs:=SURStar {
+    score: 2.2;
     y: 60px;
     theme: Error;
+    
+  }
+  SURButton {
+    y: 320px;
+    x:10px;
+    content: "add half";
+    clicked => {
+      hs.add-half();
+    }
   }
   SURStar {
     score : 3.8;
@@ -18,13 +27,21 @@ component TestWindow inherits Window {
     y: 100px;
     theme: Success;
   }
-  SURStar {
+  os:=SURStar {
     max-score : 7;
-    score : 6.8;
+    score : 2.8;
     y: 140px;
     theme: Info;
   }
-  SURStar {
+  SURButton {
+    y: 320px;
+    x: 115px;
+    content: "add one";
+    clicked => {
+      os.add-one();
+    }
+  }
+  fs:=SURStar {
     max-score : 10;
     score : 7.2;
     y: 180px;
@@ -33,7 +50,22 @@ component TestWindow inherits Window {
       t.n = whole;
       t.m = half;
     }
-    
+  }
+  SURButton {
+    y: 320px;
+    x: 220px;
+    content: "get A";
+    clicked => {
+      fs.full();
+    }
+  }
+  SURButton {
+    y: 320px;
+    x: 305px;
+    content: "clear";
+    clicked => {
+      fs.clear();
+    }
   }
   t:=Text{
     y: 250px;

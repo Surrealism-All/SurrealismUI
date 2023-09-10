@@ -56,6 +56,7 @@ component Selector inherits TouchArea {
     padding-right: ROOT-STYLES.sur-padding.normal.left-right;
     
     input:=SURText { 
+      theme: root.theme;
       horizontal-alignment: left;
       content: root.content;
       // color: root.font-color;
@@ -79,7 +80,7 @@ export component Select inherits Rectangle {
   width: count-width(160px);
   height: ROOT-STYLES.sur-font.font-size + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
   border-radius: ROOT-STYLES.sur-border.small.border-radius;
-  in property <Themes> theme;
+  in property <Themes> theme : Light;
   in property <[{id:int,label:string,value:string}]> ranges-string;
   in property <[{id:int,label:string,value:int}]> ranges-int;
   in property <[{id:int,label:string,value:float}]> ranges-float;
@@ -101,6 +102,12 @@ export component Select inherits Rectangle {
     }
   }
   states [
+    light when theme == Themes.Light: {
+      root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.light.normal:ROOT-STYLES.sur-theme-colors.light.opacity;
+      root.border-color: ROOT-STYLES.sur-theme-colors.light.deeper;
+      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.light.deepest;
+      input-color :focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.light.font:ROOT-STYLES.sur-theme-colors.light.weakest;
+    }
     primary when theme == Themes.Primary: {
       root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.primary.normal:ROOT-STYLES.sur-theme-colors.primary.opacity;
       root.border-color: ROOT-STYLES.sur-theme-colors.primary.deeper;
@@ -176,6 +183,7 @@ export component Select inherits Rectangle {
             padding-right: ROOT-STYLES.sur-padding.normal.left-right ;
            
             s-label:=SURText {
+              theme: root.theme;
               content: range.label;
             }
           }
@@ -214,6 +222,7 @@ export component Select inherits Rectangle {
             padding-right: ROOT-STYLES.sur-padding.normal.left-right ;
            
             f-label:=SURText {
+              theme: root.theme;
               content: range.label;
             }
           }
@@ -252,6 +261,7 @@ export component Select inherits Rectangle {
             padding-right: ROOT-STYLES.sur-padding.normal.left-right ;
            
             i-label:=SURText {
+              theme: root.theme;
               content: range.label;
             }
           }

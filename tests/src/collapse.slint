@@ -11,6 +11,7 @@ component TestWindow inherits Window {
     // recommend use the following way
     height: item1.get-height() * 2;
     width: 360px;
+    theme: Primary;
     item1:=SURCollapseItem {
       name:"Feedback";
       detail:" Operation feedback: enable the users to clearly perceive their operations by style updates and interactive effects";
@@ -27,12 +28,11 @@ component TestWindow inherits Window {
       name:"table";
       theme: Themes.Dark;
       define:true;
-      item-height:200px;
+      item-height:280px;
       SURTable {
         
         height: col1.get-height();
         width: 300px;
-        theme:Themes.Dark;
         col1:=SURTableColumn {
           border:false;
           theme:Themes.Error;

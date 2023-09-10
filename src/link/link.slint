@@ -1,0 +1,36 @@
+import { SURText } from "../text/index.slint";
+import { SURCard } from "../card/index.slint";
+import {Shadows,Icons} from "../../themes/index.slint";
+import { SURIcon } from "../icon/index.slint";
+export component Link inherits SURText{
+  callback clicked();
+  in property <Icons> icon : Icons.Share;
+  in property <bool> funny : false;
+    SURCard {
+      y: root.height;
+      height: 1px;
+      width: root.width;
+      theme: root.theme;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      border: root.funny? Circle-None: None;
+    }
+  Rectangle {
+    x: root.width; 
+    height: link-icon.width;
+    width: link-icon.width + self.padding-left;
+    padding-left: 2px;
+    link-icon:=SURIcon {
+      x: 2px;
+      icon: root.icon;
+      theme: root.theme;
+      height: root.font-size / 1.4;
+      width: root.font-size / 1.4;
+      clicked => {
+        root.clicked()
+      }
+    }
+  }
+}

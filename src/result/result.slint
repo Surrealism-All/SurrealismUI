@@ -31,18 +31,25 @@ export enum ResType{
   Info,
   Error,
   Warning,
+  Help
 }
 
 export component Result inherits SURCard { 
-  height: 200px;
-  width: 140px;
+  card-height: 200px;
+  card-width: 140px;
   in property <length> icon-size:48px;
   in-out property <string> btn;
   in-out property <string> content;
   in property <ResType> res-type:ResType.Success;
   in-out property <Icons> icon:Icons.Success;
+  padding-size: Normal;
   callback clicked();
   init => {
+    self.card-padding = ROOT-STYLES.get-padding(self.padding-size);
+    self.padding-top = self.card-padding.top-bottom;
+    self.padding-bottom = self.card-padding.top-bottom;
+    self.padding-left = self.card-padding.left-right;
+    self.padding-right = self.card-padding.left-right;
     if(res-type==ResType.Primary){
       self.theme = Themes.Primary;
       self.btn = "PRIMARY";
@@ -68,13 +75,20 @@ export component Result inherits SURCard {
       self.btn = "WARNING";
       self.icon = Icons.Attention;
       self.content = "This is a warning message!"
+    }else{
+      self.theme = Themes.Light;
+      self.btn = "HELP";
+      self.icon = Icons.Help;
+      self.content = "This is a help message!"
     }
   }
-  VerticalLayout {
+  layout:=VerticalLayout {
+    height: root.card-height;
+    width: root.card-width;
     alignment: space-around;
     Rectangle {
       height: icon.height;
-      width: root.width;
+      width: parent.width;
       icon:=SURIcon { 
         height: root.icon-size;
         width: root.icon-size;
@@ -87,10 +101,12 @@ export component Result inherits SURCard {
       theme: root.theme;
       content: root.content;
       wrap: word-wrap;
+      
+      
     }
     Rectangle {
       height: button.height;
-      width: root.width;
+      width: parent.width;
       button:=SURButton { 
         theme: root.theme;
         content: root.btn;
