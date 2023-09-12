@@ -117,7 +117,7 @@ component TestWindow inherits Window {
  ### SURIcon
  there are 2658 different icons in SURIcon from : https://github.com/bytedance/iconpark
  #### properties:
- - `in property <Icons> icon` : icon types
+ - `in property <image> icon` : icon types
  - `out property <bool> has-hover` : has hover or not
  - `in property <Themes> theme` : Surrealism theme
  - `in-out property <brush> icon-color` : icon color 
@@ -326,7 +326,7 @@ component TestCard inherits Window {
 ### SURButton 
 SURButton is a button component that you can freely perform regular attribute operations on
 #### properties (card + icon + text)
-- `in property <Icons> icon `: Button icon
+- `in property <image> icon `: Button icon
 - `in property <length> font-size`: button font size
 - `in property <length> letter-spacing `: button letter spacing
 - `in property <bool> font-italic` : button font italic
@@ -407,7 +407,7 @@ component TestButton inherits Window {
  #### properties :
  - `in property <string> placeholder` : default placeholder which you wanna show when no content
  - `in property <Themes> theme` : Surrealism themes
- - `in property <Icons> icon` : icon you wanna show in front (use >= v0.1.0) ⛔
+ - `in property <image> icon` : icon you wanna show in front (use >= v0.1.0) ⛔
  - `in property <length> input-width` : Please do not use width to adjust the length of the input box , use this property to instead
  - `in property <length> font-size` : font size 
  - `in property <bool> disabled` : can input be edited
@@ -1021,7 +1021,7 @@ SURLink is commonly used to represent text connections or sharing
 
 #### properties
 
-* `in property <Icons> icon` : share icon you can use whatever you want
+* `in property <image> icon` : share icon you can use whatever you want
 * `in property <bool> funny` : Easter egg just funny
 
 #### callbacks
@@ -1224,7 +1224,7 @@ Use dividers along with spacing and headers to organize content in your layout.
 #### properties
 
 * `in property <string> content `: divider content
-* `in property <Icons> icon` : divider icon
+* `in property <image> icon` : divider icon
 * `in property <Themes> theme` : Surrealism Theme
 
 #### functions
