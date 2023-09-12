@@ -1,0 +1,35 @@
+import {SURButton,SURCollection} from "../../index.slint";
+import {Themes,Icons} from "../../themes/index.slint";
+
+component TestCollection inherits Window {
+  height: 560px;
+  width: 900px;
+  
+  SURCollection{
+    card-height: 300px;
+    card-width: 300px;
+    column-num: 3;
+    font-size : 16px;
+    theme: Dark;
+    data: [
+      [
+        {id:0,name:"box1",source:@image-url("./collection_imgs/box1.svg")},
+        {id:1,name:"box2",source:@image-url("./collection_imgs/box2.svg")},
+        {id:2,name:"box3",source:@image-url("./collection_imgs/box3.svg")}
+      ],
+      [
+        {id:3,name:"box4",source:@image-url("./collection_imgs/box4.svg")},
+        
+      ],
+      [
+        {id:4,name:"box6",source:@image-url("./collection_imgs/box6.svg")},
+        {id:5,name:"box7",source:@image-url("./collection_imgs/box7.svg")},
+      ]
+    ];
+    clicked(item)=>{
+      debug(item.name);
+      debug(item.id);
+    }
+  }
+  
+}

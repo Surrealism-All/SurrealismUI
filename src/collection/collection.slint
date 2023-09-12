@@ -1,0 +1,88 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230912
+* @version:0.1.1
+* @type:interface
+* @description:
+* # SURCollection
+* SURCollection is a grid storage box, but in reality it is not based on grid layout.
+* It achieves a flexible grid through a combination of dual for loops and horizontal and vertical layouts
+* Clicking on the pop-up layer again will close it
+* ## properties (card)
+* - in property <length> font-size : 14px;
+* - in property <int> column-num : 4;
+* - in property <int> row-num : 3;
+* - in-out property <[[CollectionData]]> data;
+* - in property <length> row-height : (root.card-height - 14px - row-spaceing * (row-num - 1)) / row-num;
+* - in property <length> column-width : (root.card-width - 14px - column-spacing * (column-num - 1)) / column-num;
+* - in property <length> row-spaceing :8px;
+* - in property <length> column-spacing: ROOT-STYLES.get-space(self.width) ;
+* ## functions
+* ## callbacks
+* - clicked(CollectionData) : run if you click item in SURCollection
+* ============================================
+*/
+import { SURCard } from "../card/index.slint";
+import { Borders,ROOT_STYLES,Themes} from "../../themes/index.slint";
+import { ScrollView } from "std-widgets.slint";
+import { SURText } from "../text/index.slint";
+
+export struct CollectionData {
+  id:int,
+  name:string,
+  source:image
+}
+
+
+export component Collection inherits SURCard { 
+  border: Borders.None;
+  in property <length> font-size : 14px;
+  in property <int> column-num : 4;
+  in property <int> row-num : 3;
+  in-out property <[[CollectionData]]> data;
+  in property <length> row-height : (root.card-height - 14px - row-spaceing * (row-num - 1)) / row-num;
+  in property <length> column-width : (root.card-width - 14px - column-spacing * (column-num - 1)) / column-num;
+  in property <length> row-spaceing :8px;
+  in property <length> column-spacing: ROOT-STYLES.get-space(self.width) ;
+  callback clicked(CollectionData);
+  ScrollView { 
+    height: root.card-height;
+    width: root.card-width;
+    viewport-width: root.card-width;
+    padding: 0;
+    VerticalLayout {
+      width: parent.width;
+      spacing: root.row-spaceing;
+      padding: 0;
+      for row in data: HorizontalLayout{
+        height: row-height;
+        width: parent.width;
+        spacing: column-spacing;
+        for col in row: Rectangle {
+          height: parent.height;
+          width: column-width;  
+          background: transparent;
+          TouchArea {
+            clicked => {
+              root.clicked(col);
+            }
+          }
+          VerticalLayout {
+            height: parent.height;
+            width: parent.width;
+            spacing: 2px;
+            icon:=Image {
+              source: col.source;
+            }
+            item-name:=SURText { 
+              theme: root.theme;
+              content:col.name;
+              font-size: root.font-size;
+            }
+          }
+        }
+      }
+    }
+  }
+}
