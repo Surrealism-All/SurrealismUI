@@ -8,7 +8,7 @@
 - version：0.1.1
 - email：syf20020816@outlook.com
 
-<img src="https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png">
+<img src="./README/imgs/logo.png">
 
 SurrealismUI是一个完全使用Slint进行构建的Slint第三方组件库
 
@@ -20,6 +20,14 @@ SurrealismUI is a third-party component library built entirely using Slint
 - 👍 ： Recommended use
 
 ### Updates
+
+- V0.1.2
+  - rebuild components (have `SURIcon`)
+  - rebuild `SURIcon`
+  - rebuild file structure
+  - solve memery overflow issue
+  - use minimize import principle (remove inner loop to judge component show!)❗
+  - test use Rust✅
 
 - V0.1.1
   - add `SURRadio`
@@ -50,31 +58,31 @@ Built in 7 theme colors in SurrealismUI
 
 #### primary
 
-![image-20230910102452817](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102452817.png)
+![image-20230910102452817](./README/imgs/image-20230910102452817.png)
 
 #### success
 
-![image-20230910102504405](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102504405.png)
+![image-20230910102504405](./README/imgs/image-20230910102504405.png)
 
 #### info
 
-![image-20230910102558381](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102558381.png)
+![image-20230910102558381](./README/imgs/image-20230910102558381.png)
 
 #### warning
 
-![image-20230910102611556](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102611556.png)
+![image-20230910102611556](./README/imgs/image-20230910102611556.png)
 
 #### error
 
-![image-20230910102624332](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102624332.png)
+![image-20230910102624332](./README/imgs/image-20230910102624332.png)
 
 #### dark
 
-![image-20230910102637280](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102637280.png)
+![image-20230910102637280](./README/imgs/image-20230910102637280.png)
 
 #### light
 
-![image-20230910102413761](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102413761.png)
+![image-20230910102413761](./README/imgs/image-20230910102413761.png)
 
 ## Components
 
@@ -97,7 +105,7 @@ import {Themes} from "../../themes/index.slint";
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
-  background:#ddd;
+  background:#fff;
   SURText {
     x: 100px;
     y: 20px;
@@ -112,7 +120,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910102940392](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102940392.png)
+![image-20230910102940392](./README/imgs/image-20230910102940392.png)
 
  ### SURIcon
  there are 2658 different icons in SURIcon from : https://github.com/bytedance/iconpark
@@ -131,7 +139,7 @@ component TestWindow inherits Window {
 
 ```
 import {SURIcon} from "../../index.slint";
-import {Icons,Size,Themes} from "../../themes/index.slint";
+import {IconSources,Size,Themes} from "../../themes/index.slint";
 export component TestIcon inherits Window {
   height: 400px;
   width: 400px;
@@ -141,23 +149,23 @@ export component TestIcon inherits Window {
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.Abnormal;
+        icon: @image-url("../../icons/sd-card.svg");
         theme: Themes.Primary;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.Add;
+        icon: @image-url("../../icons/add-computer.svg");
         theme: Themes.Success;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.Baby-car-seat;
+        icon: @image-url("../../icons/yep.svg");
         theme: Themes.Error;
       }
       SURIcon{
-        icon: Icons.T-shirt;
+        icon: @image-url("../../icons/t-shirt.svg");
         theme: Themes.Dark;
         height: 30px;
         width: 30px;
@@ -165,13 +173,13 @@ export component TestIcon inherits Window {
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.Baby-meal;
+        icon: @image-url("../../icons/video-conference.svg");
         theme: Themes.Info;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.Vacation;
+        icon:@image-url("../../icons/vacation.svg");
         theme: Themes.Warning;
         clicked=>{
           debug("clicked");
@@ -185,23 +193,23 @@ export component TestIcon inherits Window {
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.Eagle;
+        icon: @image-url("../../icons/cake-five.svg");
         theme: Themes.Primary;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.Earth;
+        icon: @image-url("../../icons/label.svg");
         theme: Themes.Success;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.Waistline;
+        icon: @image-url("../../icons/wifi.svg");
         theme: Themes.Error;
       }
       SURIcon{
-        icon: Icons.Warehousing;
+        icon: @image-url("../../icons/wallet-one.svg");
         theme: Themes.Dark;
         height: 30px;
         width: 30px;
@@ -209,13 +217,13 @@ export component TestIcon inherits Window {
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.Quadrangular-pyramid;
+        icon: @image-url("../../icons/game-console.svg");
         theme: Themes.Info;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.File-question;
+        icon: @image-url("../../icons/qiyehao.svg");
         theme: Themes.Warning;
       }
     }
@@ -223,23 +231,23 @@ export component TestIcon inherits Window {
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.S-turn-right;
+        icon: @image-url("../../icons/scanning-two.svg");
         theme: Themes.Primary;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.Sailing;
+        icon: @image-url("../../icons/oceanengine.svg");
         theme: Themes.Success;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.Adobe-photoshop;
+        icon: @image-url("../../icons/zoom-internal.svg");
         theme: Themes.Error;
       }
       SURIcon{
-        icon: Icons.Zip;
+        icon: @image-url("../../icons/zip.svg");
         theme: Themes.Dark;
         height: 30px;
         width: 30px;
@@ -247,13 +255,13 @@ export component TestIcon inherits Window {
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.Off-screen;
+        icon: @image-url("../../icons/f-eight-key.svg");
         theme: Themes.Info;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: Icons.Page;
+        icon: @image-url("../../icons/pacifier.svg");
         theme: Themes.Warning;
       }
     }
@@ -261,11 +269,12 @@ export component TestIcon inherits Window {
 }
 ```
 
-![image-20230910103043208](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910103043208.png)
+![image-20230913035043208](E:\Rust\try\surrealism-ui\README\imgs\image-20230913035043208.png)
 
 ### SURCard
 A very simple universal card without any layout or restrictions
 you can add anything you want to the card
+
 #### properties
 - `in property <Themes> theme` : Surrealism Themes
 - `in property <length> card-height `: card height 👍
@@ -279,7 +288,7 @@ you can add anything you want to the card
 
 ```
 import {SURButton,SURCard,SURText} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes} from "../../themes/index.slint";
 
 component TestCard inherits Window {
   height: 560px;
@@ -321,7 +330,7 @@ component TestCard inherits Window {
 }
 ```
 
-![image-20230910103552426](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910103552426.png)
+![image-20230910103552426](./README/imgs/image-20230910103552426.png)
 
 ### SURButton 
 SURButton is a button component that you can freely perform regular attribute operations on
@@ -341,7 +350,7 @@ SURButton is a button component that you can freely perform regular attribute op
 
 ```
 import {SURButton} from "/index.slint";
-import {Themes,Icons} from "/themes/index.slint";
+import {Themes,IconSources} from "/themes/index.slint";
 component TestButton inherits Window {
   height: 400px;
   width: 400px;
@@ -350,7 +359,7 @@ component TestButton inherits Window {
     y: 10px;
     
     theme:Themes.Dark;
-    icon:Icons.Mini-sd-card;
+    icon:@image-url("../../icons/safe-retrieval.svg");
     clicked => {
       self.content = "clicked"
     }
@@ -388,7 +397,7 @@ component TestButton inherits Window {
     y: 100px;
     content:"Error?";
     theme:Themes.Error;
-    icon:Icons.Magic-hat;
+    icon:@image-url("../../icons/magic-hat.svg");
   }
   SURButton {
     x: 200px;
@@ -399,7 +408,7 @@ component TestButton inherits Window {
 }
 ```
 
-![image-20230910104732461](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910104732461.png)
+![image-20230913035128832](E:\Rust\try\surrealism-ui\README\imgs\image-20230913035128832.png)
 
  ### SURInput
 
@@ -483,7 +492,7 @@ export component TestInput inherits Window {
 }
 ```
 
-![image-20230910104857757](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910104857757.png)
+![image-20230910104857757](./README/imgs/image-20230910104857757.png)
 
  ### SURStar
  SURStar is a scoring component
@@ -508,7 +517,7 @@ export component TestInput inherits Window {
 
 ```
 import {SURStar,SURButton} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes,IconSources} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -586,7 +595,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910105550811](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910105550811.png)
+![image-20230910105550811](./README/imgs/image-20230910105550811.png)
 
  ### SURTag
  A small tag used to display data
@@ -602,7 +611,7 @@ component TestWindow inherits Window {
 
 ```
 import {SURTag} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -631,7 +640,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910105626765](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910105626765.png)
+![image-20230910105626765](./README/imgs/image-20230910105626765.png)
 
  ### SURHeader
  SURHeader is a simple header component that is generated based on routing information
@@ -648,7 +657,7 @@ component TestWindow inherits Window {
 
 ```
 import {SURHeader,Route} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -687,7 +696,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910105709278](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910105709278.png)
+![image-20230910105709278](./README/imgs/image-20230910105709278.png)
 
  ### SURTable
 This is the outter of the Table, and the column data of the table is separated from the outter
@@ -724,7 +733,7 @@ If it's gone, the table will become a card with a horizontal layout
 
 ```
 import {SURTable,SURTableColumn} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes} from "../../themes/index.slint";
 
 export component TestTable inherits Window {
   height: 500px;
@@ -792,7 +801,7 @@ export component TestTable inherits Window {
 }
 ```
 
-![image-20230910105946372](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910105946372.png)
+![image-20230910105946372](./README/imgs/image-20230910105946372.png)
 
 ### SURCollapse
 SURCollapse is a foldable panel
@@ -827,7 +836,7 @@ You can customize the components or use the default text display method in it
 
 ```
 import {SURCollapse,SURCollapseItem,SURButton,SURTable,SURTableColumn} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes,IconSources} from "../../themes/index.slint";
 
 
 component TestWindow inherits Window {
@@ -887,7 +896,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910110027145](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910110027145.png)
+![image-20230910110027145](./README/imgs/image-20230910110027145.png)
 
 ### SURResult
 SURResult helps you easily build a quick prompt , you can build it in popup window
@@ -903,7 +912,7 @@ SURResult helps you easily build a quick prompt , you can build it in popup wind
 
 ```
 import {SURResult,ResType} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes} from "../../themes/index.slint";
 
 export component TestResult inherits Window {
   height: 500px;
@@ -941,7 +950,7 @@ export component TestResult inherits Window {
 }
 ```
 
-![image-20230910110056779](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910110056779.png)
+![image-20230910110056779](./README/imgs/image-20230910110056779.png)
 
 ### SURSelect
 SURSelect is a selector that provides three types of optional input parameter values
@@ -963,7 +972,7 @@ SURSelect is a selector that provides three types of optional input parameter va
 
 ```
 import {SURSelect,ValueType} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
   height: 440px;
@@ -1013,7 +1022,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910110204450](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910110204450.png)
+![image-20230910110204450](./README/imgs/image-20230910110204450.png)
 
 ### SURLink
 
@@ -1032,7 +1041,7 @@ SURLink is commonly used to represent text connections or sharing
 
 ```
 import {SURLink} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes,IconSources} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
   height: 420px;
@@ -1051,14 +1060,14 @@ component TestWindow inherits Window {
   SURLink {
     y: 220px;
     theme: Primary;
-    icon: Icons.Share-one;
+    icon: @image-url("../../icons/share-one.svg");
     content: "share one";
   }
   SURLink {
     y: 280px;
     funny:true;
     theme: Error;
-    icon : Icons.Share-sys;
+    icon : @image-url("../../icons/share-sys.svg");
     font-size: 24px;
     content: "share sys";
     clicked=>{
@@ -1068,7 +1077,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910110312615](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910110312615.png)
+![image-20230910110312615](./README/imgs/image-20230910110312615.png)
 
 ### SURAvatar
 
@@ -1083,7 +1092,7 @@ SURAvatar is a avatar component that defaults to Icons.Avatar when there are no 
 
 ```
 import {SURAvatar} from "../../index.slint";
-import {Themes,Icons,ROOT-STYLES} from "../../themes/index.slint";
+import {Themes,IconSources,ROOT-STYLES} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -1117,13 +1126,13 @@ component TestWindow inherits Window {
     avatar-size : ROOT-STYLES.sur-size.large * 2;
     padding-size : Large;
     theme: Dark;
-    avatar:@image-url("../.https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png");
+    avatar:@image-url("../../README/imgs/logo.png");
   }
   
 }
 ```
 
-![image-20230910110253626](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910110253626.png)
+![image-20230910110253626](./README/imgs/image-20230910110253626.png)
 
 ### SURRadio
 
@@ -1144,7 +1153,7 @@ Radio let people select a single item
 
 ```
 import {SURRadio} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes} from "../../themes/index.slint";
 
 component TestCollection inherits Window {
   height: 560px;
@@ -1162,7 +1171,7 @@ component TestCollection inherits Window {
 }
 ```
 
-![image-20230912155049511](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230912155049511.png)
+![image-20230912155049511](./README/imgs/image-20230912155049511.png)
 
 ### SURPopup
 
@@ -1186,7 +1195,7 @@ And users will not be able to use the pop-up layer to cover the components under
 
 ```
 import {SURPopup,SURButton} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes} from "../../themes/index.slint";
 
 component TestDivider inherits Window {
   height: 800px;
@@ -1213,7 +1222,7 @@ component TestDivider inherits Window {
 }
 ```
 
-![image-20230912155117323](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230912155117323.png)
+![image-20230912155117323](./README/imgs/image-20230912155117323.png)
 
 ### SURDivider
 
@@ -1235,7 +1244,7 @@ Use dividers along with spacing and headers to organize content in your layout.
 
 ```
 import {SURDivider} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes,IconSources} from "../../themes/index.slint";
 
 component TestDivider inherits Window {
   height: 400px;
@@ -1249,13 +1258,13 @@ component TestDivider inherits Window {
   SURDivider {
     y: 120px;
     width: 380px;
-    icon:Icons.Nail-polish;
+    icon:@image-url("../../icons/nail-polish-one.svg");
     theme:Themes.Error;
   }
   SURDivider {
     y: 180px;
     width: 380px;
-    icon:Icons.Earth;
+    icon:@image-url("../../icons/earth.svg");
     theme:Themes.Dark;
   }
   SURDivider {
@@ -1267,7 +1276,7 @@ component TestDivider inherits Window {
 }
 ```
 
-![image-20230912155327664](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230912155327664.png)
+![image-20230913035535856](E:\Rust\try\surrealism-ui\README\imgs\image-20230913035535856.png)
 
 ### SURCollection
 
@@ -1296,7 +1305,7 @@ Clicking on the pop-up layer again will close it
 
 ```
 import {SURButton,SURCollection} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes} from "../../themes/index.slint";
 
 component TestCollection inherits Window {
   height: 560px;
@@ -1332,4 +1341,4 @@ component TestCollection inherits Window {
 }
 ```
 
-![image-20230912155404367](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230912155404367.png)
+![image-20230912155404367](./README/imgs/image-20230912155404367.png)
