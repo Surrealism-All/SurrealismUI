@@ -1,0 +1,63 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230912
+* @version:0.1.1
+* @type:interface
+* @description:
+* # SURPopup
+* A masked pop-up layer appears in the current window
+* And users will not be able to use the pop-up layer to cover the components under it. 
+* Clicking on the pop-up layer again will close it
+* ## properties
+* - in-out property <bool> is-show : the popup layer is show or not
+* - in property <Themes> theme : Surrealism Themes
+* ## functions
+* ## callbacks
+* - callback open() : open the popup
+* - callback close() : close the popup
+* ============================================
+*/
+
+import { SURCard } from "../card/index.slint";
+import {ROOT_STYLES,Themes,PaddingSize,PaddingItem,Shadows,Borders,BorderItem} from "../../themes/index.slint";
+export component Popup inherits Window {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  always-on-top:true;
+  opacity: 1;
+  visible: is-show;
+  z: 1000;
+  in-out property <bool> is-show:false;
+  in property <Themes> theme :Dark;
+  callback open();
+  callback close();
+  open => {
+    self.is-show  = true;
+  }
+  close => {
+    self.is-show = false;
+  }
+  mask:=SURCard {
+    z: 100;
+    height: 100%;
+    width: 100%;
+    theme: root.theme;
+    drop-shadow-blur: 0;
+    drop-shadow-offset-x: 0;
+    drop-shadow-offset-y: 0;
+    opacity: 80%;
+  }
+  TouchArea {
+    z: 110;
+    clicked => {
+      root.close()
+    }
+    @children
+  }
+}

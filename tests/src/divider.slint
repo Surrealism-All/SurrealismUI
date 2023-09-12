@@ -1,0 +1,31 @@
+import {SURDivider} from "../../index.slint";
+import {Themes,Icons} from "../../themes/index.slint";
+
+component TestDivider inherits Window {
+  height: 400px;
+  width: 400px;
+  background: #535353;
+  
+  SURDivider {
+    y: 60px;
+    width: 380px;
+  }
+  SURDivider {
+    y: 120px;
+    width: 380px;
+    icon:Icons.Nail-polish;
+    theme:Themes.Error;
+  }
+  SURDivider {
+    y: 180px;
+    width: 380px;
+    icon:Icons.Earth;
+    theme:Themes.Dark;
+  }
+  SURDivider {
+    y: 240px;
+    width: 380px;
+    content:"";
+    theme:Themes.Light;
+  }
+}

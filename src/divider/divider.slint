@@ -1,0 +1,72 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230912
+* @version:0.1.1
+* @type:interface
+* @description:
+* # SURDivider
+* A divider groups sections of content to create visual rhythm and hierarchy. 
+* Use dividers along with spacing and headers to organize content in your layout. 
+* ## properties
+* - in property <string> content : divider content
+* - in property <Icons> icon : divider icon
+* - in property <Themes> theme : Surrealism Theme
+* ## functions
+* - function show-what()->int : show icon or content ⛔
+* ============================================
+*/
+
+import { SURCard } from "../card/index.slint";
+import { ROOT-STYLES,Borders,Icons,Themes } from "../../themes/index.slint";
+import { SURText } from "../text/index.slint";
+import { SURIcon } from "../icon/index.slint";
+export component Divider inherits Rectangle{
+  height: 14px;
+  in property <string> content : "divider";
+  in property <Icons> icon : Icons.Null;
+  in property <Themes> theme : Themes.Primary;
+  function show-what()->int {
+      if(icon!=Icons.Null){
+        0
+      }else{
+        1
+      }
+  }
+  inner:=Rectangle {
+    z: 14;
+    height: 14px;
+    if show-what()==1: SURCard{
+      theme: root.theme;
+      border-radius: self.height / 2;
+      height: txt.height;
+      width: txt.width + ROOT-STYLES.sur-padding.small.left-right;
+      txt:=SURText { 
+        content: root.content;
+        font-size: 12px;
+        theme: root.theme;
+      }
+    }
+    if show-what()==0: SURCard {
+      theme: root.theme;
+      border-radius: self.height / 2;
+      height: icon.height;
+      width: icon.width + ROOT-STYLES.sur-padding.small.left-right;
+       icon:= SURIcon { 
+          theme: root.theme;
+          icon: root.icon;
+        }
+    }
+  }
+  line:=SURCard {
+    theme: root.theme;
+    border-radius: 0px; 
+    border: Borders.Circle-None;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: ROOT-STYLES.sur-padding.small.top-bottom;
+    padding-bottom: ROOT-STYLES.sur-padding.small.top-bottom;
+    height: 1px;
+    width: parent.width;
+  }
+}

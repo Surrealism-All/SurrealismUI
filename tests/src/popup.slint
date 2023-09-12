@@ -1,0 +1,26 @@
+import {SURPopup,SURButton} from "../../index.slint";
+import {Themes,Icons} from "../../themes/index.slint";
+
+component TestDivider inherits Window {
+  height: 800px;
+  width: 800px;
+  background: #535353;
+ 
+  SURButton {
+    
+    content: "show";
+    clicked => {
+      p.open();
+      
+      debug("sds1")
+    }
+  }
+ 
+
+  p:=SURPopup {
+    SURButton {
+      content: "you can add anything in Popup";
+      y: 160px;
+    }
+  }
+}
