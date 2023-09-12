@@ -35,7 +35,7 @@
 
 
 import { ScrollView} from "std-widgets.slint";
-import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
+import {ROOT_STYLES,Themes,IconSources} from "../../themes/index.slint";
 import { SURText } from "../text/index.slint";
 import {SURIcon} from "../icon/index.slint";
 export component Input inherits Rectangle{
@@ -45,7 +45,7 @@ export component Input inherits Rectangle{
   border-radius: ROOT-STYLES.sur-border.small.border-radius;
   in property <string> placeholder : "please input";
   in property <Themes> theme : Themes.Light;
-  in property <Icons> icon : Icons.Null;
+  in property <image> icon : IconSources.icons.Null;
   in property <length> input-width : 16rem;
   in property <length> font-size : ROOT-STYLES.sur-font.font-size;
   in property <bool> disabled:false;
@@ -219,14 +219,14 @@ export component Input inherits Rectangle{
     if root.password: eye-icon:= Rectangle{
       eye:=SURIcon {
         theme: root.theme;
-        icon:Preview-close;
+        icon:IconSources.icons.Preview-close;
         clicked => {
-          if(self.icon==Icons.Preview-close){
+          if(self.icon==IconSources.icons.Preview-close){
             root.type = InputType.text;
-            self.icon = Icons.Preview-open
+            self.icon = IconSources.icons.Preview-open
           }else{
             root.type = InputType.password;
-            self.icon = Icons.Preview-close
+            self.icon = IconSources.icons.Preview-close
           }
         }
       }
@@ -234,7 +234,7 @@ export component Input inherits Rectangle{
     if root.clearable:clear-icon:= Rectangle {
       SURIcon{
         theme: root.theme;
-        icon: Close-one;
+        icon: IconSources.icons.Close-one;
         clicked => {
           root.clear();
         }

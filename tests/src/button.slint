@@ -1,5 +1,5 @@
 import {SURButton} from "/index.slint";
-import {Themes,Icons} from "/themes/index.slint";
+import {Themes,IconSources} from "/themes/index.slint";
 component TestButton inherits Window {
   height: 400px;
   width: 400px;
@@ -8,7 +8,7 @@ component TestButton inherits Window {
     y: 10px;
     
     theme:Themes.Dark;
-    icon:Icons.Mini-sd-card;
+    icon:IconSources.icons.Mini-sd-card;
     clicked => {
       self.content = "clicked"
     }
@@ -46,7 +46,7 @@ component TestButton inherits Window {
     y: 100px;
     content:"Error?";
     theme:Themes.Error;
-    icon:Icons.Magic-hat;
+    icon:IconSources.icons.Magic-hat;
   }
   SURButton {
     x: 200px;

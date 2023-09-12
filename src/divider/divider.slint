@@ -10,7 +10,7 @@
 * Use dividers along with spacing and headers to organize content in your layout. 
 * ## properties
 * - in property <string> content : divider content
-* - in property <Icons> icon : divider icon
+* - in property <image> icon : divider icon
 * - in property <Themes> theme : Surrealism Theme
 * ## functions
 * - function show-what()->int : show icon or content ⛔
@@ -18,16 +18,16 @@
 */
 
 import { SURCard } from "../card/index.slint";
-import { ROOT-STYLES,Borders,Icons,Themes } from "../../themes/index.slint";
+import { ROOT-STYLES,Borders,IconSources,Themes } from "../../themes/index.slint";
 import { SURText } from "../text/index.slint";
 import { SURIcon } from "../icon/index.slint";
 export component Divider inherits Rectangle{
   height: 14px;
   in property <string> content : "divider";
-  in property <Icons> icon : Icons.Null;
+  in property <image> icon : IconSources.icons.Null;
   in property <Themes> theme : Themes.Primary;
   function show-what()->int {
-      if(icon!=Icons.Null){
+      if(icon!=IconSources.icons.Null){
         0
       }else{
         1
@@ -50,8 +50,14 @@ export component Divider inherits Rectangle{
     if show-what()==0: SURCard {
       theme: root.theme;
       border-radius: self.height / 2;
-      height: icon.height;
-      width: icon.width + ROOT-STYLES.sur-padding.small.left-right;
+      card-height: icon.height;
+      card-width: icon.width;
+      padding: 0;
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-size: Icon;
        icon:= SURIcon { 
           theme: root.theme;
           icon: root.icon;

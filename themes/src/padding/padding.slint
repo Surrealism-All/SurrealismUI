@@ -5,6 +5,8 @@ struct PaddingItem {
 }
 
 enum PaddingSize{
+  None,
+  Icon,
   Small,
   Normal,
   Large
@@ -12,6 +14,8 @@ enum PaddingSize{
 
 
 struct ThemePadding {
+  none:PaddingItem,
+  icon:PaddingItem,
   small: PaddingItem,
   normal:PaddingItem,
   large:PaddingItem

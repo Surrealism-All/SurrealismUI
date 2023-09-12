@@ -25,13 +25,13 @@
 import {SURText} from "../text/index.slint";
 import {SURIcon} from "../icon/index.slint";
 import {SURCard} from "../card/index.slint";
-import {ROOT-STYLES,Themes,Icons} from "../../themes/index.slint";
+import {ROOT-STYLES,Themes} from "../../themes/index.slint";
 import { HorizontalBox } from "std-widgets.slint";
 export component Button inherits SURCard {
   
   card-width: layout.width;
   theme: Light;
-  in property <Icons> icon : Icons.Null;
+  in property <image> icon : @image-url("");
   in property <length> font-size:ROOT-STYLES.sur-font.font-size;
   in property <length> letter-spacing : ROOT-STYLES.sur-font.letter-spacing;
   in property <bool> font-italic:ROOT-STYLES.sur-font.font-italic;
@@ -126,11 +126,11 @@ export component Button inherits SURCard {
     spacing: btn-icon.visible?ROOT-STYLES.get-space(self.width):0;
     icon-container:= Rectangle {
       btn-icon:= SURIcon {
-        height: root.icon==Icons.Null?0:root.font-size;
-        width: root.icon==Icons.Null?0:root.font-size;
+        height: self.get-icon()?0:root.font-size;
+        width: self.get-icon()?0:root.font-size;
         theme:root.theme;
         icon: root.icon;
-        visible: root.icon==Icons.Null?false:true;
+        visible: self.get-icon()?false:true;
       }
     }
     txt-container:=TouchArea {

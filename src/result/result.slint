@@ -23,7 +23,7 @@ import {SURCard} from "../card/index.slint";
 import {SURIcon} from "../icon/index.slint";
 import {SURButton} from "../button/index.slint";
 import {SURText} from "../text/index.slint";
-import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
+import {ROOT_STYLES,Themes,IconSources} from "../../themes/index.slint";
 
 export enum ResType{
   Primary,
@@ -41,7 +41,7 @@ export component Result inherits SURCard {
   in-out property <string> btn;
   in-out property <string> content;
   in property <ResType> res-type:ResType.Success;
-  in-out property <Icons> icon:Icons.Success;
+  in-out property <image> icon:IconSources.icons.Success;
   padding-size: Normal;
   callback clicked();
   init => {
@@ -53,32 +53,32 @@ export component Result inherits SURCard {
     if(res-type==ResType.Primary){
       self.theme = Themes.Primary;
       self.btn = "PRIMARY";
-      self.icon = Icons.Smiling-face;
+      self.icon = IconSources.icons.Smiling-face;
       self.content = "This is a primary message!";
     }else if (res-type==ResType.Success){
       self.theme = Themes.Success;
       self.btn = "SUCCESS";
       self.content = "This is a success message!";
-      self.icon = Icons.Success;
+      self.icon = IconSources.icons.Success;
     }else if (res-type==ResType.Info){
       self.theme = Themes.Info;
       self.btn = "INFO";
-      self.icon = Icons.Info;
+      self.icon = IconSources.icons.Info;
       self.content = "This is a info message!";
     }else if (res-type==ResType.Error){
       self.theme = Themes.Error;
       self.btn = "ERROR";
-      self.icon = Icons.Close-one;
+      self.icon = IconSources.icons.Close-one;
       self.content = "This is a error message!"
     }else if (res-type==ResType.Warning){
       self.theme = Themes.Warning;
       self.btn = "WARNING";
-      self.icon = Icons.Attention;
+      self.icon = IconSources.icons.Attention;
       self.content = "This is a warning message!"
     }else{
       self.theme = Themes.Light;
       self.btn = "HELP";
-      self.icon = Icons.Help;
+      self.icon = IconSources.icons.Help;
       self.content = "This is a help message!"
     }
   }

@@ -17,7 +17,7 @@
 * - callback back() : back to main page (it depends on you)
 * ============================================
 */
-import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
+import {ROOT_STYLES,Themes,IconSources} from "../../themes/index.slint";
 import { SURIcon } from "../icon/index.slint";
 import { SURText } from "../text/index.slint";
 import { SURCard } from "../card/index.slint";
@@ -42,7 +42,7 @@ component HeaderItem inherits HorizontalLayout{
       height: font-size;
       width: font-size;
       theme: root.theme;
-      icon: Icons.Right-one;
+      icon: IconSources.icons.Right-one;
       clicked => {
         root.clicked(root.name)
       }
@@ -73,7 +73,7 @@ export component Header inherits SURCard {
       width: back-icon.width;
       back-icon:=SURIcon { 
         theme: root.theme;
-        icon: Icons.Link-left;
+        icon: IconSources.icons.Link-left;
         clicked => {
           root.back();
         }

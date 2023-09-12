@@ -17,11 +17,12 @@
 
 import { SURText } from "../text/index.slint";
 import { SURCard } from "../card/index.slint";
-import {Shadows,Icons} from "../../themes/index.slint";
+import {Shadows} from "../../themes/index.slint";
 import { SURIcon } from "../icon/index.slint";
+import { IconSources } from "../../themes/index.slint";
 export component Link inherits SURText{
   callback clicked();
-  in property <Icons> icon : Icons.Share;
+  in property <image> icon : IconSources.icons.Share;
   in property <bool> funny : false;
     SURCard {
       y: root.height;

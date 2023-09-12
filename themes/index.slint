@@ -3,9 +3,9 @@ import {ThemeFont} from "./src/font/font.slint";
 import {ThemePadding,ThemeBorder,PaddingSize,PaddingItem,Borders,BorderItem} from "./src/padding/padding.slint";
 import { ThemeSpace } from "./src/spacing/spacing.slint";
 import {Size,SizeStruct} from "./src/common.slint";
-import { Icons } from "./src/icon.slint";
+import { IconSources } from "../src/icon/dev.slint";
 import { Shadows } from "./src/shadow/shadow.slint";
-export { Icons,Size,PaddingSize,PaddingItem,Shadows,Borders,BorderItem}
+export { Size,PaddingSize,PaddingItem,Shadows,Borders,BorderItem,IconSources}
 
 export enum Themes{
   Light,
@@ -39,6 +39,8 @@ export global ROOT_STYLES {
   };
   in-out property <brush> radio-active : #FF5722;
   out property <ThemePadding> sur-padding : {
+    none:{top-bottom:0px,left-right:0px,same:0px},
+    icon:{top-bottom:2px,left-right:2px,same:2px},
     small: {top-bottom:8px,left-right:12px,same:8px},
     normal:{top-bottom:12px,left-right:16px,same:12px},
     large:{top-bottom:16px,left-right:24px,same:16px}
@@ -121,8 +123,12 @@ export global ROOT_STYLES {
         ROOT-STYLES.sur-padding.small
       }else if(size==PaddingSize.Normal){
         ROOT-STYLES.sur-padding.normal
-      }else{
+      }else if(size==PaddingSize.Large){
         ROOT-STYLES.sur-padding.large
+      }else if(size==PaddingSize.None){
+        ROOT-STYLES.sur-padding.none
+      }else{
+        ROOT-STYLES.sur-padding.icon
       }
   }
   pure public function get-shadow-x(shadow:Shadows)->length {

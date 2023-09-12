@@ -1,5 +1,5 @@
 import {SURDivider} from "../../index.slint";
-import {Themes,Icons} from "../../themes/index.slint";
+import {Themes,IconSources} from "../../themes/index.slint";
 
 component TestDivider inherits Window {
   height: 400px;
@@ -13,13 +13,13 @@ component TestDivider inherits Window {
   SURDivider {
     y: 120px;
     width: 380px;
-    icon:Icons.Nail-polish;
+    icon:IconSources.icons.Nail-polish;
     theme:Themes.Error;
   }
   SURDivider {
     y: 180px;
     width: 380px;
-    icon:Icons.Earth;
+    icon:IconSources.icons.Earth;
     theme:Themes.Dark;
   }
   SURDivider {

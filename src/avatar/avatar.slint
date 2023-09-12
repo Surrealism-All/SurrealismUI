@@ -14,7 +14,7 @@
 */
 import { SURCard } from "../card/index.slint";
 import { SURIcon } from "../icon/index.slint";
-import {ROOT_STYLES,Themes,PaddingSize,PaddingItem,Shadows,Borders,BorderItem} from "../../themes/index.slint";
+import {ROOT_STYLES,Themes,PaddingSize,PaddingItem,Shadows,Borders,BorderItem,IconSources} from "../../themes/index.slint";
 
 export component Avatar inherits SURCard { 
   border:Circle-Normal;
@@ -37,7 +37,7 @@ export component Avatar inherits SURCard {
     visible: avatar==@image-url("")?true:false;
     height: avatar-size;
     width: avatar-size;
-    icon: Avatar;
+    icon: IconSources.icons.Avatar;
     theme: root.theme;
   }
   Image {

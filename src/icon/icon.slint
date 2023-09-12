@@ -16,30 +16,25 @@
 * ## callbacks: 
 * - callback clicked : run if you click the icon
 * ## functions:
-* - pure function get_icon(item:IconItem)->image : get icon src from for iter item ⛔
+* - pure function get-icon(item:IconItem)->image : get icon src from for iter item ⛔
 * ============================================
 */
 import {IconItem,IconSources} from "./dev.slint";
-import {Icons,ROOT_STYLES,Themes} from "../../themes/index.slint";
+import {ROOT_STYLES,Themes} from "../../themes/index.slint";
 
 export component Icon inherits Rectangle {
   //default icon size
-  height: icon!=Icons.Null? ROOT-STYLES.sur-size.normal : 0;
-  width: icon!=Icons.Null? ROOT-STYLES.sur-size.normal:0;
+  height: get-icon()? 0 : ROOT-STYLES.sur-size.normal;
+  width: get-icon()? 0 : ROOT-STYLES.sur-size.normal;
   padding: 0;
   //params
   out property <bool> has-hover<=>toucharea.has-hover;
-  in property <Icons> icon : Icons.Null;
+  in property <image> icon : IconSources.icons.Null;
   in property <Themes> theme : Themes.Light;
   in-out property <brush> icon-color;
-  private property <[IconItem]> icon-datas : IconSources.icons;
   // get icon src from for iter item
-  pure function get_icon(item:IconItem)->image {
-      if(item.name==icon){
-        item.icon
-      }else{
-        @image-url("")
-      }
+  pure public function get-icon()->bool {
+    icon==@image-url("") ? true:false
   }
   callback clicked;
   clicked => {}
@@ -116,8 +111,8 @@ export component Icon inherits Rectangle {
   }
   
   // for iter to match then get icon source
-  for item in icon-datas: img:=Image {
-    source: root.get-icon(item);
+  img:=Image {
+    source: icon;
     height: root.height;
     width: root.width;
     colorize: root.icon-color;

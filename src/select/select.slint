@@ -23,7 +23,7 @@
 * ============================================
 */
 
-import {ROOT_STYLES,Themes,Icons} from "../../themes/index.slint";
+import {ROOT_STYLES,Themes,IconSources} from "../../themes/index.slint";
 import { SURCard } from "../card/index.slint";
 import { SURText } from "../text/index.slint";
 import { SURIcon } from "../icon/index.slint";
@@ -44,9 +44,9 @@ component Selector inherits TouchArea {
   clicked => {
     open = !open;
     if(open){
-      open-icon.icon = Icons.Up;
+      open-icon.icon = IconSources.icons.Up;
     }else{
-      open-icon.icon = Icons.Down;
+      open-icon.icon = IconSources.icons.Down;
     }
     show()
   }
@@ -65,7 +65,7 @@ component Selector inherits TouchArea {
       height: root.height;
       width: open-icon.width;
       open-icon:=SURIcon { 
-        icon: Down;
+        icon: IconSources.icons.Down;
         clicked => {
           root.clicked();
         }
