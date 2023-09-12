@@ -1117,7 +1117,7 @@ component TestWindow inherits Window {
     avatar-size : ROOT-STYLES.sur-size.large * 2;
     padding-size : Large;
     theme: Dark;
-    avatar:@image-url("../../README/imgs/logo.png");
+    avatar:@image-url("../.https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png");
   }
   
 }
@@ -1281,7 +1281,7 @@ Clicking on the pop-up layer again will close it
 
 * `in property <length> font-size` : font size
 * `in property <int> column-num` :  column number
-* `in property <int> row-num : row number
+* `in property <int> row-num` : row number
 * `in-out property <[[CollectionData]]>` data : collection data , this is the real data!
 * `in property <length> row-height` : row height
 * `in property <length> column-width` : column width
