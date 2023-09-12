@@ -6,19 +6,72 @@
 * @type:interface
 * @description:
 * # SURRadio
-* A masked pop-up layer appears in the current window
-* And users will not be able to use the pop-up layer to cover the components under it. 
-* Clicking on the pop-up layer again will close it
-* ## properties
-* - in-out property <bool> is-show : the popup layer is show or not
-* - in property <Themes> theme : Surrealism Themes
+* Radio let people select a single item
+* ## properties (card)
+* - in-out property <bool> has-clicked : the radio is clicked or not
+* - in-out property <brush> active-color: radio activecolor
 * ## functions
 * ## callbacks
-* - callback open() : open the popup
-* - callback close() : close the popup
+* - callback clicked() : run if you click the radio
 * ============================================
 */
-
-export component Radio inherits Rectangle {
-    
+import { Borders,ROOT_STYLES,Themes} from "../../themes/index.slint";
+import { SURCard } from "../card/index.slint";
+export component Radio inherits SURCard{
+  height: ROOT-STYLES.sur-font.font-size;
+  width: ROOT-STYLES.sur-font.font-size;
+  border-radius: inner.height / 2;
+  in-out property <bool> has-clicked : false;
+  in-out property <brush> active-color: ROOT-STYLES.radio-active ;
+  callback clicked();
+  states [
+    light when self.theme == Themes.Light: {
+      inner.background : has-clicked?active-color:ROOT-STYLES.sur-theme-colors.light.normal;
+      inner.border-color : ROOT-STYLES.sur-theme-colors.light.normal;
+      inner.drop-shadow-color : ROOT-STYLES.sur-theme-colors.light.deepest;
+      
+    }
+    primary when self.theme == Themes.Primary: {
+      inner.background : has-clicked?active-color:ROOT-STYLES.sur-theme-colors.primary.normal;
+      inner.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
+      inner.border-color : ROOT-STYLES.sur-theme-colors.primary.normal;
+    }
+    success when self.theme == Themes.Success: {
+      inner.background : has-clicked?active-color:ROOT-STYLES.sur-theme-colors.success.normal;
+      inner.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
+      inner.border-color : ROOT-STYLES.sur-theme-colors.success.normal;
+    }
+    info when self.theme == Themes.Info: {
+      inner.background : has-clicked?active-color:ROOT-STYLES.sur-theme-colors.info.normal;
+      inner.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
+      inner.border-color : ROOT-STYLES.sur-theme-colors.info.normal;
+    }
+    warning when self.theme == Themes.Warning: {
+      inner.background : has-clicked?active-color:ROOT-STYLES.sur-theme-colors.warning.normal;
+      inner.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
+      inner.border-color : ROOT-STYLES.sur-theme-colors.warning.normal;
+    }
+    error when self.theme == Themes.Error: {
+      inner.background : has-clicked?active-color:ROOT-STYLES.sur-theme-colors.error.normal;
+      inner.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
+      inner.border-color : ROOT-STYLES.sur-theme-colors.error.normal;
+    }
+    dark when self.theme == Themes.Dark: {
+      inner.background : has-clicked?active-color:ROOT-STYLES.sur-theme-colors.dark.normal;
+      inner.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
+      inner.border-color : ROOT-STYLES.sur-theme-colors.dark.normal;
+    }
+  ]
+  inner:=SURCard {
+    theme: root.theme;
+    height: ROOT-STYLES.sur-font.font-size - 1px;
+    width: ROOT-STYLES.sur-font.font-size - 1px;
+    border-radius: inner.height / 2;
+    TouchArea {
+      clicked => {
+        has-clicked = !has-clicked;
+        root.clicked();
+      }
+    }
+  }
 }

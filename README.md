@@ -1,11 +1,11 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.1.0-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.1.1-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
 - updateDate：20230910
-- version：0.1.0
+- version：0.1.1
 - email：syf20020816@outlook.com
 
 <img src="https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png">
@@ -20,6 +20,12 @@ SurrealismUI is a third-party component library built entirely using Slint
 - 👍 ： Recommended use
 
 ### Updates
+
+- V0.1.1
+  - add `SURRadio`
+  - add `SURDivider`
+  - add `SURCollection`
+  - add `SURPopup`
 
 - V0.1.0
   - Adopting Fluent2's component design style
@@ -1118,3 +1124,212 @@ component TestWindow inherits Window {
 ```
 
 ![image-20230910110253626](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910110253626.png)
+
+### SURRadio
+
+Radio let people select a single item
+
+#### properties (card)
+
+* `in-out property <bool> has-clicked` : the radio is clicked or not
+* `in-out property <brush> active-color`: radio activecolor
+
+#### functions
+
+#### callbacks
+
+* `callback clicked()` : run if you click the radio
+
+#### example
+
+```
+import {SURRadio} from "../../index.slint";
+import {Themes,Icons} from "../../themes/index.slint";
+
+component TestCollection inherits Window {
+  height: 560px;
+  width: 600px;
+  
+  SURRadio{
+    y: 60px;
+  }
+
+  SURRadio{
+    y: 180px;
+    active-color : #4affae;
+    theme:Primary;
+  }
+}
+```
+
+![image-20230912155049511](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230912155049511.png)
+
+### SURPopup
+
+A masked pop-up layer appears in the current window
+
+And users will not be able to use the pop-up layer to cover the components under it. Clicking on the pop-up layer again will close it
+
+#### properties
+
+* `in-out property <bool> is-show` : the popup layer is show or not
+* `in property <Themes> theme` : Surrealism Themes
+
+#### functions
+
+#### callbacks
+
+* `callback open()` : open the popup
+* `callback close()` : close the popup
+
+#### example
+
+```
+import {SURPopup,SURButton} from "../../index.slint";
+import {Themes,Icons} from "../../themes/index.slint";
+
+component TestDivider inherits Window {
+  height: 800px;
+  width: 800px;
+  background: #535353;
+ 
+  SURButton {
+    
+    content: "show";
+    clicked => {
+      p.open();
+      
+      debug("sds1")
+    }
+  }
+ 
+
+  p:=SURPopup {
+    SURButton {
+      content: "you can add anything in Popup";
+      y: 160px;
+    }
+  }
+}
+```
+
+![image-20230912155117323](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230912155117323.png)
+
+### SURDivider
+
+A divider groups sections of content to create visual rhythm and hierarchy. 
+
+Use dividers along with spacing and headers to organize content in your layout. 
+
+#### properties
+
+* `in property <string> content `: divider content
+* `in property <Icons> icon` : divider icon
+* `in property <Themes> theme` : Surrealism Theme
+
+#### functions
+
+* `function show-what()->int` : show icon or content ⛔
+
+#### example
+
+```
+import {SURDivider} from "../../index.slint";
+import {Themes,Icons} from "../../themes/index.slint";
+
+component TestDivider inherits Window {
+  height: 400px;
+  width: 400px;
+  background: #535353;
+  
+  SURDivider {
+    y: 60px;
+    width: 380px;
+  }
+  SURDivider {
+    y: 120px;
+    width: 380px;
+    icon:Icons.Nail-polish;
+    theme:Themes.Error;
+  }
+  SURDivider {
+    y: 180px;
+    width: 380px;
+    icon:Icons.Earth;
+    theme:Themes.Dark;
+  }
+  SURDivider {
+    y: 240px;
+    width: 380px;
+    content:"";
+    theme:Themes.Light;
+  }
+}
+```
+
+![image-20230912155327664](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230912155327664.png)
+
+### SURCollection
+
+SURCollection is a grid storage box, but in reality it is not based on grid layout.
+
+It achieves a flexible grid through a combination of dual for loops and horizontal and vertical layouts
+
+Clicking on the pop-up layer again will close it
+
+#### properties (card)
+
+* `in property <length> font-size` : font size
+* `in property <int> column-num` :  column number
+* `in property <int> row-num : row number
+* `in-out property <[[CollectionData]]>` data : collection data , this is the real data!
+* `in property <length> row-height` : row height
+* `in property <length> column-width` : column width
+* `in property <length> row-spaceing` : row spaceing
+* `in property <length> column-spacing`: column spacing
+
+#### functions
+
+#### callbacks
+
+* `clicked(CollectionData)` : run if you click item in SURCollection
+
+```
+import {SURButton,SURCollection} from "../../index.slint";
+import {Themes,Icons} from "../../themes/index.slint";
+
+component TestCollection inherits Window {
+  height: 560px;
+  width: 900px;
+  
+  SURCollection{
+    card-height: 300px;
+    card-width: 300px;
+    column-num: 3;
+    font-size : 16px;
+    theme: Dark;
+    data: [
+      [
+        {id:0,name:"box1",source:@image-url("./collection_imgs/box1.svg")},
+        {id:1,name:"box2",source:@image-url("./collection_imgs/box2.svg")},
+        {id:2,name:"box3",source:@image-url("./collection_imgs/box3.svg")}
+      ],
+      [
+        {id:3,name:"box4",source:@image-url("./collection_imgs/box4.svg")},
+        
+      ],
+      [
+        {id:4,name:"box6",source:@image-url("./collection_imgs/box6.svg")},
+        {id:5,name:"box7",source:@image-url("./collection_imgs/box7.svg")},
+      ]
+    ];
+    clicked(item)=>{
+      debug(item.name);
+      debug(item.id);
+    }
+  }
+  
+}
+```
+
+![image-20230912155404367](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230912155404367.png)

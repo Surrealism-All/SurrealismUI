@@ -10,14 +10,14 @@
 * It achieves a flexible grid through a combination of dual for loops and horizontal and vertical layouts
 * Clicking on the pop-up layer again will close it
 * ## properties (card)
-* - in property <length> font-size : 14px;
-* - in property <int> column-num : 4;
-* - in property <int> row-num : 3;
-* - in-out property <[[CollectionData]]> data;
-* - in property <length> row-height : (root.card-height - 14px - row-spaceing * (row-num - 1)) / row-num;
-* - in property <length> column-width : (root.card-width - 14px - column-spacing * (column-num - 1)) / column-num;
-* - in property <length> row-spaceing :8px;
-* - in property <length> column-spacing: ROOT-STYLES.get-space(self.width) ;
+* - in property <length> font-size : font size
+* - in property <int> column-num : column number
+* - in property <int> row-num : row number
+* - in-out property <[[CollectionData]]> data : collection data , this is the real data!
+* - in property <length> row-height : row height
+* - in property <length> column-width : column width
+* - in property <length> row-spaceing : row spaceing
+* - in property <length> column-spacing: column spacing
 * ## functions
 * ## callbacks
 * - clicked(CollectionData) : run if you click item in SURCollection
