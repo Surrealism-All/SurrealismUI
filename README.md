@@ -1,14 +1,14 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.1.1-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.1.2-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
-- updateDate：20230910
-- version：0.1.1
+- updateDate：20230913
+- version：0.1.2
 - email：syf20020816@outlook.com
 
-<img src="./README/imgs/logo.png">
+<img src="https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png">
 
 SurrealismUI是一个完全使用Slint进行构建的Slint第三方组件库
 
@@ -58,31 +58,31 @@ Built in 7 theme colors in SurrealismUI
 
 #### primary
 
-![image-20230910102452817](./README/imgs/image-20230910102452817.png)
+![image-20230910102452817](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102452817.png)
 
 #### success
 
-![image-20230910102504405](./README/imgs/image-20230910102504405.png)
+![image-20230910102504405](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102504405.png)
 
 #### info
 
-![image-20230910102558381](./README/imgs/image-20230910102558381.png)
+![image-20230910102558381](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102558381.png)
 
 #### warning
 
-![image-20230910102611556](./README/imgs/image-20230910102611556.png)
+![image-20230910102611556](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102611556.png)
 
 #### error
 
-![image-20230910102624332](./README/imgs/image-20230910102624332.png)
+![image-20230910102624332](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102624332.png)
 
 #### dark
 
-![image-20230910102637280](./README/imgs/image-20230910102637280.png)
+![image-20230910102637280](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102637280.png)
 
 #### light
 
-![image-20230910102413761](./README/imgs/image-20230910102413761.png)
+![image-20230910102413761](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102413761.png)
 
 ## Components
 
@@ -120,7 +120,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910102940392](./README/imgs/image-20230910102940392.png)
+![image-20230910102940392](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910102940392.png)
 
  ### SURIcon
  there are 2658 different icons in SURIcon from : https://github.com/bytedance/iconpark
@@ -330,7 +330,7 @@ component TestCard inherits Window {
 }
 ```
 
-![image-20230910103552426](./README/imgs/image-20230910103552426.png)
+![image-20230910103552426](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910103552426.png)
 
 ### SURButton 
 SURButton is a button component that you can freely perform regular attribute operations on
@@ -492,7 +492,7 @@ export component TestInput inherits Window {
 }
 ```
 
-![image-20230910104857757](./README/imgs/image-20230910104857757.png)
+![image-20230910104857757](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910104857757.png)
 
  ### SURStar
  SURStar is a scoring component
@@ -595,7 +595,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910105550811](./README/imgs/image-20230910105550811.png)
+![image-20230910105550811](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910105550811.png)
 
  ### SURTag
  A small tag used to display data
@@ -640,7 +640,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910105626765](./README/imgs/image-20230910105626765.png)
+![image-20230910105626765](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910105626765.png)
 
  ### SURHeader
  SURHeader is a simple header component that is generated based on routing information
@@ -696,7 +696,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910105709278](./README/imgs/image-20230910105709278.png)
+![image-20230910105709278](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910105709278.png)
 
  ### SURTable
 This is the outter of the Table, and the column data of the table is separated from the outter
@@ -801,7 +801,7 @@ export component TestTable inherits Window {
 }
 ```
 
-![image-20230910105946372](./README/imgs/image-20230910105946372.png)
+![image-20230910105946372](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910105946372.png)
 
 ### SURCollapse
 SURCollapse is a foldable panel
@@ -896,7 +896,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910110027145](./README/imgs/image-20230910110027145.png)
+![image-20230910110027145](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910110027145.png)
 
 ### SURResult
 SURResult helps you easily build a quick prompt , you can build it in popup window
@@ -950,7 +950,7 @@ export component TestResult inherits Window {
 }
 ```
 
-![image-20230910110056779](./README/imgs/image-20230910110056779.png)
+![image-20230910110056779](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910110056779.png)
 
 ### SURSelect
 SURSelect is a selector that provides three types of optional input parameter values
@@ -1022,7 +1022,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910110204450](./README/imgs/image-20230910110204450.png)
+![image-20230910110204450](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910110204450.png)
 
 ### SURLink
 
@@ -1077,7 +1077,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910110312615](./README/imgs/image-20230910110312615.png)
+![image-20230910110312615](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910110312615.png)
 
 ### SURAvatar
 
@@ -1126,13 +1126,13 @@ component TestWindow inherits Window {
     avatar-size : ROOT-STYLES.sur-size.large * 2;
     padding-size : Large;
     theme: Dark;
-    avatar:@image-url("../../README/imgs/logo.png");
+    avatar:@image-url("../.https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png");
   }
   
 }
 ```
 
-![image-20230910110253626](./README/imgs/image-20230910110253626.png)
+![image-20230910110253626](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230910110253626.png)
 
 ### SURRadio
 
@@ -1171,7 +1171,7 @@ component TestCollection inherits Window {
 }
 ```
 
-![image-20230912155049511](./README/imgs/image-20230912155049511.png)
+![image-20230912155049511](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230912155049511.png)
 
 ### SURPopup
 
@@ -1222,7 +1222,7 @@ component TestDivider inherits Window {
 }
 ```
 
-![image-20230912155117323](./README/imgs/image-20230912155117323.png)
+![image-20230912155117323](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230912155117323.png)
 
 ### SURDivider
 
@@ -1341,4 +1341,4 @@ component TestCollection inherits Window {
 }
 ```
 
-![image-20230912155404367](./README/imgs/image-20230912155404367.png)
+![image-20230912155404367](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230912155404367.png)
