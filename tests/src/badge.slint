@@ -1,0 +1,65 @@
+import {SURBadge,SURAvatar} from "../../index.slint";
+import {Themes} from "../../themes/index.slint";
+
+component TestCollection inherits Window {
+  height: 460px;
+  width: 400px;
+  
+  b1:=Rectangle {
+    
+    y: 30px;
+    height: avatar.height;
+    width: avatar.width;
+    avatar:=SURAvatar {
+    
+    } 
+    SURBadge {
+      x: self.get-x(avatar.width);
+      y: self.get-y(avatar.height);
+    }
+  }
+  b2:=Rectangle {
+    
+    y: 120px;
+    height: avatar2.height;
+    width: avatar2.width;
+    avatar2:=SURAvatar {
+    } 
+    SURBadge {
+      x: self.get-x(avatar2.width);
+      y: self.get-y(avatar2.height);
+      position: Left-Bottom;
+      res-type: Success;
+    }
+  }
+  b3:=Rectangle {
+   
+    y: 210px;
+    height: avatar3.height;
+    width: avatar3.width;
+    avatar3:=SURAvatar {
+    
+    } 
+    SURBadge {
+      x: self.get-x(avatar3.width);
+      y: self.get-y(avatar3.height);
+      position: Left-Top;
+      res-type: Warning;
+    }
+  }
+  b4:=Rectangle {
+    y: 300px;
+    height: avatar4.height;
+    width: avatar4.width;
+    avatar4:=SURAvatar {
+      theme: Primary;
+    } 
+    SURBadge {
+      x: self.get-x(avatar4.width);
+      y: self.get-y(avatar4.height);
+      position: Right-Top;
+      res-type: Error;
+    }
+  }
+  
+}

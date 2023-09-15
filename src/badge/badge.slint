@@ -1,0 +1,96 @@
+import { SURCard } from "../card/index.slint";
+import { Borders,ROOT_STYLES,Themes,IconSources,ResType} from "../../themes/index.slint";
+import { SURIcon } from "../icon/index.slint";
+import { SURText } from "../text/index.slint";
+
+export enum Position {
+  Left-Top,
+  Right-Top,
+  Left-Bottom,
+  Right-Bottom
+}
+
+export component Badge inherits SURCard { 
+  theme: Light;
+  height: ROOT-STYLES.sur-font.font-size;
+  width: ROOT-STYLES.sur-font.font-size;
+  border-radius: self.height / 2;
+  in property <Position> position : Position.Right-Bottom;
+  in-out property <image> icon : IconSources.icons.Success;
+  in property <ResType> res-type:ResType.Help;
+  in-out property <string> content;
+  clip: false;
+  pure public function get-x(p_right:length)->length {
+      if(self.position == Position.Left-Top){
+        0px
+      }else if(self.position == Position.Left-Bottom){
+        0px
+      }else if(self.position == Position.Right-Top){
+        p_right - self.width
+      }else{
+        p_right - self.width
+      }
+  }
+  pure public function get-y(p_bottom:length)->length {
+    if(self.position == Position.Left-Top){
+      0px
+    }else if(self.position == Position.Left-Bottom){
+      p_bottom - self.height
+    }else if(self.position == Position.Right-Top){
+      0px
+    }else{
+      p_bottom - self.height
+    }
+  }
+  init => {
+   
+    if(res-type==ResType.Primary){
+      self.theme = Themes.Primary;
+      self.icon = IconSources.icons.Smiling-face;
+      self.content = "primary message!";
+    }else if (res-type==ResType.Success){
+      self.theme = Themes.Success;
+      self.content = "success message!";
+      self.icon = IconSources.icons.Success;
+    }else if (res-type==ResType.Info){
+      self.theme = Themes.Info;
+      self.icon = IconSources.icons.Info;
+      self.content = "info message!";
+    }else if (res-type==ResType.Error){
+      self.theme = Themes.Error;
+      self.icon = IconSources.icons.Close-one;
+      self.content = "error message!"
+    }else if (res-type==ResType.Warning){
+      self.theme = Themes.Warning;
+      self.icon = IconSources.icons.Attention;
+      self.content = "warning message!"
+    }else{
+      self.theme = Themes.Light;
+      self.icon = IconSources.icons.Help;
+      self.content = "help message!"
+    }
+  }
+  HorizontalLayout {
+    spacing: ROOT-STYLES.get-space(txt-view.width);
+    badge-icon:= SURIcon { 
+      icon: root.icon;
+      theme: root.theme;
+      clicked => {
+        txt-view.visible=!txt-view.visible
+      }
+    }
+    txt-view:=SURCard {
+      theme: root.theme;
+      height: root.height;
+      card-width: badge-txt.width;
+      padding-size: Small;
+      border: Large;
+      
+      badge-txt:=SURText { 
+        font-size: ROOT-STYLES.sur-font.font-size  - 4px;
+        content: root.content;
+        theme: root.theme;
+      }
+    }
+  }
+}

@@ -20,7 +20,7 @@ import { SURCard } from "../card/index.slint";
 export component Radio inherits SURCard{
   height: ROOT-STYLES.sur-font.font-size;
   width: ROOT-STYLES.sur-font.font-size;
-  border-radius: inner.height / 2;
+  border-radius: self.height / 2;
   in-out property <bool> has-clicked : false;
   in-out property <brush> active-color: ROOT-STYLES.radio-active ;
   callback clicked();
