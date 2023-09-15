@@ -45,6 +45,8 @@ component TestCollection inherits Window {
       y: self.get-y(avatar3.height);
       position: Left-Top;
       res-type: Warning;
+      icon-color:#ff0000;
+      font-color:#ff0000;
     }
   }
   b4:=Rectangle {
@@ -52,7 +54,6 @@ component TestCollection inherits Window {
     height: avatar4.height;
     width: avatar4.width;
     avatar4:=SURAvatar {
-      theme: Primary;
     } 
     SURBadge {
       x: self.get-x(avatar4.width);

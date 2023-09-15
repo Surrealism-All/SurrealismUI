@@ -1,0 +1,24 @@
+import {SURPersona} from "../../index.slint";
+import {Themes} from "../../themes/index.slint";
+
+component TestCollection inherits Window {
+  height: 700px;
+  width: 400px;
+  
+  SURPersona {
+    y: 10px;
+  }
+  SURPersona {
+    y: 350px;
+    btn-theme:Dark;
+    theme:Themes.Dark;
+    name-theme:Themes.Dark;
+    des-theme:Themes.Light;
+    avatar : @image-url("../../README/imgs/logo.png");
+    avatar-height:160px;
+    card-height: 310px;
+    clicked=>{
+      debug("view page!")
+    }
+  }
+}

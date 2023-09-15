@@ -15,8 +15,11 @@ export component Badge inherits SURCard {
   height: ROOT-STYLES.sur-font.font-size;
   width: ROOT-STYLES.sur-font.font-size;
   border-radius: self.height / 2;
+  
   in property <Position> position : Position.Right-Bottom;
   in-out property <image> icon : IconSources.icons.Success;
+  in property <brush> icon-color <=> badge-icon.icon-color;
+  in property <brush> font-color<=>badge-txt.color;
   in property <ResType> res-type:ResType.Help;
   in-out property <string> content;
   clip: false;
@@ -80,6 +83,7 @@ export component Badge inherits SURCard {
       }
     }
     txt-view:=SURCard {
+      visible: false;
       theme: root.theme;
       height: root.height;
       card-width: badge-txt.width;

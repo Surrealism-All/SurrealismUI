@@ -1,0 +1,71 @@
+import { SURCard } from "../card/index.slint";
+import { Avatar } from "../avatar/avatar.slint";
+import { SURText } from "../text/index.slint";
+import { SURButton } from "../button/index.slint";
+import {ROOT_STYLES,Themes} from "../../themes/index.slint";
+export component Persona inherits SURCard { 
+  card-height: 300px;
+  card-width: 200px;
+  clip: true;
+  in property <string> name : "SYF20020816";
+  in property <string> des : @tr("A Java|Rust|Vue Developer\nEmail:\nsyf20020816@outlook.com");
+  in property <string> btn : "Click!";
+  in property <image> avatar : @image-url("");
+  in property <length> name-font-size:ROOT-STYLES.sur-font.font-size;
+  in property <length> des-font-size:ROOT-STYLES.sur-font.font-size - 2px;
+  in property <length> avatar-height:130px;
+  in property <length> name-height:ROOT-STYLES.sur-font.font-size * 3;
+  in property <length> des-height:des-font-size * 1.5 * 3;
+  in property <Themes> avatar-theme : Light;
+  in property <Themes> name-theme: Light;
+  in property <Themes> des-theme: Light;
+  in property <Themes> btn-theme: Light;
+  callback clicked();
+  VerticalLayout {
+    avatar:=Avatar { 
+      theme: root.avatar-theme;
+      height: root.avatar-height;
+      width: 100%;
+      border: None;
+      avatar: root.avatar;
+    }
+    layout:=VerticalLayout {
+      spacing:0;
+      alignment: space-around;
+      padding: ROOT-STYLES.sur-padding.normal.same;
+      name-view:=Rectangle{
+        height: root.name-height;
+        width: 100%;
+        name:=SURText { 
+          theme: root.name-theme;
+          content: root.name;
+          font-size: ROOT-STYLES.sur-font.font-size;
+        }
+      }
+      des-view:=Rectangle{
+        width: 100%;
+        height: root.des-height;
+        des:=SURText {
+          theme: root.des-theme;
+          height: parent.height;
+          width: parent.width;
+          font-size: root.des-font-size;
+          wrap: word-wrap;
+          content: root.des;
+          horizontal-alignment: left;
+        }
+      }
+      btn-view:=Rectangle{
+        width: 100%;
+        height: btn.height;
+        btn:=SURButton { 
+          theme: root.btn-theme;
+          content: root.btn;
+          clicked => {
+            root.clicked();
+          }
+        }
+      }
+    }
+  }
+}
