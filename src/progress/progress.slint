@@ -1,0 +1,113 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230915
+* @version:0.1.3
+* @type:interface
+* @description:
+* # SURProgress
+* SURProgress is commonly used to display download progress or event processing progress
+* And you can fully control it through the progress property
+* ## properties
+* - in property <Themes> theme : Surrealism theme
+* - in property <string> content : what you wanna show to others
+* - in-out property <float> progress : progress
+* - private property <length> unit : unit of progress length
+* ## functions
+* - pure public function get-progress() : get timely progress
+* - public function full() : make progress 100%
+* - public function clear() : : make progress 0%
+* - public function add(num:float) : increase progress
+* ## callbacks
+* ============================================
+*/
+import { SURText } from "../text/index.slint";
+import { SURCard } from "../card/index.slint";
+import { ROOT_STYLES,Themes } from "../../themes/index.slint";
+export component Progress inherits Rectangle {
+  width: 100%;
+  height: layout.height;
+  in property <Themes> theme :Light;
+  in property <string> content : @tr("now: {}% used 100%" , progress);
+  in-out property <float> progress : 16;
+  private property <length> unit : self.width / 100;
+  public function add(num:float) {
+      if(progress<=100 - num){
+        root.progress+=num;
+      }else{
+        progress = 100;
+      }
+  }
+  pure public function get-progress() {
+      root.progress
+  }
+  public function clear() {
+      root.progress = 0;
+  }
+  public function full() {
+      root.progress = 100;
+  }
+  states [
+    light when theme == Themes.Light: {
+      inner.background : ROOT-STYLES.sur-theme-colors.light.deepest;
+    }
+    primary when theme == Themes.Primary: {
+      inner.background : ROOT-STYLES.sur-theme-colors.primary.deepest;
+    }
+    success when theme == Themes.Success: {
+      inner.background : ROOT-STYLES.sur-theme-colors.success.deepest;
+    }
+    info when theme == Themes.Info: {
+      inner.background : ROOT-STYLES.sur-theme-colors.info.deepest;
+    }
+    warning when theme == Themes.Warning: {
+      inner.background : ROOT-STYLES.sur-theme-colors.warning.deepest;
+    }
+    error when theme == Themes.Error: {
+      inner.background : ROOT-STYLES.sur-theme-colors.error.deepest;
+    }
+    dark when theme == Themes.Dark: {
+      inner.background : ROOT-STYLES.sur-theme-colors.dark.deepest;
+    }
+  ]
+    layout:=VerticalLayout {
+      height: bar.height + txt-view.height;
+      padding-left: 4px;
+      padding-right: 4px;
+      bar:=Rectangle {
+        height: outer.height;
+        outer:=SURCard { 
+          theme: Light;
+          height: 8px;
+          width: 100%;
+          border-radius: self.height / 2;
+          clip: true;
+          inner:=SURCard {
+            x: 0;
+            theme: root.theme;
+            height: 8px;
+            width: root.progress * root.unit;
+            border-radius: self.height / 2;
+            padding: 0;
+            padding-left: 0;
+            padding-right: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            drop-shadow-blur: 0;
+            drop-shadow-offset-y: 0;
+            drop-shadow-offset-x: 0;
+          }
+        }
+      }
+      txt-view:=Rectangle{
+        height: txt.height * 1.5;
+        txt:=SURText { 
+          theme: root.theme;
+          width: parent.width;
+          content:root.content;
+          font-size: ROOT-STYLES.sur-font.font-size - 4px;
+          horizontal-alignment: left;
+         }
+      }
+    }
+}

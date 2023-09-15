@@ -1342,3 +1342,206 @@ component TestCollection inherits Window {
 ```
 
 ![image-20230912155404367](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230912155404367.png)
+
+### SURPersona
+This component is used to display simple user introduction information
+#### properties (card)
+- `in property <string> name `: person name
+- `in property <string> des `: person description
+- `in property <string> btn `: click button content
+- `in property <image> avatar `: avatar image
+- `in property <length> name-font-size `: name font size
+- `in property <length> des-font-size`: des font size
+- `in property <length> avatar-height`: avatar height
+- `in property <length> name-height`: name height
+- `in property <length> des-height`: des height
+- `in property <Themes> avatar-theme `: avatar theme
+- `in property <Themes> name-theme`: name theme
+- `in property <Themes> des-theme`: des theme
+- `in property <Themes> btn-theme`: btn theme
+#### functions
+#### callbacks
+- `callback clicked() `: run if you click the target button
+
+#### example
+
+```
+import {SURPersona} from "../../index.slint";
+import {Themes} from "../../themes/index.slint";
+
+component TestCollection inherits Window {
+  height: 700px;
+  width: 400px;
+  
+  SURPersona {
+    y: 10px;
+  }
+  SURPersona {
+    y: 350px;
+    btn-theme:Dark;
+    theme:Themes.Dark;
+    name-theme:Themes.Dark;
+    des-theme:Themes.Light;
+    avatar : @image-url("../../README/imgs/logo.png");
+    avatar-height:160px;
+    card-height: 310px;
+    clicked=>{
+      debug("view page!")
+    }
+  }
+}
+```
+
+![image-20230916001748114](E:\Rust\try\surrealism-ui\README\imgs\image-20230916001748114.png)
+
+ ### SURBadge
+ SURBadge is a quick way to display user status or events
+ #### properties (card)
+ - `in property <Position> position` : where the badge show
+ - `in-out property <image> icon` : icon of the badge
+ - `in property <brush> icon-color` : icon color
+ - `in property <brush> font-color` : font color
+ - `in property <ResType> res-type` : icon Type see result!(but you can define without use this property)
+ #### functions
+ - `pure public function get-x(p_right:length)->length` 👍
+ - `pure public function get-y(p_bottom:length)->length` 👍
+
+ #### callbacks
+
+#### example
+
+```
+import {SURBadge,SURAvatar} from "../../index.slint";
+import {Themes} from "../../themes/index.slint";
+
+component TestCollection inherits Window {
+  height: 460px;
+  width: 400px;
+  
+  b1:=Rectangle {
+    
+    y: 30px;
+    height: avatar.height;
+    width: avatar.width;
+    avatar:=SURAvatar {
+    
+    } 
+    SURBadge {
+      x: self.get-x(avatar.width);
+      y: self.get-y(avatar.height);
+    }
+  }
+  b2:=Rectangle {
+    
+    y: 120px;
+    height: avatar2.height;
+    width: avatar2.width;
+    avatar2:=SURAvatar {
+    } 
+    SURBadge {
+      x: self.get-x(avatar2.width);
+      y: self.get-y(avatar2.height);
+      position: Left-Bottom;
+      res-type: Success;
+    }
+  }
+  b3:=Rectangle {
+   
+    y: 210px;
+    height: avatar3.height;
+    width: avatar3.width;
+    avatar3:=SURAvatar {
+    
+    } 
+    SURBadge {
+      x: self.get-x(avatar3.width);
+      y: self.get-y(avatar3.height);
+      position: Left-Top;
+      res-type: Warning;
+      icon-color:#ff0000;
+      font-color:#ff0000;
+    }
+  }
+  b4:=Rectangle {
+    y: 300px;
+    height: avatar4.height;
+    width: avatar4.width;
+    avatar4:=SURAvatar {
+    } 
+    SURBadge {
+      x: self.get-x(avatar4.width);
+      y: self.get-y(avatar4.height);
+      position: Right-Top;
+      res-type: Error;
+    }
+  }
+  
+}
+```
+
+![image-20230916001834136](E:\Rust\try\surrealism-ui\README\imgs\image-20230916001834136.png)
+
+### SURProgress
+SURProgress is commonly used to display download progress or event processing progress
+And you can fully control it through the progress property
+#### properties
+- `in property <Themes> theme` : Surrealism theme
+- `in property <string> content` : what you wanna show to others
+- `in-out property <float> progress` : progress
+- `private property <length> unit` : unit of progress length
+#### functions
+- `pure public function get-progress()` : get timely progress
+- `public function full()` : make progress 100%
+- `public function clear()` : : make progress 0%
+- `public function add(num:float)` : increase progress
+
+#### callbacks
+
+```
+import {SURProgress,SURButton} from "../../index.slint";
+import {Themes} from "../../themes/index.slint";
+
+component TestDivider inherits Window {
+  height: 400px;
+  width: 400px;
+  background: #5b64cd;
+  SURProgress {
+    y: 100px;
+  }
+  a:=SURProgress {
+    y: 200px;
+    theme:Primary;
+  }
+  SURProgress {
+    y: 300px;
+    theme:Dark;
+    progress:86;
+  }
+  SURButton{
+    x: 60px;
+    y: 340px;
+    content: "add";
+    clicked => {
+      a.add(5);
+    }
+  }
+  SURButton{
+    x: 160px;
+    y: 340px;
+    content: "full";
+    clicked => {
+      a.full();
+    }
+  }
+  SURButton{
+    x: 260px;
+    y: 340px;
+    content: "clear";
+    clicked => {
+      a.clear();
+    }
+  }
+}
+```
+
+![image-20230916001718588](E:\Rust\try\surrealism-ui\README\imgs\image-20230916001718588.png)

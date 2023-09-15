@@ -1,0 +1,44 @@
+import {SURProgress,SURButton} from "../../index.slint";
+import {Themes} from "../../themes/index.slint";
+
+component TestDivider inherits Window {
+  height: 400px;
+  width: 400px;
+  background: #5b64cd;
+  SURProgress {
+    y: 100px;
+  }
+  a:=SURProgress {
+    y: 200px;
+    theme:Primary;
+  }
+  SURProgress {
+    y: 300px;
+    theme:Dark;
+    progress:86;
+  }
+  SURButton{
+    x: 60px;
+    y: 340px;
+    content: "add";
+    clicked => {
+      a.add(5);
+    }
+  }
+  SURButton{
+    x: 160px;
+    y: 340px;
+    content: "full";
+    clicked => {
+      a.full();
+    }
+  }
+  SURButton{
+    x: 260px;
+    y: 340px;
+    content: "clear";
+    clicked => {
+      a.clear();
+    }
+  }
+}

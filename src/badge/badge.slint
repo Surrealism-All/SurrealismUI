@@ -1,3 +1,24 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230915
+* @version:0.1.3
+* @type:interface
+* @description:
+* # SURBadge
+* SURBadge is a quick way to display user status or events
+* ## properties (card)
+* - in property <Position> position : where the badge show
+* - in-out property <image> icon : icon of the badge
+* - in property <brush> icon-color : icon color
+* - in property <brush> font-color : font color
+* - in property <ResType> res-type : icon Type see result!(but you can define without use this property)
+* ## functions
+* - pure public function get-x(p_right:length)->length 👍
+* - pure public function get-y(p_bottom:length)->length 👍
+* ## callbacks
+* ============================================
+*/
 import { SURCard } from "../card/index.slint";
 import { Borders,ROOT_STYLES,Themes,IconSources,ResType} from "../../themes/index.slint";
 import { SURIcon } from "../icon/index.slint";

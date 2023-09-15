@@ -1,16 +1,14 @@
-Null:@image-url(""),
-Success:@image-url("./icons/success.svg"),
-Smiling_face:@image-url("./icons/smiling-face.svg"),
-Info:@image-url("./icons/info.svg"),
-Close_one:@image-url("./icons/close-one.svg"),
-Attention:@image-url("./icons/attention.svg"),
-Help:@image-url("./icons/help.svg"),
-Share:@image-url("./icons/share.svg"),
-Up:@image-url("./icons/up.svg"),
-Down:@image-url("./icons/down.svg"),
-Down_one:@image-url("./icons/down-one.svg"),
-Right_one:@image-url("./icons/right-one.svg"),
-Link_left:@image-url("./icons/link-left.svg"),
-Preview_close:@image-url("./icons/preview-close.svg"),
-Preview_open:@image-url("./icons/preview-open.svg"),
-Close_one:@image-url("./icons/close-one.svg")
+# SURProgress
+SURProgress is commonly used to display download progress or event processing progress
+And you can fully control it through the progress property
+## properties
+- `in property <Themes> theme` : Surrealism theme
+- `in property <string> content` : what you wanna show to others
+- `in-out property <float> progress` : progress
+- `private property <length> unit` : unit of progress length
+## functions
+- `pure public function get-progress()` : get timely progress
+- `public function full()` : make progress 100%
+- `public function clear()` : : make progress 0%
+- `public function add(num:float)` : increase progress
+## callbacks
