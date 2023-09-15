@@ -1,11 +1,11 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.1.2-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.1.3-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
-- updateDate：20230913
-- version：0.1.2
+- updateDate：20230916
+- version：0.1.3
 - email：syf20020816@outlook.com
 
 <img src="https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png">
@@ -20,6 +20,11 @@ SurrealismUI is a third-party component library built entirely using Slint
 - 👍 ： Recommended use
 
 ### Updates
+
+- V0.1.3
+  - add `SURBadge`
+  - add `Progress`
+  - add `Persona`
 
 - V0.1.2
   - rebuild components (have `SURIcon`)
@@ -269,7 +274,7 @@ export component TestIcon inherits Window {
 }
 ```
 
-![image-20230913035043208](E:\Rust\try\surrealism-ui\README\imgs\image-20230913035043208.png)
+![image-20230913035043208](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230913035043208.png)
 
 ### SURCard
 A very simple universal card without any layout or restrictions
@@ -408,7 +413,7 @@ component TestButton inherits Window {
 }
 ```
 
-![image-20230913035128832](E:\Rust\try\surrealism-ui\README\imgs\image-20230913035128832.png)
+![image-20230913035128832](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230913035128832.png)
 
  ### SURInput
 
@@ -1276,7 +1281,7 @@ component TestDivider inherits Window {
 }
 ```
 
-![image-20230913035535856](E:\Rust\try\surrealism-ui\README\imgs\image-20230913035535856.png)
+![image-20230913035535856](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230913035535856.png)
 
 ### SURCollection
 
@@ -1392,7 +1397,7 @@ component TestCollection inherits Window {
 }
 ```
 
-![image-20230916001748114](E:\Rust\try\surrealism-ui\README\imgs\image-20230916001748114.png)
+![image-20230916001748114](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230916001748114.png)
 
  ### SURBadge
  SURBadge is a quick way to display user status or events
@@ -1479,7 +1484,7 @@ component TestCollection inherits Window {
 }
 ```
 
-![image-20230916001834136](E:\Rust\try\surrealism-ui\README\imgs\image-20230916001834136.png)
+![image-20230916001834136](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230916001834136.png)
 
 ### SURProgress
 SURProgress is commonly used to display download progress or event processing progress
@@ -1544,4 +1549,4 @@ component TestDivider inherits Window {
 }
 ```
 
-![image-20230916001718588](E:\Rust\try\surrealism-ui\README\imgs\image-20230916001718588.png)
+![image-20230916001718588](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230916001718588.png)
