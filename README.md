@@ -1550,3 +1550,49 @@ component TestDivider inherits Window {
 ```
 
 ![image-20230916001718588](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230916001718588.png)
+
+### SURTip
+
+A tip provides supplemental, contextual information elevated near its target component
+
+#### properties
+
+* `in property <Themes> theme` : Surrealism Theme
+* `in property <string> content` : tip content
+
+#### functions
+
+* `public function open()` : open the tip
+* `public function close()` : close the tip
+
+#### callbacks
+
+* `callback clicked()` : use to open|close the tip
+
+#### example
+
+```
+import {SURTip,SURButton } from "../../index.slint";
+import {Themes} from "../../themes/index.slint";
+
+
+component TestWindow inherits Window {
+  height: 400px;
+  width: 400px;
+  
+  SURTip{
+    height:inner.height;
+    theme: Dark;
+    content:"this is a \ntip window";
+    inner:=SURButton { 
+      content: "click";
+      clicked => {
+        parent.clicked();
+      }
+    }
+  }
+ 
+}
+```
+
+![image-20230916101547495](E:\Rust\try\surrealism-ui\README\imgs\image-20230916101547495.png)

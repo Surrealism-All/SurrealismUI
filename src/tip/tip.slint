@@ -1,0 +1,97 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230916
+* @version:0.1.4
+* @type:interface
+* @description:
+* # SURTip
+* A tip provides supplemental, contextual information elevated near its target component
+* ## properties
+* - in property <Themes> theme : Surrealism Theme
+* - in property <string> content : tip content
+* ## functions
+* - public function open() : open the tip
+* - public function close() : close the tip
+* ## callbacks
+* - callback clicked() : use to open|close the tip
+* ============================================
+*/
+
+import { SURCard } from "../card/index.slint";
+import { ROOT-STYLES,Themes,PaddingSize } from "../../themes/index.slint";
+import { SURText } from "../text/index.slint";
+export component Tip inherits Rectangle{
+  in property <Themes> theme :Light;
+  in property <string> content : "default tips";
+  public function open() {
+     tip.visible = true; 
+  }
+  public function close() {
+    tip.visible = false;
+  }
+  callback clicked();
+  clicked => {
+    tip.visible = !tip.visible
+  }
+  states [
+    light when theme == Themes.Light: {
+      angle.fill : ROOT-STYLES.sur-theme-colors.light.normal;
+      angle.stroke : transparent;
+    }
+    primary when theme == Themes.Primary: {
+      angle.fill : ROOT-STYLES.sur-theme-colors.primary.normal;
+    }
+    success when theme == Themes.Success: {
+      angle.fill : ROOT-STYLES.sur-theme-colors.success.normal;
+    }
+    info when theme == Themes.Info: {
+      angle.fill : ROOT-STYLES.sur-theme-colors.info.normal;
+    }
+    warning when theme == Themes.Warning: {
+      angle.fill : ROOT-STYLES.sur-theme-colors.warning.normal;
+    }
+    error when theme == Themes.Error: {
+      angle.fill : ROOT-STYLES.sur-theme-colors.error.normal;
+    }
+    dark when theme == Themes.Dark: {
+      angle.fill : ROOT-STYLES.sur-theme-colors.dark.normal;
+    }
+  ]
+  @children
+  tip:=SURCard { 
+    y: -self.height - angle.height;
+    clip: false;
+    card-width: txt.width;
+    card-height: txt.height;
+    padding-size: PaddingSize.Tip;
+    visible: false;
+    theme: root.theme;
+    txt:=SURText { 
+      theme: root.theme;
+      content: root.content;
+      font-size: ROOT-STYLES.sur-font.font-size - 2px;
+      wrap: word-wrap;
+     }
+    angle:=Path {
+      y: parent.height - self.height / 3;
+      stroke-width: 1px;
+      height: ROOT-STYLES.sur-font.font-size;
+      width: ROOT-STYLES.sur-font.font-size;
+      
+      MoveTo{
+        x: -8;
+        y: 0;
+      }
+      LineTo{
+        x: 8;
+        y: 16;
+      }
+      LineTo{
+        x: 24;
+        y: 0;
+      }
+      Close{}
+    }
+  }
+}

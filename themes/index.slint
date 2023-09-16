@@ -50,6 +50,7 @@ export global ROOT_STYLES {
   out property <ThemePadding> sur-padding : {
     none:{top-bottom:0px,left-right:0px,same:0px},
     icon:{top-bottom:2px,left-right:2px,same:2px},
+    tip:{top-bottom:6px,left-right:10px,same:4px},
     small: {top-bottom:8px,left-right:12px,same:8px},
     normal:{top-bottom:12px,left-right:16px,same:12px},
     large:{top-bottom:16px,left-right:24px,same:16px}
@@ -136,8 +137,10 @@ export global ROOT_STYLES {
         ROOT-STYLES.sur-padding.large
       }else if(size==PaddingSize.None){
         ROOT-STYLES.sur-padding.none
+      }else if(size==PaddingSize.Tip){
+        ROOT-STYLES.sur-padding.tip
       }else{
-        ROOT-STYLES.sur-padding.icon
+        ROOT-STYLES.sur-padding.tip
       }
   }
   pure public function get-shadow-x(shadow:Shadows)->length {

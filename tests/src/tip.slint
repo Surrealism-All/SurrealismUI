@@ -1,0 +1,21 @@
+import {SURTip,SURButton } from "../../index.slint";
+import {Themes} from "../../themes/index.slint";
+
+
+component TestWindow inherits Window {
+  height: 400px;
+  width: 400px;
+  
+  SURTip{
+    height:inner.height;
+    theme: Dark;
+    content:"this is a \ntip window";
+    inner:=SURButton { 
+      content: "click";
+      clicked => {
+        parent.clicked();
+      }
+    }
+  }
+ 
+}
