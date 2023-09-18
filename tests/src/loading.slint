@@ -1,0 +1,27 @@
+import {SURLoading,SURButton,SURCard} from "../../index.slint";
+
+export component TestLoading inherits Window {
+    height: 600px;
+    width: 400px;
+    SURButton {
+      y: 100px;
+      content: "show";
+      clicked => {
+        p.open();
+      }
+    }
+    SURButton {
+      y: 160px;
+      content: "close";
+      clicked => {
+        p.close();
+      }
+    }
+    SURCard{
+      y: 260px;
+      clip: true;
+      card-height: 260px;
+      card-width: 180px;
+      p:=SURLoading { }
+    }
+}

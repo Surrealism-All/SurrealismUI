@@ -21,6 +21,10 @@ SurrealismUI is a third-party component library built entirely using Slint
 
 ### Updates
 
+- V0.1.4
+  - add `SURTip`
+  - 
+
 - V0.1.3
   - add `SURBadge`
   - add `Progress`
@@ -60,6 +64,46 @@ Built in 7 theme colors in SurrealismUI
 - light
 
 ### themes-color
+
+```
+			  default
+————————————————————————————————————
+|  logic control layer (Rust|C++)  |
+————————————————————————————————————
+				⇕
+————————————————————————————————————
+|    UI layer (write components)   |
+————————————————————————————————————
+
+		   SurrealismUI
+————————————————————————————————————
+|  logic control layer (Rust|C++)  |
+————————————————————————————————————
+				⇕
+————————————————————————————————————
+|      UI Styles Wrapper layer     |   <-- What SurrealismUI do , see ①
+————————————————————————————————————
+|   UI layer (write components)    |
+————————————————————————————————————
+
+①：define a lot replaceable theme styles and binding styles use theme property , can be customized in slint file or logic control layer , means: all system components are wrapped (Customizing themes in third-party component libraries is very affordable as it acts on the UI layer. SLINT is like an integration of HTML and CSS, so I use this way)(By binding global singleton variables to styles, any component that uses variables can change styles simultaneously)
+
+				System support (like iced)
+————————————————————————————————————      ————————————————
+|           logic control          | -->  | Theme::Light |
+————————————————————————————————————      ————————————————
+|             UI layer             |     		  ↓
+———————————————————————————————————— 	    |————————————|
+						 ↑			     ↓            ↓
+				import	  ← Light_Theme Styles   Dark_Theme Styles
+
+## Diff
+Slint differs from other GUI frameworks in that the UI layer is completed through. slint, which I believe is good and brings many advantages (compatibility with different platforms, instant preview, maintainability, parallel development, etc.). But this also leads to SLIT being unable to easily customize the theme of the component. Theme customization and switching are dynamic to static processes, which require a lot of logical processing, and this is also same as (HTML+CSS+js | ts)
+## Slint be careful
+Slint's work on topic definition will simultaneously affect the built-in components currently provided and other languages' API. Although this feature may seem simple, it may bring significant risks, which I believe need to be weighed and considered. Is this necessary? Because for third-party component libraries, although the workload of helping users define themes is large, it is not complex. As the author of SurrealismUI, it is evident that we have successfully implemented the definition of themes in static slint language and can be modified at the logical level. Users customize themes through static file overwriting.
+```
+
+
 
 #### primary
 

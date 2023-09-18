@@ -1,0 +1,120 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230918
+* @version:0.1.4
+* @type:interface
+* @description:
+* # SURLoading
+* This is a loading component that you can embed anywhere you want to add a loading animation (now animation have some error)
+* ============================================
+*/
+
+import { SURPopup } from "../popup/index.slint";
+import { SURText } from "../text/index.slint";
+import { SURCard } from "../card/index.slint";
+
+import {ROOT_STYLES,Themes,PaddingSize,PaddingItem,Shadows,Borders,BorderItem,IconSources} from "../../themes/index.slint";
+export component Loading inherits Window {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  always-on-top:true;
+  opacity: 1;
+  visible: is-show;
+  z: 1000;
+  in property <image> loading-icon : IconSources.icons.Loading;
+  in property <duration> duration : 1200ms;
+  in property <bool> an : false;
+  in property <string> content : "Loading ...";
+  in-out property <bool> is-show:false;
+  in property <Themes> theme : Dark;
+  callback open();
+  callback close();
+  open => {
+    self.is-show = true;
+    // do animation
+    if(an){
+      loading-icon.rotation-angle = 360deg;
+    }
+  }
+  close => {
+    self.is-show = false;
+    if(an){
+      loading-icon.rotation-angle = 0deg;
+    }
+  }
+  states [
+    light when theme == Themes.Light: {
+      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.light.font;
+    }
+    primary when theme == Themes.Primary: {
+      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.primary.font;
+    }
+    success when theme == Themes.Success: {
+      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.success.font;
+    }
+    info when theme == Themes.Info: {
+      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.info.font;
+    }
+    warning when theme == Themes.Warning: {
+      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.warning.font;
+    }
+    error when theme == Themes.Error: {
+      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.error.font;
+    }
+    dark when theme == Themes.Dark: {
+      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.dark.font;
+    }
+  ]
+  mask:=SURCard {
+    z: 100;
+    height: 100%;
+    width: 100%;
+    theme: root.theme;
+    drop-shadow-blur: 0;
+    drop-shadow-offset-x: 0;
+    drop-shadow-offset-y: 0;
+    opacity: 100%;
+    border: None;
+    clip: true;
+    VerticalLayout {
+      alignment: center;
+      width: 50%;
+      spacing: ROOT-STYLES.sur-font.font-size;
+      Rectangle {
+        height: loading-icon.height;
+        width: parent.width;
+        loading-icon:=Image {
+          height: ROOT-STYLES.sur-font.font-size * 2;
+          width:  ROOT-STYLES.sur-font.font-size * 2;
+          source: root.loading-icon;
+          // rotation-angle: 0;
+          animate rotation-angle {
+            easing: ease-in-out;
+            iteration-count: -1;
+            duration: root.duration;
+          }
+          init => {
+            // self.rotation-angle = 0;
+          }
+        }
+      }
+      Rectangle {
+        height: loading-txt.height;
+        width: parent.width;
+        loading-txt:=SURText {
+          theme: root.theme;
+          content: root.content;
+        }
+      }
+    }
+  }
+  TouchArea {
+    z: 110;
+  }
+}
