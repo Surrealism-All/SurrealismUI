@@ -1,11 +1,11 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.1.3-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.1.4-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
-- updateDate：20230916
-- version：0.1.3
+- updateDate：20230919
+- version：0.1.4
 - email：syf20020816@outlook.com
 
 <img src="https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png">
@@ -23,13 +23,13 @@ SurrealismUI is a third-party component library built entirely using Slint
 
 - V0.1.4
   - add `SURTip`
-  - 
+  - add `SURLoading`
+  - add `SURDialog`
 
 - V0.1.3
   - add `SURBadge`
   - add `Progress`
   - add `Persona`
-
 - V0.1.2
   - rebuild components (have `SURIcon`)
   - rebuild `SURIcon`
@@ -37,13 +37,11 @@ SurrealismUI is a third-party component library built entirely using Slint
   - solve memery overflow issue
   - use minimize import principle (remove inner loop to judge component show!)❗
   - test use Rust✅
-
 - V0.1.1
   - add `SURRadio`
   - add `SURDivider`
   - add `SURCollection`
   - add `SURPopup`
-
 - V0.1.0
   - Adopting Fluent2's component design style
   - Multiple default methods are provided for consumers to call (see index.slint which on the outermost side)
@@ -1640,7 +1638,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230916101547495](E:\Rust\try\surrealism-ui\README\imgs\image-20230916101547495.png)
+![image-20230916101547495](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230916101547495.png)
 
 ### SURLoading (some error in animation)
 
@@ -1694,7 +1692,7 @@ export component TestLoading inherits Window {
 }
 ```
 
-![image-20230918220357041](E:\Rust\try\surrealism-ui\README\imgs\image-20230918220357041.png)
+![image-20230918220357041](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230918220357041.png)
 
 ### SURDialog
 Dialogs are used to confirm messages or events and display content
@@ -1779,4 +1777,4 @@ component TestDialog inherits Window {
 }
 ```
 
-![image-20230919091100568](E:\Rust\try\surrealism-ui\README\imgs\image-20230919091100568.png)
+![image-20230919091100568](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230919091100568.png)
