@@ -1,0 +1,158 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230919
+* @version:0.1.4
+* @type:interface
+* @description:
+* # SURDialog
+* Dialogs are used to confirm messages or events and display content
+* ## properties
+* - in property <string> dialog-title : dialog title;
+* - in property <length> dialog-title-size : dialog title font size;
+* - in property <string> dialog-details : content information in the dialog box;
+* - in property <Themes> cancel-btn-theme : cancel button theme;
+* - in property <Themes> confirm-btn-theme : confirm button theme;
+* - in property <string> cancel-btn-content : cancel button content;
+* - in property <string> confirm-btn-content : confirm button content;
+* - in-out property <bool> is-show : show dialog or not;
+* - in property <Themes> theme : Surrealism Themes
+* - in property <float> dialog-height : Dialog height proportion
+* - in property <float> dialog-width :  Dialog width proportion
+* ## functions
+* - public function open() : open dialog
+* - public function close() : close dialog
+* ## callbacks
+* - callback confirm() : run after confirm button click
+* - callback cancel() : run after cancel button click
+* ============================================
+*/
+
+import { SURCard } from "../card/index.slint";
+import {ROOT_STYLES,Themes,PaddingSize,PaddingItem,Shadows,Borders,BorderItem} from "../../themes/index.slint";
+import { SURText } from "../text/index.slint";
+import { SURButton } from "../button/index.slint";
+import { ScrollView } from "std-widgets.slint";
+
+export component Dialog inherits Window {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  always-on-top:true;
+  opacity: 1;
+  visible: is-show;
+  z: 1000;
+  in property <string> dialog-title : "Dialog Title";
+  in property <length> dialog-title-size : 18px;
+  in property <string> dialog-details : "This is a dialog info";
+  in property <Themes> cancel-btn-theme : Info;
+  in property <Themes> confirm-btn-theme : Primary;
+  in property <string> cancel-btn-content : "Cancel";
+  in property <string> confirm-btn-content : "Confirm";
+  in-out property <bool> is-show:false;
+  in property <Themes> theme :Dark;
+  in property <float> dialog-height : 0.34;
+  in property <float> dialog-width : 0.6;
+  public function open() {
+      self.is-show = true;
+  }
+  public function close() {
+      self.is-show = false;
+  }
+  callback confirm();
+  callback cancel();
+  mask:=SURCard {
+    z: 100;
+    height: 100%;
+    width: 100%;
+    theme: root.theme;
+    drop-shadow-blur: 0;
+    drop-shadow-offset-x: 0;
+    drop-shadow-offset-y: 0;
+    opacity: 80%;
+  }
+  area:=TouchArea {
+    z: 110;
+    clicked => {
+      root.close()
+    }
+    TouchArea {
+      height: dialog.height;
+      width: dialog.width;
+      dialog:=SURCard{
+        z: 111;
+        card-height: area.height * root.dialog-height;
+        card-width: area.width * root.dialog-width;
+        VerticalLayout {
+          title-view:=Rectangle {
+            height: parent.height * 0.2;
+            width: 100%;
+            title:=SURText { 
+              font-size: root.dialog-title-size;
+              font-weight: 700;
+              content: root.dialog-title;
+            }
+          }
+          details-view:=Rectangle{
+            height: parent.height * 0.6;
+            ScrollView { 
+              height: parent.height;
+              width: parent.width;
+              viewport-height: ROOT-STYLES.count-height(self.height,self.padding-top);
+              viewport-width: ROOT-STYLES.count-width(self.width,self.padding-left) - 14px;
+              padding-top: ROOT-STYLES.sur-padding.normal.top-bottom;
+              padding-bottom: ROOT-STYLES.sur-padding.normal.top-bottom;
+              if root.dialog-details!="": details:=SURText{
+                content: root.dialog-details;
+                wrap: word-wrap;
+              }
+              @children
+            }
+          }
+          btn-view:=Rectangle{
+            height: parent.height * 0.2;
+            HorizontalLayout {
+              spacing: ROOT-STYLES.get-space(parent.width);
+              height: parent.height;
+              padding-left: ROOT-STYLES.sur-padding.normal.left-right;
+              padding-right: ROOT-STYLES.sur-padding.normal.left-right;
+              alignment: end;
+              Rectangle {
+                width: cancel-btn.width;
+                cancel-btn:=SURButton { 
+                  theme: root.cancel-btn-theme;
+                  drop-shadow-blur: 0;
+                  drop-shadow-offset-x: 0;
+                  drop-shadow-offset-y: 0;
+                  content: root.cancel-btn-content;
+                  clicked => {
+                    root.cancel();
+                    root.close();
+                  }
+                }
+              }
+              Rectangle {
+                width: confirm-btn.width;
+                confirm-btn:=SURButton {
+                  theme: root.confirm-btn-theme;
+                  drop-shadow-blur: 0;
+                  drop-shadow-offset-x: 0;
+                  drop-shadow-offset-y: 0;
+                  content: root.confirm-btn-content;
+                  clicked => {
+                    root.confirm();
+                    root.close();
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

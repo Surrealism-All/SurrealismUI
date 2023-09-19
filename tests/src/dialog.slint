@@ -1,0 +1,57 @@
+import {SURDialog,SURButton,SURTable,SURTableColumn} from "../../index.slint";
+import {Themes} from "../../themes/index.slint";
+
+component TestDialog inherits Window {
+  height: 800px;
+  width: 800px;
+  background: #535353;
+ 
+  SURButton {
+    
+    content: "show";
+    clicked => {
+      p.open();
+    }
+  }
+ 
+
+  p:=SURDialog {
+    dialog-details : "";
+    confirm-btn-theme: Success;
+    dialog-width:80%;
+    dialog-height:52%;
+    // do after confirm btn clicked
+    confirm=>{
+      debug("confirm btn clicked~!")
+    }
+    SURTable {
+      // you can use this way to get height
+      // it depends on how many datas in column
+      height: tcol1.get-height();
+      width: 350px;
+      
+      tcol1:=SURTableColumn {
+        border:false;
+        theme:Themes.Primary;
+        width: 100px;
+        name:"id";
+        // row-height:60px;
+        datas: ["101","102","103"];
+      }
+      SURTableColumn {
+        theme:Themes.Primary;
+        width: 100px;
+        name:"name";
+        datas: ["Mat","Jarry","Kaven"];
+      }
+      SURTableColumn {
+        theme:Themes.Primary;
+        width: 150px;
+        name:"Operations";
+        // cheat datas
+        datas: [" "," "," "];
+        operation-enabled:true;
+      }
+    }
+  }
+}

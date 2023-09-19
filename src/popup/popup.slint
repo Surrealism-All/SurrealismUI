@@ -13,9 +13,9 @@
 * - in-out property <bool> is-show : the popup layer is show or not
 * - in property <Themes> theme : Surrealism Themes
 * ## functions
+* - public function open() : open the popup
+* - public function close() : close the popup
 * ## callbacks
-* - callback open() : open the popup
-* - callback close() : close the popup
 * ============================================
 */
 
@@ -35,14 +35,20 @@ export component Popup inherits Window {
   z: 1000;
   in-out property <bool> is-show:false;
   in property <Themes> theme :Dark;
-  callback open();
-  callback close();
-  open => {
-    self.is-show  = true;
+  public function open() {
+    self.is-show = true;
   }
-  close => {
+  public function close() {
     self.is-show = false;
   }
+  // callback open();
+  // callback close();
+  // open => {
+  //   self.is-show  = true;
+  // }
+  // close => {
+  //   self.is-show = false;
+  // }
   mask:=SURCard {
     z: 100;
     height: 100%;

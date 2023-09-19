@@ -1235,10 +1235,11 @@ And users will not be able to use the pop-up layer to cover the components under
 
 #### functions
 
-#### callbacks
+- `public function open()` : open the popup
 
-* `callback open()` : open the popup
-* `callback close()` : close the popup
+- `public function close()` : close the popup
+
+#### callbacks
 
 #### example
 
@@ -1640,3 +1641,142 @@ component TestWindow inherits Window {
 ```
 
 ![image-20230916101547495](E:\Rust\try\surrealism-ui\README\imgs\image-20230916101547495.png)
+
+### SURLoading (some error in animation)
+
+This is a loading component that you can embed anywhere you want to add a loading animation (now animation have some error)
+
+#### properties
+
+* `in-out property <bool> is-show` : the popup layer is show or not
+* `in property <Themes> theme` : Surrealism Themes
+* `in property <image> loading-icon `: loading icon
+* `in property <duration> duration `: animation duration
+* `in property <bool> an` : open animation or not (error : https://github.com/slint-ui/slint/issues/3494)
+* `in property <string> content` : loading content
+
+#### functions
+
+#### callbacks
+
+* `callback open() `: open the loading
+* `callback close() `: close the loading
+
+#### example
+
+```
+import {SURLoading,SURButton,SURCard} from "../../index.slint";
+
+export component TestLoading inherits Window {
+    height: 600px;
+    width: 400px;
+    SURButton {
+      y: 100px;
+      content: "show";
+      clicked => {
+        p.open();
+      }
+    }
+    SURButton {
+      y: 160px;
+      content: "close";
+      clicked => {
+        p.close();
+      }
+    }
+    SURCard{
+      y: 260px;
+      clip: true;
+      card-height: 260px;
+      card-width: 180px;
+      p:=SURLoading { }
+    }
+}
+```
+
+![image-20230918220357041](E:\Rust\try\surrealism-ui\README\imgs\image-20230918220357041.png)
+
+### SURDialog
+Dialogs are used to confirm messages or events and display content
+#### properties
+- `in property <string> dialog-title` : dialog title;
+- `in property <length> dialog-title-size` : dialog title font size;
+- `in property <string> dialog-details` : content information in the dialog box;
+- `in property <Themes> cancel-btn-theme` : cancel button theme;
+- `in property <Themes> confirm-btn-theme` : confirm button theme;
+- `in property <string> cancel-btn-content` : cancel button content;
+- `in property <string> confirm-btn-content` : confirm button content;
+- `in-out property <bool> is-show` : show dialog or not;
+- `in property <Themes> theme` : Surrealism Themes
+- `in property <float> dialog-height` : Dialog height proportion
+- `in property <float> dialog-width` :  Dialog width proportion
+#### functions
+- `public function open()` : open dialog
+- `public function close()` : close dialog
+#### callbacks
+- `callback confirm()` : run after confirm button click
+- `callback cancel()` : run after cancel button click
+
+#### example
+
+```
+import {SURDialog,SURButton,SURTable,SURTableColumn} from "../../index.slint";
+import {Themes} from "../../themes/index.slint";
+
+component TestDialog inherits Window {
+  height: 800px;
+  width: 800px;
+  background: #535353;
+ 
+  SURButton {
+    
+    content: "show";
+    clicked => {
+      p.open();
+    }
+  }
+ 
+
+  p:=SURDialog {
+    dialog-details : "";
+    confirm-btn-theme: Success;
+    dialog-width:80%;
+    dialog-height:52%;
+    // do after confirm btn clicked
+    confirm=>{
+      debug("confirm btn clicked~!")
+    }
+    SURTable {
+      // you can use this way to get height
+      // it depends on how many datas in column
+      height: tcol1.get-height();
+      width: 350px;
+      
+      tcol1:=SURTableColumn {
+        border:false;
+        theme:Themes.Primary;
+        width: 100px;
+        name:"id";
+        // row-height:60px;
+        datas: ["101","102","103"];
+      }
+      SURTableColumn {
+        theme:Themes.Primary;
+        width: 100px;
+        name:"name";
+        datas: ["Mat","Jarry","Kaven"];
+      }
+      SURTableColumn {
+        theme:Themes.Primary;
+        width: 150px;
+        name:"Operations";
+        // cheat datas
+        datas: [" "," "," "];
+        operation-enabled:true;
+      }
+    }
+  }
+}
+```
+
+![image-20230919091100568](E:\Rust\try\surrealism-ui\README\imgs\image-20230919091100568.png)

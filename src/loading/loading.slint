@@ -7,6 +7,17 @@
 * @description:
 * # SURLoading
 * This is a loading component that you can embed anywhere you want to add a loading animation (now animation have some error)
+* ## properties
+* - in-out property <bool> is-show : the popup layer is show or not
+* - in property <Themes> theme : Surrealism Themes
+* - in property <image> loading-icon : loading icon
+* - in property <duration> duration : animation duration
+* - in property <bool> an : open animation or not (error : https://github.com/slint-ui/slint/issues/3494)
+* - in property <string> content : loading content
+* ## functions
+* ## callbacks
+* - callback open() : open the loading
+* - callback close() : close the loading
 * ============================================
 */
 
@@ -28,25 +39,31 @@ export component Loading inherits Window {
   visible: is-show;
   z: 1000;
   in property <image> loading-icon : IconSources.icons.Loading;
-  in property <duration> duration : 1200ms;
+  in-out property <duration> duration : 1200ms;
   in property <bool> an : false;
   in property <string> content : "Loading ...";
-  in-out property <bool> is-show:false;
+  in-out property <bool> is-show : false;
   in property <Themes> theme : Dark;
+  private property <duration> loading-duration : 0ms ;
   callback open();
   callback close();
+  // init => {self.is-show = true;}
   open => {
-    self.is-show = true;
-    // do animation
     if(an){
+      root.loading-duration =  root.duration;
       loading-icon.rotation-angle = 360deg;
     }
+    self.is-show = true;
+    // do animation
+    
   }
   close => {
-    self.is-show = false;
     if(an){
+      root.loading-duration = 0ms;
       loading-icon.rotation-angle = 0deg;
     }
+    self.is-show = false;
+    
   }
   states [
     light when theme == Themes.Light: {
@@ -93,15 +110,13 @@ export component Loading inherits Window {
           height: ROOT-STYLES.sur-font.font-size * 2;
           width:  ROOT-STYLES.sur-font.font-size * 2;
           source: root.loading-icon;
-          // rotation-angle: 0;
+          rotation-angle: 0;
           animate rotation-angle {
             easing: ease-in-out;
             iteration-count: -1;
-            duration: root.duration;
+            duration: root.loading-duration;
           }
-          init => {
-            // self.rotation-angle = 0;
-          }
+          
         }
       }
       Rectangle {
