@@ -1,0 +1,146 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230930
+* @version:0.1.5
+* @type:interface
+* @description:
+* # SURMenu
+* SURMenu is a menu bar located on the left side that you can quickly generate through the menu-data property
+* ## properties
+* - in-out property <length> icon-box-size : menu item size ⛔
+* - in-out property <length> icon-size : menu item icon size ⛔;
+* - in property <[MenuData]> menu-data : menu item data (generate menus through it)
+* - in-out property <int> active : which item is active
+* - private property <brush> hover-icon-color : menu item icon color changed when hover
+* ## callbacks
+* - callback change(int,MenuData) : run if you click menu item
+* - callback clicked-account() : run if you click account icon
+* - callback clicked-setting() : run if you click setting icon
+* ============================================
+*/
+import { SURCard } from "../card/index.slint";
+import { SURIcon } from "../icon/index.slint";
+import {IconSources,ROOT-STYLES,Themes} from "../../themes/index.slint";
+import { SURTip } from "../tip/index.slint";
+
+export struct MenuData {
+    id:int,
+    icon : image,
+    name : string,
+}
+
+component MenuItem inherits Rectangle {
+  in property <brush> hover-icon-color;
+  in property <image> icon;
+  in property <length> icon-size;
+  in property <Themes> theme;
+  in property <bool> active;
+  out property <bool> has-hover <=> area.has-hover;
+  states [
+    hover when area.has-hover:{icon.icon-color : hover-icon-color;}
+  ]
+  callback clicked();
+  
+  area:=TouchArea {
+    mouse-cursor: pointer;
+    z: 116;
+    clicked => {
+      root.clicked();
+    }
+  }
+  if active:SURCard {
+    x: 0;
+    height: root.height;
+    width: 2px;
+    theme: root.theme;
+    border: None;
+    border-radius: 0;
+    background: ROOT-STYLES.radio-active;
+    drop-shadow-blur: 0;
+    drop-shadow-color: ROOT-STYLES.radio-active;
+    drop-shadow-offset-x: 0;
+    drop-shadow-offset-y: 0;
+  }
+  icon:=SURIcon {
+    theme: root.theme; 
+    height:root.icon-size;
+    width: root.icon-size;
+    icon: root.icon;
+  }
+}
+
+export component Menu inherits SURCard {
+  height: 100%;
+  width: 60px;
+  border-radius: 0;
+  
+  in-out property <length> icon-box-size : 60px;
+  in-out property <length> icon-size : ROOT-STYLES.sur-font.font-size * 2 ;
+  in property <[MenuData]> menu-data : [
+    {id:0,icon:@image-url("../../icons/file-code.svg"),name:"Code"},
+    {id:1,icon:@image-url("../../icons/search.svg"),name:"Search"},
+    {id:2,icon:@image-url("../../icons/bug.svg"),name:"Debug"},
+  ];
+  in-out property <int> active : 0;
+  private property <brush> hover-icon-color : empty.icon-color.brighter(1);
+  // params : 
+  // 1. index
+  // 2. menu item
+  callback change(int,MenuData);
+  callback clicked-account();
+  callback clicked-setting();
+  VerticalLayout {
+    top-view:=VerticalLayout {
+      height: parent.height - bottom-view.height;
+      alignment: start;
+      for item[index] in menu-data: SURTip { 
+        height: menu-item.height;
+        width: icon-box-size;
+        content: item.name;
+        theme: root.theme;
+        pos: Right;
+        show-tip : menu-item.has-hover;
+        menu-item:=MenuItem{
+          active: item.id == root.active;
+          height: icon-box-size;
+          icon: item.icon;
+          icon-size: root.icon-size;
+          theme: root.theme;
+          clicked => {
+            root.active = item.id;
+            root.change(index,item);
+          }
+        }
+      }
+    }
+    bottom-view:=VerticalLayout{
+      height:empty-box.height + 120px ;
+      empty-box:=Rectangle{
+        height: icon-size * 2;
+        empty:=SURIcon{
+          theme: root.theme;
+          icon: IconSources.icons.Null;
+        }
+      }
+      account-box:=MenuItem{
+        height: icon-box-size;
+        icon: IconSources.icons.Avatar;
+        icon-size: root.icon-size;
+        theme: root.theme;
+        clicked => {
+          root.clicked-account();
+        }
+      }
+      setting-box:=MenuItem{
+        height: icon-box-size;
+        icon: IconSources.icons.Setting-two;
+        icon-size: root.icon-size;
+        theme: root.theme;
+        clicked => {
+          root.clicked-setting();
+        }
+      }
+    }
+  }
+}

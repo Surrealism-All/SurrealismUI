@@ -37,6 +37,7 @@ export component Button inherits SURCard {
   in property <bool> font-italic:ROOT-STYLES.sur-font.font-italic;
   in property <int> font-weight:ROOT-STYLES.sur-font.font-weight;
   in property <string> font-family:ROOT-STYLES.sur-font.font-family;
+  out property <bool> has-hover <=>toucharea.has-hover;
   in-out property <string> content : "SURButton";
   
   states [

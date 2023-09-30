@@ -5,12 +5,39 @@ import {Themes} from "../../themes/index.slint";
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
-  
+  SURTip{
+    y: 80px;
+     height:inner0.height;
+     width: inner0.width;
+     theme: Dark;
+     pos:Top;
+     content:"this is a \n........tip window";
+     show-tip:inner0.has-hover;
+     inner0:=SURButton { 
+       content: "click";
+     }
+   }
   SURTip{
     height:inner.height;
+    width: inner.width;
     theme: Dark;
-    content:"this is a \ntip window";
+    pos:Left;
+    content:"this is a \n........tip window";
     inner:=SURButton { 
+      content: "click";
+      clicked => {
+        parent.clicked();
+      }
+    }
+  }
+  SURTip{
+   y: 300px;
+    height:inner2.height;
+    width: inner2.width;
+    theme: Dark;
+    pos:Top;
+    content:"this is a \n........tip window";
+    inner2:=SURButton { 
       content: "click";
       clicked => {
         parent.clicked();

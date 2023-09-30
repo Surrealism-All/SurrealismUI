@@ -10,6 +10,8 @@
 * ## properties
 * - in property <Themes> theme : Surrealism Theme
 * - in property <string> content : tip content
+* - in-out property <bool> show-tip : hover and tip will show
+* - in property <TipPosition> pos : the position of the tip
 * ## functions
 * - public function open() : open the tip
 * - public function close() : close the tip
@@ -21,46 +23,265 @@
 import { SURCard } from "../card/index.slint";
 import { ROOT-STYLES,Themes,PaddingSize } from "../../themes/index.slint";
 import { SURText } from "../text/index.slint";
+  
+export enum TipPosition {
+    Left,
+    Right,
+    Top,
+    Bottom
+}
+
+
+component LeftAngle inherits Path {
+  in property <Themes> theme;
+  in property <length> parent-height;
+  in property <length> parent-width;
+  y: parent-height / 2 - self.height / 2;
+  x: parent-width - self.width / 2;
+  stroke-width: 1px;
+  height: ROOT-STYLES.sur-font.font-size;
+  width: ROOT-STYLES.sur-font.font-size;
+  states [
+    light when theme == Themes.Light: {
+      fill : ROOT-STYLES.sur-theme-colors.light.normal;
+      stroke : transparent;
+    }
+    primary when theme == Themes.Primary: {
+      fill : ROOT-STYLES.sur-theme-colors.primary.normal;
+    }
+    success when theme == Themes.Success: {
+      fill : ROOT-STYLES.sur-theme-colors.success.normal;
+    }
+    info when theme == Themes.Info: {
+      fill : ROOT-STYLES.sur-theme-colors.info.normal;
+    }
+    warning when theme == Themes.Warning: {
+      fill : ROOT-STYLES.sur-theme-colors.warning.normal;
+    }
+    error when theme == Themes.Error: {
+      fill : ROOT-STYLES.sur-theme-colors.error.normal;
+    }
+    dark when theme == Themes.Dark: {
+      fill : ROOT-STYLES.sur-theme-colors.dark.normal;
+    }
+  ]
+  MoveTo{
+    x: 0;
+    y: 0;
+  }
+  LineTo{
+    x: 16;
+    y: 16;
+  }
+  LineTo{
+    x: 0;
+    y: 32;
+  }
+  Close{}
+}
+
+component RightAngle inherits Path {
+  in property <Themes> theme;
+  in property <length> parent-height;
+  y: parent-height / 2 - self.height / 2;
+  x: -self.width / 1.7;
+  stroke-width: 1px;
+  height: ROOT-STYLES.sur-font.font-size;
+  width: ROOT-STYLES.sur-font.font-size;
+  states [
+    light when theme == Themes.Light: {
+      fill : ROOT-STYLES.sur-theme-colors.light.normal;
+      stroke : transparent;
+    }
+    primary when theme == Themes.Primary: {
+      fill : ROOT-STYLES.sur-theme-colors.primary.normal;
+    }
+    success when theme == Themes.Success: {
+      fill : ROOT-STYLES.sur-theme-colors.success.normal;
+    }
+    info when theme == Themes.Info: {
+      fill : ROOT-STYLES.sur-theme-colors.info.normal;
+    }
+    warning when theme == Themes.Warning: {
+      fill : ROOT-STYLES.sur-theme-colors.warning.normal;
+    }
+    error when theme == Themes.Error: {
+      fill : ROOT-STYLES.sur-theme-colors.error.normal;
+    }
+    dark when theme == Themes.Dark: {
+      fill : ROOT-STYLES.sur-theme-colors.dark.normal;
+    }
+  ]
+  MoveTo{
+    x: 16;
+    y: 0;
+  }
+  LineTo{
+    x: 8;
+    y: 8;
+  }
+  LineTo{
+    x: 16;
+    y: 16;
+  }
+  Close{}
+}
+
+component TopAngle inherits Path {
+  in property <Themes> theme;
+  in property <length> parent-height;
+  y: parent-height - self.height / 3;
+  stroke-width: 1px;
+  height: ROOT-STYLES.sur-font.font-size;
+  width: ROOT-STYLES.sur-font.font-size;
+  states [
+    light when theme == Themes.Light: {
+      fill : ROOT-STYLES.sur-theme-colors.light.normal;
+      stroke : transparent;
+    }
+    primary when theme == Themes.Primary: {
+      fill : ROOT-STYLES.sur-theme-colors.primary.normal;
+    }
+    success when theme == Themes.Success: {
+      fill : ROOT-STYLES.sur-theme-colors.success.normal;
+    }
+    info when theme == Themes.Info: {
+      fill : ROOT-STYLES.sur-theme-colors.info.normal;
+    }
+    warning when theme == Themes.Warning: {
+      fill : ROOT-STYLES.sur-theme-colors.warning.normal;
+    }
+    error when theme == Themes.Error: {
+      fill : ROOT-STYLES.sur-theme-colors.error.normal;
+    }
+    dark when theme == Themes.Dark: {
+      fill : ROOT-STYLES.sur-theme-colors.dark.normal;
+    }
+  ]
+  MoveTo{
+    x: -8;
+    y: 0;
+  }
+  LineTo{
+    x: 8;
+    y: 16;
+  }
+  LineTo{
+    x: 24;
+    y: 0;
+  }
+  Close{}
+}
+
+component BottomAngle inherits Path {
+  in property <Themes> theme;
+  in property <length> parent-height;
+  y: -self.height + self.height / 3;
+  stroke-width: 1px;
+  height: ROOT-STYLES.sur-font.font-size;
+  width: ROOT-STYLES.sur-font.font-size;
+  states [
+    light when theme == Themes.Light: {
+      fill : ROOT-STYLES.sur-theme-colors.light.normal;
+      stroke : transparent;
+    }
+    primary when theme == Themes.Primary: {
+      fill : ROOT-STYLES.sur-theme-colors.primary.normal;
+    }
+    success when theme == Themes.Success: {
+      fill : ROOT-STYLES.sur-theme-colors.success.normal;
+    }
+    info when theme == Themes.Info: {
+      fill : ROOT-STYLES.sur-theme-colors.info.normal;
+    }
+    warning when theme == Themes.Warning: {
+      fill : ROOT-STYLES.sur-theme-colors.warning.normal;
+    }
+    error when theme == Themes.Error: {
+      fill : ROOT-STYLES.sur-theme-colors.error.normal;
+    }
+    dark when theme == Themes.Dark: {
+      fill : ROOT-STYLES.sur-theme-colors.dark.normal;
+    }
+  ]
+  MoveTo{
+    x: -8;
+    y: 0;
+  }
+  LineTo{
+    x: 8;
+    y: -16;
+  }
+  LineTo{
+    x: 24;
+    y: 0;
+  }
+  Close{}
+}
 export component Tip inherits Rectangle{
   in property <Themes> theme :Light;
+  in property <TipPosition> pos : Top;
+  in-out property <bool> show-tip <=> tip.visible;
   in property <string> content : "default tips";
+  
   public function open() {
      tip.visible = true; 
   }
   public function close() {
     tip.visible = false;
   }
+  pure public function count-x(w:length) ->length{
+    if(root.pos==TipPosition.Right){
+      return root.width + ROOT-STYLES.sur-font.font-size;
+    }else if(root.pos==TipPosition.Left){
+      return -w - ROOT-STYLES.sur-font.font-size;
+    }else{
+      return root.width / 2 - w / 2;
+    }
+  }
+  pure public function count-y(h:length)->length {
+      if(root.pos==TipPosition.Top){
+        return -h - ROOT-STYLES.sur-font.font-size;
+      }else if(root.pos==TipPosition.Right){
+        return root.height / 2 - h / 2;
+      }else if(root.pos==TipPosition.Bottom){
+        return h + ROOT-STYLES.sur-font.font-size;
+      }else{
+        return root.height / 2 - h / 2;
+      }
+  }
   callback clicked();
   clicked => {
     tip.visible = !tip.visible
   }
-  states [
-    light when theme == Themes.Light: {
-      angle.fill : ROOT-STYLES.sur-theme-colors.light.normal;
-      angle.stroke : transparent;
-    }
-    primary when theme == Themes.Primary: {
-      angle.fill : ROOT-STYLES.sur-theme-colors.primary.normal;
-    }
-    success when theme == Themes.Success: {
-      angle.fill : ROOT-STYLES.sur-theme-colors.success.normal;
-    }
-    info when theme == Themes.Info: {
-      angle.fill : ROOT-STYLES.sur-theme-colors.info.normal;
-    }
-    warning when theme == Themes.Warning: {
-      angle.fill : ROOT-STYLES.sur-theme-colors.warning.normal;
-    }
-    error when theme == Themes.Error: {
-      angle.fill : ROOT-STYLES.sur-theme-colors.error.normal;
-    }
-    dark when theme == Themes.Dark: {
-      angle.fill : ROOT-STYLES.sur-theme-colors.dark.normal;
-    }
-  ]
+  // states [
+  //   light when theme == Themes.Light: {
+  //     angle.fill : ROOT-STYLES.sur-theme-colors.light.normal;
+  //     angle.stroke : transparent;
+  //   }
+  //   primary when theme == Themes.Primary: {
+  //     angle.fill : ROOT-STYLES.sur-theme-colors.primary.normal;
+  //   }
+  //   success when theme == Themes.Success: {
+  //     angle.fill : ROOT-STYLES.sur-theme-colors.success.normal;
+  //   }
+  //   info when theme == Themes.Info: {
+  //     angle.fill : ROOT-STYLES.sur-theme-colors.info.normal;
+  //   }
+  //   warning when theme == Themes.Warning: {
+  //     angle.fill : ROOT-STYLES.sur-theme-colors.warning.normal;
+  //   }
+  //   error when theme == Themes.Error: {
+  //     angle.fill : ROOT-STYLES.sur-theme-colors.error.normal;
+  //   }
+  //   dark when theme == Themes.Dark: {
+  //     angle.fill : ROOT-STYLES.sur-theme-colors.dark.normal;
+  //   }
+  // ]
   @children
   tip:=SURCard { 
-    y: -self.height - angle.height;
+    y: count-y(self.height);
+    x:count-x(self.width);
     clip: false;
     card-width: txt.width;
     card-height: txt.height;
@@ -73,25 +294,23 @@ export component Tip inherits Rectangle{
       font-size: ROOT-STYLES.sur-font.font-size - 2px;
       wrap: word-wrap;
      }
-    angle:=Path {
-      y: parent.height - self.height / 3;
-      stroke-width: 1px;
-      height: ROOT-STYLES.sur-font.font-size;
-      width: ROOT-STYLES.sur-font.font-size;
-      
-      MoveTo{
-        x: -8;
-        y: 0;
-      }
-      LineTo{
-        x: 8;
-        y: 16;
-      }
-      LineTo{
-        x: 24;
-        y: 0;
-      }
-      Close{}
+    // angle:=
+    if root.pos==TipPosition.Top: TopAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+    }
+    if root.pos==TipPosition.Right: RightAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+    }
+    if root.pos==TipPosition.Bottom: BottomAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+    }
+    if root.pos==TipPosition.Left: LeftAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width: parent.width;
     }
   }
 }

@@ -1,0 +1,23 @@
+import { SURMenu , SURIcon} from "../../index.slint";
+import {IconSources} from "../../themes/index.slint";
+
+component TestMenu inherits Window {
+    height: 600px;
+    width: 300px;
+    Rectangle {
+      x: 0;
+      y: 0;
+      height:parent.height;
+      width: menu.width;
+      menu:=SURMenu {
+        theme: Dark;
+        change(index,item)=>{
+          debug(index);
+          debug(item);
+        }
+        clicked-account()=>{
+          debug("clicked account");
+        }
+      }
+    }
+}

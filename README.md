@@ -1,4 +1,4 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.1.4-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.1.5-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
@@ -20,6 +20,10 @@ SurrealismUI is a third-party component library built entirely using Slint
 - 👍 ： Recommended use
 
 ### Updates
+
+- V0.1.5
+  - add `SURMenu`
+  - enhance `SURTip` (the location of the tip can be changed now  and you can show it with hover ! )
 
 - V0.1.4
   - add `SURTip`
@@ -1602,6 +1606,8 @@ A tip provides supplemental, contextual information elevated near its target com
 
 * `in property <Themes> theme` : Surrealism Theme
 * `in property <string> content` : tip content
+* `in-out property <bool> show-tip` : hover and tip will show
+* `in property <TipPosition> pos` : the position of the tip
 
 #### functions
 
@@ -1622,12 +1628,39 @@ import {Themes} from "../../themes/index.slint";
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
-  
+  SURTip{
+    y: 80px;
+     height:inner0.height;
+     width: inner0.width;
+     theme: Dark;
+     pos:Top;
+     content:"this is a \n........tip window";
+     show-tip:inner0.has-hover;
+     inner0:=SURButton { 
+       content: "click";
+     }
+   }
   SURTip{
     height:inner.height;
+    width: inner.width;
     theme: Dark;
-    content:"this is a \ntip window";
+    pos:Left;
+    content:"this is a \n........tip window";
     inner:=SURButton { 
+      content: "click";
+      clicked => {
+        parent.clicked();
+      }
+    }
+  }
+  SURTip{
+   y: 300px;
+    height:inner2.height;
+    width: inner2.width;
+    theme: Dark;
+    pos:Top;
+    content:"this is a \n........tip window";
+    inner2:=SURButton { 
       content: "click";
       clicked => {
         parent.clicked();
@@ -1639,6 +1672,8 @@ component TestWindow inherits Window {
 ```
 
 ![image-20230916101547495](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230916101547495.png)
+
+![image-20230930183024974](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230930183024974.png)
 
 ### SURLoading (some error in animation)
 
@@ -1778,3 +1813,46 @@ component TestDialog inherits Window {
 ```
 
 ![image-20230919091100568](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230919091100568.png)
+
+### SURMenu
+SURMenu is a menu bar located on the left side that you can quickly generate through the menu-data property
+#### properties
+- `in-out property <length> icon-box-size` : menu item size ⛔
+- `in-out property <length> icon-size` : menu item icon size ⛔;
+- `in property <[MenuData]> menu-data` : menu item data (generate menus through it)
+- `in-out property <int> active` : which item is active
+- `private property <brush> hover-icon-color` : menu item icon color changed when hover
+#### callbacks
+- `callback change(int,MenuData)` : run if you click menu item
+- `callback clicked-account()` : run if you click account icon
+- `callback clicked-setting()` : run if you click setting icon
+
+#### example
+
+```
+import { SURMenu , SURIcon} from "../../index.slint";
+import {IconSources} from "../../themes/index.slint";
+
+component TestMenu inherits Window {
+    height: 600px;
+    width: 300px;
+    Rectangle {
+      x: 0;
+      y: 0;
+      height:parent.height;
+      width: menu.width;
+      menu:=SURMenu {
+        theme: Dark;
+        change(index,item)=>{
+          debug(index);
+          debug(item);
+        }
+        clicked-account()=>{
+          debug("clicked account");
+        }
+      }
+    }
+}
+```
+
+![image-20230930181846475](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230930181846475.png)
