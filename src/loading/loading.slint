@@ -12,7 +12,7 @@
 * - in property <Themes> theme : Surrealism Themes
 * - in property <image> loading-icon : loading icon
 * - in property <duration> duration : animation duration
-* - in property <bool> an : open animation or not (error : https://github.com/slint-ui/slint/issues/3494)
+* - in property <bool> an : open animation or not 
 * - in property <string> content : loading content
 * ## functions
 * ## callbacks
@@ -40,30 +40,23 @@ export component Loading inherits Window {
   z: 1000;
   in property <image> loading-icon : IconSources.icons.Loading;
   in-out property <duration> duration : 1200ms;
-  in property <bool> an : false;
+  in property <bool> an : true;
   in property <string> content : "Loading ...";
   in-out property <bool> is-show : false;
   in property <Themes> theme : Dark;
   private property <duration> loading-duration : 0ms ;
   callback open();
   callback close();
-  // init => {self.is-show = true;}
+  init => {self.is-show = true;}
   open => {
     if(an){
-      root.loading-duration =  root.duration;
-      loading-icon.rotation-angle = 360deg;
+      self.is-show = true;
     }
-    self.is-show = true;
-    // do animation
-    
   }
   close => {
     if(an){
-      root.loading-duration = 0ms;
-      loading-icon.rotation-angle = 0deg;
+      self.is-show = false;
     }
-    self.is-show = false;
-    
   }
   states [
     light when theme == Themes.Light: {
@@ -110,13 +103,11 @@ export component Loading inherits Window {
           height: ROOT-STYLES.sur-font.font-size * 2;
           width:  ROOT-STYLES.sur-font.font-size * 2;
           source: root.loading-icon;
-          rotation-angle: 0;
+          rotation-angle: !root.is-show?0deg: 240deg  * animation-tick() / root.duration;
           animate rotation-angle {
             easing: ease-in-out;
             iteration-count: -1;
-            duration: root.loading-duration;
           }
-          
         }
       }
       Rectangle {

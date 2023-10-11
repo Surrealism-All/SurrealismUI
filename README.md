@@ -1,11 +1,11 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.1.5-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.1.6-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
-- updateDate：20230930
-- version：0.1.5
+- updateDate：202301010
+- version：0.1.6
 - email：syf20020816@outlook.com
 
 <img src="https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png">
@@ -20,6 +20,9 @@ SurrealismUI is a third-party component library built entirely using Slint
 - 👍 ： Recommended use
 
 ### Updates
+
+- V0.1.6
+  - solve `SURLoading` animation!
 
 - V0.1.5
   - add `SURMenu`
@@ -1434,7 +1437,7 @@ component TestCollection inherits Window {
     theme:Themes.Dark;
     name-theme:Themes.Dark;
     des-theme:Themes.Light;
-    avatar : @image-url("../../README/imgs/logo.png");
+    avatar : @image-url("../.https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png");
     avatar-height:160px;
     card-height: 310px;
     clicked=>{
@@ -1675,7 +1678,7 @@ component TestWindow inherits Window {
 
 ![image-20230930183024974](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230930183024974.png)
 
-### SURLoading (some error in animation)
+### SURLoading (some error in animation < version V0.1.6)
 
 This is a loading component that you can embed anywhere you want to add a loading animation (now animation have some error)
 
@@ -1685,7 +1688,7 @@ This is a loading component that you can embed anywhere you want to add a loadin
 * `in property <Themes> theme` : Surrealism Themes
 * `in property <image> loading-icon `: loading icon
 * `in property <duration> duration `: animation duration
-* `in property <bool> an` : open animation or not (error : https://github.com/slint-ui/slint/issues/3494)
+* `in property <bool> an` : open animation or not (error : https://github.com/slint-ui/slint/issues/3494) (solve in V0.1.6)
 * `in property <string> content` : loading content
 
 #### functions
