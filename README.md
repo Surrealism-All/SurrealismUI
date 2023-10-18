@@ -1917,3 +1917,57 @@ component TestSwitch inherits Window {
 
 
 ![image-20231018185602735](E:\Rust\try\surrealism-ui\README\imgs\image-20231018185602735.png)
+
+### SURDrawer
+
+Sometimes, the Dialogue component does not meet our needs
+
+such as your form being too long, or if you need to temporarily display some documents, please use the SURDrawer
+
+#### properties
+
+* `in property <Themes> drawer-theme` : drawer theme
+* `in property <brush> drawer-background-color` : drawer background color
+* `in property <CommonPosition > pos` : drawer position (Left, Right, Top, Bottom)
+* `in property <percent> proportion` : drawer proportion 
+
+#### functions
+
+* `function default-height-width()->{height:percent,width:percent}` : count drawer height and width ⛔
+* `function get-pos()->{x:length,y:length}` : count position ⛔
+
+#### example
+
+```
+import {SURDrawer,SURButton, SURInput} from "../../index.slint";
+import {Themes} from "../../themes/index.slint";
+
+component TestDrawer inherits Window {
+  height: 800px;
+  width: 800px;
+  background: #535353;
+ 
+  SURButton {
+    
+    content: "show";
+    clicked => {
+      p.open();
+      
+      debug("sds1")
+    }
+  }
+ 
+
+  p:=SURDrawer {
+    proportion:36%;
+    SURButton {
+      theme: Dark;
+    }
+    SURInput { 
+      y: 30px;
+     }
+  }
+}
+```
+
+![image-20231018200348306](E:\Rust\try\surrealism-ui\README\imgs\image-20231018200348306.png)

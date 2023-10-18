@@ -1,20 +1,64 @@
-import { SURPopup } from "../popup/index.slint";
-import { ROOT_STYLES,CommonPosition } from "../../themes/index.slint";
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20231018
+* @version:0.1.7
+* @type:interface
+* @description:
+* # SURDrawer
+* Sometimes, the Dialogue component does not meet our needs
+* such as your form being too long, or if you need to temporarily display some documents, please use the SURDrawer
+* ## properties
+* - in property <Themes> drawer-theme : drawer theme
+* - in property <brush> drawer-background-color : drawer background color
+* - in property <CommonPosition > pos : drawer position (Left, Right, Top, Bottom)
+* - in property <percent> proportion : drawer proportion 
+* ## functions
+* - function default-height-width()->{height:percent,width:percent} : count drawer height and width ⛔
+* - function get-pos()->{x:length,y:length} : count position ⛔
+* ============================================
+*/
 
+
+import { SURPopup } from "../popup/index.slint";
+import { SURCard } from "../card/index.slint";
+import { CommonPosition,Themes } from "../../themes/index.slint";
 
 
 export component Drawer inherits SURPopup { 
+  in property <Themes> drawer-theme : Light;
+  in property <brush> drawer-background-color <=> drawer.background;
   in property <CommonPosition > pos : Left;
+  in property <percent> proportion : 25%;
   function default-height-width()->{height:percent,width:percent} {
       if((pos==CommonPosition.Left)||(pos==CommonPosition.Right)){
-        { height:100%,width:25%}
+        { height:100%,width:root.proportion}
       }else{
-        {height:25%,width:100%}
+        {height:root.proportion,width:100%}
       }
   }
-  Rectangle {
+  function get-pos()->{x:length,y:length} {
+      if(pos==CommonPosition.Left){
+        {x:0px,y:0px}
+      }else if(pos==CommonPosition.Right){
+        {x:root.width - drawer.width,y:0px}
+      }else if(pos==CommonPosition.Top){
+        {x:0px,y:0px}
+      }else{
+        {x:0px,y:root.height - drawer.height}
+      }
+  }
+  drawer:=SURCard {
     height: default-height-width().height;
     width: default-height-width().width;
-    background: red;
+    
+    theme: root.drawer-theme;
+    x: get-pos().x;
+    y: get-pos().y;
+    border: None;
+    clip: true;
+    TouchArea {
+      @children
+    }
   }
 } 
