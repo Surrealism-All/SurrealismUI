@@ -1,0 +1,106 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20231018
+* @version:0.1.7
+* @type:interface
+* @description:
+* # SURAlert
+* SURAlert is used to display important prompt information on the page
+* ## properties
+* - private property <Themes> theme : Surrealism theme ⛔
+* - in-out property <string> content :  alert content you want to display
+* - in-out property <bool> is-show : show the alert or not
+* - in property <ResType> res-type : result type👍
+* ## functions
+* - public function open() : open alert
+* - public function close() : close alert
+* ============================================
+*/
+
+import { SURCard } from "../card/index.slint";
+import { SURText } from "../text/index.slint";
+import { SURIcon } from "../icon/index.slint";
+import { IconSources,Themes,ResType } from "../../themes/index.slint";
+export component Alert inherits Window{
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  always-on-top:true;
+  opacity: 1;
+  visible: is-show;
+  z: 1111;
+  private property <Themes> theme : Success;
+  in-out property <string> content : "this is a alert message!";
+  in-out property <bool> is-show : false;
+  in property <ResType> res-type:ResType.Success;
+  public function open() {
+      root.is-show = true;
+  }
+  public function close() {
+    root.is-show = false;
+  }
+  init => {
+    if(res-type==ResType.Primary){
+      root.theme = Themes.Primary;
+      root.icon = IconSources.icons.Smiling-face;
+      root.content = "This is a primary message!";
+    }else if (res-type==ResType.Success){
+      root.theme = Themes.Success;
+      root.content = "This is a success message!";
+      root.icon = IconSources.icons.Success;
+    }else if (res-type==ResType.Info){
+      root.theme = Themes.Info;
+      root.icon = IconSources.icons.Info;
+      root.content = "This is a info message!";
+    }else if (res-type==ResType.Error){
+      root.theme = Themes.Error;
+      root.icon = IconSources.icons.Close-one;
+      root.content = "This is a error message!"
+    }else if (res-type==ResType.Warning){
+      root.theme = Themes.Warning;
+      root.icon = IconSources.icons.Attention;
+      root.content = "This is a warning message!"
+    }else{
+      root.theme = Themes.Light;
+      root.icon = IconSources.icons.Help;
+      root.content = "This is a help message!"
+    }
+  }
+  alert:=SURCard { 
+    y: 6px;
+    clip: true;
+    width: parent.width * 0.86;
+    theme: root.theme;
+    HorizontalLayout {
+      alignment: LayoutAlignment.start;
+      icon-view:=Rectangle{
+        icon:=SURIcon { 
+          theme: root.theme;
+          icon: root.icon;
+          height: 18px;
+          width: 18px;
+        }
+      }
+      info:=SURText { 
+        theme: root.theme;
+        content: root.content;
+        width: parent.width - 60px;
+        horizontal-alignment: left;
+      }
+      close-view:=Rectangle{
+        close:=SURIcon{
+          icon: IconSources.icons.Close-one;
+          theme: root.theme;
+          clicked => {
+            root.close();
+          }
+        }
+      }
+    }
+  }
+}

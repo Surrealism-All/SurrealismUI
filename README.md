@@ -1971,3 +1971,49 @@ component TestDrawer inherits Window {
 ```
 
 ![image-20231018200348306](E:\Rust\try\surrealism-ui\README\imgs\image-20231018200348306.png)
+
+### SURAlert
+
+SURAlert is used to display important prompt information on the page
+
+#### properties
+
+* `private property <Themes> theme` : Surrealism theme ⛔
+* `in-out property <string> content` :  alert content you want to display
+* `in-out property <bool> is-show` : show the alert or not
+* `in property <ResType> res-type` : result type👍
+
+#### functions
+
+* `public function open()` : open alert
+* `public function close()` : close alert
+
+#### example
+
+```
+import {SURButton, SURAlert} from "../../index.slint";
+import {Themes,ResType} from "../../themes/index.slint";
+
+component TestAlert inherits Window {
+  height: 400px;
+  width: 600px;
+  background: #535353;
+ 
+  SURButton {
+    
+    content: "show";
+    clicked => {
+      p.open();
+      debug("sds1")
+    }
+  }
+ 
+
+  p:=SURAlert { 
+    res-type:ResType.Success ;
+    content:"this is a success message!";
+  }
+}
+```
+
+![image-20231018203824259](E:\Rust\try\surrealism-ui\README\imgs\image-20231018203824259.png)

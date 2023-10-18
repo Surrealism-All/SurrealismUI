@@ -1,0 +1,24 @@
+import {SURButton, SURAlert} from "../../index.slint";
+import {Themes,ResType} from "../../themes/index.slint";
+
+component TestAlert inherits Window {
+  height: 400px;
+  width: 600px;
+  background: #535353;
+ 
+  SURButton {
+    
+    content: "show";
+    clicked => {
+      p.open();
+      
+      debug("sds1")
+    }
+  }
+ 
+
+  p:=SURAlert { 
+    res-type:ResType.Success ;
+    content:"this is a success message!";
+  }
+}
