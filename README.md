@@ -1859,3 +1859,61 @@ component TestMenu inherits Window {
 ```
 
 ![image-20230930181846475](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230930181846475.png)
+
+### SURSwitch
+
+SURSwitch is a switch used for simple judgment scenarios
+
+#### properties
+
+* `in-out property <bool> active` :false;
+* `in property <brush> switch-background-color `: switch circle background color;
+* `in property <brush> switch-border-color` : switch circle border color
+* `in property <color> switch-drop-shadow-color` : switch circle drop shadow color
+
+#### callbacks
+
+* `callback clicked(bool)` : run if you click the switch
+
+#### example
+
+```
+import { SURSwitch } from "../../index.slint";
+
+component TestSwitch inherits Window {
+  height: 400px;
+  width: 400px;
+  SURSwitch {
+    y: 30px;
+  }
+  SURSwitch {
+    theme: Primary;
+    y: 80px;
+    switch-background-color:#ddd;
+    switch-border-color:#00ff00;
+  }
+  SURSwitch {
+    y: 130px;
+    theme: Dark;
+    clicked(active-or-not)=>{
+      debug(active-or-not);
+    }
+  }
+  SURSwitch {
+    y: 180px;
+    theme: Warning;
+  }
+  SURSwitch {
+    y: 230px;
+    theme: Error;
+  }
+  SURSwitch {
+    y: 280px;
+    theme: Info;
+  }
+}
+```
+
+
+
+![image-20231018185602735](E:\Rust\try\surrealism-ui\README\imgs\image-20231018185602735.png)

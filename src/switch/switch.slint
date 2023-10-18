@@ -1,0 +1,94 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20231018
+* @version:0.1.7
+* @type:interface
+* @description:
+* # SURSwitch
+* SURSwitch is a switch used for simple judgment scenarios
+* ## properties
+* - in-out property <bool> active :false;
+* - in property <brush> switch-background-color : switch circle background color;
+* - in property <brush> switch-border-color : switch circle border color
+* - in property <color> switch-drop-shadow-color : switch circle drop shadow color
+* ## callbacks
+* - callback clicked(bool) : run if you click the switch
+* ============================================
+*/
+import { SURCard } from "../card/index.slint";
+import { ROOT-STYLES,Themes } from "../../themes/index.slint";
+export component Switch inherits SURCard { 
+  card-height: 6px;
+  card-width: 24px;
+  border: None;
+  border-radius: root.height / 2;
+  padding-size: Small;
+  in-out property <bool> active :false;
+  in property <brush> switch-background-color <=> switch-circle.background;
+  in property <brush> switch-border-color<=>switch-circle.border-color;
+  in property <color> switch-drop-shadow-color<=> switch-circle.drop-shadow-color;
+  callback clicked(bool);
+
+  switch-circle:=SURCard{
+    x: 2px;
+    theme: root.theme;
+    card-height: 6px + ROOT-STYLES.sur-padding.normal.top-bottom;
+    card-width: 6px + ROOT-STYLES.sur-padding.normal.top-bottom;
+    // border: None;
+    border-radius: self.height / 2;
+    padding-size: None;
+    
+    states [
+      light when self.theme == Themes.Light: {
+        switch-circle.background : ROOT-STYLES.sur-theme-colors.light.deepest;
+        switch-circle.border-color : ROOT-STYLES.sur-theme-colors.light.deepest;
+        switch-circle.drop-shadow-color : ROOT-STYLES.sur-theme-colors.light.weakest;
+        
+      }
+      primary when self.theme == Themes.Primary: {
+        switch-circle.background : ROOT-STYLES.sur-theme-colors.primary.deepest;
+        switch-circle.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.weakest;
+        switch-circle.border-color : ROOT-STYLES.sur-theme-colors.primary.deepest;
+      }
+      success when self.theme == Themes.Success: {
+        switch-circle.background : ROOT-STYLES.sur-theme-colors.success.deepest;
+        switch-circle.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.weakest;
+        switch-circle.border-color : ROOT-STYLES.sur-theme-colors.success.deepest;
+      }
+      info when self.theme == Themes.Info: {
+        switch-circle.background : ROOT-STYLES.sur-theme-colors.info.deepest;
+        switch-circle.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.weakest;
+        switch-circle.border-color : ROOT-STYLES.sur-theme-colors.info.deepest;
+      }
+      warning when self.theme == Themes.Warning: {
+        switch-circle.background : ROOT-STYLES.sur-theme-colors.warning.deepest;
+        switch-circle.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.weakest;
+        switch-circle.border-color : ROOT-STYLES.sur-theme-colors.warning.deepest;
+      }
+      error when self.theme == Themes.Error: {
+        switch-circle.background : ROOT-STYLES.sur-theme-colors.error.deepest;
+        switch-circle.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.weakest;
+        switch-circle.border-color : ROOT-STYLES.sur-theme-colors.error.deepest;
+      }
+      dark when self.theme == Themes.Dark: {
+        switch-circle.background : ROOT-STYLES.sur-theme-colors.dark.deeper;
+        switch-circle.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.weakest;
+        switch-circle.border-color : ROOT-STYLES.sur-theme-colors.dark.deeper;
+      }
+    ]
+    TouchArea {
+      mouse-cursor: pointer;
+      
+      clicked => {
+        root.active = !root.active;
+        root.clicked(root.active);
+        if(root.active){
+          parent.x = root.width - parent.width - 2px
+        }else{
+          parent.x = 2px
+        }
+      }
+    }
+  }
+} 

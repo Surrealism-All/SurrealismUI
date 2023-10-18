@@ -1,0 +1,20 @@
+import { SURPopup } from "../popup/index.slint";
+import { ROOT_STYLES,CommonPosition } from "../../themes/index.slint";
+
+
+
+export component Drawer inherits SURPopup { 
+  in property <CommonPosition > pos : Left;
+  function default-height-width()->{height:percent,width:percent} {
+      if((pos==CommonPosition.Left)||(pos==CommonPosition.Right)){
+        { height:100%,width:25%}
+      }else{
+        {height:25%,width:100%}
+      }
+  }
+  Rectangle {
+    height: default-height-width().height;
+    width: default-height-width().width;
+    background: red;
+  }
+} 

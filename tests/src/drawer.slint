@@ -1,7 +1,7 @@
-import {SURPopup,SURButton} from "../../index.slint";
+import {SURDrawer,SURButton} from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
 
-component TestPopup inherits Window {
+component TestDrawer inherits Window {
   height: 800px;
   width: 800px;
   background: #535353;
@@ -17,10 +17,7 @@ component TestPopup inherits Window {
   }
  
 
-  p:=SURPopup {
-    SURButton {
-      content: "you can add anything in Popup";
-      y: 160px;
-    }
+  p:=SURDrawer {
+    
   }
 }
