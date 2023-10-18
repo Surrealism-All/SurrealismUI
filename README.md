@@ -1,11 +1,11 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.1.6-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.1.7-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
-- updateDate：202301010
-- version：0.1.6
+- updateDate：202301018
+- version：0.1.7
 - email：syf20020816@outlook.com
 
 <img src="https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png">
@@ -20,6 +20,11 @@ SurrealismUI is a third-party component library built entirely using Slint
 - 👍 ： Recommended use
 
 ### Updates
+
+- V0.1.7
+  - add `SURSwitch`
+  - add `SURDrawer`
+  - add `SURAlert`
 
 - V0.1.6
   - solve `SURLoading` animation!
@@ -1916,7 +1921,7 @@ component TestSwitch inherits Window {
 
 
 
-![image-20231018185602735](E:\Rust\try\surrealism-ui\README\imgs\image-20231018185602735.png)
+![image-20231018185602735](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20231018185602735.png)
 
 ### SURDrawer
 
@@ -1970,7 +1975,7 @@ component TestDrawer inherits Window {
 }
 ```
 
-![image-20231018200348306](E:\Rust\try\surrealism-ui\README\imgs\image-20231018200348306.png)
+![image-20231018200348306](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20231018200348306.png)
 
 ### SURAlert
 
@@ -2016,4 +2021,4 @@ component TestAlert inherits Window {
 }
 ```
 
-![image-20231018203824259](E:\Rust\try\surrealism-ui\README\imgs\image-20231018203824259.png)
+![image-20231018203824259](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20231018203824259.png)
