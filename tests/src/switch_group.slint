@@ -1,0 +1,22 @@
+import { SURSwitchGroup } from "../../index.slint";
+
+component TestSwitchGroup inherits Window {
+  height: 400px;
+  width: 400px;
+  SURSwitchGroup {
+   theme: Primary;
+    clicked(i,name) => {
+      debug(i);
+      debug(name);
+    }
+  }
+  SURSwitchGroup {
+    y: 120px;
+    theme:Dark;
+    switchs:["1","2","3","4"];
+     clicked(i,name) => {
+       debug(i);
+       debug(name);
+     }
+   }
+}

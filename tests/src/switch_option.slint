@@ -1,0 +1,26 @@
+import { SURSwitchOption } from "../../index.slint";
+
+component TestSwitchOption inherits Window {
+  height: 400px;
+  width: 400px;
+  SURSwitchOption {
+    y: 30px;
+    left:"surrealism";
+    right:"slint";
+    clicked(res) => {
+      debug(res)
+    }
+  }
+  SURSwitchOption {
+    y: 100px;
+    theme: Primary;
+    left:"surrealism";
+    right:"slint";
+  }
+  SURSwitchOption {
+    y: 170px;
+    theme: Dark;
+    left:"surrealism";
+    right:"slint";
+  }
+}

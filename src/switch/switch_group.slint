@@ -1,0 +1,74 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20231018
+* @version:0.1.7
+* @type:interface
+* @description:
+* # SURSwitch
+* SURSwitch is a switch used for simple judgment scenarios
+* ## properties
+* - in-out property <bool> active :false;
+* - in property <brush> switch-background-color : switch circle background color;
+* - in property <brush> switch-border-color : switch circle border color
+* - in property <color> switch-drop-shadow-color : switch circle drop shadow color
+* ## callbacks
+* - callback clicked(bool) : run if you click the switch
+* ============================================
+*/
+import { SURCard } from "../card/index.slint";
+import { ROOT-STYLES,Themes,Shadows } from "../../themes/index.slint";
+import { SURText } from "../text/index.slint";
+export component SwitchGroup inherits SURCard { 
+  card-height: font-size / 2;
+  card-width: 138px;
+  border: None;
+  border-radius: root.height / 2;
+  padding-size: Small;
+  clip: true;
+  in-out property <int> active : 0;
+  in-out property <[string]> switchs : [
+    "first","second","third"
+  ];
+  in property <length> font-size : 12px;
+  // in property <brush> switch-background-color <=> switch-circle.background;
+  // in property <brush> switch-border-color<=>switch-circle.border-color;
+  // in property <color> switch-drop-shadow-color<=> switch-circle.drop-shadow-color;
+  private property <brush> theme-color : root.background;
+  callback clicked(int,string);
+  view:= HorizontalLayout {
+    width: root.width - root.padding-left / 4 - root.padding-right / 4 ;
+    alignment: space-between;
+    height: root.height - ROOT-STYLES.sur-padding.icon.top-bottom;
+    for item[index] in switchs: SURCard{
+      theme: root.theme;
+      card-width: inner-text.width;
+      height: parent.height;
+      padding-size: Icon;
+      background: root.active == index ? ROOT-STYLES.deeper(root.theme,root.theme-color) : theme-color;
+      // remove border
+      border: None;
+      // make border-radius round
+      border-radius: self.height / 2;
+      // remove shadow
+      drop-shadow-blur: 0;
+      drop-shadow-offset-x: 0;
+      drop-shadow-offset-y: 0;
+      TouchArea {
+        mouse-cursor: pointer;
+        clicked => {
+          root.clicked(index,item);
+          if(root.active != index){
+           root.active = index; 
+          }
+        }
+        inner-text:= SURText {
+          font-size: root.font-size;
+          content: item;
+          theme: root.theme;
+        }
+      }
+    }
+  }
+  
+} 
