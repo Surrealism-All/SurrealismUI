@@ -11,8 +11,10 @@ export component TestInput inherits Window {
   }
   SURInput{
     y: 20px;
+    width: 60%;
     placeholder :"please enter your username";
-    input-width:360px;
+    input-width:300px;
+    clearable: true;
     accepted(res)=>{
       debug("content in input:" + res);
       p.open();
@@ -22,34 +24,40 @@ export component TestInput inherits Window {
     }
     
   }
-  // w:=SURInput{
-  //   y: 80px;
-  //   theme:Themes.Success;
-  //   type:InputType.password;
-  //   password:true;
-  // }
-  // SURInput{
-  //   y: 140px;
-  //   theme:Themes.Error;
-  //   disabled:true;
-  //   content:"disabled";
-  // }
-  // SURInput{
-  //   y: 200px;
-  //   theme:Themes.Dark;
-  // }
+ 
+  w:=SURInput{
+    y: 80px;
+    width: 60%;
+    theme:Themes.Success;
+    type:InputType.password;
+    password:true;
+  }
+  SURInput{
+    y: 140px;
+    width: 60%;
+    theme:Themes.Error;
+    disabled:true;
+    content:"disabled";
+  }
+  SURInput{
+    y: 200px;
+    width: 60%;
+    theme:Themes.Dark;
+  }
 
-  // SURInput{
-  //   y: 260px;
-  //   theme:Themes.Warning;
-  //   clearable:true;
-  // }
-  // SURInput{
-  //   y: 320px;
-  //   theme:Themes.Info;
-  //   type:InputType.password;
-  //   clearable:true;
-  //   password:true;
-  // }
+  SURInput{
+    y: 260px;
+    width: 60%;
+    theme:Themes.Warning;
+    clearable:true;
+  }
+  SURInput{
+    y: 320px;
+    // width: 60%;
+    theme:Themes.Info;
+    type:InputType.password;
+    clearable:true;
+    password:true;
+  }
   
 }

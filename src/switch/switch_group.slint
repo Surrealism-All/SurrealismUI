@@ -1,19 +1,19 @@
 /**
 * ============================================
 * @author:syf20020816@outlook.com
-* @since:20231018
-* @version:0.1.7
+* @since:20231104
+* @version:0.1.8
 * @type:interface
 * @description:
-* # SURSwitch
-* SURSwitch is a switch used for simple judgment scenarios
+* # SURSwitchGroup
+* SURSwitchGroup switch group can contain more switch cases
 * ## properties
-* - in-out property <bool> active :false;
-* - in property <brush> switch-background-color : switch circle background color;
-* - in property <brush> switch-border-color : switch circle border color
-* - in property <color> switch-drop-shadow-color : switch circle drop shadow color
+* - in-out property <bool> active : active option index;
+* - in-out property <[string]> switchs : switch options
+* - in property <length> font-size : font size , it will effect switch component height
+* - private property <brush> theme-color : inner theme color ⛔
 * ## callbacks
-* - callback clicked(bool) : run if you click the switch
+* - callback clicked(int,string) : run if you click the switch , it will back option index and option name
 * ============================================
 */
 import { SURCard } from "../card/index.slint";

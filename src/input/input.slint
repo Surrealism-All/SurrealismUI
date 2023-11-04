@@ -8,9 +8,9 @@
 * # SURInput
 * This is a basic input box, often used in forms, divided into two types: text and password
 * ## properties:
+* - in property <int> font-weight : font weight for input
 * - in property <string> placeholder: default placeholder which you wanna show when no content
 * - in property <Themes> theme: Surrealism themes
-* - in property <image> icon: icon you wanna show in front (use >= v0.1.0) ⛔
 * - in property <length> input-width: Please do not use width to adjust the length of the input box , use this property to instead
 * - in property <length> font-size: font size 
 * - in property <bool> disabled: can input be edited
@@ -25,31 +25,37 @@
 * ## functions:
 * - pure public function get() ->string : get content
 * - public function set(content:string) : set content
-* - pure public function count-width()->length : count input real width ⛔
+* - public function clear() : clear content
+* - public function select-all() : select all 
+* - public function clear-selection() : clears the selection
+* - public function cut() : copies the selected text to the clipboard and removes it from the editable area
+* - public function copy() : copies the selected text to the clipboard
+* - public function paste() : pastes the text content of the clipboard at the cursor position
 * ## callbacks:
-* - callback accepted(string) : run when pressed down Enter key
+* - callback accepted(string) : run when pressed down enter key
 * - callback changed(string) : run when content changed
-* - callback clear() : empty content
 * ============================================
 */
-
-
-import { ScrollView} from "std-widgets.slint";
 import {ROOT_STYLES,Themes,IconSources} from "../../themes/index.slint";
-import { SURText } from "../text/index.slint";
+import {SURText } from "../text/index.slint";
 import {SURIcon} from "../icon/index.slint";
-export component Input inherits Rectangle{
+
+export component Input inherits Rectangle {
   height:input.height;
-  width: count-width();
+  min-width: 160px;   
+  width: 240px;
   clip: false;
   border-radius: ROOT-STYLES.sur-border.small.border-radius;
+  vertical-stretch: 0;
+  horizontal-stretch: 1;
   in property <string> placeholder : "please input";
   in property <Themes> theme : Themes.Light;
-  in property <image> icon : IconSources.icons.Null;
+  // in property <image> icon : IconSources.icons.Null;
   in property <length> input-width : 16rem;
   in property <length> font-size : ROOT-STYLES.sur-font.font-size;
   in property <bool> disabled:false;
   in property <bool> clearable:false;
+  in property <int> font-weight : 400;
   //use eye-icon
   in property <bool> password:false;
   out property <bool> has-focus<=>input.has-focus;
@@ -58,187 +64,201 @@ export component Input inherits Rectangle{
   in-out property <brush> font-color;
   in-out property <brush> icon-color;
   in-out property <string> content <=> input.text;
-  //callbacks
   callback accepted(string);
   callback changed(string);
-  callback clear();
-  clear => {
-    root.content = "";
-  }
+  //functions
   pure public function get() ->string{
-      self.content
+    self.content
   }
   public function set(content:string) {
-      self.content = content
+    self.content = content
   }
-  //functions
-  pure public function count-width()->length {
-    if(root.clearable&&root.password){
-      return input-view.width + ROOT-STYLES.sur-padding.normal.same * 2 + ROOT-STYLES.sur-font.font-size * 2 + ROOT-STYLES.sur-padding.small.same * 2;
-    }else if((root.clearable&&!root.password)||(!root.clearable&&root.password)){
-      return input-view.width + ROOT-STYLES.sur-padding.normal.same * 2 + ROOT-STYLES.sur-font.font-size + ROOT-STYLES.sur-padding.small.same * 1;
-    }
-    return input-view.width  + ROOT-STYLES.sur-padding.normal.same * 2;
+  public function clear() {
+    root.content = "";
   }
-  states [
-    light when theme == Themes.Light: {
-      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.light.opacity : ROOT-STYLES.sur-theme-colors.light.deeper;
-      root.border-color: ROOT-STYLES.sur-theme-colors.light.deeper;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.light.deepest;
-      font-color: ROOT-STYLES.sur-theme-colors.light.font;
-      icon-color : ROOT-STYLES.sur-theme-colors.light.font;
-      input.selection-background-color : ROOT-STYLES.sur-theme-colors.light.normal;
-      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.light.font;
-      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.light.deepest;
-      hight-light.width : !input.has-focus? 0px:input.width;
-      root.placeholder-color : ROOT-STYLES.sur-theme-colors.light.deepest;
-    }
-    primary when theme == Themes.Primary: {
-      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.primary.opacity : ROOT-STYLES.sur-theme-colors.primary.deeper;
-      root.border-color: ROOT-STYLES.sur-theme-colors.primary.deeper;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
-      font-color: ROOT-STYLES.sur-theme-colors.primary.font;
-      icon-color : ROOT-STYLES.sur-theme-colors.primary.font;
-      input.selection-background-color : ROOT-STYLES.sur-theme-colors.primary.normal;
-      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.primary.font;
-      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.primary.weakest;
-      hight-light.width : !input.has-focus? 0px:input.width;
-      root.placeholder-color : ROOT-STYLES.sur-theme-colors.primary.weakest;
-    }
-    success when theme == Themes.Success: {
-      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.success.opacity:ROOT-STYLES.sur-theme-colors.success.deeper;
-      root.border-color: ROOT-STYLES.sur-theme-colors.success.deeper;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
-      font-color: ROOT-STYLES.sur-theme-colors.success.font;
-      icon-color: ROOT-STYLES.sur-theme-colors.success.font;
-      input.selection-background-color : ROOT-STYLES.sur-theme-colors.success.normal;
-      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.success.font;
-      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.success.weakest;
-      hight-light.width : !input.has-focus? 0px:input.width;
-      root.placeholder-color : ROOT-STYLES.sur-theme-colors.success.weaker;
-    }
-    info when theme == Themes.Info: {
-      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.info.opacity:ROOT-STYLES.sur-theme-colors.info.deeper;
-      root.border-color: ROOT-STYLES.sur-theme-colors.info.deeper;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
-      font-color: ROOT-STYLES.sur-theme-colors.info.font;
-      icon-color: ROOT-STYLES.sur-theme-colors.info.font;
-      input.selection-background-color : ROOT-STYLES.sur-theme-colors.info.normal;
-      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.info.font;
-      hight-light.background : ROOT-STYLES.sur-theme-colors.info.weaker;
-      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.info.weakest;
-      hight-light.width : !input.has-focus? 0px:input.width;
-      root.placeholder-color : ROOT-STYLES.sur-theme-colors.info.weaker;
-    }
-    warning when theme == Themes.Warning: {
-      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.warning.opacity:ROOT-STYLES.sur-theme-colors.warning.deeper;
-      root.border-color: ROOT-STYLES.sur-theme-colors.warning.deeper;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
-      font-color: ROOT-STYLES.sur-theme-colors.warning.font;
-      icon-color: ROOT-STYLES.sur-theme-colors.warning.font;
-      input.selection-background-color : ROOT-STYLES.sur-theme-colors.warning.normal;
-      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.warning.font;
-      hight-light.background : ROOT-STYLES.sur-theme-colors.warning.weaker;
-      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.warning.weakest;
-      hight-light.width : !input.has-focus? 0px:input.width;
-      root.placeholder-color : ROOT-STYLES.sur-theme-colors.warning.weaker;
-    }
-    error when theme == Themes.Error: {
-      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.error.opacity:ROOT-STYLES.sur-theme-colors.error.deeper;
-      root.border-color: ROOT-STYLES.sur-theme-colors.error.deeper;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
-      font-color: ROOT-STYLES.sur-theme-colors.error.font;
-      icon-color: ROOT-STYLES.sur-theme-colors.error.font;
-      input.selection-background-color : ROOT-STYLES.sur-theme-colors.error.normal;
-      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.error.font;
-      hight-light.background : ROOT-STYLES.sur-theme-colors.error.weaker;
-      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.error.weakest;
-      hight-light.width : !input.has-focus? 0px:input.width;
-      root.placeholder-color : ROOT-STYLES.sur-theme-colors.error.weaker;
-    }
-    dark when theme == Themes.Dark: {
-      root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.dark.opacity:ROOT-STYLES.sur-theme-colors.dark.deeper;
-      root.border-color: ROOT-STYLES.sur-theme-colors.dark.deeper;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
-      font-color: ROOT-STYLES.sur-theme-colors.dark.font;
-      icon-color: ROOT-STYLES.sur-theme-colors.dark.font;
-      input.selection-background-color : ROOT-STYLES.sur-theme-colors.dark.normal;
-      input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.dark.font;
-      hight-light.background : ROOT-STYLES.sur-theme-colors.dark.weaker;
-      hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.dark.weakest;
-      hight-light.width : !input.has-focus? 0px:input.width;
-      root.placeholder-color : ROOT-STYLES.sur-theme-colors.dark.weaker;
-    }
-  ]
-  
-  view:=HorizontalLayout{
-    spacing: 0;
-    padding-left:ROOT-STYLES.sur-padding.normal.same ;
-    padding-right: ROOT-STYLES.sur-padding.normal.same;
-    
-    input-view:=Rectangle{
-      width: input.width;
-      input:=TextInput {
-        single-line: true;
-        horizontal-alignment: left;
-        vertical-alignment: center;
-        height: ROOT-STYLES.sur-font.font-size * 2;
-        width: root.input-width;
-        font-size: 16px;
-        read-only: root.disabled;
-        color: root.font-color;
-        text: "";
-        wrap: no-wrap;
-        input-type: root.type;
-        
-        accepted => {
-          root.accepted(root.content)
-        }
-        edited => {
-          root.changed(root.content)
-        }
-        if root.content=="" :place-holder:= SURText { 
+  public function select-all() {
+    input.select-all();
+  }
+
+  public function clear-selection() {
+    input.clear-selection();
+  }
+
+  public function cut() {
+    input.cut();
+  }
+
+  public function copy() {
+    input.copy();
+  }
+
+  public function paste() {
+    input.paste();
+  }
+    states [
+      light when theme == Themes.Light: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.light.opacity : ROOT-STYLES.sur-theme-colors.light.deeper;
+        root.border-color: ROOT-STYLES.sur-theme-colors.light.deeper;
+        root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.light.deepest;
+        font-color: ROOT-STYLES.sur-theme-colors.light.font;
+        icon-color : ROOT-STYLES.sur-theme-colors.light.font;
+        input.selection-background-color : ROOT-STYLES.sur-theme-colors.light.normal;
+        input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.light.font;
+        hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.light.deepest;
+        root.placeholder-color : ROOT-STYLES.sur-theme-colors.light.deepest;
+      }
+      primary when theme == Themes.Primary: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.primary.opacity : ROOT-STYLES.sur-theme-colors.primary.deeper;
+        root.border-color: ROOT-STYLES.sur-theme-colors.primary.deeper;
+        root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
+        font-color: ROOT-STYLES.sur-theme-colors.primary.font;
+        icon-color : ROOT-STYLES.sur-theme-colors.primary.font;
+        input.selection-background-color : ROOT-STYLES.sur-theme-colors.primary.normal;
+        input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.primary.font;
+        hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.primary.weakest;
+        root.placeholder-color : ROOT-STYLES.sur-theme-colors.primary.weakest;
+      }
+      success when theme == Themes.Success: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.success.opacity:ROOT-STYLES.sur-theme-colors.success.deeper;
+        root.border-color: ROOT-STYLES.sur-theme-colors.success.deeper;
+        root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
+        font-color: ROOT-STYLES.sur-theme-colors.success.font;
+        icon-color: ROOT-STYLES.sur-theme-colors.success.font;
+        input.selection-background-color : ROOT-STYLES.sur-theme-colors.success.normal;
+        input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.success.font;
+        hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.success.weakest;
+        root.placeholder-color : ROOT-STYLES.sur-theme-colors.success.weaker;
+      }
+      info when theme == Themes.Info: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.info.opacity:ROOT-STYLES.sur-theme-colors.info.deeper;
+        root.border-color: ROOT-STYLES.sur-theme-colors.info.deeper;
+        root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
+        font-color: ROOT-STYLES.sur-theme-colors.info.font;
+        icon-color: ROOT-STYLES.sur-theme-colors.info.font;
+        input.selection-background-color : ROOT-STYLES.sur-theme-colors.info.normal;
+        input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.info.font;
+        hight-light.background : ROOT-STYLES.sur-theme-colors.info.weaker;
+        hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.info.weakest;
+        root.placeholder-color : ROOT-STYLES.sur-theme-colors.info.weaker;
+      }
+      warning when theme == Themes.Warning: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.warning.opacity:ROOT-STYLES.sur-theme-colors.warning.deeper;
+        root.border-color: ROOT-STYLES.sur-theme-colors.warning.deeper;
+        root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
+        font-color: ROOT-STYLES.sur-theme-colors.warning.font;
+        icon-color: ROOT-STYLES.sur-theme-colors.warning.font;
+        input.selection-background-color : ROOT-STYLES.sur-theme-colors.warning.normal;
+        input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.warning.font;
+        hight-light.background : ROOT-STYLES.sur-theme-colors.warning.weaker;
+        hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.warning.weakest;
+        root.placeholder-color : ROOT-STYLES.sur-theme-colors.warning.weaker;
+      }
+      error when theme == Themes.Error: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.error.opacity:ROOT-STYLES.sur-theme-colors.error.deeper;
+        root.border-color: ROOT-STYLES.sur-theme-colors.error.deeper;
+        root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
+        font-color: ROOT-STYLES.sur-theme-colors.error.font;
+        icon-color: ROOT-STYLES.sur-theme-colors.error.font;
+        input.selection-background-color : ROOT-STYLES.sur-theme-colors.error.normal;
+        input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.error.font;
+        hight-light.background : ROOT-STYLES.sur-theme-colors.error.weaker;
+        hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.error.weakest;
+        root.placeholder-color : ROOT-STYLES.sur-theme-colors.error.weaker;
+      }
+      dark when theme == Themes.Dark: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.dark.opacity:ROOT-STYLES.sur-theme-colors.dark.deeper;
+        root.border-color: ROOT-STYLES.sur-theme-colors.dark.deeper;
+        root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
+        font-color: ROOT-STYLES.sur-theme-colors.dark.font;
+        icon-color: ROOT-STYLES.sur-theme-colors.dark.font;
+        input.selection-background-color : ROOT-STYLES.sur-theme-colors.dark.normal;
+        input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.dark.font;
+        hight-light.background : ROOT-STYLES.sur-theme-colors.dark.weaker;
+        hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.dark.weakest;
+        root.placeholder-color : ROOT-STYLES.sur-theme-colors.dark.weaker;
+      }
+    ]
+
+    view := HorizontalLayout {
+      padding-left: ROOT-STYLES.sur-padding.normal.same;
+      padding-right: ROOT-STYLES.sur-padding.normal.same;
+      spacing: 0;
+
+      input-view:= Rectangle {
+        clip: true;
+        if root.content=="" :i-placeholder := SURText { 
           theme: root.theme;
           content: root.placeholder;
           font-size: root.font-size;
           color: root.placeholder-color;
-          width: input.width  - input.font-size ;
+          width: input.width - input.font-size ;
         }
-      }
-      hight-light:= Rectangle {
-        y: root.height - self.height  * 2;
-        height: 2px;
-        width: input.width;
-        border-radius: 1px;
-        animate width {
-          duration: ROOT-STYLES.sur-an-duration;
-          easing: ROOT-STYLES.sur-an-easing;
-        }
-      }
-    }
-    if root.password: eye-icon:= Rectangle{
-      eye:=SURIcon {
-        theme: root.theme;
-        icon:IconSources.icons.Preview-close;
-        clicked => {
-          if(self.icon==IconSources.icons.Preview-close){
-            root.type = InputType.text;
-            self.icon = IconSources.icons.Preview-open
-          }else{
-            root.type = InputType.password;
-            self.icon = IconSources.icons.Preview-close
+
+        input := TextInput {
+          property <length> computed_x;
+          property <length> padding-outer: view.padding-left + view.padding-right;
+          x: min(0px, max(parent.width - self.width, self.computed_x));
+          width: max(parent.width, self.preferred-width);
+          height: ROOT-STYLES.sur-font.font-size * 2;
+          color: root.font-color;
+          horizontal-alignment: left;
+          vertical-alignment: center;
+          font-size: root.font-size;
+          font-weight: root.font-weight;
+          read-only: root.disabled;
+          single-line: true;
+          input-type: root.type;
+          wrap: no-wrap;
+          accepted => {
+            root.accepted(root.content)
+          }
+          edited => {
+            root.changed(root.content)
+          }
+
+          cursor-position-changed(cpos) => {
+            if (cpos.x + self.computed_x < self.padding-outer) {
+              self.computed_x = - cpos.x + self.padding-outer;
+            } else if (cpos.x + self.computed_x > parent.width - self.padding-outer) {
+              self.computed_x = parent.width - cpos.x - self.padding-outer;
+            }
           }
         }
       }
-    }
-    if root.clearable:clear-icon:= Rectangle {
-      SURIcon{
-        theme: root.theme;
-        icon: IconSources.icons.Close-one;
-        clicked => {
-          root.clear();
+      if root.password: eye-icon:= Rectangle{
+        eye:=SURIcon {
+          theme: root.theme;
+          icon:IconSources.icons.Preview-close;
+          clicked => {
+            if(self.icon==IconSources.icons.Preview-close){
+              root.type = InputType.text;
+              self.icon = IconSources.icons.Preview-open
+            }else{
+              root.type = InputType.password;
+              self.icon = IconSources.icons.Preview-close
+            }
+          }
         }
       }
+      if root.clearable:clear-icon:= Rectangle {
+        SURIcon{
+          theme: root.theme;
+          icon: IconSources.icons.Close-one;
+          clicked => {
+            root.clear();
+          }
+        }
+      }
+  }
+
+  hight-light:= Rectangle {
+    y: root.height - self.height  * 2;
+    height: 2px;
+    width : !input.has-focus? 0px:view.width - view.padding-left - view.padding-right;
+    border-radius: 1px;
+    animate width {
+      duration: ROOT-STYLES.sur-an-duration;
+      easing: ROOT-STYLES.sur-an-easing;
     }
   }
 }
