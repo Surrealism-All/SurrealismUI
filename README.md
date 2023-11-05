@@ -1,11 +1,11 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.2.0-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.2.1-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
 - updateDate：202301105
-- version：0.2.0
+- version：0.2.1
 - email：syf20020816@outlook.com
 
 <img src="https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png">
@@ -2091,7 +2091,147 @@ component TestAlert inherits Window {
 
 ![image-20231018203824259](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20231018203824259.png)
 
+### SURTree
+
+SURTree can be used to display directory structure, forming a parent-child relationship, and can be easily displayed
+
+#### properties
+
+* `in-out property <TreeData> tree-data` : the data to be displayed
+
+#### callbacks
+
+* `callback clicked(int,string,string)` : run after you click an item
+
+### example
+
+```
+import {SURTree } from "../../index.slint";
+import { IconSources } from "../../themes/index.slint";
+
+component TestTree inherits Window {
+  height: 400px;
+  width: 400px;
+  SURTree{
+    y: 10px;
+    theme: Dark;
+    height: 45%;
+    width: 96%;
+    tree-data:{
+      icon : IconSources.icons.Folder_filled,
+      label: "SurrealismUI",
+      extra:"",
+      children:[
+        {
+          icon:IconSources.icons.FileCode,
+          label:"slint.slint",
+          extra:"12KB", 
+        },
+        {
+          icon:IconSources.icons.FileCode,
+          label:"surrealism.slint",
+          extra:"126KB", 
+        },
+        {
+          icon:@image-url("../../icons/file-jpg.svg"),
+          label:"icon.jpg",
+          extra:"196KB", 
+        },
+        {
+          icon:@image-url("../../icons/file-gif.svg"),
+          label:"ui.gif",
+          extra:"91KB", 
+        },
+        {
+          icon:@image-url("../../icons/file-gif.svg"),
+          label:"ui2.gif",
+          extra:"107KB", 
+        }
+      ]
+    };
+    clicked(i,n,e)=>{
+      debug(n);
+    }
+  }
+  SURTree {
+    y: 200px;
+    height: 46%;
+    width: 96%;
+  }
+}
+```
+
+![image-20231105160644598](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20231105160644598.png)
+
+### SURFile
+
+SURFile can help users present file selectors GUI
+
+#### properties
+
+* `in property <[TabItem]> tabs` : tabs will be displayed 
+* `in property <TabConfigs> tab-configs` : configurations of the tab
+* `in-out property <[FileItem]> files` : files and folders details
+* `in property <ItemConfigs> item-configs` : configurations of files and folders details
+
+#### callbacks
+
+* `callback tab-clicked(int,TabItem)` : run if you click the tab
+* `callback item-clicked(int,FileItem)` : run if you click a file item
+
+#### example
+
+```
+import {SURFile,ItemConfigs,FileItem,ItemConfigs} from "../../index.slint";
+import { Themes,PaddingSize,IconSources} from "../../themes/index.slint";
+
+export component TestFile inherits Window {
+  height: 400px;
+  width: 800px;
+  SURFile{
+    theme: Dark;
+    width: 90%;
+    height: 46%;
+    tab-configs : {
+      height:16px,
+      font-size:14px,
+      padding-size:PaddingSize.Tip,
+      theme: Themes.Dark,
+      column-width:[200px,100px,100px,80px]
+    };
+    item-configs : {
+      height:16px,
+      font-size:12px,
+      padding-size:PaddingSize.Normal,
+      theme: Themes.Dark,
+      icon-size:16px
+    };
+    files : [
+      {icon:IconSources.icons.Folder-filled , name : "font" , datetime : "2023-11-06" , file-type : "folder" , size : "900KB"},
+      {icon:IconSources.icons.FileCode , name : "index.slint" , datetime : "2023-11-06" , file-type : "SLINT file" , size : "3KB"},
+      {icon:IconSources.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"},
+      {icon:IconSources.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"},
+      {icon:IconSources.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"}
+    ];
+    tab-clicked(index,item)=>{
+      debug(index);
+      debug(item);
+    }
+    item-clicked(index,item)=>{
+      debug(index);
+      debug(item);
+    }
+  }
+}
+```
+
+![image-20231105160623486](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20231105160623486.png)
+
 ## Updates
+
+- V0.2.1
+  - add `SURTree`
+  - add `SURFile`
 
 - V0.2.0
   - add `SURSwitchOption`

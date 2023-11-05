@@ -1,3 +1,22 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20231105
+* @version:0.2.1
+* @type:interface
+* @description:
+* # SURFile
+* SURFile can help users present file selectors GUI
+* ## properties
+* - in property <[TabItem]> tabs : tabs will be displayed 
+* - in property <TabConfigs> tab-configs : configurations of the tab
+* - in-out property <[FileItem]> files : files and folders details
+* - in property <ItemConfigs> item-configs : configurations of files and folders details
+* ## callbacks
+* - callback tab-clicked(int,TabItem) : run if you click the tab
+* - callback item-clicked(int,FileItem) : run if you click a file item
+* ============================================
+*/
 import { SURTable,SURTableColumn } from "../table/index.slint";
 import { SURCard } from "../card/index.slint";
 import { ROOT_STYLES,PaddingSize,Themes,IconSources } from "../../themes/index.slint";
