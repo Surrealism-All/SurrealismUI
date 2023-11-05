@@ -1,0 +1,93 @@
+
+import { SURCard } from "../card/index.slint";
+import { IconSources } from "../../themes/index.slint";
+import { SURIcon } from "../icon/index.slint";
+import { SURText } from "../text/index.slint";
+
+struct TreeChildren {
+  icon:image,
+  label:string,
+  extra:[string],  
+}
+
+struct TreeData {
+  icon:image,
+  label:string,
+  extra:[string],  
+  children:[TreeChildren]
+}
+
+component TreeItem inherits SURCard{
+  card-height: 20px;
+  theme: Primary;
+  border: None;
+  drop-shadow-blur: 0;
+  drop-shadow-offset-x: 0;
+  drop-shadow-offset-y: 0;
+  in property <int> item-index;
+  in property <image> item-icon;
+  in property <string> item-name;
+  in property <[string]> item-extra;
+
+  HorizontalLayout {
+    alignment: start;
+    Rectangle {
+      i-icon:=SURIcon { 
+        height: 20px;
+        width: 20px;
+        theme: root.theme;
+        icon: root.item-icon;
+      }
+    }
+    Rectangle {
+      SURText { 
+        theme: root.theme;
+        font-size: 14px;
+        content: item-name;
+      }
+    }
+  }
+}
+
+
+export component Tree inherits SURCard{
+  height: 100%;
+  width: 100%;
+  clip: true;
+  in-out property <TreeData> tree-data : {
+    icon : IconSources.icons.Folder,
+    label: "parent_folder",
+    extra:[],
+    children:[
+      {
+        icon:IconSources.icons.FileCode,
+        label:"slint.slint",
+        extra:["12KB"], 
+      },
+      {
+        icon:IconSources.icons.FileCode,
+        label:"surrealism.slint",
+        extra:["126KB"], 
+      }
+    ]
+  };
+  view:=VerticalLayout {
+    parent-root:= TreeItem{
+      width: 100%;
+      theme: root.theme;
+      item-icon: tree-data.icon;
+      item-name: tree-data.label;
+      item-extra: tree-data.extra;
+    }
+    children-view:= VerticalLayout {
+      padding-left: root.padding-left / 2;
+      for item[index] in tree-data.children: TreeItem{
+        width: 100%;
+        theme: root.theme;
+        item-icon: item.icon;
+        item-name: item.label;
+        item-extra: item.extra;
+      }
+    }
+  }
+}
