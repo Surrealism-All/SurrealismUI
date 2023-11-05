@@ -1,19 +1,20 @@
 
 import { SURCard } from "../card/index.slint";
-import { IconSources } from "../../themes/index.slint";
+import { IconSources , ROOT-STYLES} from "../../themes/index.slint";
 import { SURIcon } from "../icon/index.slint";
 import { SURText } from "../text/index.slint";
+import { ScrollView } from "std-widgets.slint";
 
-struct TreeChildren {
+export struct TreeChildren {
   icon:image,
   label:string,
-  extra:[string],  
+  extra:string,  
 }
 
-struct TreeData {
+export struct TreeData {
   icon:image,
   label:string,
-  extra:[string],  
+  extra:string,  
   children:[TreeChildren]
 }
 
@@ -27,24 +28,39 @@ component TreeItem inherits SURCard{
   in property <int> item-index;
   in property <image> item-icon;
   in property <string> item-name;
-  in property <[string]> item-extra;
-
-  HorizontalLayout {
-    alignment: start;
-    Rectangle {
-      i-icon:=SURIcon { 
-        height: 20px;
-        width: 20px;
-        theme: root.theme;
-        icon: root.item-icon;
-      }
+  in property <string> item-extra;
+  callback clicked(int,string,string);
+  TouchArea {
+    mouse-cursor: pointer;
+    clicked => {
+      root.clicked(item-index,item-name,item-extra);
+     
     }
-    Rectangle {
-      SURText { 
+  }
+  HorizontalLayout {
+    alignment: space-between;
+    HorizontalLayout {
+      Rectangle {
+        i-icon:=SURIcon { 
+          height: 20px;
+          width: 20px;
+          theme: root.theme;
+          icon: root.item-icon;
+        }
+      }
+      i-name:=SURText { 
         theme: root.theme;
         font-size: 14px;
         content: item-name;
       }
+    }
+    HorizontalLayout {
+      alignment: end;
+      i-extra:=SURText {
+        theme: root.theme;
+        font-size: 14px;
+        content: root.item-extra;
+      } 
     }
   }
 }
@@ -57,36 +73,49 @@ export component Tree inherits SURCard{
   in-out property <TreeData> tree-data : {
     icon : IconSources.icons.Folder,
     label: "parent_folder",
-    extra:[],
+    extra:"",
     children:[
       {
         icon:IconSources.icons.FileCode,
         label:"slint.slint",
-        extra:["12KB"], 
+        extra:"12KB", 
       },
       {
         icon:IconSources.icons.FileCode,
         label:"surrealism.slint",
-        extra:["126KB"], 
+        extra:"126KB", 
       }
     ]
   };
+  callback clicked(int,string,string);
   view:=VerticalLayout {
     parent-root:= TreeItem{
       width: 100%;
       theme: root.theme;
+      item-index: -1;
       item-icon: tree-data.icon;
       item-name: tree-data.label;
       item-extra: tree-data.extra;
+      clicked(i,n,e) => {
+        root.clicked(i,n,e);
+      }
     }
-    children-view:= VerticalLayout {
-      padding-left: root.padding-left / 2;
-      for item[index] in tree-data.children: TreeItem{
-        width: 100%;
-        theme: root.theme;
-        item-icon: item.icon;
-        item-name: item.label;
-        item-extra: item.extra;
+    children-view:= ScrollView { 
+      viewport-height: tree-data.children.length * parent-root.height;
+      VerticalLayout {
+        padding-left: root.padding-left / 2;
+        padding-right: root.padding-right / 2;
+        for item[index] in tree-data.children: TreeItem{
+          width: 100%;
+          theme: root.theme;
+          item-index: index;
+          item-icon: item.icon;
+          item-name: item.label;
+          item-extra: item.extra;
+          clicked(i,n,e) => {
+            root.clicked(i,n,e);
+          }
+        }
       }
     }
   }

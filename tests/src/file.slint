@@ -1,0 +1,41 @@
+import {SURFile,ItemConfigs,FileItem,ItemConfigs} from "../../index.slint";
+import { Themes,PaddingSize,IconSources} from "../../themes/index.slint";
+
+export component TestFile inherits Window {
+  height: 400px;
+  width: 800px;
+  SURFile{
+    theme: Dark;
+    width: 90%;
+    height: 46%;
+    tab-configs : {
+      height:16px,
+      font-size:14px,
+      padding-size:PaddingSize.Tip,
+      theme: Themes.Dark,
+      column-width:[200px,100px,100px,80px]
+    };
+    item-configs : {
+      height:16px,
+      font-size:12px,
+      padding-size:PaddingSize.Normal,
+      theme: Themes.Dark,
+      icon-size:16px
+    };
+    files : [
+      {icon:IconSources.icons.Folder-filled , name : "font" , datetime : "2023-11-06" , file-type : "folder" , size : "900KB"},
+      {icon:IconSources.icons.FileCode , name : "index.slint" , datetime : "2023-11-06" , file-type : "SLINT file" , size : "3KB"},
+      {icon:IconSources.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"},
+      {icon:IconSources.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"},
+      {icon:IconSources.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"}
+    ];
+    tab-clicked(index,item)=>{
+      debug(index);
+      debug(item);
+    }
+    item-clicked(index,item)=>{
+      debug(index);
+      debug(item);
+    }
+  }
+}

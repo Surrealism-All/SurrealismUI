@@ -1,0 +1,173 @@
+import { SURTable,SURTableColumn } from "../table/index.slint";
+import { SURCard } from "../card/index.slint";
+import { ROOT_STYLES,PaddingSize,Themes,IconSources } from "../../themes/index.slint";
+import { SURText } from "../text/index.slint";
+import { SURIcon } from "../icon/index.slint";
+import { ScrollView } from "std-widgets.slint";
+
+export struct ItemConfigs {
+  height:length,
+  font-size:length,
+  padding-size:PaddingSize,
+  theme:Themes,
+  icon-size:length
+}
+export struct TabConfigs {
+  height:length,
+  font-size:length,
+  padding-size:PaddingSize,
+  theme:Themes,
+  column-width:[length]
+}
+
+export struct FileItem {
+  icon:image,
+  name:string,
+  datetime:string,
+  file-type:string,
+  size:string,
+}
+
+// name : the name of the tab
+// value : the real value of the tab
+export struct TabItem {
+  name:string,
+  value:string
+}
+
+export component File inherits SURCard{
+  width: 100%;
+  height: 100%;
+  in property <[TabItem]> tabs : [
+    {name:"名称",value:"name"},
+    {name:"创建时间",value:"datetime"},
+    {name:"文件类型",value:"type"},
+    {name:"大小",value:"size"}
+  ];
+  in property <TabConfigs> tab-configs : {
+    height:16px,
+    font-size:14px,
+    padding-size:PaddingSize.Tip,
+    theme: Themes.Light,
+    column-width:[200px,100px,100px,80px]
+  };
+  in-out property <[FileItem]> files : [
+    {icon:IconSources.icons.Folder-filled , name : "font" , datetime : "2023-11-06" , file-type : "folder" , size : "900KB"},
+    {icon:IconSources.icons.FileCode , name : "index.slint" , datetime : "2023-11-06" , file-type : "SLINT file" , size : "3KB"},
+    {icon:IconSources.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"}
+  ];
+  in property <ItemConfigs> item-configs : {
+    height:16px,
+    font-size:12px,
+    padding-size:PaddingSize.Tip,
+    theme: Themes.Light,
+    icon-size:16px
+  };
+  callback tab-clicked(int,TabItem);
+  callback item-clicked(int,FileItem);
+  VerticalLayout {
+    HorizontalLayout {
+      padding-top:  ROOT-STYLES.get-padding(tab-configs.padding-size).top-bottom;
+      padding-bottom: ROOT-STYLES.get-padding(tab-configs.padding-size).top-bottom;
+      padding-right: ROOT-STYLES.get-padding(tab-configs.padding-size).left-right;
+      padding-left: ROOT-STYLES.get-padding(tab-configs.padding-size).left-right;
+      for t-item[t-index] in tabs: SURCard{
+        border: None;
+        drop-shadow-blur: 0;
+        drop-shadow-offset-x: 0;
+        drop-shadow-offset-y: 0;
+        card-height: tab-configs.height;
+        card-width: tab-configs.column-width[t-index];
+        padding-size: tab-configs.padding-size;
+        theme: tab-configs.theme;
+        TouchArea {
+          mouse-cursor: pointer;
+          clicked => {
+            root.tab-clicked(t-index,t-item);
+          }
+        }
+        VerticalLayout {
+          SURText {
+            height: parent.height;
+            content: t-item.name;
+            horizontal-alignment: left;
+            theme: tab-configs.theme;
+            font-size: tab-configs.font-size;
+          }
+        }
+      } 
+    }
+    // 滚动列表 ， 通过双层循环从横列转纵列
+    ScrollView {
+      viewport-height: files.length * (item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2));
+      HorizontalLayout {
+        padding-top:  ROOT-STYLES.get-padding(tab-configs.padding-size).top-bottom;
+        padding-bottom: ROOT-STYLES.get-padding(tab-configs.padding-size).top-bottom;
+        padding-right: ROOT-STYLES.get-padding(tab-configs.padding-size).left-right;
+        padding-left: ROOT-STYLES.get-padding(tab-configs.padding-size).left-right;
+        for t-item[t-index] in tabs: SURCard{
+          border: None;
+          drop-shadow-blur: 0;
+          drop-shadow-offset-x: 0;
+          drop-shadow-offset-y: 0;
+          card-height: tab-configs.height;
+          card-width: tab-configs.column-width[t-index];
+          padding-size: tab-configs.padding-size;
+          theme: tab-configs.theme;
+          VerticalLayout {
+            for f-item[f-index] in files: TouchArea {
+              z: 100;
+              mouse-cursor: pointer;
+              clicked => {
+                root.item-clicked(f-index,f-item);
+              }
+              VerticalLayout{
+                if t-index==0: HorizontalLayout {
+                  height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
+                  spacing: 6px;
+                  Rectangle {
+                    width: f-icon.width;
+                    f-icon:=SURIcon {
+                      height: item-configs.icon-size;
+                      width: item-configs.icon-size;
+                      theme: item-configs.theme;
+                      icon: f-item.icon;
+                    }
+                  }
+                  SURText {
+                    theme: item-configs.theme;
+                    horizontal-alignment: left;
+                    content: f-item.name;
+                    font-size: root.item-configs.font-size;
+                  }
+                }
+                if t-index==1: SURText{
+                  theme: item-configs.theme;
+                  height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
+                  horizontal-alignment: left;
+                  content: f-item.datetime;
+                  font-size: root.item-configs.font-size;
+                }
+                if t-index == 2: SURText{
+                  theme: item-configs.theme;
+                  height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
+                  horizontal-alignment: left;
+                  content: f-item.file-type;
+                  font-size: root.item-configs.font-size;
+                }
+                if t-index == 3: SURText{
+                  theme: item-configs.theme;
+                  height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
+                  horizontal-alignment: left;
+                  content: f-item.size;
+                  font-size: root.item-configs.font-size;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+ 
+}

@@ -1,11 +1,53 @@
 import {SURTree } from "../../index.slint";
+import { IconSources } from "../../themes/index.slint";
 
 component TestTree inherits Window {
   height: 400px;
   width: 400px;
   SURTree{
-    height: 96%;
+    y: 10px;
+    theme: Dark;
+    height: 45%;
+    width: 96%;
+    tree-data:{
+      icon : IconSources.icons.Folder_filled,
+      label: "SurrealismUI",
+      extra:"",
+      children:[
+        {
+          icon:IconSources.icons.FileCode,
+          label:"slint.slint",
+          extra:"12KB", 
+        },
+        {
+          icon:IconSources.icons.FileCode,
+          label:"surrealism.slint",
+          extra:"126KB", 
+        },
+        {
+          icon:@image-url("../../icons/file-jpg.svg"),
+          label:"icon.jpg",
+          extra:"196KB", 
+        },
+        {
+          icon:@image-url("../../icons/file-gif.svg"),
+          label:"ui.gif",
+          extra:"91KB", 
+        },
+        {
+          icon:@image-url("../../icons/file-gif.svg"),
+          label:"ui2.gif",
+          extra:"107KB", 
+        }
+      ]
+    };
+    clicked(i,n,e)=>{
+      debug(n);
+    }
+  }
+  SURTree {
+    y: 200px;
+    height: 46%;
     width: 96%;
   }
- 
 }
