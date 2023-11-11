@@ -67,7 +67,7 @@ export component Persona inherits SURCard {
         width: 100%;
         name:=SURText { 
           theme: root.name-theme;
-          content: root.name;
+          text: root.name;
           font-size: ROOT-STYLES.sur-font.font-size;
         }
       }
@@ -80,7 +80,7 @@ export component Persona inherits SURCard {
           width: parent.width;
           font-size: root.des-font-size;
           wrap: word-wrap;
-          content: root.des;
+          text: root.des;
           horizontal-alignment: left;
         }
       }

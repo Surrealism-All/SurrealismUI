@@ -4,16 +4,15 @@ import {Themes} from "../../themes/index.slint";
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
-  background:#fff;
+  
   SURText {
     x: 100px;
     y: 20px;
-    content: "hello world";
+    text: "hello world";
   }
   SURText {
-    x:100px;
-    y:100px;
-    theme:Themes.Error;
+    x: 100px;
+    theme: Primary;
+    text: "hello world";
   }
- 
 }

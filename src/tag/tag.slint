@@ -20,50 +20,25 @@ import {ROOT_STYLES,Themes} from "../../themes/index.slint";
 import { SURText } from "../text/index.slint";
 import { SURCard } from "../card/index.slint";
 export component Tag inherits SURCard { 
-  height: inner.height + ROOT-STYLES.sur-padding.small.same;
-  width: inner.width  + ROOT-STYLES.sur-padding.normal.left-right * 2;
-  padding-top: ROOT-STYLES.sur-padding.small.same / 2;
-  padding-bottom: ROOT-STYLES.sur-padding.small.same / 2;
-  padding-left: ROOT-STYLES.sur-padding.normal.left-right ;
-  padding-right: ROOT-STYLES.sur-padding.normal.left-right ;
-  border-radius: ROOT-STYLES.sur-border.large.border-radius;
-  border-width: ROOT-STYLES.sur-border.small.border-width;
-  states [
-    light when self.theme == Themes.Primary: {
-      root.border-color: ROOT-STYLES.sur-theme-colors.light.weaker;
-    }
-    primary when self.theme == Themes.Primary: {
-      root.border-color: ROOT-STYLES.sur-theme-colors.primary.weaker;
-    }
-    success when self.theme == Themes.Success: {
-      root.border-color: ROOT-STYLES.sur-theme-colors.success.weaker;
-    }
-    info when self.theme == Themes.Info: {
-      root.border-color: ROOT-STYLES.sur-theme-colors.info.weaker;
-    }
-    warning when self.theme == Themes.Warning: {
-      root.border-color: ROOT-STYLES.sur-theme-colors.warning.weaker;
-    }
-    error when self.theme == Themes.Error: {
-      root.border-color: ROOT-STYLES.sur-theme-colors.error.weaker;
-    }
-    dark when self.theme == Themes.Dark: {
-      root.border-color: ROOT-STYLES.sur-theme-colors.dark.weaker;
-    }
-  ]
+  card-height: inner.height;
+  card-width: inner.width;
+  padding-size: text==""?None:Tag;
+  border-radius: self.height / 2;
   in property <brush> font-color<=> inner.color;
-  in property <string> content : "Tag";
-  callback clicked();
+  in property <length> font-size:ROOT-STYLES.sur-font.tag-size;
+  in property <string> text : "";
+  callback clicked(string);
+  
   inner:=SURText{
     theme: root.theme;
     z:12;
-    content: root.content;
-    font-size: ROOT-STYLES.sur-font.tag-size;
+    text: root.text;
+    font-size: root.font-size;
   }
   TouchArea {
     z: 13;
     clicked => {
-      root.clicked();
+      root.clicked(root.text);
     }
   }
 } 

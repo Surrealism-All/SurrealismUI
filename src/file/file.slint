@@ -108,7 +108,7 @@ export component File inherits SURCard{
         VerticalLayout {
           SURText {
             height: parent.height;
-            content: t-item.name;
+            text: t-item.name;
             horizontal-alignment: left;
             theme: tab-configs.theme;
             font-size: tab-configs.font-size;
@@ -150,13 +150,13 @@ export component File inherits SURCard{
                       height: item-configs.icon-size;
                       width: item-configs.icon-size;
                       theme: item-configs.theme;
-                      icon: f-item.icon;
+                      source: f-item.icon;
                     }
                   }
                   SURText {
                     theme: item-configs.theme;
                     horizontal-alignment: left;
-                    content: f-item.name;
+                    text: f-item.name;
                     font-size: root.item-configs.font-size;
                   }
                 }
@@ -164,21 +164,21 @@ export component File inherits SURCard{
                   theme: item-configs.theme;
                   height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
                   horizontal-alignment: left;
-                  content: f-item.datetime;
+                  text: f-item.datetime;
                   font-size: root.item-configs.font-size;
                 }
                 if t-index == 2: SURText{
                   theme: item-configs.theme;
                   height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
                   horizontal-alignment: left;
-                  content: f-item.file-type;
+                  text: f-item.file-type;
                   font-size: root.item-configs.font-size;
                 }
                 if t-index == 3: SURText{
                   theme: item-configs.theme;
                   height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
                   horizontal-alignment: left;
-                  content: f-item.size;
+                  text: f-item.size;
                   font-size: root.item-configs.font-size;
                 }
               }

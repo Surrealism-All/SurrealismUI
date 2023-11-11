@@ -28,18 +28,17 @@ import {SURCard} from "../card/index.slint";
 import {ROOT-STYLES,Themes} from "../../themes/index.slint";
 import { HorizontalBox } from "std-widgets.slint";
 export component Button inherits SURCard {
-  
   card-width: layout.width;
   theme: Light;
-  in property <image> icon : @image-url("");
+  in property <image> icon;
   in property <length> font-size:ROOT-STYLES.sur-font.font-size;
   in property <length> letter-spacing : ROOT-STYLES.sur-font.letter-spacing;
   in property <bool> font-italic:ROOT-STYLES.sur-font.font-italic;
   in property <int> font-weight:ROOT-STYLES.sur-font.font-weight;
   in property <string> font-family:ROOT-STYLES.sur-font.font-family;
+  in property <bool> show-icon : false;
   out property <bool> has-hover <=>toucharea.has-hover;
   in-out property <string> content : "SURButton";
-  
   states [
     light when self.theme == Themes.Light: {
       root.background : toucharea.has-hover?ROOT-STYLES.light-deeper(ROOT-STYLES.sur-theme-colors.light.normal):ROOT-STYLES.sur-theme-colors.light.normal;
@@ -123,22 +122,23 @@ export component Button inherits SURCard {
   }
   layout:=HorizontalLayout{
     height: root.height;
-    width: txt-container.width + btn-icon.width;
-    spacing: btn-icon.visible?ROOT-STYLES.get-space(self.width):0;
-    icon-container:= Rectangle {
+    width: show-icon?txt-container.width + root.font-size : txt-container.width;
+    spacing: show-icon?ROOT-STYLES.get-space(self.width):0;
+    if root.show-icon:icon-container:= Rectangle {
       btn-icon:= SURIcon {
-        height: self.get-icon()?0:root.font-size;
-        width: self.get-icon()?0:root.font-size;
+        source:root.icon;
+        height: root.font-size;
+        width: root.font-size;
         theme:root.theme;
-        icon: root.icon;
-        visible: self.get-icon()?false:true;
       }
     }
+    
     txt-container:=TouchArea {
       width: btn-txt.width;
       btn-txt:=SURText{
         theme:root.theme;
-        content: root.content;
+        text: root.content;
+        horizontal-alignment: center;
         font-size: root.font-size;
         font-family: root.font-family;
         font-weight: root.font-weight;

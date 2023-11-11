@@ -44,9 +44,9 @@ component Selector inherits TouchArea {
   clicked => {
     open = !open;
     if(open){
-      open-icon.icon = IconSources.icons.Up;
+      open-icon.source = IconSources.icons.Up;
     }else{
-      open-icon.icon = IconSources.icons.Down;
+      open-icon.source = IconSources.icons.Down;
     }
     show()
   }
@@ -58,14 +58,14 @@ component Selector inherits TouchArea {
     input:=SURText { 
       theme: root.theme;
       horizontal-alignment: left;
-      content: root.content;
+      text: root.content;
       // color: root.font-color;
     }
     Rectangle {
       height: root.height;
       width: open-icon.width;
       open-icon:=SURIcon { 
-        icon: IconSources.icons.Down;
+        source: IconSources.icons.Down;
         clicked => {
           root.clicked();
         }
@@ -184,7 +184,7 @@ export component Select inherits Rectangle {
            
             s-label:=SURText {
               theme: root.theme;
-              content: range.label;
+              text: range.label;
             }
           }
         }
@@ -223,7 +223,7 @@ export component Select inherits Rectangle {
            
             f-label:=SURText {
               theme: root.theme;
-              content: range.label;
+              text: range.label;
             }
           }
         }
@@ -262,7 +262,7 @@ export component Select inherits Rectangle {
            
             i-label:=SURText {
               theme: root.theme;
-              content: range.label;
+              text: range.label;
             }
           }
         }

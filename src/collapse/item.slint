@@ -57,13 +57,13 @@ export component CollapseItem inherits Rectangle{
         clicked => {
           root.show=!root.show;
           if(show){
-            icon.icon = IconSources.icons.Down-one;
+            icon.source = IconSources.icons.Down-one;
             root.height = root.item-height;
             details.height = root.height - header.height;
             details.visible = true;
             
           }else{
-            icon.icon = IconSources.icons.Right-one;
+            icon.source = IconSources.icons.Right-one;
             root.height = header.height;
             details.height = 0;
             details.visible = false;
@@ -78,7 +78,7 @@ export component CollapseItem inherits Rectangle{
         padding-right: ROOT-STYLES.sur-padding.normal.left-right;
         name:=SURText { 
           theme: root.theme;
-          content: root.name;
+          text: root.name;
           font-weight: 700;
         }
         icon-view:=Rectangle{
@@ -87,7 +87,7 @@ export component CollapseItem inherits Rectangle{
             theme: root.theme;
             height: 20px;
             width: 20px;
-            icon:IconSources.icons.Right-one;
+            source:IconSources.icons.Right-one;
             clicked => {
              area.clicked()
             }
@@ -106,7 +106,7 @@ export component CollapseItem inherits Rectangle{
       if !define : txt:=SURText {
         horizontal-alignment:TextHorizontalAlignment.left;
         width: header.width - ROOT-STYLES.sur-padding.normal.same * 2;
-        content: root.detail;
+        text: root.detail;
         font-size: 14px;
         wrap: word-wrap;
         

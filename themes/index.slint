@@ -56,6 +56,7 @@ export global ROOT_STYLES {
   in-out property <brush> radio-active : #FF5722;
   out property <ThemePadding> sur-padding : {
     none:{top-bottom:0px,left-right:0px,same:0px},
+    tag:{top-bottom:3px,left-right:4px,same:3px},
     icon:{top-bottom:2px,left-right:2px,same:2px},
     tip:{top-bottom:6px,left-right:10px,same:4px},
     small: {top-bottom:8px,left-right:12px,same:8px},
@@ -146,8 +147,10 @@ export global ROOT_STYLES {
         ROOT-STYLES.sur-padding.none
       }else if(size==PaddingSize.Tip){
         ROOT-STYLES.sur-padding.tip
+      }else if(size==PaddingSize.Tag){
+        ROOT-STYLES.sur-padding.tag
       }else{
-        ROOT-STYLES.sur-padding.tip
+        ROOT-STYLES.sur-padding.icon
       }
   }
   pure public function get-shadow-x(shadow:Shadows)->length {
@@ -272,7 +275,7 @@ export global ROOT_STYLES {
         ROOT-STYLES.dark-deeper(color)
       }
   }
-  pure function light-deeper(color:brush)->brush {
+  pure public function light-deeper(color:brush)->brush {
     if(color==ROOT-STYLES.sur-theme-colors.light.weakest){
       ROOT-STYLES.sur-theme-colors.light.weaker
     }else if(color==ROOT-STYLES.sur-theme-colors.light.weaker){
@@ -283,7 +286,7 @@ export global ROOT_STYLES {
       ROOT-STYLES.sur-theme-colors.light.deepest
     }
   }
-  pure function primary-deeper(color:brush)->brush {
+  pure public function primary-deeper(color:brush)->brush {
     if(color==ROOT-STYLES.sur-theme-colors.primary.weakest){
       ROOT-STYLES.sur-theme-colors.primary.weaker
     }else if(color==ROOT-STYLES.sur-theme-colors.primary.weaker){
@@ -294,7 +297,7 @@ export global ROOT_STYLES {
       ROOT-STYLES.sur-theme-colors.primary.deepest
     }
   }
-  pure function success-deeper(color:brush)->brush {
+  pure public function success-deeper(color:brush)->brush {
     if(color==ROOT-STYLES.sur-theme-colors.success.weakest){
       ROOT-STYLES.sur-theme-colors.success.weaker
     }else if(color==ROOT-STYLES.sur-theme-colors.success.weaker){
@@ -305,7 +308,7 @@ export global ROOT_STYLES {
       ROOT-STYLES.sur-theme-colors.success.deepest
     }
   }
-  pure function info-deeper(color:brush)->brush {
+  pure public function info-deeper(color:brush)->brush {
     if(color==ROOT-STYLES.sur-theme-colors.info.weakest){
       ROOT-STYLES.sur-theme-colors.info.weaker
     }else if(color==ROOT-STYLES.sur-theme-colors.info.weaker){
@@ -316,7 +319,7 @@ export global ROOT_STYLES {
       ROOT-STYLES.sur-theme-colors.info.deepest
     }
   }
-  pure function warning-deeper(color:brush)->brush {
+  pure public function warning-deeper(color:brush)->brush {
     if(color==ROOT-STYLES.sur-theme-colors.warning.weakest){
       ROOT-STYLES.sur-theme-colors.warning.weaker
     }else if(color==ROOT-STYLES.sur-theme-colors.warning.weaker){
@@ -327,7 +330,7 @@ export global ROOT_STYLES {
       ROOT-STYLES.sur-theme-colors.warning.deepest
     }
   }
-  pure function error-deeper(color:brush)->brush {
+  pure public function error-deeper(color:brush)->brush {
     if(color==ROOT-STYLES.sur-theme-colors.error.weakest){
       ROOT-STYLES.sur-theme-colors.error.weaker
     }else if(color==ROOT-STYLES.sur-theme-colors.error.weaker){
@@ -338,7 +341,7 @@ export global ROOT_STYLES {
       ROOT-STYLES.sur-theme-colors.error.deepest
     }
   }
-  pure function dark-deeper(color:brush)->brush {
+  pure public function dark-deeper(color:brush)->brush {
     if(color==ROOT-STYLES.sur-theme-colors.dark.weakest){
       ROOT-STYLES.sur-theme-colors.dark.weaker
     }else if(color==ROOT-STYLES.sur-theme-colors.dark.weaker){

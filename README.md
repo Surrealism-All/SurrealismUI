@@ -107,7 +107,6 @@ Slint's work on topic definition will simultaneously affect the built-in compone
  It is the simplest and most common component in SurrealismUI
  #### properties:
  - `in property <Themes> theme` : Surrealism themes
- - `in-out property <string> content` : the content in SURText
  #### callbacks: 
  #### functions:
  - `pure public function get()->string` : get content
@@ -126,12 +125,13 @@ component TestWindow inherits Window {
   SURText {
     x: 100px;
     y: 20px;
-    content: "hello world";
+    text: "hello world";
   }
   SURText {
     x:100px;
     y:100px;
-    theme:Themes.Error;
+    theme:Error;
+    text: "hello world";
   }
  
 }
@@ -1519,6 +1519,7 @@ component TestCollection inherits Window {
 ### SURProgress
 SURProgress is commonly used to display download progress or event processing progress
 And you can fully control it through the progress property
+
 #### properties
 - `in property <Themes> theme` : Surrealism theme
 - `in property <string> content` : what you wanna show to others
@@ -1653,8 +1654,6 @@ component TestWindow inherits Window {
  
 }
 ```
-
-![image-20230916101547495](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230916101547495.png)
 
 ![image-20230930183024974](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230930183024974.png)
 
@@ -2228,6 +2227,23 @@ export component TestFile inherits Window {
 ![image-20231105160623486](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20231105160623486.png)
 
 ## Updates
+
+- V0.2.2
+  - `SURText` remove content property , please use text (as Builtin `Text`)
+  - 优化内置方法：
+    - 修复标准内置方法：`get-padding()`
+    - 增加`PaddingSize Enum`类型`PaddingSize.Tag`
+  - 优化`SURTag`：
+    - 修复`SURTag`样式异常
+    - `SURTag` remove content property , please use text (as Builtin `Text`)
+    - `callback clicked`增加返回参数(`tag text`)
+  - 优化`SURIcon`
+    - 修改属性名`icon -> source`
+    - 移除`get-icon()`
+  - 优化`SURButton`
+    - 增加`show-icon`属性控制是否加载图片
+    - 修复按钮异常
+  - 
 
 - V0.2.1
   - add `SURTree`

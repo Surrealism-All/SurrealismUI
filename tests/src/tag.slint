@@ -5,22 +5,24 @@ component TestWindow inherits Window {
   height: 400px;
   width: 400px;
   SURTag {
+    text:"default";
     y: 40px;
   }
   SURTag {
-    content:"error!";
+    text:"error!";
     y:80px;
     theme:Themes.Error;
   }
   SURTag {
+    text:"callback";
     y:120px;
     theme:Themes.Dark;
-    clicked=>{
+    clicked(text)=>{
       self.font-color= #ddff00;
     }
   }
   SURTag {
-    content:"success";
+    text:"success";
     y:160px;
    
     theme:Themes.Success;

@@ -81,20 +81,20 @@ export component Alert inherits Window{
       icon-view:=Rectangle{
         icon:=SURIcon { 
           theme: root.theme;
-          icon: root.icon;
+          source: root.icon;
           height: 18px;
           width: 18px;
         }
       }
       info:=SURText { 
         theme: root.theme;
-        content: root.content;
+        text: root.content;
         width: parent.width - 60px;
         horizontal-alignment: left;
       }
       close-view:=Rectangle{
         close:=SURIcon{
-          icon: IconSources.icons.Close-one;
+          source: IconSources.icons.Close-one;
           theme: root.theme;
           clicked => {
             root.close();

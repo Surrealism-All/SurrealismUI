@@ -42,7 +42,7 @@ export component Divider inherits Rectangle{
       height: txt.height;
       width: txt.width + ROOT-STYLES.sur-padding.small.left-right;
       txt:=SURText { 
-        content: root.content;
+       text: root.content;
         font-size: 12px;
         theme: root.theme;
       }
@@ -60,7 +60,7 @@ export component Divider inherits Rectangle{
       padding-size: Icon;
        icon:= SURIcon { 
           theme: root.theme;
-          icon: root.icon;
+          source: root.icon;
         }
     }
   }

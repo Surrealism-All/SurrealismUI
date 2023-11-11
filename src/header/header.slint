@@ -42,7 +42,7 @@ component HeaderItem inherits HorizontalLayout{
       height: font-size;
       width: font-size;
       theme: root.theme;
-      icon: IconSources.icons.Right-one;
+      source: IconSources.icons.Right-one;
       clicked => {
         root.clicked(root.name)
       }
@@ -73,7 +73,7 @@ export component Header inherits SURCard {
       width: back-icon.width;
       back-icon:=SURIcon { 
         theme: root.theme;
-        icon: IconSources.icons.Link-left;
+        source: IconSources.icons.Link-left;
         clicked => {
           root.back();
         }
@@ -83,7 +83,7 @@ export component Header inherits SURCard {
       width: name.width;
       name:=SURText{ 
         theme: root.theme;
-        content: root.route.home;
+        text: root.route.home;
       }
     }
     for r[index] in route.routes: Rectangle{

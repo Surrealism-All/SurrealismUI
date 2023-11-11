@@ -97,7 +97,7 @@ export component Badge inherits SURCard {
   HorizontalLayout {
     spacing: ROOT-STYLES.get-space(txt-view.width);
     badge-icon:= SURIcon { 
-      icon: root.icon;
+      source: root.icon;
       theme: root.theme;
       clicked => {
         txt-view.visible=!txt-view.visible
@@ -113,7 +113,7 @@ export component Badge inherits SURCard {
       
       badge-txt:=SURText { 
         font-size: ROOT-STYLES.sur-font.font-size  - 4px;
-        content: root.content;
+        text: root.content;
         theme: root.theme;
       }
     }

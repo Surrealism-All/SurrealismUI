@@ -1,12 +1,12 @@
-import {SURButton} from "/index.slint";
-import {Themes,IconSources} from "/themes/index.slint";
+import {SURButton} from "../../index.slint";
+import {Themes,IconSources} from "../../themes/index.slint";
 component TestButton inherits Window {
   height: 400px;
   width: 400px;
   SURButton {
     x: 20px;
     y: 10px;
-    
+    show-icon:true;
     theme:Themes.Dark;
     icon:@image-url("../../icons/safe-retrieval.svg");
     clicked => {
@@ -19,7 +19,8 @@ component TestButton inherits Window {
 
     content:"Save";
     clicked => {
-      self.content = "clicked"
+      self.content = "clicked";
+      
     }
   }
   SURButton {

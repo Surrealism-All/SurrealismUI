@@ -188,7 +188,7 @@ export component Input inherits Rectangle {
         clip: true;
         if root.content=="" :i-placeholder := SURText { 
           theme: root.theme;
-          content: root.placeholder;
+          text: root.placeholder;
           font-size: root.font-size;
           color: root.placeholder-color;
           width: input.width - input.font-size ;
@@ -228,14 +228,14 @@ export component Input inherits Rectangle {
       if root.password: eye-icon:= Rectangle{
         eye:=SURIcon {
           theme: root.theme;
-          icon:IconSources.icons.Preview-close;
+          source:IconSources.icons.Preview-close;
           clicked => {
-            if(self.icon==IconSources.icons.Preview-close){
+            if(self.source==IconSources.icons.Preview-close){
               root.type = InputType.text;
-              self.icon = IconSources.icons.Preview-open
+              self.source = IconSources.icons.Preview-open
             }else{
               root.type = InputType.password;
-              self.icon = IconSources.icons.Preview-close
+              self.source = IconSources.icons.Preview-close
             }
           }
         }
@@ -243,7 +243,7 @@ export component Input inherits Rectangle {
       if root.clearable:clear-icon:= Rectangle {
         SURIcon{
           theme: root.theme;
-          icon: IconSources.icons.Close-one;
+          source: IconSources.icons.Close-one;
           clicked => {
             root.clear();
           }

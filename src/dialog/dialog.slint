@@ -94,7 +94,7 @@ export component Dialog inherits Window {
             title:=SURText { 
               font-size: root.dialog-title-size;
               font-weight: 700;
-              content: root.dialog-title;
+              text: root.dialog-title;
             }
           }
           details-view:=Rectangle{
@@ -107,7 +107,7 @@ export component Dialog inherits Window {
               padding-top: ROOT-STYLES.sur-padding.normal.top-bottom;
               padding-bottom: ROOT-STYLES.sur-padding.normal.top-bottom;
               if root.dialog-details!="": details:=SURText{
-                content: root.dialog-details;
+                text: root.dialog-details;
                 wrap: word-wrap;
               }
               @children

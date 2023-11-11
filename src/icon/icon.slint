@@ -21,20 +21,17 @@
 import {IconItem,IconSources} from "./dev.slint";
 import {ROOT_STYLES,Themes} from "../../themes/index.slint";
 
-export component Icon inherits Rectangle {
+export component Icon{
   //default icon size
-  height: get-icon()? 0 : ROOT-STYLES.sur-size.normal;
-  width: get-icon()? 0 : ROOT-STYLES.sur-size.normal;
+
   padding: 0;
   //params
   out property <bool> has-hover<=>toucharea.has-hover;
-  in property <image> icon : IconSources.icons.Null;
+  in property <image> source;
   in property <Themes> theme : Themes.Light;
   in-out property <brush> icon-color;
   // get icon src from for iter item
-  pure public function get-icon()->bool {
-    icon==@image-url("") ? true:false
-  }
+  
 
   callback clicked;
   clicked => {}
@@ -109,15 +106,16 @@ export component Icon inherits Rectangle {
     clicked => {
       root.clicked()
     }
+    // for iter to match then get icon source
+    img:=Image {
+      source: root.source;
+      height: root.height;
+      width: root.width;
+      colorize: root.icon-color;
+    }
   }
   
-  // for iter to match then get icon source
-  img:=Image {
-    source: icon;
-    height: root.height;
-    width: root.width;
-    colorize: root.icon-color;
-  }
+  
 }
 
 
