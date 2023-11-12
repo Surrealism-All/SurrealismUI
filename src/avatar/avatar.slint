@@ -34,13 +34,14 @@ export component Avatar inherits SURCard {
     self.padding-right = self.card-padding.same;
   }
   SURIcon {
-    visible: avatar==@image-url("")?true:false;
+    z: 13;
     height: avatar-size;
     width: avatar-size;
     source: IconSources.icons.Avatar;
     theme: root.theme;
   }
   Image {
+    z: 15;
     height: root.height;
     width: root.width;
     source: avatar;

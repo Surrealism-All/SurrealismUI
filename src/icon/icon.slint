@@ -23,15 +23,15 @@ import {ROOT_STYLES,Themes} from "../../themes/index.slint";
 
 export component Icon{
   //default icon size
-
   padding: 0;
+  height: ROOT-STYLES.sur-font.font-size;
+  width:ROOT-STYLES.sur-font.font-size;
   //params
   out property <bool> has-hover<=>toucharea.has-hover;
   in property <image> source;
   in property <Themes> theme : Themes.Light;
   in-out property <brush> icon-color;
   // get icon src from for iter item
-  
 
   callback clicked;
   clicked => {}

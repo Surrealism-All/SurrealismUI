@@ -1,11 +1,11 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.2.1-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.2.2-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
 - updateDate：202301112
-- version：0.2.1
+- version：0.2.2
 - email：syf20020816@outlook.com
 
 <img src="./README/imgs/logo.png">
@@ -121,28 +121,26 @@ import {Themes} from "../../themes/index.slint";
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
-  background:#fff;
+  
   SURText {
     x: 100px;
     y: 20px;
     text: "hello world";
   }
   SURText {
-    x:100px;
-    y:100px;
-    theme:Error;
+    x: 100px;
+    theme: Primary;
     text: "hello world";
   }
- 
 }
 ```
 
-![image-20230910102940392](./README/imgs/image-20230910102940392.png)
+![image-20231112134855878](E:\Rust\try\surrealism-ui\README\imgs\image-20231112134855878.png)
 
  ### SURIcon
  there are 2658 different icons in SURIcon from : https://github.com/bytedance/iconpark
  #### properties:
- - `in property <image> icon` : icon types
+ - `in property <image> source` : icon source
  - `out property <bool> has-hover` : has hover or not
  - `in property <Themes> theme` : Surrealism theme
  - `in-out property <brush> icon-color` : icon color 
@@ -163,26 +161,27 @@ export component TestIcon inherits Window {
   GridLayout {
     spacing: 40px;
     Row{
+      
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/sd-card.svg");
+        source: @image-url("../../icons/sd-card.svg");
         theme: Themes.Primary;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/add-computer.svg");
+        source: @image-url("../../icons/add-computer.svg");
         theme: Themes.Success;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/yep.svg");
+        source: @image-url("../../icons/yep.svg");
         theme: Themes.Error;
       }
       SURIcon{
-        icon: @image-url("../../icons/t-shirt.svg");
+        source: @image-url("../../icons/t-shirt.svg");
         theme: Themes.Dark;
         height: 30px;
         width: 30px;
@@ -190,13 +189,13 @@ export component TestIcon inherits Window {
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/video-conference.svg");
+        source: @image-url("../../icons/video-conference.svg");
         theme: Themes.Info;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon:@image-url("../../icons/vacation.svg");
+        source:@image-url("../../icons/vacation.svg");
         theme: Themes.Warning;
         clicked=>{
           debug("clicked");
@@ -210,23 +209,23 @@ export component TestIcon inherits Window {
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/cake-five.svg");
+        source: @image-url("../../icons/cake-five.svg");
         theme: Themes.Primary;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/label.svg");
+        source: @image-url("../../icons/label.svg");
         theme: Themes.Success;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/wifi.svg");
+        source: @image-url("../../icons/wifi.svg");
         theme: Themes.Error;
       }
       SURIcon{
-        icon: @image-url("../../icons/wallet-one.svg");
+        source: @image-url("../../icons/wallet-one.svg");
         theme: Themes.Dark;
         height: 30px;
         width: 30px;
@@ -234,13 +233,13 @@ export component TestIcon inherits Window {
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/game-console.svg");
+        source: @image-url("../../icons/game-console.svg");
         theme: Themes.Info;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/qiyehao.svg");
+        source: @image-url("../../icons/qiyehao.svg");
         theme: Themes.Warning;
       }
     }
@@ -248,23 +247,23 @@ export component TestIcon inherits Window {
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/scanning-two.svg");
+        source: @image-url("../../icons/scanning-two.svg");
         theme: Themes.Primary;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/oceanengine.svg");
+        source: @image-url("../../icons/oceanengine.svg");
         theme: Themes.Success;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/zoom-internal.svg");
+        source: @image-url("../../icons/zoom-internal.svg");
         theme: Themes.Error;
       }
       SURIcon{
-        icon: @image-url("../../icons/zip.svg");
+        source: @image-url("../../icons/zip.svg");
         theme: Themes.Dark;
         height: 30px;
         width: 30px;
@@ -272,13 +271,13 @@ export component TestIcon inherits Window {
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/f-eight-key.svg");
+        source: @image-url("../../icons/f-eight-key.svg");
         theme: Themes.Info;
       }
       SURIcon{
         height: 30px;
         width: 30px;
-        icon: @image-url("../../icons/pacifier.svg");
+        source: @image-url("../../icons/pacifier.svg");
         theme: Themes.Warning;
       }
     }
@@ -317,7 +316,7 @@ component TestCard inherits Window {
     y: 20px;
     card-width:text.width;
     text:=SURText {
-      content: "SURCard";
+      text: "SURCard";
     }
    }
    SURCard { 
@@ -359,6 +358,7 @@ SURButton is a button component that you can freely perform regular attribute op
 - `in property <int> font-weight`: button font weight
 - `in property <string> font-family`: button font family
 - `in-out property <string> content` : the content of the button;
+- `in property <bool> show-icon` : control  the icon load or not
 #### functions
 #### callbacks 
 - `clicked` : run if you click the button
@@ -366,15 +366,15 @@ SURButton is a button component that you can freely perform regular attribute op
 #### example
 
 ```
-import {SURButton} from "/index.slint";
-import {Themes,IconSources} from "/themes/index.slint";
+import {SURButton} from "../../index.slint";
+import {Themes,IconSources} from "../../themes/index.slint";
 component TestButton inherits Window {
   height: 400px;
   width: 400px;
   SURButton {
     x: 20px;
     y: 10px;
-    
+    show-icon:true;
     theme:Themes.Dark;
     icon:@image-url("../../icons/safe-retrieval.svg");
     clicked => {
@@ -387,7 +387,8 @@ component TestButton inherits Window {
 
     content:"Save";
     clicked => {
-      self.content = "clicked"
+      self.content = "clicked";
+      
     }
   }
   SURButton {
@@ -419,7 +420,6 @@ component TestButton inherits Window {
   SURButton {
     x: 200px;
     y: 200px;
-    
     theme:Themes.Warning;
   }
 }
@@ -568,7 +568,7 @@ component TestWindow inherits Window {
   SURButton {
     y: 320px;
     x:10px;
-    content: "add half";
+    text: "add half";
     clicked => {
       hs.add-half();
     }
@@ -588,7 +588,7 @@ component TestWindow inherits Window {
   SURButton {
     y: 320px;
     x: 115px;
-    content: "add one";
+    text: "add one";
     clicked => {
       os.add-one();
     }
@@ -606,7 +606,7 @@ component TestWindow inherits Window {
   SURButton {
     y: 320px;
     x: 220px;
-    content: "get A";
+    text: "get A";
     clicked => {
       fs.full();
     }
@@ -614,7 +614,7 @@ component TestWindow inherits Window {
   SURButton {
     y: 320px;
     x: 305px;
-    content: "clear";
+    text: "clear";
     clicked => {
       fs.clear();
     }
@@ -634,12 +634,13 @@ component TestWindow inherits Window {
  ### SURTag
  A small tag used to display data
  #### properties
- - `in property <string> content` : the content of the tag
- - see card's properties
+ - `in property <string> text` : the text of the tag
+ - `in property <brush> font-color` : tag font color
+ - `in property <length> font-size` : tag font size
  #### functions
  see card's functions
  #### callbacks
- - `callback clicked()` : run if you click the tag
+ - `callback clicked(string)` : run if you click the tag
 
 #### example
 
@@ -651,22 +652,24 @@ component TestWindow inherits Window {
   height: 400px;
   width: 400px;
   SURTag {
+    text:"default";
     y: 40px;
   }
   SURTag {
-    content:"error!";
+    text:"error!";
     y:80px;
     theme:Themes.Error;
   }
   SURTag {
+    text:"callback";
     y:120px;
     theme:Themes.Dark;
-    clicked=>{
+    clicked(text)=>{
       self.font-color= #ddff00;
     }
   }
   SURTag {
-    content:"success";
+    text:"success";
     y:160px;
    
     theme:Themes.Success;
@@ -674,7 +677,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910105626765](./README/imgs/image-20230910105626765.png)
+![image-20231112134533009](E:\Rust\try\surrealism-ui\README\imgs\image-20231112134533009.png)
 
  ### SURHeader
  SURHeader is a simple header component that is generated based on routing information
@@ -1066,10 +1069,17 @@ SURLink is commonly used to represent text connections or sharing
 
 * `in property <image> icon` : share icon you can use whatever you want
 * `in property <bool> funny` : Easter egg just funny
+* `in property <bool> underline` : has underline
+* `out property <bool> has-hover` : link has been hover or not
+* `in property <MouseCursor> mouse-cursor `: mouse cursor
+* `in property <Themes> theme` : Surrealism Theme
+* `in property <length> font-size` : link font size
+* `in-out property <string> text` : link text
+* `private property <brush> text-color`: text color⛔
 
 #### callbacks
 
-* `callback clicked()` :  run if you click share icon
+* `callback clicked(string)` :  run if you click share icon
 
 #### exeample
 
@@ -1084,18 +1094,20 @@ component TestWindow inherits Window {
   SURLink {
     y: 100px;
     theme: Dark;
+    text: "no underline";
+    underline: false;
   }
   SURLink {
     y: 160px;
     funny:true;
     theme: Warning;
-    content: "funny for link!";
+    text: "funny for link!";
   }
   SURLink {
     y: 220px;
     theme: Primary;
     icon: @image-url("../../icons/share-one.svg");
-    content: "share one";
+    text: "share one";
   }
   SURLink {
     y: 280px;
@@ -1103,7 +1115,7 @@ component TestWindow inherits Window {
     theme: Error;
     icon : @image-url("../../icons/share-sys.svg");
     font-size: 24px;
-    content: "share sys";
+    text: "share sys";
     clicked=>{
       debug("share sys!")
     }
@@ -1111,7 +1123,7 @@ component TestWindow inherits Window {
 }
 ```
 
-![image-20230910110312615](./README/imgs/image-20230910110312615.png)
+![image-20231112134443536](.\README\imgs\image-20231112134443536.png)
 
 ### SURAvatar
 
@@ -1232,14 +1244,14 @@ And users will not be able to use the pop-up layer to cover the components under
 import {SURPopup,SURButton} from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
 
-component TestDivider inherits Window {
+component TestPopup inherits Window {
   height: 800px;
   width: 800px;
   background: #535353;
  
   SURButton {
     
-    content: "show";
+    text: "show";
     clicked => {
       p.open();
       
@@ -1250,7 +1262,7 @@ component TestDivider inherits Window {
 
   p:=SURPopup {
     SURButton {
-      content: "you can add anything in Popup";
+      text: "you can add anything in Popup";
       y: 160px;
     }
   }
@@ -1556,7 +1568,7 @@ component TestDivider inherits Window {
   SURButton{
     x: 60px;
     y: 340px;
-    content: "add";
+    text: "add";
     clicked => {
       a.add(5);
     }
@@ -1564,7 +1576,7 @@ component TestDivider inherits Window {
   SURButton{
     x: 160px;
     y: 340px;
-    content: "full";
+    text: "full";
     clicked => {
       a.full();
     }
@@ -1572,7 +1584,7 @@ component TestDivider inherits Window {
   SURButton{
     x: 260px;
     y: 340px;
-    content: "clear";
+    text: "clear";
     clicked => {
       a.clear();
     }
@@ -1687,14 +1699,14 @@ export component TestLoading inherits Window {
     width: 400px;
     SURButton {
       y: 100px;
-      content: "show";
+      text: "show";
       clicked => {
         p.open();
       }
     }
     SURButton {
       y: 160px;
-      content: "close";
+      text: "close";
       clicked => {
         p.close();
       }
@@ -1745,7 +1757,7 @@ component TestDialog inherits Window {
  
   SURButton {
     
-    content: "show";
+    text: "show";
     clicked => {
       p.open();
     }
@@ -2073,9 +2085,10 @@ component TestAlert inherits Window {
  
   SURButton {
     
-    content: "show";
+    text: "show";
     clicked => {
       p.open();
+      
       debug("sds1")
     }
   }
@@ -2228,7 +2241,7 @@ export component TestFile inherits Window {
 
 ## Updates
 
-- V0.2.2
+- V0.2.2（Slint 1.3.0）
   - `SURText` remove content property , please use text (as Builtin `Text`)
   - 优化内置Global：
     - 修复标准内置方法：`get-padding()`
@@ -2250,7 +2263,8 @@ export component TestFile inherits Window {
     - `callback clicked(string)`增加返回参数(`link text`)
     - 增加hover控制下划线触发效果
     - 增加`underline`属性控制下划线显示
-
+  - 修复`SURAvatar`默认Icon消失问题
+  
 - V0.2.1
   - add `SURTree`
   - add `SURFile`

@@ -10,8 +10,15 @@
 * ## properties
 * - in property <image> icon : share icon you can use whatever you want
 * - in property <bool> funny : Easter egg just funny
+* - in property <bool> underline : has underline
+* - out property <bool> has-hover : link has been hover or not
+* - in property <MouseCursor> mouse-cursor : mouse cursor
+* - in property <Themes> theme : Surrealism Theme
+* - in property <length> font-size : link font size
+* - in-out property <string> text : link text
+* - private property <brush> text-color : text color⛔
 * ## callbacks
-* - callback clicked() :  run if you click share icon
+* - callback clicked(string) : run if you click share icon
 * ============================================
 */
 
@@ -28,7 +35,7 @@ export component Link {
   out property <bool> has-hover <=> touch-area.has-hover;
   in property <MouseCursor> mouse-cursor;
   in property <Themes> theme : Light;
-  in property <length> font-size;
+  in property <length> font-size : ROOT-STYLES.sur-font.font-size;
   in-out property <string> text<=>inner-text.text;
   private property <brush> text-color;
   states [
@@ -57,10 +64,9 @@ export component Link {
     HorizontalLayout {
       inner-text:=SURText{
         theme: root.theme;
-        
+        font-size: root.font-size;
       }
       Rectangle {
-        // x: inner-text.width;
         height: link-icon.width;
         width: link-icon.width + self.padding-left;
         padding-left: 2px;

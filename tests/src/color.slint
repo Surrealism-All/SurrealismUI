@@ -24,7 +24,7 @@ export component TestColor inherits Window {
         SURText { 
           font-size: 18px;
           font-weight: 700;
-          content: @tr("theme:{}",t.name);
+          text: @tr("theme:{}",t.name);
         }
         Rectangle {
           height: 200px;
@@ -32,7 +32,7 @@ export component TestColor inherits Window {
           VerticalLayout {
             HorizontalLayout {
               for c[index] in t.c: SURText{
-                content: c.name;
+                text: c.name;
                 width: parent.width/7;
               }
             }
