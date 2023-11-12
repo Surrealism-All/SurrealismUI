@@ -8,18 +8,20 @@ component TestWindow inherits Window {
   SURLink {
     y: 100px;
     theme: Dark;
+    text: "no underline";
+    underline: false;
   }
   SURLink {
     y: 160px;
     funny:true;
     theme: Warning;
-    content: "funny for link!";
+    text: "funny for link!";
   }
   SURLink {
     y: 220px;
     theme: Primary;
     icon: @image-url("../../icons/share-one.svg");
-    content: "share one";
+    text: "share one";
   }
   SURLink {
     y: 280px;
@@ -27,7 +29,7 @@ component TestWindow inherits Window {
     theme: Error;
     icon : @image-url("../../icons/share-sys.svg");
     font-size: 24px;
-    content: "share sys";
+    text: "share sys";
     clicked=>{
       debug("share sys!")
     }

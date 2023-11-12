@@ -19,12 +19,31 @@ import { SURText } from "../text/index.slint";
 import { SURCard } from "../card/index.slint";
 import {Shadows} from "../../themes/index.slint";
 import { SURIcon } from "../icon/index.slint";
-import { IconSources } from "../../themes/index.slint";
-export component Link inherits SURText{
-  callback clicked();
+import { IconSources,Themes,ROOT-STYLES,ColorLevel } from "../../themes/index.slint";
+export component Link {
+  callback clicked(string);
   in property <image> icon : IconSources.icons.Share;
   in property <bool> funny : false;
-    SURCard {
+  in property <bool> underline : true;
+  out property <bool> has-hover <=> touch-area.has-hover;
+  in property <MouseCursor> mouse-cursor;
+  in property <Themes> theme : Light;
+  in property <length> font-size;
+  in-out property <string> text<=>inner-text.text;
+  private property <brush> text-color;
+  states [
+    hover when touch-area.has-hover: {
+      inner-text.color : ROOT-STYLES.deeper(root.theme,ROOT-STYLES.get-color(root.theme,ColorLevel.Font));
+      link-icon.icon-color : ROOT-STYLES.deeper(root.theme,ROOT-STYLES.get-color(root.theme,ColorLevel.Font)); 
+    }
+  ]
+  touch-area:=TouchArea {
+    z: 14;
+    mouse-cursor: pointer;
+    clicked => {
+      root.clicked(root.text)
+    }
+    if touch-area.has-hover&&underline: SURCard {
       y: root.height;
       height: 1px;
       width: root.width;
@@ -35,19 +54,23 @@ export component Link inherits SURText{
       padding-bottom: 0;
       border: root.funny? Circle-None: None;
     }
-  Rectangle {
-    x: root.width; 
-    height: link-icon.width;
-    width: link-icon.width + self.padding-left;
-    padding-left: 2px;
-    link-icon:=SURIcon {
-      x: 2px;
-      source: root.icon;
-      theme: root.theme;
-      height: root.font-size / 1.4;
-      width: root.font-size / 1.4;
-      clicked => {
-        root.clicked()
+    HorizontalLayout {
+      inner-text:=SURText{
+        theme: root.theme;
+        
+      }
+      Rectangle {
+        // x: inner-text.width;
+        height: link-icon.width;
+        width: link-icon.width + self.padding-left;
+        padding-left: 2px;
+        link-icon:=SURIcon{
+          x: 2px;
+          source: root.icon;
+          theme: root.theme;
+          height: root.font-size / 1.4;
+          width: root.font-size / 1.4;
+        }
       }
     }
   }

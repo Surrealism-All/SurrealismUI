@@ -1,11 +1,11 @@
-import {ThemeColor} from "./src/color/color.slint";
+import {ThemeColor,ColorLevel} from "./src/color/color.slint";
 import {ThemeFont} from "./src/font/font.slint";
 import {ThemePadding,ThemeBorder,PaddingSize,PaddingItem,Borders,BorderItem} from "./src/padding/padding.slint";
 import { ThemeSpace } from "./src/spacing/spacing.slint";
 import {Size,SizeStruct} from "./src/common.slint";
 import { IconSources } from "../src/icon/dev.slint";
 import { Shadows } from "./src/shadow/shadow.slint";
-export { Size,PaddingSize,PaddingItem,Shadows,Borders,BorderItem,IconSources}
+export { Size,PaddingSize,PaddingItem,Shadows,Borders,BorderItem,IconSources,ColorLevel}
 
 export enum CommonPosition {
   Left,
@@ -352,6 +352,140 @@ export global ROOT_STYLES {
       ROOT-STYLES.sur-theme-colors.dark.deepest
     }
   }
+  pure public function get-color(theme:Themes,level:ColorLevel)->brush{
+    if(theme==Themes.Light){
+      return get-color-light(level);
+    }else if(theme==Themes.Dark){
+      return get-color-dark(level);
+    }else if(theme==Themes.Error){
+      return get-color-error(level);
+    }else if(theme==Themes.Info){
+      return get-color-info(level);
+    }else if(theme==Themes.Success){
+      return get-color-success(level);
+    }else if(theme==Themes.Primary){
+      return get-color-primary(level);
+    }else{
+      return get-color-warning(level);
+    }
+  }
+  pure public function get-color-light(level:ColorLevel)->brush {
+    if(level==ColorLevel.Font){
+      ROOT-STYLES.sur-theme-colors.light.font
+    }else if(level==ColorLevel.Weakest){
+      ROOT-STYLES.sur-theme-colors.light.weakest
+    }else if(level==ColorLevel.Weaker){
+      ROOT-STYLES.sur-theme-colors.light.weaker
+    }else if(level==ColorLevel.Normal){
+      ROOT-STYLES.sur-theme-colors.light.normal
+    }else if(level==ColorLevel.Deeper){
+      ROOT-STYLES.sur-theme-colors.light.deeper
+    }else if(level==ColorLevel.Deepest){
+      ROOT-STYLES.sur-theme-colors.light.deepest
+    }else{
+      ROOT-STYLES.sur-theme-colors.light.opacity
+    }
+  }
+  pure public function get-color-dark(level:ColorLevel)->brush {
+    if(level==ColorLevel.Font){
+      ROOT-STYLES.sur-theme-colors.dark.font
+    }else if(level==ColorLevel.Weakest){
+      ROOT-STYLES.sur-theme-colors.dark.weakest
+    }else if(level==ColorLevel.Weaker){
+      ROOT-STYLES.sur-theme-colors.dark.weaker
+    }else if(level==ColorLevel.Normal){
+      ROOT-STYLES.sur-theme-colors.dark.normal
+    }else if(level==ColorLevel.Deeper){
+      ROOT-STYLES.sur-theme-colors.dark.deeper
+    }else if(level==ColorLevel.Deepest){
+      ROOT-STYLES.sur-theme-colors.dark.deepest
+    }else{
+      ROOT-STYLES.sur-theme-colors.dark.opacity
+    }
+  }
+  pure public function get-color-primary(level:ColorLevel)->brush {
+    if(level==ColorLevel.Font){
+      ROOT-STYLES.sur-theme-colors.primary.font
+    }else if(level==ColorLevel.Weakest){
+      ROOT-STYLES.sur-theme-colors.primary.weakest
+    }else if(level==ColorLevel.Weaker){
+      ROOT-STYLES.sur-theme-colors.primary.weaker
+    }else if(level==ColorLevel.Normal){
+      ROOT-STYLES.sur-theme-colors.primary.normal
+    }else if(level==ColorLevel.Deeper){
+      ROOT-STYLES.sur-theme-colors.primary.deeper
+    }else if(level==ColorLevel.Deepest){
+      ROOT-STYLES.sur-theme-colors.primary.deepest
+    }else{
+      ROOT-STYLES.sur-theme-colors.primary.opacity
+    }
+  }
+  pure public function get-color-info(level:ColorLevel)->brush {
+    if(level==ColorLevel.Font){
+      ROOT-STYLES.sur-theme-colors.info.font
+    }else if(level==ColorLevel.Weakest){
+      ROOT-STYLES.sur-theme-colors.info.weakest
+    }else if(level==ColorLevel.Weaker){
+      ROOT-STYLES.sur-theme-colors.info.weaker
+    }else if(level==ColorLevel.Normal){
+      ROOT-STYLES.sur-theme-colors.info.normal
+    }else if(level==ColorLevel.Deeper){
+      ROOT-STYLES.sur-theme-colors.info.deeper
+    }else if(level==ColorLevel.Deepest){
+      ROOT-STYLES.sur-theme-colors.info.deepest
+    }else{
+      ROOT-STYLES.sur-theme-colors.info.opacity
+    }
+  }
+  pure public function get-color-error(level:ColorLevel)->brush {
+    if(level==ColorLevel.Font){
+      ROOT-STYLES.sur-theme-colors.error.font
+    }else if(level==ColorLevel.Weakest){
+      ROOT-STYLES.sur-theme-colors.error.weakest
+    }else if(level==ColorLevel.Weaker){
+      ROOT-STYLES.sur-theme-colors.error.weaker
+    }else if(level==ColorLevel.Normal){
+      ROOT-STYLES.sur-theme-colors.error.normal
+    }else if(level==ColorLevel.Deeper){
+      ROOT-STYLES.sur-theme-colors.error.deeper
+    }else if(level==ColorLevel.Deepest){
+      ROOT-STYLES.sur-theme-colors.error.deepest
+    }else{
+      ROOT-STYLES.sur-theme-colors.error.opacity
+    }
+  }
+  pure public function get-color-success(level:ColorLevel)->brush {
+    if(level==ColorLevel.Font){
+      ROOT-STYLES.sur-theme-colors.success.font
+    }else if(level==ColorLevel.Weakest){
+      ROOT-STYLES.sur-theme-colors.success.weakest
+    }else if(level==ColorLevel.Weaker){
+      ROOT-STYLES.sur-theme-colors.success.weaker
+    }else if(level==ColorLevel.Normal){
+      ROOT-STYLES.sur-theme-colors.success.normal
+    }else if(level==ColorLevel.Deeper){
+      ROOT-STYLES.sur-theme-colors.success.deeper
+    }else if(level==ColorLevel.Deepest){
+      ROOT-STYLES.sur-theme-colors.success.deepest
+    }else{
+      ROOT-STYLES.sur-theme-colors.success.opacity
+    }
+  }
+  pure public function get-color-warning(level:ColorLevel)->brush {
+    if(level==ColorLevel.Font){
+      ROOT-STYLES.sur-theme-colors.warning.font
+    }else if(level==ColorLevel.Weakest){
+      ROOT-STYLES.sur-theme-colors.warning.weakest
+    }else if(level==ColorLevel.Weaker){
+      ROOT-STYLES.sur-theme-colors.warning.weaker
+    }else if(level==ColorLevel.Normal){
+      ROOT-STYLES.sur-theme-colors.warning.normal
+    }else if(level==ColorLevel.Deeper){
+      ROOT-STYLES.sur-theme-colors.warning.deeper
+    }else if(level==ColorLevel.Deepest){
+      ROOT-STYLES.sur-theme-colors.warning.deepest
+    }else{
+      ROOT-STYLES.sur-theme-colors.warning.opacity
+    }
+  }
 }
-
-
