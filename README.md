@@ -948,8 +948,8 @@ SURResult helps you easily build a quick prompt , you can build it in popup wind
 - `callback clicked()` : run if you click the button
 
 ```
-import {SURResult,ResType} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {SURResult} from "../../index.slint";
+import {Themes,ResType} from "../../themes/index.slint";
 
 export component TestResult inherits Window {
   height: 500px;
