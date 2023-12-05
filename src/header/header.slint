@@ -21,82 +21,45 @@ import {ROOT_STYLES,Themes,IconSources} from "../../themes/index.slint";
 import { SURIcon } from "../icon/index.slint";
 import { SURText } from "../text/index.slint";
 import { SURCard } from "../card/index.slint";
-
-export struct Route {
-    home : string,
-    routes: [string]
-}
-
-component HeaderItem inherits HorizontalLayout{
-  width:icon-view.width + txt-view.width + ROOT-STYLES.sur-padding.small.same;
-  height: root.font-size;
-  spacing: ROOT-STYLES.sur-padding.small.same;
-  in property <string> name <=>txt.text;
-  in property <Themes> theme : Themes.Primary;
-  in property <length> font-size<=>txt.font-size;
-  callback clicked(string);
-  
-  icon-view:=Rectangle{
-    width: icon.width;
-    icon:=SURIcon{
-      height: font-size;
-      width: font-size;
-      theme: root.theme;
-      source: IconSources.icons.Right-one;
-      clicked => {
-        root.clicked(root.name)
-      }
-      
-    }
-  }
-  txt-view:=Rectangle{
-    width: txt.width;
-    txt:=SURText{ 
-      theme: root.theme;
-    }
-  }
-}
+import {SHeaderNode,DefaultSHeaderProps} from "../../use/index.slint";
 
 export component Header inherits SURCard { 
-  card-width: 560px;
-  in property <length> spacing : ROOT-STYLES.get-space(root.width / 2);
-  in property <Route> route : {home:"Surrealism",routes:["user","info"]};
+  width: 100%;
+  card-height: ROOT-STYLES.sur-font.font-size;
+  in property <length> spacing : DefaultSHeaderProps.spacing;
+  in property <[SHeaderNode]> value : DefaultSHeaderProps.value;
   in property <length> font-size : ROOT-STYLES.sur-font.font-size;
-  callback to(int,string);
-  callback back();
-  layout:= HorizontalLayout {
-    height: root.font-size;
-    width: root.width;
+  in property <image> source :IconSources.icons.Right;
+  callback clicked(int,SHeaderNode);
+  HorizontalLayout {
+    padding-left: parent.padding-left;
+    padding-right: parent.padding-right;
     spacing: root.spacing;
-    padding-left: ROOT-STYLES.sur-padding.small.same;
-    back-view:=Rectangle{
-      width: back-icon.width;
-      back-icon:=SURIcon { 
-        theme: root.theme;
-        source: IconSources.icons.Link-left;
-        clicked => {
-          root.back();
+    for item[index] in root.value: TouchArea{
+      z: 20;
+      mouse-cursor: pointer;
+      clicked => {
+        root.clicked(index,item);
+      }
+      HorizontalLayout {
+        icon-view:=Rectangle{
+          width: icon.width;
+          icon:=SURIcon{
+            height: font-size;
+            width: font-size;
+            theme: root.theme;
+            source: root.source;  
+          }
+        }
+        txt-view:=Rectangle{
+          width: txt.width;
+          txt:=SURText{ 
+            theme: root.theme;
+            text: item.label;
+            font-size: root.font-size;
+          }
         }
       }
     }
-    name-view:=Rectangle{
-      width: name.width;
-      name:=SURText{ 
-        theme: root.theme;
-        text: root.route.home;
-      }
-    }
-    for r[index] in route.routes: Rectangle{
-      HeaderItem{
-        name: r;
-        height: root.height;
-        theme: root.theme;
-        font-size: root.font-size;
-        clicked(route-name) => {
-          root.to(index,route-name);
-        }
-      }
-    }
-  
   }
 }

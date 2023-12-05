@@ -9,7 +9,7 @@
 * A tip provides supplemental, contextual information elevated near its target component
 * ## properties
 * - in property <Themes> theme : Surrealism Theme
-* - in property <string> content : tip content
+* - in property <string> text : tip text
 * - in-out property <bool> show-tip : hover and tip will show
 * - in property <TipPosition> pos : the position of the tip
 * ## functions
@@ -222,7 +222,7 @@ export component Tip inherits Rectangle{
   in property <Themes> theme :Light;
   in property <TipPosition> pos : Top;
   in-out property <bool> show-tip <=> tip.visible;
-  in property <string> content : "default tips";
+  in property <string> text : "default tips";
   
   public function open() {
      tip.visible = true; 
@@ -290,7 +290,7 @@ export component Tip inherits Rectangle{
     theme: root.theme;
     txt:=SURText { 
       theme: root.theme;
-      text: root.content;
+      text: root.text;
       font-size: ROOT-STYLES.sur-font.font-size - 2px;
       wrap: word-wrap;
      }

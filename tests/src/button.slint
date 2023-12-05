@@ -10,42 +10,42 @@ component TestButton inherits Window {
     theme:Themes.Dark;
     icon:@image-url("../../icons/safe-retrieval.svg");
     clicked => {
-      self.content = "clicked"
+      self.text = "clicked"
     }
   }
   SURButton {
     x: 260px;
     y: 10px;
 
-    content:"Save";
+    text:"Save";
     clicked => {
-      self.content = "clicked";
+      self.text = "clicked";
       
     }
   }
   SURButton {
     x: 20px;
     y: 100px;
-    content:"Success";
+    text:"Success";
     theme:Themes.Success;
 
   }
   SURButton {
     x: 20px;
     y: 200px;
-    content:"Primary";
+    text:"Primary";
     theme:Themes.Primary;
   }
   SURButton {
     x: 20px;
     y: 300px;
-    content:"Info";
+    text:"Info";
     theme:Themes.Info;
   }
   SURButton {
     x: 200px;
     y: 100px;
-    content:"Error?";
+    text:"Error?";
     theme:Themes.Error;
     icon:@image-url("../../icons/magic-hat.svg");
   }

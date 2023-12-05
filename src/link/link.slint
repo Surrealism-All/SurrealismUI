@@ -37,6 +37,7 @@ export component Link {
   in property <Themes> theme : Light;
   in property <length> font-size : ROOT-STYLES.sur-font.font-size;
   in-out property <string> text<=>inner-text.text;
+  in property <int> font-weight:500;
   private property <brush> text-color;
   states [
     hover when touch-area.has-hover: {
@@ -65,6 +66,7 @@ export component Link {
       inner-text:=SURText{
         theme: root.theme;
         font-size: root.font-size;
+        font-weight: root.font-weight;
       }
       Rectangle {
         height: link-icon.width;
