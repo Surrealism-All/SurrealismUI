@@ -1,0 +1,23 @@
+import {ROOT-STYLES} from "../../themes/index.slint";
+import {Themes,GolbalProps,TextActionProps,TextAlignmentProps} from "../index.slint";
+
+export global DefaultSTextProps {
+  //font
+  in property <string> font-family : GolbalProps.font.font-family;
+  in property <int> font-weight : GolbalProps.font.font-weight;
+  in property <length> font-size: GolbalProps.font.font-size;
+  in property <brush> color : GolbalProps.font.color;
+  in property <bool> font-italic : GolbalProps.font.font-italic;
+  //theme
+  in property <Themes> theme : Themes.Light;
+  in property <TextActionProps> text-action : {
+    wrap : TextWrap.word-wrap,
+    overflow : TextOverflow.elide,
+    letter-spacing : 0,
+  };
+  in property <TextAlignmentProps> text-alignment : {
+    horizontal-alignment : TextHorizontalAlignment.left,
+    vertical-alignment : TextVerticalAlignment.center,
+  };
+  
+}

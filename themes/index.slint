@@ -1,47 +1,20 @@
 import {ThemeColor,ColorLevel} from "./src/color/color.slint";
-import {ThemeFont} from "./src/font/font.slint";
 import {ThemePadding,ThemeBorder,PaddingSize,PaddingItem,Borders,BorderItem} from "./src/padding/padding.slint";
 import { ThemeSpace } from "./src/spacing/spacing.slint";
 import {Size,SizeStruct} from "./src/common.slint";
 import { IconSources } from "../src/icon/dev.slint";
 import { Shadows } from "./src/shadow/shadow.slint";
 export { Size,PaddingSize,PaddingItem,Shadows,Borders,BorderItem,IconSources,ColorLevel}
-
-export enum CommonPosition {
-  Left,
-  Right,
-  Top,
-  Bottom
-}
-
-export enum ResType{
-  Primary,
-  Success,
-  Info,
-  Error,
-  Warning,
-  Help
-}
-
-export enum Themes{
-  Light,
-  Primary,
-  Success,
-  Info,
-  Warning,
-  Error,
-  Dark
-}
+import {Themes,FontProps} from "../use/index.slint";
 
 export global ROOT_STYLES {
-  out property <ThemeFont> sur-font:{
-    font-family-source:"../../font/Alimama_DongFangDaKai_Regular.ttf",
+  out property <FontProps> sur-font:{
     font-family:"Alimama DongFangDaKai",
     font-weight:400,
     font-size:16px,
     font-italic:false,
-    letter-spacing:0,
-    tag-size:12px
+    // letter-spacing:0,
+    // tag-size:12px
   };
   out property <brush> font-light : #ffffff;
   out property <brush> font-black : #000;

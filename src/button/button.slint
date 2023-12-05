@@ -32,10 +32,9 @@ export component Button inherits SCard {
   card-width: layout.width;
   theme: Light;
   in property <image> icon;
-  in property <length> font-size:ROOT-STYLES.sur-font.font-size;
+  
   in property <length> letter-spacing : ROOT-STYLES.sur-font.letter-spacing;
   in property <bool> font-italic:ROOT-STYLES.sur-font.font-italic;
-  in property <int> font-weight:ROOT-STYLES.sur-font.font-weight;
   in property <string> font-family:ROOT-STYLES.sur-font.font-family;
   in property <bool> show-icon : false;
   out property <bool> has-hover <=>toucharea.has-hover;

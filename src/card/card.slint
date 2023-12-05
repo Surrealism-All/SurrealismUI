@@ -20,8 +20,8 @@
 */
 
 
-import {ROOT_STYLES,Themes,PaddingSize,PaddingItem,Shadows,Borders,BorderItem} from "../../themes/index.slint";
-
+import {ROOT_STYLES,PaddingSize,PaddingItem,Shadows,Borders,BorderItem} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 enum Alignment{
   Horizontal,
   Vertical
@@ -44,6 +44,11 @@ export component Card inherits Rectangle{
   in property <Shadows> shadow : Shadows.Low1;
   in property <Borders> border : Borders.Normal;
   in-out property <PaddingItem> card-padding;
+  in property <int> font-weight : ROOT-STYLES.sur-font.font-weight;
+  in property <length> font-size: ROOT-STYLES.sur-font.font-size;
+  in property <int> font-color;
+  in property <bool> font-italic : false;
+
   init => {
     self.card-padding = ROOT-STYLES.get-padding(padding-size);
     self.padding-top = self.card-padding.top-bottom;

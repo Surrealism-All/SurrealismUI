@@ -16,25 +16,26 @@
 * ============================================
 */
 
-import {ROOT_STYLES,Themes} from "../../themes/index.slint";
+import {ROOT_STYLES} from "../../themes/index.slint";
+import {Themes,DefaultSTextProps} from "../../use/index.slint";
 import "../../font/Alimama_DongFangDaKai_Regular.ttf";
 
 export component Span inherits Text{
   //normal
   text: "";
-  color: ROOT-STYLES.sur-theme-colors.primary.font;
+  color: DefaultSTextProps.color;
   // font styles:
-  font-weight: ROOT-STYLES.sur-font.font-weight;
-  font-size: ROOT-STYLES.sur-font.font-size;
-  font-family: ROOT-STYLES.sur-font.font-family;
-  font-italic: ROOT-STYLES.sur-font.font-italic;
-  letter-spacing: ROOT-STYLES.sur-font.letter-spacing;
+  font-weight: DefaultSTextProps.font-weight;
+  font-size: DefaultSTextProps.font-size;
+  font-family: DefaultSTextProps.font-family;
+  font-italic: DefaultSTextProps.font-italic;
+  letter-spacing: DefaultSTextProps.text-action.letter-spacing;
   //alignment: 
-  horizontal-alignment: left;
-  vertical-alignment:center;
+  horizontal-alignment: DefaultSTextProps.text-alignment.horizontal-alignment;
+  vertical-alignment:DefaultSTextProps.text-alignment.vertical-alignment;
   //wrap
-  wrap: no-wrap;
-  overflow: elide;
+  wrap: DefaultSTextProps.text-action.wrap;
+  overflow: DefaultSTextProps.text-action.overflow;
   //props
   in property <Themes> theme : Themes.Light;
   

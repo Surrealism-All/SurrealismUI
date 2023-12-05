@@ -1,0 +1,19 @@
+import {ROOT-STYLES} from "../../themes/index.slint";
+import {Themes} from "../index.slint";
+
+export global DefaultSCardProps {
+  //font
+  in property <int> font-weight : ROOT-STYLES.sur-font.font-weight;
+  in property <length> font-size: ROOT-STYLES.sur-font.font-size;
+  in property <brush> font-color : ROOT-STYLES.sur-theme-colors.light.font;
+  in property <bool> font-italic : false;
+  //theme
+  in property <Themes> theme : Themes.Light;
+  in property <length> card-height:ROOT-STYLES.sur-font.font-size;
+  in property <length> card-width;
+  // in property <PaddingSize> padding-size:Normal;
+  // in property <Shadows> shadow : Shadows.Low1;
+  // in property <Borders> border : Borders.Normal;
+  // in-out property <PaddingItem> card-padding;
+  
+}

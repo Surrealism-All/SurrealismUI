@@ -1,5 +1,5 @@
 import {SText} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 import "../../font/Alimama_DongFangDaKai_Regular.ttf";
 
 
@@ -8,9 +8,6 @@ component TestText inherits Window {
   width: 400px;
   VerticalLayout {
     padding: 20px;
-    Text {
-      text: "测试文字";
-    }
     SText {
       color: #f60;
       text: "use special color";

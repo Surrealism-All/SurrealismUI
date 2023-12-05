@@ -1,0 +1,21 @@
+/**文字类型属性 */
+export struct FontProps {
+  font-family : string,
+  font-size : length,
+  font-weight : int,
+  font-italic : bool,
+  color : brush
+}
+
+/**文字对齐属性 */
+export struct TextAlignmentProps {
+  horizontal-alignment : TextHorizontalAlignment,
+  vertical-alignment : TextVerticalAlignment,
+}
+
+/**行为属性 */
+export struct TextActionProps {
+  wrap : TextWrap,
+  overflow : TextOverflow,
+  letter-spacing : length,
+}

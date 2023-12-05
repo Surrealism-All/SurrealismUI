@@ -1,0 +1,41 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230223
+* @version:0.3.0
+* @type:interface
+* @description: surrealism中所有组件所需的外置化类型
+* ============================================
+*/
+
+
+/**常规位置枚举 */
+export enum CommonPosition {
+  Left,
+  Right,
+  Top,
+  Bottom
+}
+
+/**结果类型枚举，使用在SResult中 */
+export enum ResType{
+  Primary,
+  Success,
+  Info,
+  Error,
+  Warning,
+  Help
+}
+
+/**Surrealism-UI主题枚举 */
+export enum Themes{
+  Light,
+  Primary,
+  Success,
+  Info,
+  Warning,
+  Error,
+  Dark
+}
+
+export * from "./text.slint";

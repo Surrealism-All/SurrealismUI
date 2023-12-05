@@ -2244,10 +2244,12 @@ export component TestFile inherits Window {
 - V0.3.0 (Slint 1.3.2)
   - 中文
     - 所有组件更名`SUR`为`S`
-    - 重写Header
-    - 优化Tip：
+    - 默认文字采用`Alimama_DongFangDaKai_Regular.ttf` (若你不需要请注意release的包名)
+    - 重写`SHeader`
+    - 优化`STip`：
       - 修改属性名`content -> text`
-
+    - 
+  
 - V0.2.2（Slint 1.3.0）
   - 中文：
     - 优化内置Global：

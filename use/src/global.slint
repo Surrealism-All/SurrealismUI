@@ -1,0 +1,21 @@
+import {FontProps,TextActionProps,TextAlignmentProps,Themes} from "../index.slint";
+import {ROOT-STYLES} from "../../themes/index.slint";
+
+
+export global GolbalProps {
+  /**global font style */
+  in property <FontProps> font : {
+    font-family : ROOT-STYLES.sur-font.font-family,
+    font-size : ROOT-STYLES.sur-font.font-size,
+    font-weight : ROOT-STYLES.sur-font.font-weight,
+    font-italic : ROOT-STYLES.sur-font.font-italic,
+    color : ROOT-STYLES.sur-theme-colors.dark.font
+  };
+  /**global theme */
+  in property <Themes> theme : Themes.Dark;
+  in property <TextActionProps> text-action : {
+    wrap : TextWrap.word-wrap,
+    overflow : TextOverflow.elide,
+    letter-spacing : 0,
+  };
+}
