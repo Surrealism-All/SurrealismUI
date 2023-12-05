@@ -5,7 +5,7 @@
 * @version:0.0.1
 * @type:interface
 * @description:
-* # SURInput
+* # SInput
 * This is a basic input box, often used in forms, divided into two types: text and password
 * ## properties:
 * - in property <int> font-weight : font weight for input
@@ -37,8 +37,8 @@
 * ============================================
 */
 import {ROOT_STYLES,Themes,IconSources} from "../../themes/index.slint";
-import {SURText } from "../text/index.slint";
-import {SURIcon} from "../icon/index.slint";
+import {SText } from "../text/index.slint";
+import {SIcon} from "../icon/index.slint";
 
 export component Input inherits Rectangle {
   height:input.height;
@@ -186,7 +186,7 @@ export component Input inherits Rectangle {
 
       input-view:= Rectangle {
         clip: true;
-        if root.content=="" :i-placeholder := SURText { 
+        if root.content=="" :i-placeholder := SText { 
           theme: root.theme;
           text: root.placeholder;
           font-size: root.font-size;
@@ -226,7 +226,7 @@ export component Input inherits Rectangle {
         }
       }
       if root.password: eye-icon:= Rectangle{
-        eye:=SURIcon {
+        eye:=SIcon {
           theme: root.theme;
           source:IconSources.icons.Preview-close;
           clicked => {
@@ -241,7 +241,7 @@ export component Input inherits Rectangle {
         }
       }
       if root.clearable:clear-icon:= Rectangle {
-        SURIcon{
+        SIcon{
           theme: root.theme;
           source: IconSources.icons.Close-one;
           clicked => {

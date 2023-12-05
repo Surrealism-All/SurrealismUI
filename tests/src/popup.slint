@@ -1,4 +1,4 @@
-import {SURPopup,SURButton} from "../../index.slint";
+import {SPopup,SButton} from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
 
 component TestPopup inherits Window {
@@ -6,7 +6,7 @@ component TestPopup inherits Window {
   width: 800px;
   background: #535353;
  
-  SURButton {
+  SButton {
     
     text: "show";
     clicked => {
@@ -17,8 +17,8 @@ component TestPopup inherits Window {
   }
  
 
-  p:=SURPopup {
-    SURButton {
+  p:=SPopup {
+    SButton {
       text: "you can add anything in Popup";
       y: 160px;
     }

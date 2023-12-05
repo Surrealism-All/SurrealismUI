@@ -1,19 +1,19 @@
-import {SURStar,SURButton} from "../../index.slint";
+import {SStar,SButton} from "../../index.slint";
 import {Themes,IconSources} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
-  SURStar {
+  SStar {
     y: 20px;
   }
-  hs:=SURStar {
+  hs:=SStar {
     score: 2.2;
     y: 60px;
     theme: Error;
     
   }
-  SURButton {
+  SButton {
     y: 320px;
     x:10px;
     text: "add half";
@@ -21,19 +21,19 @@ component TestWindow inherits Window {
       hs.add-half();
     }
   }
-  SURStar {
+  SStar {
     score : 3.8;
     disabled: true;
     y: 100px;
     theme: Success;
   }
-  os:=SURStar {
+  os:=SStar {
     max-score : 7;
     score : 2.8;
     y: 140px;
     theme: Info;
   }
-  SURButton {
+  SButton {
     y: 320px;
     x: 115px;
     text: "add one";
@@ -41,7 +41,7 @@ component TestWindow inherits Window {
       os.add-one();
     }
   }
-  fs:=SURStar {
+  fs:=SStar {
     max-score : 10;
     score : 7.2;
     y: 180px;
@@ -51,7 +51,7 @@ component TestWindow inherits Window {
       t.m = half;
     }
   }
-  SURButton {
+  SButton {
     y: 320px;
     x: 220px;
     text: "get A";
@@ -59,7 +59,7 @@ component TestWindow inherits Window {
       fs.full();
     }
   }
-  SURButton {
+  SButton {
     y: 320px;
     x: 305px;
     text: "clear";

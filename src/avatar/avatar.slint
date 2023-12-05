@@ -12,11 +12,11 @@
 * - in property <image> avatar : avatar image
 * ============================================
 */
-import { SURCard } from "../card/index.slint";
-import { SURIcon } from "../icon/index.slint";
+import { SCard } from "../card/index.slint";
+import { SIcon } from "../icon/index.slint";
 import {ROOT_STYLES,Themes,PaddingSize,PaddingItem,Shadows,Borders,BorderItem,IconSources} from "../../themes/index.slint";
 
-export component Avatar inherits SURCard { 
+export component Avatar inherits SCard { 
   border:Circle-Normal;
   // padding: self.card-padding.same;
   card-height:avatar-size;
@@ -33,7 +33,7 @@ export component Avatar inherits SURCard {
     self.padding-left = self.card-padding.same;
     self.padding-right = self.card-padding.same;
   }
-  SURIcon {
+  SIcon {
     z: 13;
     height: avatar-size;
     width: avatar-size;

@@ -5,7 +5,7 @@
 * @version:0.1.1
 * @type:interface
 * @description:
-* # SURRadio
+* # SRadio
 * Radio let people select a single item
 * ## properties (card)
 * - in-out property <bool> has-clicked : the radio is clicked or not
@@ -16,8 +16,8 @@
 * ============================================
 */
 import { Borders,ROOT_STYLES,Themes} from "../../themes/index.slint";
-import { SURCard } from "../card/index.slint";
-export component Radio inherits SURCard{
+import { SCard } from "../card/index.slint";
+export component Radio inherits SCard{
   height: ROOT-STYLES.sur-font.font-size;
   width: ROOT-STYLES.sur-font.font-size;
   border-radius: self.height / 2;
@@ -62,7 +62,7 @@ export component Radio inherits SURCard{
       inner.border-color : ROOT-STYLES.sur-theme-colors.dark.normal;
     }
   ]
-  inner:=SURCard {
+  inner:=SCard {
     theme: root.theme;
     height: ROOT-STYLES.sur-font.font-size - 1px;
     width: ROOT-STYLES.sur-font.font-size - 1px;

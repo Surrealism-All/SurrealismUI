@@ -1,10 +1,10 @@
-import {SURTable,SURTableColumn} from "../../index.slint";
+import {STable,STableColumn} from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
 
 export component TestTable inherits Window {
   height: 500px;
   width: 500px;
-  t1:=SURTable {
+  t1:=STable {
 
     y: 10px;
     // you can use this way to get height
@@ -12,7 +12,7 @@ export component TestTable inherits Window {
     height: col1.get-height();
     width: 300px;
     
-    col1:=SURTableColumn {
+    col1:=STableColumn {
       border:false;
       theme:Themes.Error;
       width: 100px;
@@ -20,20 +20,20 @@ export component TestTable inherits Window {
       // row-height:60px;
       datas: ["101","102","103"];
     }
-    SURTableColumn {
+    STableColumn {
       theme:Themes.Error;
       width: 100px;
       name:"name";
       datas: ["Mat","Jarry","Kaven"];
     }
-    SURTableColumn {
+    STableColumn {
       theme:Themes.Error;
       width: 100px;
       name:"age";
       datas: ["16","23","18"];
     }
   }
-  t2:=SURTable {
+  t2:=STable {
 
     y: t1.height + 40px;
     // you can use this way to get height
@@ -41,7 +41,7 @@ export component TestTable inherits Window {
     height: tcol1.get-height();
     width: 350px;
     
-    tcol1:=SURTableColumn {
+    tcol1:=STableColumn {
       border:false;
       theme:Themes.Primary;
       width: 100px;
@@ -49,13 +49,13 @@ export component TestTable inherits Window {
       // row-height:60px;
       datas: ["101","102","103"];
     }
-    SURTableColumn {
+    STableColumn {
       theme:Themes.Primary;
       width: 100px;
       name:"name";
       datas: ["Mat","Jarry","Kaven"];
     }
-    SURTableColumn {
+    STableColumn {
       theme:Themes.Primary;
       width: 150px;
       name:"Operations";

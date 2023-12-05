@@ -5,8 +5,8 @@
 * @version:0.0.1
 * @type:interface
 * @description:
-* # SURButton 
-* SURButton is a button component that you can freely perform regular attribute operations on
+* # SButton 
+* SButton is a button component that you can freely perform regular attribute operations on
 * ## properties
 * - in property <image> icon : Button icon
 * - in property <length> font-size: button font size
@@ -23,12 +23,12 @@
 */
 
 
-import {SURText} from "../text/index.slint";
-import {SURIcon} from "../icon/index.slint";
-import {SURCard} from "../card/index.slint";
+import {SText} from "../text/index.slint";
+import {SIcon} from "../icon/index.slint";
+import {SCard} from "../card/index.slint";
 import {ROOT-STYLES,Themes} from "../../themes/index.slint";
 import { HorizontalBox } from "std-widgets.slint";
-export component Button inherits SURCard {
+export component Button inherits SCard {
   card-width: layout.width;
   theme: Light;
   in property <image> icon;
@@ -39,7 +39,7 @@ export component Button inherits SURCard {
   in property <string> font-family:ROOT-STYLES.sur-font.font-family;
   in property <bool> show-icon : false;
   out property <bool> has-hover <=>toucharea.has-hover;
-  in-out property <string> text : "SURButton";
+  in-out property <string> text : "SButton";
   states [
     light when self.theme == Themes.Light: {
       root.background : toucharea.has-hover?ROOT-STYLES.light-deeper(ROOT-STYLES.sur-theme-colors.light.normal):ROOT-STYLES.sur-theme-colors.light.normal;
@@ -126,7 +126,7 @@ export component Button inherits SURCard {
     width: show-icon?txt-container.width + root.font-size : txt-container.width;
     spacing: show-icon?ROOT-STYLES.get-space(self.width):0;
     if root.show-icon:icon-container:= Rectangle {
-      btn-icon:= SURIcon {
+      btn-icon:= SIcon {
         source:root.icon;
         height: root.font-size;
         width: root.font-size;
@@ -136,7 +136,7 @@ export component Button inherits SURCard {
     
     txt-container:=TouchArea {
       width: btn-txt.width;
-      btn-txt:=SURText{
+      btn-txt:=SText{
         theme:root.theme;
         text: root.text;
         horizontal-alignment: center;

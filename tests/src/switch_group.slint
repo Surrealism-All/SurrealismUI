@@ -1,16 +1,16 @@
-import { SURSwitchGroup } from "../../index.slint";
+import { SSwitchGroup } from "../../index.slint";
 
 component TestSwitchGroup inherits Window {
   height: 400px;
   width: 400px;
-  SURSwitchGroup {
+  SSwitchGroup {
    theme: Primary;
     clicked(i,name) => {
       debug(i);
       debug(name);
     }
   }
-  SURSwitchGroup {
+  SSwitchGroup {
     y: 120px;
     theme:Dark;
     switchs:["1","2","3","4"];

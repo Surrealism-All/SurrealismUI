@@ -5,9 +5,9 @@
 * @version:0.1.7
 * @type:interface
 * @description:
-* # SURDrawer
+* # SDrawer
 * Sometimes, the Dialogue component does not meet our needs
-* such as your form being too long, or if you need to temporarily display some documents, please use the SURDrawer
+* such as your form being too long, or if you need to temporarily display some documents, please use the SDrawer
 * ## properties
 * - in property <Themes> drawer-theme : drawer theme
 * - in property <brush> drawer-background-color : drawer background color
@@ -20,12 +20,12 @@
 */
 
 
-import { SURPopup } from "../popup/index.slint";
-import { SURCard } from "../card/index.slint";
+import { SPopup } from "../popup/index.slint";
+import { SCard } from "../card/index.slint";
 import { CommonPosition,Themes } from "../../themes/index.slint";
 
 
-export component Drawer inherits SURPopup { 
+export component Drawer inherits SPopup { 
   in property <Themes> drawer-theme : Light;
   in property <brush> drawer-background-color <=> drawer.background;
   in property <CommonPosition > pos : Left;
@@ -48,7 +48,7 @@ export component Drawer inherits SURPopup {
         {x:0px,y:root.height - drawer.height}
       }
   }
-  drawer:=SURCard {
+  drawer:=SCard {
     height: default-height-width().height;
     width: default-height-width().width;
     

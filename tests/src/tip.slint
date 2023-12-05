@@ -1,4 +1,4 @@
-import {SURTip,SURButton } from "../../index.slint";
+import {SURTip,SButton } from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
 
 
@@ -13,7 +13,7 @@ component TestWindow inherits Window {
      pos:Top;
      text:"this is a \n........tip window";
      show-tip:inner0.has-hover;
-     inner0:=SURButton { 
+     inner0:=SButton { 
        text: "hover";
      }
    }
@@ -23,7 +23,7 @@ component TestWindow inherits Window {
     theme: Dark;
     pos:Left;
     text:"this is a \n........tip window";
-    inner:=SURButton { 
+    inner:=SButton { 
       text: "click";
       clicked => {
         parent.clicked();
@@ -37,7 +37,7 @@ component TestWindow inherits Window {
     theme: Dark;
     pos:Top;
     text:"this is a \n........tip window";
-    inner2:=SURButton { 
+    inner2:=SButton { 
       text: "click";
       clicked => {
         parent.clicked();

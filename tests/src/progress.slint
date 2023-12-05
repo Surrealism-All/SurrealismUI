@@ -1,23 +1,23 @@
-import {SURProgress,SURButton} from "../../index.slint";
+import {SProgress,SButton} from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
 
 component TestDivider inherits Window {
   height: 400px;
   width: 400px;
   background: #5b64cd;
-  SURProgress {
+  SProgress {
     y: 100px;
   }
-  a:=SURProgress {
+  a:=SProgress {
     y: 200px;
     theme:Primary;
   }
-  SURProgress {
+  SProgress {
     y: 300px;
     theme:Dark;
     progress:86;
   }
-  SURButton{
+  SButton{
     x: 60px;
     y: 340px;
     text: "add";
@@ -25,7 +25,7 @@ component TestDivider inherits Window {
       a.add(5);
     }
   }
-  SURButton{
+  SButton{
     x: 160px;
     y: 340px;
     text: "full";
@@ -33,7 +33,7 @@ component TestDivider inherits Window {
       a.full();
     }
   }
-  SURButton{
+  SButton{
     x: 260px;
     y: 340px;
     text: "clear";

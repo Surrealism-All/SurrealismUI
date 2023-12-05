@@ -1,4 +1,4 @@
-import {SURButton, SURAlert} from "../../index.slint";
+import {SButton, SAlert} from "../../index.slint";
 import {Themes,ResType} from "../../themes/index.slint";
 
 component TestAlert inherits Window {
@@ -6,7 +6,7 @@ component TestAlert inherits Window {
   width: 600px;
   background: #535353;
  
-  SURButton {
+  SButton {
     
     text: "show";
     clicked => {
@@ -17,7 +17,7 @@ component TestAlert inherits Window {
   }
  
 
-  p:=SURAlert { 
+  p:=SAlert { 
     res-type:ResType.Success ;
     content:"this is a success message!";
   }

@@ -5,7 +5,7 @@
 * @version:0.0.1
 * @type:interface
 * @description:
-* # SURTag
+* # STag
 * A small tag used to display data
 * ## properties
 * - in property <string> content : the content of the tag
@@ -18,9 +18,9 @@
 * ============================================
 */
 import {ROOT_STYLES,Themes} from "../../themes/index.slint";
-import { SURText } from "../text/index.slint";
-import { SURCard } from "../card/index.slint";
-export component Tag inherits SURCard { 
+import { SText } from "../text/index.slint";
+import { SCard } from "../card/index.slint";
+export component Tag inherits SCard { 
   card-height: inner.height;
   card-width: inner.width;
   padding-size: text==""?None:Tag;
@@ -30,7 +30,7 @@ export component Tag inherits SURCard {
   in property <string> text : "";
   callback clicked(string);
   
-  inner:=SURText{
+  inner:=SText{
     theme: root.theme;
     z:12;
     text: root.text;

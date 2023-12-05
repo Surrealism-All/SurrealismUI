@@ -5,8 +5,8 @@
 * @version:0.0.1
 * @type:interface
 * @description:
-* # SURResult
-* SURResult helps you easily build a quick prompt , you can build it in popup window
+* # SResult
+* SResult helps you easily build a quick prompt , you can build it in popup window
 * ## properties
 * - in property <length> icon-size: icon size
 * - in-out property <string> btn : the content of the button
@@ -19,10 +19,10 @@
 * ============================================
 */
 
-import {SURCard} from "../card/index.slint";
-import {SURIcon} from "../icon/index.slint";
-import {SURButton} from "../button/index.slint";
-import {SURText} from "../text/index.slint";
+import {SCard} from "../card/index.slint";
+import {SIcon} from "../icon/index.slint";
+import {SButton} from "../button/index.slint";
+import {SText} from "../text/index.slint";
 import {ROOT_STYLES,Themes,IconSources,ResType} from "../../themes/index.slint";
 
 // export enum ResType{
@@ -34,7 +34,7 @@ import {ROOT_STYLES,Themes,IconSources,ResType} from "../../themes/index.slint";
 //   Help
 // }
 
-export component Result inherits SURCard { 
+export component Result inherits SCard { 
   card-height: 200px;
   card-width: 140px;
   in property <length> icon-size:48px;
@@ -89,7 +89,7 @@ export component Result inherits SURCard {
     Rectangle {
       height: icon.height;
       width: parent.width;
-      icon:=SURIcon { 
+      icon:=SIcon { 
         height: root.icon-size;
         width: root.icon-size;
         theme: root.theme;
@@ -97,7 +97,7 @@ export component Result inherits SURCard {
         
       }
     }
-    SURText { 
+    SText { 
       theme: root.theme;
       text: root.content;
       wrap: word-wrap;
@@ -107,7 +107,7 @@ export component Result inherits SURCard {
     Rectangle {
       height: button.height;
       width: parent.width;
-      button:=SURButton { 
+      button:=SButton { 
         theme: root.theme;
         text: root.btn;
         clicked => {

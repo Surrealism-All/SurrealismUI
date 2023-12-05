@@ -1,35 +1,35 @@
-import {SURResult} from "../../index.slint";
+import {SResult} from "../../index.slint";
 import {Themes,ResType} from "../../themes/index.slint";
 
 export component TestResult inherits Window {
   height: 500px;
   width: 800px;
-  SURResult {
+  SResult {
     x: 10px;
     y: 10px;
   }
-  SURResult {
+  SResult {
     x: 220px;
     y: 10px;
     res-type:ResType.Primary;
   }
-  SURResult {
+  SResult {
     x: 220px;
     y: 260px;
     res-type:ResType.Info;
   }
-  SURResult {
+  SResult {
     x: 10px;
     y: 260px;
     res-type:ResType.Warning;
   }
 
-  SURResult {
+  SResult {
     x: 440px;
     y: 10px;
     res-type:ResType.Error;
   }
-  SURResult {
+  SResult {
     x: 440px;
     y: 260px;
     res-type:ResType.Help;

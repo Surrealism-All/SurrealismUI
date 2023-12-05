@@ -5,8 +5,8 @@
 * @version:0.1.3
 * @type:interface
 * @description:
-* # SURBadge
-* SURBadge is a quick way to display user status or events
+* # SBadge
+* SBadge is a quick way to display user status or events
 * ## properties (card)
 * - in property <Position> position : where the badge show
 * - in-out property <image> icon : icon of the badge
@@ -19,10 +19,10 @@
 * ## callbacks
 * ============================================
 */
-import { SURCard } from "../card/index.slint";
+import { SCard } from "../card/index.slint";
 import { Borders,ROOT_STYLES,Themes,IconSources,ResType} from "../../themes/index.slint";
-import { SURIcon } from "../icon/index.slint";
-import { SURText } from "../text/index.slint";
+import { SIcon } from "../icon/index.slint";
+import { SText } from "../text/index.slint";
 
 export enum Position {
   Left-Top,
@@ -31,7 +31,7 @@ export enum Position {
   Right-Bottom
 }
 
-export component Badge inherits SURCard { 
+export component Badge inherits SCard { 
   theme: Light;
   height: ROOT-STYLES.sur-font.font-size;
   width: ROOT-STYLES.sur-font.font-size;
@@ -96,14 +96,14 @@ export component Badge inherits SURCard {
   }
   HorizontalLayout {
     spacing: ROOT-STYLES.get-space(txt-view.width);
-    badge-icon:= SURIcon { 
+    badge-icon:= SIcon { 
       source: root.icon;
       theme: root.theme;
       clicked => {
         txt-view.visible=!txt-view.visible
       }
     }
-    txt-view:=SURCard {
+    txt-view:=SCard {
       visible: false;
       theme: root.theme;
       height: root.height;
@@ -111,7 +111,7 @@ export component Badge inherits SURCard {
       padding-size: Small;
       border: Large;
       
-      badge-txt:=SURText { 
+      badge-txt:=SText { 
         font-size: ROOT-STYLES.sur-font.font-size  - 4px;
         text: root.content;
         theme: root.theme;

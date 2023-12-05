@@ -1,4 +1,4 @@
-import { SURMenu , SURIcon} from "../../index.slint";
+import { SMenu , SIcon} from "../../index.slint";
 import {IconSources} from "../../themes/index.slint";
 
 component TestMenu inherits Window {
@@ -9,7 +9,7 @@ component TestMenu inherits Window {
       y: 0;
       height:parent.height;
       width: menu.width;
-      menu:=SURMenu {
+      menu:=SMenu {
         theme: Dark;
         change(index,item)=>{
           debug(index);

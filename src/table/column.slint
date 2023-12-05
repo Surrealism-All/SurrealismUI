@@ -5,8 +5,8 @@
 * @version:0.0.1
 * @type:interface
 * @description:
-* # SURTableColumn
-* SURTableColumn is a component of SURTable, and each SURTableColumn forms a complete column of the table
+* # STableColumn
+* STableColumn is a component of STable, and each STableColumn forms a complete column of the table
 * If it's gone, the table will become a card with a horizontal layout
 * ## properties
 * - in property <bool> border : add border or not
@@ -28,9 +28,9 @@
 */
 
 import {ROOT_STYLES,Themes} from "../../themes/index.slint";
-import { SURCard } from "../card/index.slint";
-import { SURText } from "../text/index.slint";
-import { SURButton } from "../button/index.slint";
+import { SCard } from "../card/index.slint";
+import { SText } from "../text/index.slint";
+import { SButton } from "../button/index.slint";
 
 
 export component TableColumn inherits Rectangle{
@@ -107,7 +107,7 @@ export component TableColumn inherits Rectangle{
   view:=VerticalLayout {
     height: root.height;
     spacing: 0;
-    column-header:=SURCard{
+    column-header:=SCard{
       z: 11;
       card-width: parent.width - self.padding-left * 2;
       background: header-background;
@@ -115,7 +115,7 @@ export component TableColumn inherits Rectangle{
       theme: root.theme;
       height: header-height;
       border-radius: 0;
-      header-row:=SURText { 
+      header-row:=SText { 
         horizontal-alignment: center;
         width: root.width;
         theme: root.theme;
@@ -123,7 +123,7 @@ export component TableColumn inherits Rectangle{
         font-weight: 700;
       }
     }
-    for data[index] in datas: SURCard { 
+    for data[index] in datas: SCard { 
       z: 10;
       theme: root.theme;
       // height: header-height==row-height?root.row-height:(root.height - root.header-height) / root.datas.length;
@@ -132,7 +132,7 @@ export component TableColumn inherits Rectangle{
       border-radius: 0;
       drop-shadow-blur: 0;
       background: row-background;
-      data-row:=SURText {
+      data-row:=SText {
         visible: !operation-enabled;
         width: root.width;
         horizontal-alignment: center;
@@ -144,7 +144,7 @@ export component TableColumn inherits Rectangle{
         for op[index] in operation: Rectangle{
           height:parent.height;
           width: btn.width;
-          btn:=SURButton { 
+          btn:=SButton { 
             theme: op.theme;
             text: op.name;
             height: ROOT-STYLES.sur-font.tag-size + ROOT-STYLES.sur-padding.small.same * 2;

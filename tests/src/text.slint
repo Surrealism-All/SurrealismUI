@@ -1,18 +1,27 @@
-import {SURText} from "../../index.slint";
+import {SText} from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
+import "../../font/Alimama_DongFangDaKai_Regular.ttf";
 
-component TestWindow inherits Window {
+
+component TestText inherits Window {
   height: 400px;
   width: 400px;
-  
-  SURText {
-    x: 100px;
-    y: 20px;
-    text: "hello world";
-  }
-  SURText {
-    x: 100px;
-    theme: Primary;
-    text: "hello world";
+  VerticalLayout {
+    padding: 20px;
+    Text {
+      text: "测试文字";
+    }
+    SText {
+      color: #f60;
+      text: "use special color";
+    }
+    SText {
+      theme: Primary;
+      text: "use theme-primary";
+    }
+    SText {
+      theme: Dark;
+      text: "use theme-dark";
+    }
   }
 }

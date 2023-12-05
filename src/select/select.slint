@@ -5,8 +5,8 @@
 * @version:0.0.1
 * @type:interface
 * @description:
-* # SURSelect
-* SURSelect is a selector that provides three types of optional input parameter values
+* # SSelect
+* SSelect is a selector that provides three types of optional input parameter values
 * ## properties
 * - in property <Themes> theme : Surrealism Themes
 * - in property <[{id:int,label:string,value:string}]> ranges-string : select list range (type string)
@@ -24,9 +24,9 @@
 */
 
 import {ROOT_STYLES,Themes,IconSources} from "../../themes/index.slint";
-import { SURCard } from "../card/index.slint";
-import { SURText } from "../text/index.slint";
-import { SURIcon } from "../icon/index.slint";
+import { SCard } from "../card/index.slint";
+import { SText } from "../text/index.slint";
+import { SIcon } from "../icon/index.slint";
 import { ListView } from "std-widgets.slint";
 
 export enum ValueType {
@@ -55,7 +55,7 @@ component Selector inherits TouchArea {
     padding-left: ROOT-STYLES.sur-padding.normal.left-right;
     padding-right: ROOT-STYLES.sur-padding.normal.left-right;
     
-    input:=SURText { 
+    input:=SText { 
       theme: root.theme;
       horizontal-alignment: left;
       text: root.content;
@@ -64,7 +64,7 @@ component Selector inherits TouchArea {
     Rectangle {
       height: root.height;
       width: open-icon.width;
-      open-icon:=SURIcon { 
+      open-icon:=SIcon { 
         source: IconSources.icons.Down;
         clicked => {
           root.clicked();
@@ -159,7 +159,7 @@ export component Select inherits Rectangle {
       s-list.height = 120px;
       
     }
-    s-list:=SURCard {
+    s-list:=SCard {
       height: 120px;
       width: root.width;
       theme: root.theme;
@@ -182,7 +182,7 @@ export component Select inherits Rectangle {
             padding-left: ROOT-STYLES.sur-padding.normal.left-right ;
             padding-right: ROOT-STYLES.sur-padding.normal.left-right ;
            
-            s-label:=SURText {
+            s-label:=SText {
               theme: root.theme;
               text: range.label;
             }
@@ -198,7 +198,7 @@ export component Select inherits Rectangle {
       f-list.height = 120px;
       
     }
-    f-list:=SURCard {
+    f-list:=SCard {
       height: 120px;
       width: root.width;
       theme: root.theme;
@@ -221,7 +221,7 @@ export component Select inherits Rectangle {
             padding-left: ROOT-STYLES.sur-padding.normal.left-right ;
             padding-right: ROOT-STYLES.sur-padding.normal.left-right ;
            
-            f-label:=SURText {
+            f-label:=SText {
               theme: root.theme;
               text: range.label;
             }
@@ -237,7 +237,7 @@ export component Select inherits Rectangle {
       i-list.height = 120px;
       
     }
-    i-list:=SURCard {
+    i-list:=SCard {
       height: 120px;
       width: root.width;
       theme: root.theme;
@@ -260,7 +260,7 @@ export component Select inherits Rectangle {
             padding-left: ROOT-STYLES.sur-padding.normal.left-right ;
             padding-right: ROOT-STYLES.sur-padding.normal.left-right ;
            
-            i-label:=SURText {
+            i-label:=SText {
               theme: root.theme;
               text: range.label;
             }

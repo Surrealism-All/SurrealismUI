@@ -1,19 +1,19 @@
-import {SURTag} from "../../index.slint";
+import {STag} from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
-  SURTag {
+  STag {
     text:"default";
     y: 40px;
   }
-  SURTag {
+  STag {
     text:"error!";
     y:80px;
     theme:Themes.Error;
   }
-  SURTag {
+  STag {
     text:"callback";
     y:120px;
     theme:Themes.Dark;
@@ -21,7 +21,7 @@ component TestWindow inherits Window {
       self.font-color= #ddff00;
     }
   }
-  SURTag {
+  STag {
     text:"success";
     y:160px;
    

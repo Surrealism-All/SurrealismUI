@@ -1,39 +1,39 @@
-import {SURCollapse,SURCollapseItem,SURButton,SURTable,SURTableColumn} from "../../index.slint";
+import {SCollapse,SCollapseItem,SButton,STable,STableColumn} from "../../index.slint";
 import {Themes,IconSources} from "../../themes/index.slint";
 
 
 component TestWindow inherits Window {
   height: 500px;
   width: 400px;
-  SURCollapse {
+  SCollapse {
     y: 10px;
     // you can set 0 , it has no impact
     // recommend use the following way
     height: item1.get-height() * 2;
     width: 360px;
     theme: Primary;
-    item1:=SURCollapseItem {
+    item1:=SCollapseItem {
       name:"Feedback";
       detail:" Operation feedback: enable the users to clearly perceive their operations by style updates and interactive effects";
       
     }
-    SURCollapseItem {
+    SCollapseItem {
       theme: Themes.Error;
       define:true;
-      SURButton { 
+      SButton { 
 
       }
     }
-    SURCollapseItem {
+    SCollapseItem {
       name:"table";
       theme: Themes.Dark;
       define:true;
       item-height:280px;
-      SURTable {
+      STable {
         
         height: col1.get-height();
         width: 300px;
-        col1:=SURTableColumn {
+        col1:=STableColumn {
           border:false;
           theme:Themes.Error;
           width: 100px;
@@ -41,13 +41,13 @@ component TestWindow inherits Window {
           // row-height:60px;
           datas: ["101","102","103"];
         }
-        SURTableColumn {
+        STableColumn {
           theme:Themes.Success;
           width: 100px;
           name:"name";
           datas: ["Mat","Jarry","Kaven"];
         }
-        SURTableColumn {
+        STableColumn {
           theme:Themes.Error;
           width: 100px;
           name:"age";

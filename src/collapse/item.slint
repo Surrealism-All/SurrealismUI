@@ -5,8 +5,8 @@
 * @version:0.0.1
 * @type:interface
 * @description:
-* # SURCollapseItem
-* SURCollapseItem is a component of SURCollapse, without which SURCollapse will not work
+* # SCollapseItem
+* SCollapseItem is a component of SCollapse, without which SCollapse will not work
 * You can customize the components or use the default text display method in it
 * ## properties
 * - in property <length> item-height: set height of detail
@@ -22,10 +22,10 @@
 * ============================================
 */
 
-import { SURCard } from "../card/index.slint";
-import { SURText } from "../text/index.slint";
+import { SCard } from "../card/index.slint";
+import { SText } from "../text/index.slint";
 import {ROOT_STYLES,Themes,IconSources} from "../../themes/index.slint";
-import { SURIcon } from "../icon/index.slint";
+import { SIcon } from "../icon/index.slint";
 export component CollapseItem inherits Rectangle{
   height: header.height;
   background: transparent;
@@ -46,7 +46,7 @@ export component CollapseItem inherits Rectangle{
     height: root.height;
     width: header.width;
     spacing: 0;
-    header:=SURCard{
+    header:=SCard{
       z: 11;
       theme: root.theme;
       card-width: root.width - self.padding-left * 2;
@@ -76,14 +76,14 @@ export component CollapseItem inherits Rectangle{
         width: parent.width;
         padding-left: ROOT-STYLES.sur-padding.normal.left-right;
         padding-right: ROOT-STYLES.sur-padding.normal.left-right;
-        name:=SURText { 
+        name:=SText { 
           theme: root.theme;
           text: root.name;
           font-weight: 700;
         }
         icon-view:=Rectangle{
           width:icon.width ;
-          icon:=SURIcon { 
+          icon:=SIcon { 
             theme: root.theme;
             height: 20px;
             width: 20px;
@@ -95,7 +95,7 @@ export component CollapseItem inherits Rectangle{
         }
       }
     }
-    details:=SURCard{
+    details:=SCard{
       card-height: root.item-height;
       card-width: header.card-width;
       visible: false;
@@ -103,7 +103,7 @@ export component CollapseItem inherits Rectangle{
       drop-shadow-blur: 0;
       theme: root.theme;
       padding: ROOT-STYLES.sur-padding.normal.same;
-      if !define : txt:=SURText {
+      if !define : txt:=SText {
         horizontal-alignment:TextHorizontalAlignment.left;
         width: header.width - ROOT-STYLES.sur-padding.normal.same * 2;
         text: root.detail;

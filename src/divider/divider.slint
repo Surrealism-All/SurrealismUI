@@ -5,7 +5,7 @@
 * @version:0.1.1
 * @type:interface
 * @description:
-* # SURDivider
+* # SDivider
 * A divider groups sections of content to create visual rhythm and hierarchy. 
 * Use dividers along with spacing and headers to organize content in your layout. 
 * ## properties
@@ -17,10 +17,10 @@
 * ============================================
 */
 
-import { SURCard } from "../card/index.slint";
+import { SCard } from "../card/index.slint";
 import { ROOT-STYLES,Borders,IconSources,Themes } from "../../themes/index.slint";
-import { SURText } from "../text/index.slint";
-import { SURIcon } from "../icon/index.slint";
+import { SText } from "../text/index.slint";
+import { SIcon } from "../icon/index.slint";
 export component Divider inherits Rectangle{
   height: 14px;
   in property <string> content : "divider";
@@ -36,18 +36,18 @@ export component Divider inherits Rectangle{
   inner:=Rectangle {
     z: 14;
     height: 14px;
-    if show-what()==1: SURCard{
+    if show-what()==1: SCard{
       theme: root.theme;
       border-radius: self.height / 2;
       height: txt.height;
       width: txt.width + ROOT-STYLES.sur-padding.small.left-right;
-      txt:=SURText { 
+      txt:=SText { 
        text: root.content;
         font-size: 12px;
         theme: root.theme;
       }
     }
-    if show-what()==0: SURCard {
+    if show-what()==0: SCard {
       theme: root.theme;
       border-radius: self.height / 2;
       card-height: icon.height;
@@ -58,13 +58,13 @@ export component Divider inherits Rectangle{
       padding-top: 0;
       padding-bottom: 0;
       padding-size: Icon;
-       icon:= SURIcon { 
+       icon:= SIcon { 
           theme: root.theme;
           source: root.icon;
         }
     }
   }
-  line:=SURCard {
+  line:=SCard {
     theme: root.theme;
     border-radius: 0px; 
     border: Borders.Circle-None;

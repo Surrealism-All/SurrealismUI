@@ -5,8 +5,8 @@
 * @version:0.1.1
 * @type:interface
 * @description:
-* # SURCollection
-* SURCollection is a grid storage box, but in reality it is not based on grid layout.
+* # SCollection
+* SCollection is a grid storage box, but in reality it is not based on grid layout.
 * It achieves a flexible grid through a combination of dual for loops and horizontal and vertical layouts
 * Clicking on the pop-up layer again will close it
 * ## properties (card)
@@ -20,13 +20,13 @@
 * - in property <length> column-spacing: column spacing
 * ## functions
 * ## callbacks
-* - clicked(CollectionData) : run if you click item in SURCollection
+* - clicked(CollectionData) : run if you click item in SCollection
 * ============================================
 */
-import { SURCard } from "../card/index.slint";
+import { SCard } from "../card/index.slint";
 import { Borders,ROOT_STYLES,Themes} from "../../themes/index.slint";
 import { ScrollView } from "std-widgets.slint";
-import { SURText } from "../text/index.slint";
+import { SText } from "../text/index.slint";
 
 export struct CollectionData {
   id:int,
@@ -35,7 +35,7 @@ export struct CollectionData {
 }
 
 
-export component Collection inherits SURCard { 
+export component Collection inherits SCard { 
   border: Borders.None;
   in property <length> font-size : 14px;
   in property <int> column-num : 4;
@@ -75,7 +75,7 @@ export component Collection inherits SURCard {
             icon:=Image {
               source: col.source;
             }
-            item-name:=SURText { 
+            item-name:=SText { 
               theme: root.theme;
               text:col.name;
               font-size: root.font-size;

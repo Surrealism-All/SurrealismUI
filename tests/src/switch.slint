@@ -1,33 +1,33 @@
-import { SURSwitch } from "../../index.slint";
+import { SSwitch } from "../../index.slint";
 
 component TestSwitch inherits Window {
   height: 400px;
   width: 400px;
-  SURSwitch {
+  SSwitch {
     y: 30px;
   }
-  SURSwitch {
+  SSwitch {
     theme: Primary;
     y: 80px;
     switch-background-color:#ddd;
     switch-border-color:#00ff00;
   }
-  SURSwitch {
+  SSwitch {
     y: 130px;
     theme: Dark;
     clicked(active-or-not)=>{
       debug(active-or-not);
     }
   }
-  SURSwitch {
+  SSwitch {
     y: 180px;
     theme: Warning;
   }
-  SURSwitch {
+  SSwitch {
     y: 230px;
     theme: Error;
   }
-  SURSwitch {
+  SSwitch {
     y: 280px;
     theme: Info;
   }

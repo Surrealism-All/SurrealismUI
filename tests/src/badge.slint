@@ -1,4 +1,4 @@
-import {SURBadge,SURAvatar} from "../../index.slint";
+import {SBadge,SURAvatar} from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
 
 component TestCollection inherits Window {
@@ -13,7 +13,7 @@ component TestCollection inherits Window {
     avatar:=SURAvatar {
     
     } 
-    SURBadge {
+    SBadge {
       x: self.get-x(avatar.width);
       y: self.get-y(avatar.height);
     }
@@ -25,7 +25,7 @@ component TestCollection inherits Window {
     width: avatar2.width;
     avatar2:=SURAvatar {
     } 
-    SURBadge {
+    SBadge {
       x: self.get-x(avatar2.width);
       y: self.get-y(avatar2.height);
       position: Left-Bottom;
@@ -40,7 +40,7 @@ component TestCollection inherits Window {
     avatar3:=SURAvatar {
     
     } 
-    SURBadge {
+    SBadge {
       x: self.get-x(avatar3.width);
       y: self.get-y(avatar3.height);
       position: Left-Top;
@@ -55,7 +55,7 @@ component TestCollection inherits Window {
     width: avatar4.width;
     avatar4:=SURAvatar {
     } 
-    SURBadge {
+    SBadge {
       x: self.get-x(avatar4.width);
       y: self.get-y(avatar4.height);
       position: Right-Top;

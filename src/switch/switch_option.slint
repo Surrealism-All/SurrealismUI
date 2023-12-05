@@ -5,8 +5,8 @@
 * @version:0.1.8
 * @type:interface
 * @description:
-* # SURSwitchOption
-* SURSwitchOption can show option info
+* # SSwitchOption
+* SSwitchOption can show option info
 * ## properties
 * - in-out property <bool> active : active option;
 * - in property <string> left : left option;
@@ -19,10 +19,10 @@
 * - callback clicked(bool) : run if you click the switch
 * ============================================
 */
-import { SURCard } from "../card/index.slint";
+import { SCard } from "../card/index.slint";
 import { ROOT-STYLES,Themes } from "../../themes/index.slint";
-import { SURText } from "../text/index.slint";
-export component SwitchOption inherits SURCard { 
+import { SText } from "../text/index.slint";
+export component SwitchOption inherits SCard { 
   card-height: font-size / 2;
   card-width: left-text.width + right-text.width;
   border: None;
@@ -36,7 +36,7 @@ export component SwitchOption inherits SURCard {
   in property <brush> switch-background-color <=> switch-circle.background;
   in property <brush> switch-border-color<=>switch-circle.border-color;
   in property <color> switch-drop-shadow-color<=> switch-circle.drop-shadow-color;
-  switch-circle:=SURCard{
+  switch-circle:=SCard{
     x: root.padding-left / 4;
     theme: root.theme;
     card-height: font-size / 2 + ROOT-STYLES.sur-padding.normal.top-bottom;
@@ -103,13 +103,13 @@ export component SwitchOption inherits SURCard {
   }
   
   callback clicked(bool);
-  left-text:=SURText {
+  left-text:=SText {
     x: root.padding-left / 2;
     font-size: root.font-size;
     text: root.left;
     theme: root.theme;
   }
-  right-text:=SURText{
+  right-text:=SText{
     x: root.width - right-text.width - root.padding-right / 2;
     font-size: root.font-size;
     text: root.right;

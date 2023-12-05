@@ -5,7 +5,7 @@
 * @version:0.1.4
 * @type:interface
 * @description:
-* # SURLoading
+* # SLoading
 * This is a loading component that you can embed anywhere you want to add a loading animation (now animation have some error)
 * ## properties
 * - in-out property <bool> is-show : the popup layer is show or not
@@ -21,9 +21,9 @@
 * ============================================
 */
 
-import { SURPopup } from "../popup/index.slint";
-import { SURText } from "../text/index.slint";
-import { SURCard } from "../card/index.slint";
+import { SPopup } from "../popup/index.slint";
+import { SText } from "../text/index.slint";
+import { SCard } from "../card/index.slint";
 
 import {ROOT_STYLES,Themes,PaddingSize,PaddingItem,Shadows,Borders,BorderItem,IconSources} from "../../themes/index.slint";
 export component Loading inherits Window {
@@ -81,7 +81,7 @@ export component Loading inherits Window {
       loading-icon.colorize : ROOT-STYLES.sur-theme-colors.dark.font;
     }
   ]
-  mask:=SURCard {
+  mask:=SCard {
     z: 100;
     height: 100%;
     width: 100%;
@@ -113,7 +113,7 @@ export component Loading inherits Window {
       Rectangle {
         height: loading-txt.height;
         width: parent.width;
-        loading-txt:=SURText {
+        loading-txt:=SText {
           theme: root.theme;
           text: root.content;
         }

@@ -1,4 +1,4 @@
-import {SURDrawer,SURButton, SURInput} from "../../index.slint";
+import {SDrawer,SButton, SInput} from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
 
 component TestDrawer inherits Window {
@@ -6,7 +6,7 @@ component TestDrawer inherits Window {
   width: 800px;
   background: #535353;
  
-  SURButton {
+  SButton {
     
     text: "show";
     clicked => {
@@ -17,12 +17,12 @@ component TestDrawer inherits Window {
   }
  
 
-  p:=SURDrawer {
+  p:=SDrawer {
     proportion:36%;
-    SURButton {
+    SButton {
       theme: Dark;
     }
-    SURInput { 
+    SInput { 
       y: 30px;
      }
   }

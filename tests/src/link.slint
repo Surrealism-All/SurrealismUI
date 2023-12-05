@@ -1,29 +1,29 @@
-import {SURLink} from "../../index.slint";
+import {SLink} from "../../index.slint";
 import {Themes,IconSources} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
   height: 420px;
   width: 400px;
   
-  SURLink {
+  SLink {
     y: 100px;
     theme: Dark;
     text: "no underline";
     underline: false;
   }
-  SURLink {
+  SLink {
     y: 160px;
     funny:true;
     theme: Warning;
     text: "funny for link!";
   }
-  SURLink {
+  SLink {
     y: 220px;
     theme: Primary;
     icon: @image-url("../../icons/share-one.svg");
     text: "share one";
   }
-  SURLink {
+  SLink {
     y: 280px;
     funny:true;
     theme: Error;

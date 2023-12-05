@@ -5,8 +5,8 @@
 * @version:0.1.7
 * @type:interface
 * @description:
-* # SURAlert
-* SURAlert is used to display important prompt information on the page
+* # SAlert
+* SAlert is used to display important prompt information on the page
 * ## properties
 * - private property <Themes> theme : Surrealism theme ⛔
 * - in-out property <string> content :  alert content you want to display
@@ -18,9 +18,9 @@
 * ============================================
 */
 
-import { SURCard } from "../card/index.slint";
-import { SURText } from "../text/index.slint";
-import { SURIcon } from "../icon/index.slint";
+import { SCard } from "../card/index.slint";
+import { SText } from "../text/index.slint";
+import { SIcon } from "../icon/index.slint";
 import { IconSources,Themes,ResType } from "../../themes/index.slint";
 export component Alert inherits Window{
   height: 100%;
@@ -71,7 +71,7 @@ export component Alert inherits Window{
       root.content = "This is a help message!"
     }
   }
-  alert:=SURCard { 
+  alert:=SCard { 
     y: 6px;
     clip: true;
     width: parent.width * 0.86;
@@ -79,21 +79,21 @@ export component Alert inherits Window{
     HorizontalLayout {
       alignment: LayoutAlignment.start;
       icon-view:=Rectangle{
-        icon:=SURIcon { 
+        icon:=SIcon { 
           theme: root.theme;
           source: root.icon;
           height: 18px;
           width: 18px;
         }
       }
-      info:=SURText { 
+      info:=SText { 
         theme: root.theme;
         text: root.content;
         width: parent.width - 60px;
         horizontal-alignment: left;
       }
       close-view:=Rectangle{
-        close:=SURIcon{
+        close:=SIcon{
           source: IconSources.icons.Close-one;
           theme: root.theme;
           clicked => {

@@ -20,9 +20,9 @@
 * ============================================
 */
 
-import { SURCard } from "../card/index.slint";
+import { SCard } from "../card/index.slint";
 import { ROOT-STYLES,Themes,PaddingSize } from "../../themes/index.slint";
-import { SURText } from "../text/index.slint";
+import { SText } from "../text/index.slint";
   
 export enum TipPosition {
     Left,
@@ -279,7 +279,7 @@ export component Tip inherits Rectangle{
   //   }
   // ]
   @children
-  tip:=SURCard { 
+  tip:=SCard { 
     y: count-y(self.height);
     x:count-x(self.width);
     clip: false;
@@ -288,7 +288,7 @@ export component Tip inherits Rectangle{
     padding-size: PaddingSize.Tip;
     visible: false;
     theme: root.theme;
-    txt:=SURText { 
+    txt:=SText { 
       theme: root.theme;
       text: root.text;
       font-size: ROOT-STYLES.sur-font.font-size - 2px;

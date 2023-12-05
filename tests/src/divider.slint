@@ -1,4 +1,4 @@
-import {SURDivider} from "../../index.slint";
+import {SDivider} from "../../index.slint";
 import {Themes,IconSources} from "../../themes/index.slint";
 
 component TestDivider inherits Window {
@@ -6,23 +6,23 @@ component TestDivider inherits Window {
   width: 400px;
   background: #535353;
   
-  SURDivider {
+  SDivider {
     y: 60px;
     width: 380px;
   }
-  SURDivider {
+  SDivider {
     y: 120px;
     width: 380px;
     icon:@image-url("../../icons/nail-polish-one.svg");
     theme:Themes.Error;
   }
-  SURDivider {
+  SDivider {
     y: 180px;
     width: 380px;
     icon:@image-url("../../icons/earth.svg");
     theme:Themes.Dark;
   }
-  SURDivider {
+  SDivider {
     y: 240px;
     width: 380px;
     content:"";

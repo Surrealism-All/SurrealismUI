@@ -1,4 +1,4 @@
-import {SURDialog,SURButton,SURTable,SURTableColumn} from "../../index.slint";
+import {SDialog,SButton,STable,STableColumn} from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
 
 component TestDialog inherits Window {
@@ -6,7 +6,7 @@ component TestDialog inherits Window {
   width: 800px;
   background: #535353;
  
-  SURButton {
+  SButton {
     
     text: "show";
     clicked => {
@@ -15,7 +15,7 @@ component TestDialog inherits Window {
   }
  
 
-  p:=SURDialog {
+  p:=SDialog {
     dialog-details : "";
     confirm-btn-theme: Success;
     dialog-width:80%;
@@ -24,13 +24,13 @@ component TestDialog inherits Window {
     confirm=>{
       debug("confirm btn clicked~!")
     }
-    SURTable {
+    STable {
       // you can use this way to get height
       // it depends on how many datas in column
       height: tcol1.get-height();
       width: 350px;
       
-      tcol1:=SURTableColumn {
+      tcol1:=STableColumn {
         border:false;
         theme:Themes.Primary;
         width: 100px;
@@ -38,13 +38,13 @@ component TestDialog inherits Window {
         // row-height:60px;
         datas: ["101","102","103"];
       }
-      SURTableColumn {
+      STableColumn {
         theme:Themes.Primary;
         width: 100px;
         name:"name";
         datas: ["Mat","Jarry","Kaven"];
       }
-      SURTableColumn {
+      STableColumn {
         theme:Themes.Primary;
         width: 150px;
         name:"Operations";

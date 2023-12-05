@@ -1,4 +1,4 @@
-import {SURButton,SURCard,SURText} from "../../index.slint";
+import {SButton,SCard,SText} from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
 
 
@@ -7,22 +7,22 @@ component TestCard inherits Window {
   width: 900px;
   background: #F5F5F5;
   
-  SURCard { 
+  SCard { 
     x:20px;
     y: 20px;
     card-width:text.width;
-    text:=SURText {
-      text: "SURCard";
+    text:=SText {
+      text: "SCard";
     }
    }
-   SURCard { 
+   SCard { 
     x:400px;
     y: 20px;
     card-width:240px;
     card-height:120px;
     theme: Themes.Warning;
    }
-   SURCard { 
+   SCard { 
     x:20px;
     y: 240px;
     theme: Themes.Dark;
@@ -31,7 +31,7 @@ component TestCard inherits Window {
     border: X-Large;
    }
 
-   SURCard { 
+   SCard { 
     x:400px;
     y: 240px;
     theme: Themes.Primary;

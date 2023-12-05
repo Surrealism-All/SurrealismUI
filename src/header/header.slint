@@ -5,8 +5,8 @@
 * @version:0.0.1
 * @type:interface
 * @description:
-* # SURHeader
-* SURHeader is a simple header component that is generated based on routing information
+* # SHeader
+* SHeader is a simple header component that is generated based on routing information
 * ## properties
 * - in property <length> spacing : spacing of the header ⛔
 * - in property <Route> route : detail routes , like:`{home:"Surrealism",routes:["user","info"]};`
@@ -18,12 +18,12 @@
 * ============================================
 */
 import {ROOT_STYLES,Themes,IconSources} from "../../themes/index.slint";
-import { SURIcon } from "../icon/index.slint";
-import { SURText } from "../text/index.slint";
-import { SURCard } from "../card/index.slint";
+import { SIcon } from "../icon/index.slint";
+import { SText } from "../text/index.slint";
+import { SCard } from "../card/index.slint";
 import {SHeaderNode,DefaultSHeaderProps} from "../../use/index.slint";
 
-export component Header inherits SURCard { 
+export component Header inherits SCard { 
   width: 100%;
   card-height: ROOT-STYLES.sur-font.font-size;
   in property <length> spacing : DefaultSHeaderProps.spacing;
@@ -44,7 +44,7 @@ export component Header inherits SURCard {
       HorizontalLayout {
         icon-view:=Rectangle{
           width: icon.width;
-          icon:=SURIcon{
+          icon:=SIcon{
             height: font-size;
             width: font-size;
             theme: root.theme;
@@ -53,7 +53,7 @@ export component Header inherits SURCard {
         }
         txt-view:=Rectangle{
           width: txt.width;
-          txt:=SURText{ 
+          txt:=SText{ 
             theme: root.theme;
             text: item.label;
             font-size: root.font-size;

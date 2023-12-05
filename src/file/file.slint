@@ -5,8 +5,8 @@
 * @version:0.2.1
 * @type:interface
 * @description:
-* # SURFile
-* SURFile can help users present file selectors GUI
+* # SFile
+* SFile can help users present file selectors GUI
 * ## properties
 * - in property <[TabItem]> tabs : tabs will be displayed 
 * - in property <TabConfigs> tab-configs : configurations of the tab
@@ -17,11 +17,11 @@
 * - callback item-clicked(int,FileItem) : run if you click a file item
 * ============================================
 */
-import { SURTable,SURTableColumn } from "../table/index.slint";
-import { SURCard } from "../card/index.slint";
+import { STable,STableColumn } from "../table/index.slint";
+import { SCard } from "../card/index.slint";
 import { ROOT_STYLES,PaddingSize,Themes,IconSources } from "../../themes/index.slint";
-import { SURText } from "../text/index.slint";
-import { SURIcon } from "../icon/index.slint";
+import { SText } from "../text/index.slint";
+import { SIcon } from "../icon/index.slint";
 import { ScrollView } from "std-widgets.slint";
 
 export struct ItemConfigs {
@@ -54,7 +54,7 @@ export struct TabItem {
   value:string
 }
 
-export component File inherits SURCard{
+export component File inherits SCard{
   width: 100%;
   height: 100%;
   in property <[TabItem]> tabs : [
@@ -90,7 +90,7 @@ export component File inherits SURCard{
       padding-bottom: ROOT-STYLES.get-padding(tab-configs.padding-size).top-bottom;
       padding-right: ROOT-STYLES.get-padding(tab-configs.padding-size).left-right;
       padding-left: ROOT-STYLES.get-padding(tab-configs.padding-size).left-right;
-      for t-item[t-index] in tabs: SURCard{
+      for t-item[t-index] in tabs: SCard{
         border: None;
         drop-shadow-blur: 0;
         drop-shadow-offset-x: 0;
@@ -106,7 +106,7 @@ export component File inherits SURCard{
           }
         }
         VerticalLayout {
-          SURText {
+          SText {
             height: parent.height;
             text: t-item.name;
             horizontal-alignment: left;
@@ -124,7 +124,7 @@ export component File inherits SURCard{
         padding-bottom: ROOT-STYLES.get-padding(tab-configs.padding-size).top-bottom;
         padding-right: ROOT-STYLES.get-padding(tab-configs.padding-size).left-right;
         padding-left: ROOT-STYLES.get-padding(tab-configs.padding-size).left-right;
-        for t-item[t-index] in tabs: SURCard{
+        for t-item[t-index] in tabs: SCard{
           border: None;
           drop-shadow-blur: 0;
           drop-shadow-offset-x: 0;
@@ -146,35 +146,35 @@ export component File inherits SURCard{
                   spacing: 6px;
                   Rectangle {
                     width: f-icon.width;
-                    f-icon:=SURIcon {
+                    f-icon:=SIcon {
                       height: item-configs.icon-size;
                       width: item-configs.icon-size;
                       theme: item-configs.theme;
                       source: f-item.icon;
                     }
                   }
-                  SURText {
+                  SText {
                     theme: item-configs.theme;
                     horizontal-alignment: left;
                     text: f-item.name;
                     font-size: root.item-configs.font-size;
                   }
                 }
-                if t-index==1: SURText{
+                if t-index==1: SText{
                   theme: item-configs.theme;
                   height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
                   horizontal-alignment: left;
                   text: f-item.datetime;
                   font-size: root.item-configs.font-size;
                 }
-                if t-index == 2: SURText{
+                if t-index == 2: SText{
                   theme: item-configs.theme;
                   height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
                   horizontal-alignment: left;
                   text: f-item.file-type;
                   font-size: root.item-configs.font-size;
                 }
-                if t-index == 3: SURText{
+                if t-index == 3: SText{
                   theme: item-configs.theme;
                   height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
                   horizontal-alignment: left;

@@ -1,4 +1,4 @@
-import {SURHeader} from "../../index.slint";
+import {SHeader} from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
 
 component TestHeader inherits Window {
@@ -7,13 +7,13 @@ component TestHeader inherits Window {
   VerticalLayout {
     padding: 30px;
     spacing: 30px;
-    SURHeader {
+    SHeader {
       theme: Dark;
     }
-    SURHeader {
+    SHeader {
       theme: Error;
     }
-    SURHeader {
+    SHeader {
       theme: Primary;
       font-size: 16px;
       clicked(index,node)=>{

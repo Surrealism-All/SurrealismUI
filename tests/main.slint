@@ -1,5 +1,5 @@
 import { TabWidget , ScrollView} from "std-widgets.slint";
-import {SURText,SURLink} from "../index.slint";
+import {SText,SLink} from "../index.slint";
 import { TestColor } from "./src/color.slint";
 import {TestIcon} from "./src/Icon.slint";
 import {TestCard} from "./src/card.slint";
@@ -15,14 +15,14 @@ export component MyLib inherits Window {
     TabWidget {
       Tab {
         title: "Theme Colors";
-        SURText {
+        SText {
           x: 16px;
           y: 16px;
           text: "Surrealism UI V0.1.0 - Theme Colors";
           font-weight: 700;
           font-size: 32px;
         }
-        SURLink {
+        SLink {
           x: 16px;
           y: 60px;
           text: "syf20020816@outlook.com";
@@ -41,17 +41,17 @@ export component MyLib inherits Window {
       }
       Tab {
         title: "Icons";
-        SURText {
+        SText {
           x: 16px;
           y: 16px;
           text: "Surrealism UI V0.1.0 - Theme Icons";
           font-weight: 700;
           font-size: 32px;
         }
-        SURText {
+        SText {
           x: 16px;
           y: 60px;
-          text: " there are 2658 different icons in SURIcon from : https://github.com/bytedance/iconpark";
+          text: " there are 2658 different icons in SIcon from : https://github.com/bytedance/iconpark";
           font-weight: 700;
         }
         Rectangle {
@@ -65,14 +65,14 @@ export component MyLib inherits Window {
       }
       Tab {
         title: "Cards";
-        SURText {
+        SText {
           x: 16px;
           y: 16px;
           text: "Surrealism UI V0.1.0 - Theme Cards";
           font-weight: 700;
           font-size: 32px;
         }
-        SURText {
+        SText {
           x: 16px;
           y: 60px;
           text: "A very simple universal card without any layout or restrictions , you can add anything you want to the card";
@@ -88,17 +88,17 @@ export component MyLib inherits Window {
       }
       Tab {
         title: "Buttons";
-        SURText {
+        SText {
           x: 16px;
           y: 16px;
           text: "Surrealism UI V0.1.0 - Theme Buttons";
           font-weight: 700;
           font-size: 32px;
         }
-        SURText {
+        SText {
           x: 16px;
           y: 60px;
-          text: "SURButton is a button component that you can freely perform regular attribute operations on";
+          text: "SButton is a button component that you can freely perform regular attribute operations on";
           font-weight: 700;
         }
         Rectangle {
@@ -111,14 +111,14 @@ export component MyLib inherits Window {
       }
       Tab {
         title: "Inputs";
-        SURText {
+        SText {
           x: 16px;
           y: 16px;
           text: "Surrealism UI V0.1.0 - Theme Inputs";
           font-weight: 700;
           font-size: 32px;
         }
-        SURText {
+        SText {
           x: 16px;
           y: 60px;
           text: "This is a basic input box, often used in forms, divided into two types : text and password";
@@ -133,17 +133,17 @@ export component MyLib inherits Window {
       }
       Tab {
         title: "Results";
-        SURText {
+        SText {
           x: 16px;
           y: 16px;
           text: "Surrealism UI V0.1.0 - Theme Results";
           font-weight: 700;
           font-size: 32px;
         }
-        SURText {
+        SText {
           x: 16px;
           y: 60px;
-          text: "SURResult helps you easily build a quick prompt , you can build it in popup window";
+          text: "SResult helps you easily build a quick prompt , you can build it in popup window";
           font-weight: 700;
         }
         Rectangle {
@@ -155,14 +155,14 @@ export component MyLib inherits Window {
       }
       Tab {
         title: "Tables";
-        SURText {
+        SText {
           x: 16px;
           y: 16px;
           text: "Surrealism UI V0.1.0 - Theme Tables";
           font-weight: 700;
           font-size: 32px;
         }
-        SURText {
+        SText {
           x: 16px;
           y: 60px;
           text: "This is the outter of the Table, and the column data of the table is separated from the outter . The outter only serves as a standard layout , this is a zero cost construction";

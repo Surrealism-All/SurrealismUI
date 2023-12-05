@@ -5,8 +5,8 @@
 * @version:0.1.7
 * @type:interface
 * @description:
-* # SURSwitch
-* SURSwitch is a switch used for simple judgment scenarios
+* # SSwitch
+* SSwitch is a switch used for simple judgment scenarios
 * ## properties
 * - in-out property <bool> active :false;
 * - in property <brush> switch-background-color : switch circle background color;
@@ -16,9 +16,9 @@
 * - callback clicked(bool) : run if you click the switch
 * ============================================
 */
-import { SURCard } from "../card/index.slint";
+import { SCard } from "../card/index.slint";
 import { ROOT-STYLES,Themes } from "../../themes/index.slint";
-export component Switch inherits SURCard { 
+export component Switch inherits SCard { 
   card-height: 6px;
   card-width: 24px;
   border: None;
@@ -30,7 +30,7 @@ export component Switch inherits SURCard {
   in property <color> switch-drop-shadow-color<=> switch-circle.drop-shadow-color;
   callback clicked(bool);
 
-  switch-circle:=SURCard{
+  switch-circle:=SCard{
     x: 2px;
     theme: root.theme;
     card-height: 6px + ROOT-STYLES.sur-padding.normal.top-bottom;

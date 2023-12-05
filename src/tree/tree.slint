@@ -5,8 +5,8 @@
 * @version:0.2.1
 * @type:interface
 * @description:
-* # SURTree
-* SURTree can be used to display directory structure, forming a parent-child relationship, and can be easily displayed
+* # STree
+* STree can be used to display directory structure, forming a parent-child relationship, and can be easily displayed
 * ## properties
 * - in-out property <TreeData> tree-data : the data to be displayed
 * ## callbacks
@@ -14,10 +14,10 @@
 * ============================================
 */
 
-import { SURCard } from "../card/index.slint";
+import { SCard } from "../card/index.slint";
 import { IconSources , ROOT-STYLES} from "../../themes/index.slint";
-import { SURIcon } from "../icon/index.slint";
-import { SURText } from "../text/index.slint";
+import { SIcon } from "../icon/index.slint";
+import { SText } from "../text/index.slint";
 import { ScrollView } from "std-widgets.slint";
 
 export struct TreeChildren {
@@ -33,7 +33,7 @@ export struct TreeData {
   children:[TreeChildren]
 }
 
-component TreeItem inherits SURCard{
+component TreeItem inherits SCard{
   card-height: 20px;
   theme: Primary;
   border: None;
@@ -56,14 +56,14 @@ component TreeItem inherits SURCard{
     alignment: space-between;
     HorizontalLayout {
       Rectangle {
-        i-icon:=SURIcon { 
+        i-icon:=SIcon { 
           height: 20px;
           width: 20px;
           theme: root.theme;
           source: root.item-icon;
         }
       }
-      i-name:=SURText { 
+      i-name:=SText { 
         theme: root.theme;
         font-size: 14px;
         text: item-name;
@@ -71,7 +71,7 @@ component TreeItem inherits SURCard{
     }
     HorizontalLayout {
       alignment: end;
-      i-extra:=SURText {
+      i-extra:=SText {
         theme: root.theme;
         font-size: 14px;
         text: root.item-extra;
@@ -81,7 +81,7 @@ component TreeItem inherits SURCard{
 }
 
 
-export component Tree inherits SURCard{
+export component Tree inherits SCard{
   height: 100%;
   width: 100%;
   clip: true;

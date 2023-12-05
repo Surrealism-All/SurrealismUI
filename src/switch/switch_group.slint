@@ -5,8 +5,8 @@
 * @version:0.1.8
 * @type:interface
 * @description:
-* # SURSwitchGroup
-* SURSwitchGroup switch group can contain more switch cases
+* # SSwitchGroup
+* SSwitchGroup switch group can contain more switch cases
 * ## properties
 * - in-out property <bool> active : active option index;
 * - in-out property <[string]> switchs : switch options
@@ -16,10 +16,10 @@
 * - callback clicked(int,string) : run if you click the switch , it will back option index and option name
 * ============================================
 */
-import { SURCard } from "../card/index.slint";
+import { SCard } from "../card/index.slint";
 import { ROOT-STYLES,Themes,Shadows } from "../../themes/index.slint";
-import { SURText } from "../text/index.slint";
-export component SwitchGroup inherits SURCard { 
+import { SText } from "../text/index.slint";
+export component SwitchGroup inherits SCard { 
   card-height: font-size / 2;
   card-width: 138px;
   border: None;
@@ -40,7 +40,7 @@ export component SwitchGroup inherits SURCard {
     width: root.width - root.padding-left / 4 - root.padding-right / 4 ;
     alignment: space-between;
     height: root.height - ROOT-STYLES.sur-padding.icon.top-bottom;
-    for item[index] in switchs: SURCard{
+    for item[index] in switchs: SCard{
       theme: root.theme;
       card-width: inner-text.width;
       height: parent.height;
@@ -62,7 +62,7 @@ export component SwitchGroup inherits SURCard {
            root.active = index; 
           }
         }
-        inner-text:= SURText {
+        inner-text:= SText {
           font-size: root.font-size;
           text: item;
           theme: root.theme;

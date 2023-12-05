@@ -5,8 +5,8 @@
 * @version:0.1.5
 * @type:interface
 * @description:
-* # SURMenu
-* SURMenu is a menu bar located on the left side that you can quickly generate through the menu-data property
+* # SMenu
+* SMenu is a menu bar located on the left side that you can quickly generate through the menu-data property
 * ## properties
 * - in-out property <length> icon-box-size : menu item size ⛔
 * - in-out property <length> icon-size : menu item icon size ⛔;
@@ -19,8 +19,8 @@
 * - callback clicked-setting() : run if you click setting icon
 * ============================================
 */
-import { SURCard } from "../card/index.slint";
-import { SURIcon } from "../icon/index.slint";
+import { SCard } from "../card/index.slint";
+import { SIcon } from "../icon/index.slint";
 import {IconSources,ROOT-STYLES,Themes} from "../../themes/index.slint";
 import { SURTip } from "../tip/index.slint";
 
@@ -49,7 +49,7 @@ component MenuItem inherits Rectangle {
       root.clicked();
     }
   }
-  if active:SURCard {
+  if active:SCard {
     x: 0;
     height: root.height;
     width: 2px;
@@ -62,7 +62,7 @@ component MenuItem inherits Rectangle {
     drop-shadow-offset-x: 0;
     drop-shadow-offset-y: 0;
   }
-  icon:=SURIcon {
+  icon:=SIcon {
     theme: root.theme; 
     height:root.icon-size;
     width: root.icon-size;
@@ -70,7 +70,7 @@ component MenuItem inherits Rectangle {
   }
 }
 
-export component Menu inherits SURCard {
+export component Menu inherits SCard {
   height: 100%;
   width: 60px;
   border-radius: 0;
@@ -118,7 +118,7 @@ export component Menu inherits SURCard {
       height:empty-box.height + 120px ;
       empty-box:=Rectangle{
         height: icon-size * 2;
-        empty:=SURIcon{
+        empty:=SIcon{
           theme: root.theme;
           source: IconSources.icons.Null;
         }

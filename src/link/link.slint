@@ -5,8 +5,8 @@
 * @version:0.1.0
 * @type:interface
 * @description:
-* # SURLink
-* SURLink is commonly used to represent text connections or sharing
+* # SLink
+* SLink is commonly used to represent text connections or sharing
 * ## properties
 * - in property <image> icon : share icon you can use whatever you want
 * - in property <bool> funny : Easter egg just funny
@@ -22,10 +22,10 @@
 * ============================================
 */
 
-import { SURText } from "../text/index.slint";
-import { SURCard } from "../card/index.slint";
+import { SText } from "../text/index.slint";
+import { SCard } from "../card/index.slint";
 import {Shadows} from "../../themes/index.slint";
-import { SURIcon } from "../icon/index.slint";
+import { SIcon } from "../icon/index.slint";
 import { IconSources,Themes,ROOT-STYLES,ColorLevel } from "../../themes/index.slint";
 export component Link {
   callback clicked(string);
@@ -51,7 +51,7 @@ export component Link {
     clicked => {
       root.clicked(root.text)
     }
-    if touch-area.has-hover&&underline: SURCard {
+    if touch-area.has-hover&&underline: SCard {
       y: root.height;
       height: 1px;
       width: root.width;
@@ -63,7 +63,7 @@ export component Link {
       border: root.funny? Circle-None: None;
     }
     HorizontalLayout {
-      inner-text:=SURText{
+      inner-text:=SText{
         theme: root.theme;
         font-size: root.font-size;
         font-weight: root.font-weight;
@@ -72,7 +72,7 @@ export component Link {
         height: link-icon.width;
         width: link-icon.width + self.padding-left;
         padding-left: 2px;
-        link-icon:=SURIcon{
+        link-icon:=SIcon{
           x: 2px;
           source: root.icon;
           theme: root.theme;
