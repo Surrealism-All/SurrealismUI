@@ -21,8 +21,9 @@
 */
 import { SCard } from "../card/index.slint";
 import { SIcon } from "../icon/index.slint";
-import {IconSources,ROOT-STYLES,Themes} from "../../themes/index.slint";
-import { SURTip } from "../tip/index.slint";
+import {IconSources,ROOT-STYLES} from "../../themes/index.slint";
+import { STip } from "../tip/index.slint";
+import { Themes } from "../../use/index.slint";
 
 export struct MenuData {
     id:int,
@@ -94,7 +95,7 @@ export component Menu inherits SCard {
     top-view:=VerticalLayout {
       height: parent.height - bottom-view.height;
       alignment: start;
-      for item[index] in menu-data: SURTip { 
+      for item[index] in menu-data: STip { 
         height: menu-item.height;
         width: icon-box-size;
         text: item.name;

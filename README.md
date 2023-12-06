@@ -1594,7 +1594,7 @@ component TestDivider inherits Window {
 
 ![image-20230916001718588](https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/image-20230916001718588.png)
 
-### SURTip
+### STip
 
 A tip provides supplemental, contextual information elevated near its target component
 
@@ -1617,14 +1617,14 @@ A tip provides supplemental, contextual information elevated near its target com
 #### example
 
 ```
-import {SURTip,SButton } from "../../index.slint";
+import {STip,SButton } from "../../index.slint";
 import {Themes} from "../../themes/index.slint";
 
 
 component TestWindow inherits Window {
   height: 400px;
   width: 400px;
-  SURTip{
+  STip{
     y: 80px;
      height:inner0.height;
      width: inner0.width;
@@ -1636,7 +1636,7 @@ component TestWindow inherits Window {
        content: "click";
      }
    }
-  SURTip{
+  STip{
     height:inner.height;
     width: inner.width;
     theme: Dark;
@@ -1649,7 +1649,7 @@ component TestWindow inherits Window {
       }
     }
   }
-  SURTip{
+  STip{
    y: 300px;
     height:inner2.height;
     width: inner2.width;
@@ -2321,10 +2321,10 @@ export component TestFile inherits Window {
 
 - V0.1.5
   - add `SMenu`
-  - enhance `SURTip` (the location of the tip can be changed now  and you can show it with hover ! )
+  - enhance `STip` (the location of the tip can be changed now  and you can show it with hover ! )
 
 - V0.1.4
-  - add `SURTip`
+  - add `STip`
   - add `SLoading`
   - add `SDialog`
 

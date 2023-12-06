@@ -1,19 +1,22 @@
 import {ROOT-STYLES} from "../../themes/index.slint";
 import {Themes} from "../index.slint";
+import {GlobalProps} from "./index.slint";
 
 export global DefaultSCardProps {
   //font
-  in property <int> font-weight : ROOT-STYLES.sur-font.font-weight;
-  in property <length> font-size: ROOT-STYLES.sur-font.font-size;
-  in property <brush> font-color : ROOT-STYLES.sur-theme-colors.light.font;
-  in property <bool> font-italic : false;
+  in-out property <int> font-weight : GlobalProps.font.font-weight;
+  in-out property <length> font-size: GlobalProps.font.font-size;
+  in-out property <brush> color : GlobalProps.font.color;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  in-out property <string> font-family : GlobalProps.font.font-family;
   //theme
-  in property <Themes> theme : Themes.Light;
-  in property <length> card-height:ROOT-STYLES.sur-font.font-size;
-  in property <length> card-width;
-  // in property <PaddingSize> padding-size:Normal;
-  // in property <Shadows> shadow : Shadows.Low1;
-  // in property <Borders> border : Borders.Normal;
-  // in-out property <PaddingItem> card-padding;
+  in-out property <Themes> theme : Themes.Light;
+  //hight-width
+  in-out property <length> card-height : GlobalProps.standard-height;
+  in-out property <length> card-width : GlobalProps.standard-width;
+  in property <PaddingSize> padding-size:Normal;
+  in property <Shadows> shadow : Shadows.Low1;
+  in property <Borders> border : Borders.Normal;
+  in-out property <PaddingItem> card-padding;
   
 }

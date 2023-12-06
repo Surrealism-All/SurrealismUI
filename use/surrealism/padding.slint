@@ -1,0 +1,36 @@
+enum PaddingType{
+  None,
+  Tip,
+  Icon,
+  Tag,
+  Small,
+  Normal,
+  Large
+}
+
+
+struct PaddingProps {
+  padding-top:length,
+  padding-bottom:length,
+  padding-left:length,
+  padding-right:length,
+  padding-same:length
+}
+
+
+
+struct ThemePadding {
+  none:PaddingProps,
+  tip:PaddingProps,
+  tag:PaddingProps,
+  icon:PaddingProps,
+  small: PaddingProps,
+  normal:PaddingProps,
+  large:PaddingProps
+}
+
+
+export { 
+  ThemePadding,PaddingType,PaddingProps
+}
+

@@ -1,0 +1,35 @@
+enum BorderType{
+  None,
+  Small,
+  Normal,
+  Large,
+  X-Large,
+  Circle-None,
+  Circle-Small,
+  Circle-Normal,
+  Circle-Large,
+  Circle-X-Large,
+}
+
+struct BorderProps {
+  border-radius:length,
+  border-width:length,
+  border-color:brush,
+}
+
+struct ThemeBorder {
+    none:BorderProps,
+    small:BorderProps,
+    normal:BorderProps,
+    large:BorderProps,
+    x-large:BorderProps,
+    circle:{
+      none:BorderProps,
+      small:BorderProps,
+      normal:BorderProps,
+      large:BorderProps,
+      x-large:BorderProps,
+    }
+}
+
+export { BorderType,BorderProps,ThemeBorder }

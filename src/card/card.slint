@@ -46,8 +46,12 @@ export component Card inherits Rectangle{
   in-out property <PaddingItem> card-padding;
   in property <int> font-weight : ROOT-STYLES.sur-font.font-weight;
   in property <length> font-size: ROOT-STYLES.sur-font.font-size;
-  in property <int> font-color;
+  in property <brush> font-color;
   in property <bool> font-italic : false;
+  in property <length> font-family;
+  
+  
+  
 
   init => {
     self.card-padding = ROOT-STYLES.get-padding(padding-size);
