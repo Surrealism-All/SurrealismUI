@@ -14,25 +14,25 @@
 */
 import { SCard } from "../card/index.slint";
 import { SIcon } from "../icon/index.slint";
-import {ROOT_STYLES,PaddingSize,PaddingItem,Shadows,Borders,BorderItem,IconSources} from "../../themes/index.slint";
-import { Themes } from "../../use/index.slint";
+import {ROOT_STYLES,IconSources} from "../../themes/index.slint";
+import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,BorderProps,UseSurrealismFn } from "../../use/index.slint";
 
 export component Avatar inherits SCard { 
-  border:Circle-Normal;
-  // padding: self.card-padding.same;
+  border-type:Circle-Normal;
+  // padding: self.card-padding.padding-same;
   card-height:avatar-size;
   card-width:avatar-size;
   in property <length> avatar-size : ROOT-STYLES.sur-size.normal * 2;
   in property <image> avatar;
-  padding-size: Normal;
+  padding-type: Normal;
   clip: true;
   init => {
-    self.card-padding = ROOT-STYLES.get-padding(self.padding-size);
-    self.padding = self.card-padding.same;
-    self.padding-top = self.card-padding.same;
-    self.padding-bottom = self.card-padding.same;
-    self.padding-left = self.card-padding.same;
-    self.padding-right = self.card-padding.same;
+    self.card-padding = UseSurrealismFn.get-padding(self.padding-type);
+    self.padding = self.card-padding.padding-same;
+    self.padding-top = self.card-padding.padding-same;
+    self.padding-bottom = self.card-padding.padding-same;
+    self.padding-left = self.card-padding.padding-same;
+    self.padding-right = self.card-padding.padding-same;
   }
   SIcon {
     z: 13;

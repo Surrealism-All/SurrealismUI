@@ -25,27 +25,27 @@ import { SText } from "../text/index.slint";
 import { Themes } from "../../use/index.slint";
 
 export component SwitchOption inherits SCard { 
-  card-height: font-size / 2;
+  card-height: self.font-size / 2;
   card-width: left-text.width + right-text.width;
-  border: None;
+  border-type: None;
   border-radius: root.height / 2;
-  padding-size: Small;
+  padding-type: Small;
   clip: true;
   in-out property <bool> active :false;
   in property <string> left : "left";
   in property <string> right : "right";
-  in property <length> font-size : 12px;
+  font-size : 12px;
   in property <brush> switch-background-color <=> switch-circle.background;
   in property <brush> switch-border-color<=>switch-circle.border-color;
   in property <color> switch-drop-shadow-color<=> switch-circle.drop-shadow-color;
   switch-circle:=SCard{
     x: root.padding-left / 4;
     theme: root.theme;
-    card-height: font-size / 2 + ROOT-STYLES.sur-padding.normal.top-bottom;
+    card-height: root.font-size / 2 + ROOT-STYLES.sur-padding.normal.padding-top;
     width: left-text.width + root.padding-left / 2;
     // border: None;
     border-radius: self.height / 2;
-    padding-size: None;
+    padding-type: None;
     
     states [
       light when self.theme == Themes.Light: {

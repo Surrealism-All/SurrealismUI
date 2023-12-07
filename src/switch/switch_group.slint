@@ -17,22 +17,22 @@
 * ============================================
 */
 import { SCard } from "../card/index.slint";
-import { ROOT-STYLES,Shadows } from "../../themes/index.slint";
+import { ROOT-STYLES } from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
-import { Themes } from "../../use/index.slint";
+import { Themes,ShadowType,UseSurrealismFn } from "../../use/index.slint";
 
 export component SwitchGroup inherits SCard { 
-  card-height: font-size / 2;
+  card-height: self.font-size / 2;
   card-width: 138px;
-  border: None;
+  border-type: None;
   border-radius: root.height / 2;
-  padding-size: Small;
+  padding-type: Small;
   clip: true;
   in-out property <int> active : 0;
   in-out property <[string]> switchs : [
     "first","second","third"
   ];
-  in property <length> font-size : 12px;
+  font-size : 12px;
   // in property <brush> switch-background-color <=> switch-circle.background;
   // in property <brush> switch-border-color<=>switch-circle.border-color;
   // in property <color> switch-drop-shadow-color<=> switch-circle.drop-shadow-color;
@@ -41,15 +41,15 @@ export component SwitchGroup inherits SCard {
   view:= HorizontalLayout {
     width: root.width - root.padding-left / 4 - root.padding-right / 4 ;
     alignment: space-between;
-    height: root.height - ROOT-STYLES.sur-padding.icon.top-bottom;
+    height: root.height - ROOT-STYLES.sur-padding.icon.padding-top;
     for item[index] in switchs: SCard{
       theme: root.theme;
       card-width: inner-text.width;
       height: parent.height;
-      padding-size: Small;
-      background: root.active == index ? ROOT-STYLES.deeper(root.theme,root.theme-color) : theme-color;
+      padding-type: Small;
+      background: root.active == index ? UseSurrealismFn.deeper(root.theme,root.theme-color) : theme-color;
       // remove border
-      border: None;
+      border-type: None;
       // make border-radius round
       border-radius: self.height / 2;
       // remove shadow

@@ -24,10 +24,10 @@ import { Themes } from "../../use/index.slint";
 export component Tag inherits SCard { 
   card-height: inner.height;
   card-width: inner.width;
-  padding-size: text==""?None:Tag;
+  padding-type: text==""?None:Tag;
   border-radius: self.height / 2;
-  in property <brush> font-color<=> inner.color;
-  in property <length> font-size:ROOT-STYLES.sur-font.tag-size;
+  font-color<=> inner.color;
+  font-size:12px;
   in property <string> text : "";
   callback clicked(string);
   

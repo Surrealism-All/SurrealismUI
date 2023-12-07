@@ -24,10 +24,9 @@
 
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
-import {Shadows} from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
-import { IconSources,ROOT-STYLES,ColorLevel } from "../../themes/index.slint";
-import { Themes } from "../../use/index.slint";
+import { IconSources,ROOT-STYLES } from "../../themes/index.slint";
+import { Themes,ShadowType,ColorLevel,UseSurrealismFn } from "../../use/index.slint";
 
 export component Link {
   callback clicked(string);
@@ -43,8 +42,8 @@ export component Link {
   private property <brush> text-color;
   states [
     hover when touch-area.has-hover: {
-      inner-text.color : ROOT-STYLES.deeper(root.theme,ROOT-STYLES.get-color(root.theme,ColorLevel.Font));
-      link-icon.icon-color : ROOT-STYLES.deeper(root.theme,ROOT-STYLES.get-color(root.theme,ColorLevel.Font)); 
+      inner-text.color : UseSurrealismFn.deeper(root.theme,UseSurrealismFn.get-color(root.theme,ColorLevel.Font));
+      link-icon.icon-color : UseSurrealismFn.deeper(root.theme,UseSurrealismFn.get-color(root.theme,ColorLevel.Font)); 
     }
   ]
   touch-area:=TouchArea {
@@ -62,7 +61,7 @@ export component Link {
       padding-right: 0;
       padding-top: 0;
       padding-bottom: 0;
-      border: root.funny? Circle-None: None;
+      border-type: root.funny? Circle-None: None;
     }
     HorizontalLayout {
       inner-text:=SText{

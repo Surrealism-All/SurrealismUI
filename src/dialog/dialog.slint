@@ -29,11 +29,11 @@
 */
 
 import { SCard } from "../card/index.slint";
-import {ROOT_STYLES,PaddingSize,PaddingItem,Shadows,Borders,BorderItem} from "../../themes/index.slint";
+import {ROOT_STYLES} from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
 import { SButton } from "../button/index.slint";
 import { ScrollView } from "std-widgets.slint";
-import { Themes } from "../../use/index.slint";
+import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,BorderProps,UseSurrealismFn } from "../../use/index.slint";
 
 export component Dialog inherits Window {
   height: 100%;
@@ -103,10 +103,10 @@ export component Dialog inherits Window {
             ScrollView { 
               height: parent.height;
               width: parent.width;
-              viewport-height: ROOT-STYLES.count-height(self.height,self.padding-top);
-              viewport-width: ROOT-STYLES.count-width(self.width,self.padding-left) - 14px;
-              padding-top: ROOT-STYLES.sur-padding.normal.top-bottom;
-              padding-bottom: ROOT-STYLES.sur-padding.normal.top-bottom;
+              viewport-height: UseSurrealismFn.count-height(self.height,self.padding-top);
+              viewport-width: UseSurrealismFn.count-width(self.width,self.padding-left) - 14px;
+              padding-top: ROOT-STYLES.sur-padding.normal.padding-top;
+              padding-bottom: ROOT-STYLES.sur-padding.normal.padding-bottom;
               if root.dialog-details!="": details:=SText{
                 text: root.dialog-details;
                 wrap: word-wrap;
@@ -117,10 +117,10 @@ export component Dialog inherits Window {
           btn-view:=Rectangle{
             height: parent.height * 0.2;
             HorizontalLayout {
-              spacing: ROOT-STYLES.get-space(parent.width);
+              spacing: UseSurrealismFn.get-space(parent.width);
               height: parent.height;
-              padding-left: ROOT-STYLES.sur-padding.normal.left-right;
-              padding-right: ROOT-STYLES.sur-padding.normal.left-right;
+              padding-left: ROOT-STYLES.sur-padding.normal.padding-left;
+              padding-right: ROOT-STYLES.sur-padding.normal.padding-right;
               alignment: end;
               Rectangle {
                 width: cancel-btn.width;

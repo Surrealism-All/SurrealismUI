@@ -21,9 +21,9 @@
 */
 
 import { SCard } from "../card/index.slint";
-import { ROOT-STYLES,PaddingSize } from "../../themes/index.slint";
+import { ROOT-STYLES } from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
-import { Themes } from "../../use/index.slint";
+import { Themes,PaddingType } from "../../use/index.slint";
   
 export enum TipPosition {
     Left,
@@ -286,7 +286,7 @@ export component Tip inherits Rectangle{
     clip: false;
     card-width: txt.width;
     card-height: txt.height;
-    padding-size: PaddingSize.Tip;
+    padding-type: PaddingType.Tip;
     visible: false;
     theme: root.theme;
     txt:=SText { 

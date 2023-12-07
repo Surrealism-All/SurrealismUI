@@ -1,5 +1,5 @@
 import {SButton, SAlert} from "../../index.slint";
-import {Themes,ResType} from "../../themes/index.slint";
+import {Themes,ResultType} from "../../themes/index.slint";
 
 component TestAlert inherits Window {
   height: 400px;
@@ -18,7 +18,7 @@ component TestAlert inherits Window {
  
 
   p:=SAlert { 
-    res-type:ResType.Success ;
+    res-type:ResultType.Success ;
     content:"this is a success message!";
   }
 }

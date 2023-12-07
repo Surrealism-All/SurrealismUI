@@ -1,5 +1,5 @@
 import {SFile,ItemConfigs,FileItem,ItemConfigs} from "../../index.slint";
-import { Themes,PaddingSize,IconSources} from "../../themes/index.slint";
+import { Themes,PaddingType,IconSources} from "../../themes/index.slint";
 
 export component TestFile inherits Window {
   height: 400px;
@@ -11,14 +11,14 @@ export component TestFile inherits Window {
     tab-configs : {
       height:16px,
       font-size:14px,
-      padding-size:PaddingSize.Tip,
+      padding-type:PaddingType.Tip,
       theme: Themes.Dark,
       column-width:[200px,100px,100px,80px]
     };
     item-configs : {
       height:16px,
       font-size:12px,
-      padding-size:PaddingSize.Normal,
+      padding-type:PaddingType.Normal,
       theme: Themes.Dark,
       icon-size:16px
     };

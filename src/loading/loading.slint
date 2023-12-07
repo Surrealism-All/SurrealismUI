@@ -24,8 +24,8 @@
 import { SPopup } from "../popup/index.slint";
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
-import { Themes } from "../../use/index.slint";
-import {ROOT_STYLES,PaddingSize,PaddingItem,Shadows,Borders,BorderItem,IconSources} from "../../themes/index.slint";
+import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,BorderProps } from "../../use/index.slint";
+import {ROOT_STYLES,IconSources} from "../../themes/index.slint";
 
 export component Loading inherits Window {
   height: 100%;
@@ -91,7 +91,7 @@ export component Loading inherits Window {
     drop-shadow-offset-x: 0;
     drop-shadow-offset-y: 0;
     opacity: 100%;
-    border: None;
+    border-type: None;
     clip: true;
     VerticalLayout {
       alignment: center;

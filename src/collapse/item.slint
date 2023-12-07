@@ -76,8 +76,8 @@ export component CollapseItem inherits Rectangle{
       HorizontalLayout {
         alignment: space-between;
         width: parent.width;
-        padding-left: ROOT-STYLES.sur-padding.normal.left-right;
-        padding-right: ROOT-STYLES.sur-padding.normal.left-right;
+        padding-left: ROOT-STYLES.sur-padding.normal.padding-left;
+        padding-right: ROOT-STYLES.sur-padding.normal.padding-right;
         name:=SText { 
           theme: root.theme;
           text: root.name;
@@ -104,10 +104,10 @@ export component CollapseItem inherits Rectangle{
       border-radius: 0;
       drop-shadow-blur: 0;
       theme: root.theme;
-      padding: ROOT-STYLES.sur-padding.normal.same;
+      padding: ROOT-STYLES.sur-padding.normal.padding-same;
       if !define : txt:=SText {
         horizontal-alignment:TextHorizontalAlignment.left;
-        width: header.width - ROOT-STYLES.sur-padding.normal.same * 2;
+        width: header.width - ROOT-STYLES.sur-padding.normal.padding-same * 2;
         text: root.detail;
         font-size: 14px;
         wrap: word-wrap;

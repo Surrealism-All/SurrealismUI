@@ -1,12 +1,10 @@
-import {ROOT-STYLES} from "../../themes/index.slint";
-
 export struct SHeaderNode {
   label:string,
   value:string
 }
 
 export global DefaultSHeaderProps {
-  in property <length> spacing: ROOT-STYLES.sur-spacing.len60;
+  in property <length> spacing: 0;
   in property <[SHeaderNode]> value : [
     {label:"src",value:"src"},
     {label:"header",value:"header"},

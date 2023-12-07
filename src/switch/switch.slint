@@ -23,9 +23,9 @@ import { Themes } from "../../use/index.slint";
 export component Switch inherits SCard { 
   card-height: 6px;
   card-width: 24px;
-  border: None;
+  border-type: None;
   border-radius: root.height / 2;
-  padding-size: Small;
+  padding-type: Small;
   in-out property <bool> active :false;
   in property <brush> switch-background-color <=> switch-circle.background;
   in property <brush> switch-border-color<=>switch-circle.border-color;
@@ -35,11 +35,11 @@ export component Switch inherits SCard {
   switch-circle:=SCard{
     x: 2px;
     theme: root.theme;
-    card-height: 6px + ROOT-STYLES.sur-padding.normal.top-bottom;
-    card-width: 6px + ROOT-STYLES.sur-padding.normal.top-bottom;
+    card-height: 6px + ROOT-STYLES.sur-padding.normal.padding-same;
+    card-width: 6px + ROOT-STYLES.sur-padding.normal.padding-same;
     // border: None;
     border-radius: self.height / 2;
-    padding-size: None;
+    padding-type: None;
     
     states [
       light when self.theme == Themes.Light: {

@@ -28,64 +28,61 @@ import {SIcon} from "../icon/index.slint";
 import {SCard} from "../card/index.slint";
 import {ROOT-STYLES} from "../../themes/index.slint";
 import { HorizontalBox } from "std-widgets.slint";
-import { Themes } from "../../use/index.slint";
+import { Themes,UseSurrealismFn } from "../../use/index.slint";
 
 export component Button inherits SCard {
   card-width: layout.width;
   theme: Light;
   in property <image> icon;
-  
-  in property <length> letter-spacing : ROOT-STYLES.sur-font.letter-spacing;
-  in property <bool> font-italic:ROOT-STYLES.sur-font.font-italic;
-  in property <string> font-family:ROOT-STYLES.sur-font.font-family;
   in property <bool> show-icon : false;
   out property <bool> has-hover <=>toucharea.has-hover;
   in-out property <string> text : "SButton";
+  in property <length> letter-spacing;
   states [
     light when self.theme == Themes.Light: {
-      root.background : toucharea.has-hover?ROOT-STYLES.light-deeper(ROOT-STYLES.sur-theme-colors.light.normal):ROOT-STYLES.sur-theme-colors.light.normal;
+      root.background : toucharea.has-hover?UseSurrealismFn.light-deeper(ROOT-STYLES.sur-theme-colors.light.normal):ROOT-STYLES.sur-theme-colors.light.normal;
       root.border-color : ROOT-STYLES.sur-theme-colors.light.normal;
       root.drop-shadow-color : ROOT-STYLES.sur-theme-colors.light.deepest;
       root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
       root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
     }
     primary when self.theme == Themes.Primary: {
-      root.background : toucharea.has-hover?ROOT-STYLES.primary-deeper(ROOT-STYLES.sur-theme-colors.primary.normal):ROOT-STYLES.sur-theme-colors.primary.normal;
+      root.background : toucharea.has-hover?UseSurrealismFn.primary-deeper(ROOT-STYLES.sur-theme-colors.primary.normal):ROOT-STYLES.sur-theme-colors.primary.normal;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
       root.border-color : ROOT-STYLES.sur-theme-colors.primary.normal;
       root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
       root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
     }
     success when self.theme == Themes.Success: {
-      root.background : toucharea.has-hover?ROOT-STYLES.success-deeper(ROOT-STYLES.sur-theme-colors.success.normal):ROOT-STYLES.sur-theme-colors.success.normal;
+      root.background : toucharea.has-hover?UseSurrealismFn.success-deeper(ROOT-STYLES.sur-theme-colors.success.normal):ROOT-STYLES.sur-theme-colors.success.normal;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
       root.border-color : ROOT-STYLES.sur-theme-colors.success.normal;
       root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
       root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
     }
     info when self.theme == Themes.Info: {
-      root.background : toucharea.has-hover?ROOT-STYLES.info-deeper(ROOT-STYLES.sur-theme-colors.info.normal):ROOT-STYLES.sur-theme-colors.info.normal;
+      root.background : toucharea.has-hover?UseSurrealismFn.info-deeper(ROOT-STYLES.sur-theme-colors.info.normal):ROOT-STYLES.sur-theme-colors.info.normal;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
       root.border-color : ROOT-STYLES.sur-theme-colors.info.normal;
       root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
       root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
     }
     warning when self.theme == Themes.Warning: {
-      root.background : toucharea.has-hover?ROOT-STYLES.warning-deeper(ROOT-STYLES.sur-theme-colors.warning.normal):ROOT-STYLES.sur-theme-colors.warning.normal;
+      root.background : toucharea.has-hover?UseSurrealismFn.warning-deeper(ROOT-STYLES.sur-theme-colors.warning.normal):ROOT-STYLES.sur-theme-colors.warning.normal;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
       root.border-color : ROOT-STYLES.sur-theme-colors.warning.normal;
       root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
       root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
     }
     error when self.theme == Themes.Error: {
-      root.background : toucharea.has-hover?ROOT-STYLES.error-deeper(ROOT-STYLES.sur-theme-colors.error.normal):ROOT-STYLES.sur-theme-colors.error.normal;
+      root.background : toucharea.has-hover?UseSurrealismFn.error-deeper(ROOT-STYLES.sur-theme-colors.error.normal):ROOT-STYLES.sur-theme-colors.error.normal;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
       root.border-color : ROOT-STYLES.sur-theme-colors.error.normal;
       root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
       root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
     }
     dark when self.theme == Themes.Dark: {
-      root.background : toucharea.has-hover?ROOT-STYLES.dark-deeper(ROOT-STYLES.sur-theme-colors.dark.normal):ROOT-STYLES.sur-theme-colors.dark.normal;
+      root.background : toucharea.has-hover?UseSurrealismFn.dark-deeper(ROOT-STYLES.sur-theme-colors.dark.normal):ROOT-STYLES.sur-theme-colors.dark.normal;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
       root.border-color : ROOT-STYLES.sur-theme-colors.dark.normal;
       root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
@@ -125,7 +122,7 @@ export component Button inherits SCard {
   layout:=HorizontalLayout{
     height: root.height;
     width: show-icon?txt-container.width + root.font-size : txt-container.width;
-    spacing: show-icon?ROOT-STYLES.get-space(self.width):0;
+    spacing: show-icon?UseSurrealismFn.get-space(self.width):0;
     if root.show-icon:icon-container:= Rectangle {
       btn-icon:= SIcon {
         source:root.icon;

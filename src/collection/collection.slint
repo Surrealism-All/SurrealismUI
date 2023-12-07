@@ -24,10 +24,10 @@
 * ============================================
 */
 import { SCard } from "../card/index.slint";
-import { Borders,ROOT_STYLES} from "../../themes/index.slint";
+import { ROOT_STYLES} from "../../themes/index.slint";
 import { ScrollView } from "std-widgets.slint";
 import { SText } from "../text/index.slint";
-import { Themes } from "../../use/index.slint";
+import { Themes,BorderType,UseSurrealismFn } from "../../use/index.slint";
 
 export struct CollectionData {
   id:int,
@@ -37,15 +37,14 @@ export struct CollectionData {
 
 
 export component Collection inherits SCard { 
-  border: Borders.None;
-  in property <length> font-size : 14px;
+  border-type: BorderType.None;
   in property <int> column-num : 4;
   in property <int> row-num : 3;
   in-out property <[[CollectionData]]> data;
   in property <length> row-height : (root.card-height - 14px - row-spaceing * (row-num - 1)) / row-num;
   in property <length> column-width : (root.card-width - 14px - column-spacing * (column-num - 1)) / column-num;
   in property <length> row-spaceing :8px;
-  in property <length> column-spacing: ROOT-STYLES.get-space(self.width) ;
+  in property <length> column-spacing: UseSurrealismFn.get-space(self.width) ;
   callback clicked(CollectionData);
   ScrollView { 
     height: root.card-height;

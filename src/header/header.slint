@@ -17,18 +17,18 @@
 * - callback back() : back to main page (it depends on you)
 * ============================================
 */
-import {ROOT_STYLES,IconSources} from "../../themes/index.slint";
+import {ROOT_STYLES,IconSources,DefaultSHeaderProps,SHeaderNode} from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
-import {SHeaderNode,DefaultSHeaderProps,Themes} from "../../use/index.slint";
+import {Themes} from "../../use/index.slint";
 
 export component Header inherits SCard { 
   width: 100%;
   card-height: ROOT-STYLES.sur-font.font-size;
   in property <length> spacing : DefaultSHeaderProps.spacing;
   in property <[SHeaderNode]> value : DefaultSHeaderProps.value;
-  in property <length> font-size : ROOT-STYLES.sur-font.font-size;
+  font-size : ROOT-STYLES.sur-font.font-size;
   in property <image> source :IconSources.icons.Right;
   callback clicked(int,SHeaderNode);
   HorizontalLayout {
@@ -45,8 +45,8 @@ export component Header inherits SCard {
         icon-view:=Rectangle{
           width: icon.width;
           icon:=SIcon{
-            height: font-size;
-            width: font-size;
+            height: root.font-size;
+            width: root.font-size;
             theme: root.theme;
             source: root.source;  
           }

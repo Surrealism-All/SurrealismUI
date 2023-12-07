@@ -19,24 +19,24 @@
 */
 import { STable,STableColumn } from "../table/index.slint";
 import { SCard } from "../card/index.slint";
-import { ROOT_STYLES,PaddingSize,IconSources } from "../../themes/index.slint";
+import { ROOT_STYLES,IconSources } from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { ScrollView } from "std-widgets.slint";
-import { Themes } from "../../use/index.slint";
+import { Themes,PaddingType,UseSurrealismFn } from "../../use/index.slint";
 
 
 export struct ItemConfigs {
   height:length,
   font-size:length,
-  padding-size:PaddingSize,
+  padding-type:PaddingType,
   theme:Themes,
   icon-size:length
 }
 export struct TabConfigs {
   height:length,
   font-size:length,
-  padding-size:PaddingSize,
+  padding-type:PaddingType,
   theme:Themes,
   column-width:[length]
 }
@@ -68,7 +68,7 @@ export component File inherits SCard{
   in property <TabConfigs> tab-configs : {
     height:16px,
     font-size:14px,
-    padding-size:PaddingSize.Tip,
+    padding-type:PaddingType.Tip,
     theme: Themes.Light,
     column-width:[200px,100px,100px,80px]
   };
@@ -80,7 +80,7 @@ export component File inherits SCard{
   in property <ItemConfigs> item-configs : {
     height:16px,
     font-size:12px,
-    padding-size:PaddingSize.Tip,
+    padding-type:PaddingType.Tip,
     theme: Themes.Light,
     icon-size:16px
   };
@@ -88,18 +88,18 @@ export component File inherits SCard{
   callback item-clicked(int,FileItem);
   VerticalLayout {
     HorizontalLayout {
-      padding-top:  ROOT-STYLES.get-padding(tab-configs.padding-size).top-bottom;
-      padding-bottom: ROOT-STYLES.get-padding(tab-configs.padding-size).top-bottom;
-      padding-right: ROOT-STYLES.get-padding(tab-configs.padding-size).left-right;
-      padding-left: ROOT-STYLES.get-padding(tab-configs.padding-size).left-right;
+      padding-top:  UseSurrealismFn.get-padding(tab-configs.padding-type).padding-top;
+      padding-bottom: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-bottom;
+      padding-right: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-right;
+      padding-left: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-left;
       for t-item[t-index] in tabs: SCard{
-        border: None;
+        border-type: None;
         drop-shadow-blur: 0;
         drop-shadow-offset-x: 0;
         drop-shadow-offset-y: 0;
         card-height: tab-configs.height;
         card-width: tab-configs.column-width[t-index];
-        padding-size: tab-configs.padding-size;
+        padding-type: tab-configs.padding-type;
         theme: tab-configs.theme;
         TouchArea {
           mouse-cursor: pointer;
@@ -120,20 +120,20 @@ export component File inherits SCard{
     }
     // 滚动列表 ， 通过双层循环从横列转纵列
     ScrollView {
-      viewport-height: files.length * (item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2));
+      viewport-height: files.length * (item-configs.height + (UseSurrealismFn.get-padding(item-configs.padding-type).padding-top * 2));
       HorizontalLayout {
-        padding-top:  ROOT-STYLES.get-padding(tab-configs.padding-size).top-bottom;
-        padding-bottom: ROOT-STYLES.get-padding(tab-configs.padding-size).top-bottom;
-        padding-right: ROOT-STYLES.get-padding(tab-configs.padding-size).left-right;
-        padding-left: ROOT-STYLES.get-padding(tab-configs.padding-size).left-right;
+        padding-top:  UseSurrealismFn.get-padding(tab-configs.padding-type).padding-top;
+        padding-bottom: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-bottom;
+        padding-right: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-right;
+        padding-left: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-left;
         for t-item[t-index] in tabs: SCard{
-          border: None;
+          border-type: None;
           drop-shadow-blur: 0;
           drop-shadow-offset-x: 0;
           drop-shadow-offset-y: 0;
           card-height: tab-configs.height;
           card-width: tab-configs.column-width[t-index];
-          padding-size: tab-configs.padding-size;
+          padding-type: tab-configs.padding-type;
           theme: tab-configs.theme;
           VerticalLayout {
             for f-item[f-index] in files: TouchArea {
@@ -144,7 +144,7 @@ export component File inherits SCard{
               }
               VerticalLayout{
                 if t-index==0: HorizontalLayout {
-                  height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
+                  height: item-configs.height + (UseSurrealismFn.get-padding(item-configs.padding-type).padding-top * 2);
                   spacing: 6px;
                   Rectangle {
                     width: f-icon.width;
@@ -164,21 +164,21 @@ export component File inherits SCard{
                 }
                 if t-index==1: SText{
                   theme: item-configs.theme;
-                  height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
+                  height: item-configs.height + (UseSurrealismFn.get-padding(item-configs.padding-type).padding-top * 2);
                   horizontal-alignment: left;
                   text: f-item.datetime;
                   font-size: root.item-configs.font-size;
                 }
                 if t-index == 2: SText{
                   theme: item-configs.theme;
-                  height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
+                  height: item-configs.height + (UseSurrealismFn.get-padding(item-configs.padding-type).padding-top * 2);
                   horizontal-alignment: left;
                   text: f-item.file-type;
                   font-size: root.item-configs.font-size;
                 }
                 if t-index == 3: SText{
                   theme: item-configs.theme;
-                  height: item-configs.height + (ROOT-STYLES.get-padding(item-configs.padding-size).top-bottom * 2);
+                  height: item-configs.height + (UseSurrealismFn.get-padding(item-configs.padding-type).padding-top * 2);
                   horizontal-alignment: left;
                   text: f-item.size;
                   font-size: root.item-configs.font-size;

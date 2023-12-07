@@ -53,8 +53,8 @@ component Selector inherits TouchArea {
   }
   HorizontalLayout {
     height: root.height;
-    padding-left: ROOT-STYLES.sur-padding.normal.left-right;
-    padding-right: ROOT-STYLES.sur-padding.normal.left-right;
+    padding-left: ROOT-STYLES.sur-padding.normal.padding-left;
+    padding-right: ROOT-STYLES.sur-padding.normal.padding-right;
     
     input:=SText { 
       theme: root.theme;
@@ -76,10 +76,10 @@ component Selector inherits TouchArea {
 }
 
 export component Select inherits Rectangle {
-  padding-left: ROOT-STYLES.sur-padding.normal.left-right;
-  padding-right: ROOT-STYLES.sur-padding.normal.left-right;
+  padding-left: ROOT-STYLES.sur-padding.normal.padding-left;
+  padding-right: ROOT-STYLES.sur-padding.normal.padding-right;
   width: count-width(180px);
-  height: ROOT-STYLES.sur-font.font-size + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
+  height: ROOT-STYLES.sur-font.font-size + ROOT-STYLES.sur-padding.normal.padding-top * 2;
   border-radius: ROOT-STYLES.sur-border.small.border-radius;
   in property <Themes> theme : Light;
   in property <[{id:int,label:string,value:string}]> ranges-string;
@@ -90,7 +90,7 @@ export component Select inherits Rectangle {
   private property <bool> open : false;
   private property <int> range-type;
   pure public function count-width(len:length)->length {
-      len + ROOT-STYLES.sur-padding.normal.left-right * 2
+      len + ROOT-STYLES.sur-padding.normal.padding-left * 2
   }
   callback changed(int,int,string,string,ValueType);
   init => {
@@ -164,7 +164,7 @@ export component Select inherits Rectangle {
       height: 120px;
       width: root.width;
       theme: root.theme;
-      y: root.height + ROOT-STYLES.sur-padding.small.same;
+      y: root.height + ROOT-STYLES.sur-padding.small.padding-same;
       visible:string-range.open;
       init => {
         self.height = 0;
@@ -179,9 +179,9 @@ export component Select inherits Rectangle {
             root.changed(index,range.id,range.label,@tr("{}",range.value),ValueType.String);
           }
           s-list-item:= Rectangle {
-            height: s-label.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
-            padding-left: ROOT-STYLES.sur-padding.normal.left-right ;
-            padding-right: ROOT-STYLES.sur-padding.normal.left-right ;
+            height: s-label.height + ROOT-STYLES.sur-padding.normal.padding-top * 2;
+            padding-left: ROOT-STYLES.sur-padding.normal.padding-left ;
+            padding-right: ROOT-STYLES.sur-padding.normal.padding-right ;
            
             s-label:=SText {
               theme: root.theme;
@@ -203,7 +203,7 @@ export component Select inherits Rectangle {
       height: 120px;
       width: root.width;
       theme: root.theme;
-      y: root.height + ROOT-STYLES.sur-padding.small.same;
+      y: root.height + ROOT-STYLES.sur-padding.small.padding-same;
       visible:float-range.open;
       init => {
         self.height = 0;
@@ -218,9 +218,9 @@ export component Select inherits Rectangle {
             root.changed(index,range.id,range.label,@tr("{}",range.value),ValueType.Float);
           }
           f-list-item:= Rectangle {
-            height: f-label.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
-            padding-left: ROOT-STYLES.sur-padding.normal.left-right ;
-            padding-right: ROOT-STYLES.sur-padding.normal.left-right ;
+            height: f-label.height + ROOT-STYLES.sur-padding.normal.padding-top * 2;
+            padding-left: ROOT-STYLES.sur-padding.normal.padding-left ;
+            padding-right: ROOT-STYLES.sur-padding.normal.padding-right ;
            
             f-label:=SText {
               theme: root.theme;
@@ -242,7 +242,7 @@ export component Select inherits Rectangle {
       height: 120px;
       width: root.width;
       theme: root.theme;
-      y: root.height + ROOT-STYLES.sur-padding.small.same;
+      y: root.height + ROOT-STYLES.sur-padding.small.padding-same;
       visible:int-range.open;
       init => {
         self.height = 0;
@@ -257,9 +257,9 @@ export component Select inherits Rectangle {
             root.changed(index,range.id,range.label,@tr("{}",range.value),ValueType.Int);
           }
           i-list-item:= Rectangle {
-            height: i-label.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
-            padding-left: ROOT-STYLES.sur-padding.normal.left-right ;
-            padding-right: ROOT-STYLES.sur-padding.normal.left-right ;
+            height: i-label.height + ROOT-STYLES.sur-padding.normal.padding-top * 2;
+            padding-left: ROOT-STYLES.sur-padding.normal.padding-left ;
+            padding-right: ROOT-STYLES.sur-padding.normal.padding-right ;
            
             i-label:=SText {
               theme: root.theme;

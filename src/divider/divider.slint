@@ -18,10 +18,10 @@
 */
 
 import { SCard } from "../card/index.slint";
-import { ROOT-STYLES,Borders,IconSources } from "../../themes/index.slint";
+import { ROOT-STYLES,IconSources } from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
 import { SIcon } from "../icon/index.slint";
-import { Themes } from "../../use/index.slint";
+import { Themes,BorderType } from "../../use/index.slint";
 export component Divider inherits Rectangle{
   height: 14px;
   in property <string> content : "divider";
@@ -41,7 +41,7 @@ export component Divider inherits Rectangle{
       theme: root.theme;
       border-radius: self.height / 2;
       height: txt.height;
-      width: txt.width + ROOT-STYLES.sur-padding.small.left-right;
+      width: txt.width + ROOT-STYLES.sur-padding.small.padding-left;
       txt:=SText { 
        text: root.content;
         font-size: 12px;
@@ -58,7 +58,7 @@ export component Divider inherits Rectangle{
       padding-right: 0;
       padding-top: 0;
       padding-bottom: 0;
-      padding-size: Icon;
+      padding-type: Icon;
        icon:= SIcon { 
           theme: root.theme;
           source: root.icon;
@@ -68,11 +68,11 @@ export component Divider inherits Rectangle{
   line:=SCard {
     theme: root.theme;
     border-radius: 0px; 
-    border: Borders.Circle-None;
+    border-type: BorderType.Circle-None;
     padding-left: 0;
     padding-right: 0;
-    padding-top: ROOT-STYLES.sur-padding.small.top-bottom;
-    padding-bottom: ROOT-STYLES.sur-padding.small.top-bottom;
+    padding-top: ROOT-STYLES.sur-padding.small.padding-top;
+    padding-bottom: ROOT-STYLES.sur-padding.small.padding-bottom;
     height: 1px;
     width: parent.width;
   }

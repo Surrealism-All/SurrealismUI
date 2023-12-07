@@ -40,7 +40,7 @@ export component TableColumn inherits Rectangle{
   in-out property <brush> header-background;
   in-out property <brush> row-background;
   in property <Themes> theme : Themes.Primary;
-  in property <length> header-height : header-row.height + ROOT-STYLES.sur-padding.normal.top-bottom * 2;
+  in property <length> header-height : header-row.height + ROOT-STYLES.sur-padding.normal.padding-top * 2;
   in property <length> row-height;
   in property <bool> operation-enabled:false;
   in property <[{name:string,theme:Themes}]> operation : [{name:"edit",theme:Themes.Primary},{name:"del",theme:Themes.Warning}];
@@ -147,7 +147,7 @@ export component TableColumn inherits Rectangle{
           btn:=SButton { 
             theme: op.theme;
             text: op.name;
-            height: ROOT-STYLES.sur-font.tag-size + ROOT-STYLES.sur-padding.small.same * 2;
+            height: ROOT-STYLES.tag-size + ROOT-STYLES.sur-padding.small.padding-same * 2;
             // font-size: ROOT-STYLES.sur-font.tag-size;
             clicked => {
               root.clicked(index,op.name)

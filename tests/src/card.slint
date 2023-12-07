@@ -1,5 +1,5 @@
 import {SButton,SCard,SText} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 
 component TestCard inherits Window {
@@ -28,7 +28,7 @@ component TestCard inherits Window {
     theme: Themes.Dark;
     card-width:240px;
     card-height:120px;
-    border: X-Large;
+    border-type: X-Large;
    }
 
    SCard { 
@@ -37,6 +37,6 @@ component TestCard inherits Window {
     theme: Themes.Primary;
     card-width:240px;
     card-height:120px;
-    border: Large;
+    border-type: Large;
    }
 }

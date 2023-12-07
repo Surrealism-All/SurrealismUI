@@ -1,5 +1,7 @@
-import {FontProps,TextActionProps,TextAlignmentProps,Themes,UseSurrealismFn} from "../../use/index.slint";
-import {ROOT-STYLES} from "../../themes/index.slint";
+import {UseSurrealismFn} from "../../use/src/fn.slint";
+import { ROOT-STYLES } from "./theme.slint";
+import {Themes} from "../../use/src/theme.slint";
+import {FontProps, TextAlignmentProps, TextActionProps} from "../../use/src/text.slint";
 
 export global GlobalProps {
   /**global font style */
@@ -21,4 +23,5 @@ export global GlobalProps {
   in-out property <length> standard-height : UseSurrealismFn.count-height(line-height,ROOT-STYLES.sur-padding.normal.padding-top);
   in-out property <length> standard-width : UseSurrealismFn.count-width(ROOT-STYLES.sur-font.font-size,ROOT-STYLES.sur-padding.normal.padding-left);
 }
+
 

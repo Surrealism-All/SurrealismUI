@@ -116,7 +116,7 @@ Slint's work on topic definition will simultaneously affect the built-in compone
 
 ```
 import {SText} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -295,16 +295,16 @@ you can add anything you want to the card
 - `in property <Themes> theme` : Surrealism Themes
 - `in property <length> card-height `: card height 👍
 - `in property <length> card-width` : card width 👍
-- `in property <PaddingSize> padding-size` : card padding size
-- `in property <Shadows> shadow` : card shadow type
-- `in property <Borders> border` : card border type
-- `in-out property <PaddingItem> card-padding` : card padding 
+- `in property <PaddingType> padding-type` : card padding size
+- `in property <ShadowType> shadow` : card shadow type
+- `in property <BorderType> border` : card border type
+- `in-out property <PaddingProps> card-padding` : card padding 
 
 #### example
 
 ```
 import {SButton,SCard,SText} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 component TestCard inherits Window {
   height: 560px;
@@ -462,7 +462,7 @@ component TestButton inherits Window {
 
 ```slint
 import {SText,SInput,SButton, SIcon,SPopup} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 import { TextEdit , LineEdit} from "std-widgets.slint";
 import { Invoke } from "./invoke_input.slint";
 
@@ -646,7 +646,7 @@ component TestWindow inherits Window {
 
 ```
 import {STag} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -694,7 +694,7 @@ component TestWindow inherits Window {
 
 ```
 import {SHeader,Route} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -770,7 +770,7 @@ If it's gone, the table will become a card with a horizontal layout
 
 ```
 import {STable,STableColumn} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 export component TestTable inherits Window {
   height: 500px;
@@ -941,7 +941,7 @@ SResult helps you easily build a quick prompt , you can build it in popup window
 - `in property <length> icon-size`: icon size
 - `in-out property <string> btn `: the content of the button
 - `in-out property <string> content` : content of the result
-- `in property <ResType> res-type` : Result type
+- `in property <ResultType> res-type` : Result type
 - `in-out property <Icons> icon`: Icon of the result
 #### functions
 #### callbacks
@@ -949,7 +949,7 @@ SResult helps you easily build a quick prompt , you can build it in popup window
 
 ```
 import {SResult} from "../../index.slint";
-import {Themes,ResType} from "../../themes/index.slint";
+import {Themes,ResultType} from "../../themes/index.slint";
 
 export component TestResult inherits Window {
   height: 500px;
@@ -961,28 +961,28 @@ export component TestResult inherits Window {
   SResult {
     x: 220px;
     y: 10px;
-    res-type:ResType.Primary;
+    res-type:ResultType.Primary;
   }
   SResult {
     x: 220px;
     y: 260px;
-    res-type:ResType.Info;
+    res-type:ResultType.Info;
   }
   SResult {
     x: 10px;
     y: 260px;
-    res-type:ResType.Warning;
+    res-type:ResultType.Warning;
   }
 
   SResult {
     x: 440px;
     y: 10px;
-    res-type:ResType.Error;
+    res-type:ResultType.Error;
   }
   SResult {
     x: 440px;
     y: 260px;
-    res-type:ResType.Help;
+    res-type:ResultType.Help;
   }
 }
 ```
@@ -1009,7 +1009,7 @@ SSelect is a selector that provides three types of optional input parameter valu
 
 ```
 import {SSelect,ValueType} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 component TestWindow inherits Window {
   height: 440px;
@@ -1152,7 +1152,7 @@ component TestWindow inherits Window {
     x:20px;
     y: 200px;
     avatar-size : ROOT-STYLES.sur-size.small * 2;
-    padding-size : Small;
+    padding-type : Small;
     theme: Primary;
   }
   SURAvatar {
@@ -1164,13 +1164,13 @@ component TestWindow inherits Window {
     x: 200px;
     y: 200px;
     avatar-size : ROOT-STYLES.sur-size.small * 2;
-    padding-size : Small;
+    padding-type : Small;
     theme: Error;
   }
   SURAvatar {
     y: 300px;
     avatar-size : ROOT-STYLES.sur-size.large * 2;
-    padding-size : Large;
+    padding-type : Large;
     theme: Dark;
     avatar:@image-url("../.https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png");
   }
@@ -1199,7 +1199,7 @@ Radio let people select a single item
 
 ```
 import {SRadio} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 component TestCollection inherits Window {
   height: 560px;
@@ -1242,7 +1242,7 @@ And users will not be able to use the pop-up layer to cover the components under
 
 ```
 import {SPopup,SButton} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 component TestPopup inherits Window {
   height: 800px;
@@ -1352,7 +1352,7 @@ Clicking on the pop-up layer again will close it
 
 ```
 import {SButton,SCollection} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 component TestCollection inherits Window {
   height: 560px;
@@ -1414,7 +1414,7 @@ This component is used to display simple user introduction information
 
 ```
 import {SPersona} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 component TestCollection inherits Window {
   height: 700px;
@@ -1448,7 +1448,7 @@ component TestCollection inherits Window {
  - `in-out property <image> icon` : icon of the badge
  - `in property <brush> icon-color` : icon color
  - `in property <brush> font-color` : font color
- - `in property <ResType> res-type` : icon Type see result!(but you can define without use this property)
+ - `in property <ResultType> res-type` : icon Type see result!(but you can define without use this property)
  #### functions
  - `pure public function get-x(p_right:length)->length` 👍
  - `pure public function get-y(p_bottom:length)->length` 👍
@@ -1459,7 +1459,7 @@ component TestCollection inherits Window {
 
 ```
 import {SBadge,SURAvatar} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 component TestCollection inherits Window {
   height: 460px;
@@ -1547,7 +1547,7 @@ And you can fully control it through the progress property
 
 ```
 import {SProgress,SButton} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 component TestDivider inherits Window {
   height: 400px;
@@ -1618,7 +1618,7 @@ A tip provides supplemental, contextual information elevated near its target com
 
 ```
 import {STip,SButton } from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 
 component TestWindow inherits Window {
@@ -1748,7 +1748,7 @@ Dialogs are used to confirm messages or events and display content
 
 ```
 import {SDialog,SButton,STable,STableColumn} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 component TestDialog inherits Window {
   height: 800px;
@@ -2024,7 +2024,7 @@ such as your form being too long, or if you need to temporarily display some doc
 
 ```
 import {SDrawer,SButton, SInput} from "../../index.slint";
-import {Themes} from "../../themes/index.slint";
+import {Themes} from "../../use/index.slint";
 
 component TestDrawer inherits Window {
   height: 800px;
@@ -2065,7 +2065,7 @@ SAlert is used to display important prompt information on the page
 * `private property <Themes> theme` : Surrealism theme ⛔
 * `in-out property <string> content` :  alert content you want to display
 * `in-out property <bool> is-show` : show the alert or not
-* `in property <ResType> res-type` : result type👍
+* `in property <ResultType> res-type` : result type👍
 
 #### functions
 
@@ -2076,7 +2076,7 @@ SAlert is used to display important prompt information on the page
 
 ```
 import {SButton, SAlert} from "../../index.slint";
-import {Themes,ResType} from "../../themes/index.slint";
+import {Themes,ResultType} from "../../themes/index.slint";
 
 component TestAlert inherits Window {
   height: 400px;
@@ -2095,7 +2095,7 @@ component TestAlert inherits Window {
  
 
   p:=SAlert { 
-    res-type:ResType.Success ;
+    res-type:ResultType.Success ;
     content:"this is a success message!";
   }
 }
@@ -2195,7 +2195,7 @@ SFile can help users present file selectors GUI
 
 ```
 import {SFile,ItemConfigs,FileItem,ItemConfigs} from "../../index.slint";
-import { Themes,PaddingSize,IconSources} from "../../themes/index.slint";
+import { Themes,PaddingType,IconSources} from "../../themes/index.slint";
 
 export component TestFile inherits Window {
   height: 400px;
@@ -2207,14 +2207,14 @@ export component TestFile inherits Window {
     tab-configs : {
       height:16px,
       font-size:14px,
-      padding-size:PaddingSize.Tip,
+      padding-type:PaddingType.Tip,
       theme: Themes.Dark,
       column-width:[200px,100px,100px,80px]
     };
     item-configs : {
       height:16px,
       font-size:12px,
-      padding-size:PaddingSize.Normal,
+      padding-type:PaddingType.Normal,
       theme: Themes.Dark,
       icon-size:16px
     };
@@ -2254,7 +2254,7 @@ export component TestFile inherits Window {
   - 中文：
     - 优化内置Global：
       - 修复标准内置方法：`get-padding()`
-      - 增加`PaddingSize Enum`类型`PaddingSize.Tag`
+      - 增加`PaddingType Enum`类型`PaddingType.Tag`
       - 增加标准内置方法`get-color()`
       - 增加标准内置枚举`ColorLevel`
     - 优化`SText`
@@ -2279,7 +2279,7 @@ export component TestFile inherits Window {
   - English
     - Optimize built-in Global:
       - Fix standard built-in methods: ` get padding ()`
-      - Add `PaddingSize Enum` type `PaddingSize.Tag`
+      - Add `PaddingType Enum` type `PaddingType.Tag`
       - Add Standard Built-in Method ` get color()`
       - Add Standard Built-in Enumeration ` ColorLevel`
     - Optimize ` SText`

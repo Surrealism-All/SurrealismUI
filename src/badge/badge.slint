@@ -12,7 +12,7 @@
 * - in-out property <image> icon : icon of the badge
 * - in property <brush> icon-color : icon color
 * - in property <brush> font-color : font color
-* - in property <ResType> res-type : icon Type see result!(but you can define without use this property)
+* - in property <ResultType> res-type : icon Type see result!(but you can define without use this property)
 * ## functions
 * - pure public function get-x(p_right:length)->length 👍
 * - pure public function get-y(p_bottom:length)->length 👍
@@ -20,10 +20,10 @@
 * ============================================
 */
 import { SCard } from "../card/index.slint";
-import { Borders,ROOT_STYLES,IconSources} from "../../themes/index.slint";
+import { ROOT_STYLES,IconSources} from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { SText } from "../text/index.slint";
-import { Themes,ResType } from "../../use/index.slint";
+import { Themes,ResultType,BorderType,UseSurrealismFn } from "../../use/index.slint";
 
 export enum Position {
   Left-Top,
@@ -41,8 +41,8 @@ export component Badge inherits SCard {
   in property <Position> position : Position.Right-Bottom;
   in-out property <image> icon : IconSources.icons.Success;
   in property <brush> icon-color <=> badge-icon.icon-color;
-  in property <brush> font-color<=>badge-txt.color;
-  in property <ResType> res-type:ResType.Help;
+  font-color<=>badge-txt.color;
+  in property <ResultType> res-type:ResultType.Help;
   in-out property <string> content;
   clip: false;
   pure public function get-x(p_right:length)->length {
@@ -69,23 +69,23 @@ export component Badge inherits SCard {
   }
   init => {
    
-    if(res-type==ResType.Primary){
+    if(res-type==ResultType.Primary){
       self.theme = Themes.Primary;
       self.icon = IconSources.icons.Smiling-face;
       self.content = "primary message!";
-    }else if (res-type==ResType.Success){
+    }else if (res-type==ResultType.Success){
       self.theme = Themes.Success;
       self.content = "success message!";
       self.icon = IconSources.icons.Success;
-    }else if (res-type==ResType.Info){
+    }else if (res-type==ResultType.Info){
       self.theme = Themes.Info;
       self.icon = IconSources.icons.Info;
       self.content = "info message!";
-    }else if (res-type==ResType.Error){
+    }else if (res-type==ResultType.Error){
       self.theme = Themes.Error;
       self.icon = IconSources.icons.Close-one;
       self.content = "error message!"
-    }else if (res-type==ResType.Warning){
+    }else if (res-type==ResultType.Warning){
       self.theme = Themes.Warning;
       self.icon = IconSources.icons.Attention;
       self.content = "warning message!"
@@ -96,7 +96,7 @@ export component Badge inherits SCard {
     }
   }
   HorizontalLayout {
-    spacing: ROOT-STYLES.get-space(txt-view.width);
+    spacing: UseSurrealismFn.get-space(txt-view.width);
     badge-icon:= SIcon { 
       source: root.icon;
       theme: root.theme;
@@ -109,8 +109,8 @@ export component Badge inherits SCard {
       theme: root.theme;
       height: root.height;
       card-width: badge-txt.width;
-      padding-size: Small;
-      border: Large;
+      padding-type: Small;
+      border-type: Large;
       
       badge-txt:=SText { 
         font-size: ROOT-STYLES.sur-font.font-size  - 4px;

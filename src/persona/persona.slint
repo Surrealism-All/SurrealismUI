@@ -57,13 +57,13 @@ export component Persona inherits SCard {
       theme: root.avatar-theme;
       height: root.avatar-height;
       width: 100%;
-      border: None;
+      border-type: None;
       avatar: root.avatar;
     }
     layout:=VerticalLayout {
       spacing:0;
       alignment: space-around;
-      padding: ROOT-STYLES.sur-padding.normal.same;
+      padding: ROOT-STYLES.sur-padding.normal.padding-same;
       name-view:=Rectangle{
         height: root.name-height;
         width: 100%;

@@ -12,16 +12,16 @@
 * - in property <Themes> theme : Surrealism Themes
 * - in property <length> card-height : card height 👍
 * - in property <length> card-width : card width 👍
-* - in property <PaddingSize> padding-size : card padding size
-* - in property <Shadows> shadow : card shadow type
-* - in property <Borders> border : card border type
-* - in-out property <PaddingItem> card-padding : card padding 
+* - in property <PaddingType> padding-type : card padding size
+* - in property <ShadowType> shadow : card shadow type
+* - in property <BorderType> border : card border type
+* - in-out property <PaddingProps> card-padding : card padding 
 * ============================================
 */
 
 
-import {ROOT_STYLES,PaddingSize,PaddingItem,Shadows,Borders,BorderItem} from "../../themes/index.slint";
-import {Themes,DefaultSCardProps,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
+import {ROOT_STYLES,DefaultSCardProps} from "../../themes/index.slint";
+import {Themes,PaddingType,ShadowType,BorderType,UseSurrealismFn,PaddingProps} from "../../use/index.slint";
 enum Alignment{
   Horizontal,
   Vertical
@@ -29,36 +29,37 @@ enum Alignment{
 
 
 export component Card inherits Rectangle{
-  // height: ROOT-STYLES.count-height(card-height,self.padding-top);
-  // width: ROOT-STYLES.count-width(card-width,self.padding-left);
+  // height: UseSurrealismFn.count-height(card-height,self.padding-top);
+  // width: UseSurrealismFn.count-width(card-width,self.padding-left);
   // border-radius: ROOT-STYLES.get-border(border).border-radius;
   // border-width : ROOT-STYLES.get-border(border).border-width;
-  // padding: ROOT-STYLES.sur-padding.normal.same;
-  // drop-shadow-offset-x : ROOT-STYLES.get-shadow-x(shadow);
-  // drop-shadow-offset-y : ROOT-STYLES.get-shadow-y(shadow);
-  // drop-shadow-blur : ROOT-STYLES.get-shadow-blur(shadow);
+  // padding: ROOT-STYLES.sur-padding.normal.padding-same;
+  // drop-shadow-offset-x : UseSurrealismFn.get-shadow-x(shadow);
+  // drop-shadow-offset-y : UseSurrealismFn.get-shadow-y(shadow);
+  // drop-shadow-blur : UseSurrealismFn.get-shadow-blur(shadow);
   in property <Themes> theme : DefaultSCardProps.theme;
   in property <length> card-height:DefaultSCardProps.card-height;
   in property <length> card-width:DefaultSCardProps.card-width;
-  in property <PaddingType> padding-type:DefaultSCardProps.padding-type;
+  in property <PaddingType> padding-type : DefaultSCardProps.padding-type;
   in property <ShadowType> shadow-type : DefaultSCardProps.shadow-type;
   in property <BorderType> border-type : DefaultSCardProps.border-type;
-  in-out property <PaddingItem> card-padding;
-  in property <int> font-weight : ROOT-STYLES.sur-font.font-weight;
-  in property <length> font-size: ROOT-STYLES.sur-font.font-size;
-  in property <brush> font-color;
-  in property <bool> font-italic : false;
-  in property <length> font-family;
+  in-out property <PaddingProps> card-padding;
+  in property <int> font-weight : DefaultSCardProps.font-weight;
+  in property <length> font-size: DefaultSCardProps.font-size;
+  in property <brush> font-color : DefaultSCardProps.color;
+  in property <bool> font-italic : DefaultSCardProps.font-italic;
+  in property <string> font-family : DefaultSCardProps.font-family;
   
   
-  
-
   init => {
-    self.card-padding = ROOT-STYLES.get-padding(padding-size);
-    self.padding-top = self.card-padding.top-bottom;
-    self.padding-bottom = self.card-padding.top-bottom;
-    self.padding-left = self.card-padding.left-right;
-    self.padding-right = self.card-padding.left-right;
+    self.card-padding = UseSurrealismFn.get-padding(padding-type);
+    self.padding-top = self.card-padding.padding-top;
+    self.padding-bottom = self.card-padding.padding-bottom;
+    self.padding-left = self.card-padding.padding-left;
+    self.padding-right = self.card-padding.padding-right;
+    self.drop-shadow-blur = UseSurrealismFn.get-shadow-blur(shadow-type);
+    self.drop-shadow-offset-x = UseSurrealismFn.get-shadow-x(shadow-type);
+    self.drop-shadow-offset-y = UseSurrealismFn.get-shadow-y(shadow-type);
   }
   states [
     light when theme == Themes.Light: {

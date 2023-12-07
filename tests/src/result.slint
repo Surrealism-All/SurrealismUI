@@ -1,5 +1,5 @@
 import {SResult} from "../../index.slint";
-import {Themes,ResType} from "../../themes/index.slint";
+import {Themes,ResultType} from "../../use/index.slint";
 
 export component TestResult inherits Window {
   height: 500px;
@@ -11,27 +11,27 @@ export component TestResult inherits Window {
   SResult {
     x: 220px;
     y: 10px;
-    res-type:ResType.Primary;
+    res-type:ResultType.Primary;
   }
   SResult {
     x: 220px;
     y: 260px;
-    res-type:ResType.Info;
+    res-type:ResultType.Info;
   }
   SResult {
     x: 10px;
     y: 260px;
-    res-type:ResType.Warning;
+    res-type:ResultType.Warning;
   }
 
   SResult {
     x: 440px;
     y: 10px;
-    res-type:ResType.Error;
+    res-type:ResultType.Error;
   }
   SResult {
     x: 440px;
     y: 260px;
-    res-type:ResType.Help;
+    res-type:ResultType.Help;
   }
 }
