@@ -21,7 +21,7 @@
 
 
 import {ROOT_STYLES,PaddingSize,PaddingItem,Shadows,Borders,BorderItem} from "../../themes/index.slint";
-import {Themes} from "../../use/index.slint";
+import {Themes,DefaultSCardProps,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
 enum Alignment{
   Horizontal,
   Vertical
@@ -29,20 +29,20 @@ enum Alignment{
 
 
 export component Card inherits Rectangle{
-  height: ROOT-STYLES.count-height(card-height,self.padding-top);
-  width: ROOT-STYLES.count-width(card-width,self.padding-left);
-  border-radius: ROOT-STYLES.get-border(border).border-radius;
-  border-width : ROOT-STYLES.get-border(border).border-width;
+  // height: ROOT-STYLES.count-height(card-height,self.padding-top);
+  // width: ROOT-STYLES.count-width(card-width,self.padding-left);
+  // border-radius: ROOT-STYLES.get-border(border).border-radius;
+  // border-width : ROOT-STYLES.get-border(border).border-width;
   // padding: ROOT-STYLES.sur-padding.normal.same;
-  drop-shadow-offset-x : ROOT-STYLES.get-shadow-x(shadow);
-  drop-shadow-offset-y : ROOT-STYLES.get-shadow-y(shadow);
-  drop-shadow-blur : ROOT-STYLES.get-shadow-blur(shadow);
-  in property <Themes> theme : Themes.Light;
-  in property <length> card-height:ROOT-STYLES.sur-font.font-size;
-  in property <length> card-width;
-  in property <PaddingSize> padding-size:Normal;
-  in property <Shadows> shadow : Shadows.Low1;
-  in property <Borders> border : Borders.Normal;
+  // drop-shadow-offset-x : ROOT-STYLES.get-shadow-x(shadow);
+  // drop-shadow-offset-y : ROOT-STYLES.get-shadow-y(shadow);
+  // drop-shadow-blur : ROOT-STYLES.get-shadow-blur(shadow);
+  in property <Themes> theme : DefaultSCardProps.theme;
+  in property <length> card-height:DefaultSCardProps.card-height;
+  in property <length> card-width:DefaultSCardProps.card-width;
+  in property <PaddingType> padding-type:DefaultSCardProps.padding-type;
+  in property <ShadowType> shadow-type : DefaultSCardProps.shadow-type;
+  in property <BorderType> border-type : DefaultSCardProps.border-type;
   in-out property <PaddingItem> card-padding;
   in property <int> font-weight : ROOT-STYLES.sur-font.font-weight;
   in property <length> font-size: ROOT-STYLES.sur-font.font-size;

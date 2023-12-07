@@ -1,11 +1,19 @@
-import {ThemeColor,ColorLevel} from "./src/color/color.slint";
-import {ThemePadding,ThemeBorder,PaddingSize,PaddingItem,Borders,BorderItem} from "./src/padding/padding.slint";
+// import {ThemeBorder,PaddingSize,PaddingItem,Borders,BorderItem} from "./src/padding/padding.slint";
 import { ThemeSpace } from "./src/spacing/spacing.slint";
 import {Size,SizeStruct} from "./src/common.slint";
 import { IconSources } from "../src/icon/dev.slint";
 import { Shadows } from "./src/shadow/shadow.slint";
-export { Size,PaddingSize,PaddingItem,Shadows,Borders,BorderItem,IconSources,ColorLevel}
-import {Themes,FontProps} from "../use/index.slint";
+// export { Size,PaddingSize,PaddingItem,Shadows,Borders,BorderItem,IconSources,ColorLevel}
+// import {Themes} from "../use/surrealism/theme.slint";
+// import {ThemePadding,PaddingType,PaddingProps} from "../use/surrealism/padding.slint";
+// import {FontProps, TextAlignmentProps, TextActionProps} from "../use/surrealism/text.slint";
+// import { BorderType,BorderProps,ThemeBorder } from "../use/surrealism/border.slint";
+// import {ThemeColor,ColorLevel} from "../use/surrealism/color.slint";
+import {
+  ThemePadding,PaddingType,PaddingProps,FontProps, TextAlignmentProps, TextActionProps,ThemeColor,ColorLevel,
+  BorderType,BorderProps,ThemeBorder
+} from "../use/index.slint";
+
 
 export global ROOT_STYLES {
   out property <FontProps> sur-font:{
@@ -29,27 +37,69 @@ export global ROOT_STYLES {
   };
   in-out property <brush> radio-active : #FF5722;
   out property <ThemePadding> sur-padding : {
-    none:{top-bottom:0px,left-right:0px,same:0px},
-    tag:{top-bottom:3px,left-right:4px,same:3px},
-    icon:{top-bottom:2px,left-right:2px,same:2px},
-    tip:{top-bottom:6px,left-right:10px,same:4px},
-    small: {top-bottom:8px,left-right:12px,same:8px},
-    normal:{top-bottom:12px,left-right:16px,same:12px},
-    large:{top-bottom:16px,left-right:24px,same:16px}
+    none:{
+      padding-top:0,
+      padding-bottom:0,
+      padding-left:0,
+      padding-right:0,
+      padding-same:0
+    },
+    tag:{
+      padding-top:4px,
+      padding-bottom:4px,
+      padding-left:6px,
+      padding-right:6px,
+      padding-same:5px
+    },
+    icon:{
+      padding-top:2px,
+      padding-bottom:2px,
+      padding-left:2px,
+      padding-right:2px,
+      padding-same:2px
+    },
+    tip:{
+      padding-top:6px,
+      padding-bottom:6px,
+      padding-left:10px,
+      padding-right:10px,
+      padding-same:8px
+    },
+    small: {
+      padding-top:8px,
+      padding-bottom:8px,
+      padding-left:12px,
+      padding-right:12px,
+      padding-same:10px
+    },
+    normal:{
+      padding-top:12px,
+      padding-bottom:12px,
+      padding-left:16px,
+      padding-right:16px,
+      padding-same:14px
+    },
+    large:{
+      padding-top:16px,
+      padding-bottom:16px,
+      padding-left:24px,
+      padding-right:24px,
+      padding-same:20px
+    }
   };
   
   out property <ThemeBorder> sur-border:{
-    none:{border-radius:0px,border-width:0px},
-    small:{border-radius:2px,border-width:1px},
-    normal:{border-radius:4px,border-width:2px},
-    large:{border-radius:8px,border-width:4px},
-    x-large:{border-radius:12px,border-width:6px},
+    none:{border-radius:0px,border-width:0px,border-color:ROOT-STYLES.sur-theme-colors.dark.normal},
+    small:{border-radius:2px,border-width:1px,border-color:ROOT-STYLES.sur-theme-colors.dark.normal},
+    normal:{border-radius:4px,border-width:2px,border-color:ROOT-STYLES.sur-theme-colors.dark.normal},
+    large:{border-radius:8px,border-width:4px,border-color:ROOT-STYLES.sur-theme-colors.dark.normal},
+    x-large:{border-radius:12px,border-width:6px,border-color:ROOT-STYLES.sur-theme-colors.dark.normal},
     circle:{
-      none:{border-radius:1000in,border-width:0px},
-      small:{border-radius:1000in,border-width:1px},
-      normal:{border-radius:1000in,border-width:2px},
-      large:{border-radius:1000in,border-width:4px},
-      x-large:{border-radius:1000in,border-width:6px},
+      none:{border-radius:1000in,border-width:0px,border-color:ROOT-STYLES.sur-theme-colors.dark.normal},
+      small:{border-radius:1000in,border-width:1px,border-color:ROOT-STYLES.sur-theme-colors.dark.normal},
+      normal:{border-radius:1000in,border-width:2px,border-color:ROOT-STYLES.sur-theme-colors.dark.normal},
+      large:{border-radius:1000in,border-width:4px,border-color:ROOT-STYLES.sur-theme-colors.dark.normal},
+      x-large:{border-radius:1000in,border-width:6px,border-color:ROOT-STYLES.sur-theme-colors.dark.normal},
     }
   };
   out property <{
@@ -102,364 +152,4 @@ export global ROOT_STYLES {
     len520:52px,
     len560:56px,
   };
-  // 计算组件高度
-  pure public function count-height(h:length,padding:length)->length {
-      return h + padding * 2;
-  }
-  // 计算组件宽度
-  pure public function count-width(w:length,padding:length)->length {
-    return w + padding * 2;
-  }
-  pure public function get-padding(size:PaddingSize)->PaddingItem {
-      if(size==PaddingSize.Small){
-        ROOT-STYLES.sur-padding.small
-      }else if(size==PaddingSize.Normal){
-        ROOT-STYLES.sur-padding.normal
-      }else if(size==PaddingSize.Large){
-        ROOT-STYLES.sur-padding.large
-      }else if(size==PaddingSize.None){
-        ROOT-STYLES.sur-padding.none
-      }else if(size==PaddingSize.Tip){
-        ROOT-STYLES.sur-padding.tip
-      }else if(size==PaddingSize.Tag){
-        ROOT-STYLES.sur-padding.tag
-      }else{
-        ROOT-STYLES.sur-padding.icon
-      }
-  }
-  pure public function get-shadow-x(shadow:Shadows)->length {
-      if(shadow==Shadows.Low1){
-        ROOT-STYLES.sur-shadow.low1.x
-      }else if(shadow==Shadows.Low2){
-        ROOT-STYLES.sur-shadow.low2.x
-      }else if(shadow==Shadows.Low3){
-        ROOT-STYLES.sur-shadow.low3.x
-      }else if(shadow==Shadows.High1){
-        ROOT-STYLES.sur-shadow.high1.x
-      }else if(shadow==Shadows.High2){
-        ROOT-STYLES.sur-shadow.high2.x
-      }else {
-        ROOT-STYLES.sur-shadow.high-empty.x
-      }
-  }
-  pure public function get-shadow-y(shadow:Shadows)->length {
-    if(shadow==Shadows.Low1){
-      ROOT-STYLES.sur-shadow.low1.y
-    }else if(shadow==Shadows.Low2){
-      ROOT-STYLES.sur-shadow.low2.y
-    }else if(shadow==Shadows.Low3){
-      ROOT-STYLES.sur-shadow.low3.y
-    }else if(shadow==Shadows.High1){
-      ROOT-STYLES.sur-shadow.high1.y
-    }else if(shadow==Shadows.High2){
-      ROOT-STYLES.sur-shadow.high2.y
-    }else {
-      ROOT-STYLES.sur-shadow.high-empty.y
-    }
-  }
-  pure public function get-shadow-blur(shadow:Shadows)->length {
-    if(shadow==Shadows.Low1){
-      ROOT-STYLES.sur-shadow.low1.blur
-    }else if(shadow==Shadows.Low2){
-      ROOT-STYLES.sur-shadow.low2.blur
-    }else if(shadow==Shadows.Low3){
-      ROOT-STYLES.sur-shadow.low3.blur
-    }else if(shadow==Shadows.High1){
-      ROOT-STYLES.sur-shadow.high1.blur
-    }else if(shadow==Shadows.High2){
-      ROOT-STYLES.sur-shadow.high2.blur
-    }else {
-      ROOT-STYLES.sur-shadow.high-empty.blur
-    }
-  }
-  pure public function get-border(border:Borders)->BorderItem {
-      if(border==Borders.Small){
-        ROOT-STYLES.sur-border.small
-      }else if(border==Borders.Normal){
-        ROOT-STYLES.sur-border.normal
-      }else if(border==Borders.Large){
-        ROOT-STYLES.sur-border.large
-      }else if(border==Borders.X-Large){
-        ROOT-STYLES.sur-border.x-large
-      }else if(border==Borders.Circle-None){
-        ROOT-STYLES.sur-border.circle.none
-      }else if(border==Borders.Circle-Small){
-        ROOT-STYLES.sur-border.circle.small
-      }else if(border==Borders.Circle-Normal){
-        ROOT-STYLES.sur-border.circle.normal
-      }else if(border==Borders.Circle-Large){
-        ROOT-STYLES.sur-border.circle.large
-      }else if(border==Borders.Circle-X-Large){
-        ROOT-STYLES.sur-border.circle.x-large
-      }else{
-        ROOT-STYLES.sur-border.none
-      }
-  }
-  pure public function get-space(w:length) -> length{
-      if(w>=560px){
-        ROOT-STYLES.sur-spacing.len560
-      }else if(w>=520px){
-        ROOT-STYLES.sur-spacing.len520
-      }else if(w>=480px){
-        ROOT-STYLES.sur-spacing.len480
-      }else if(w>=440px){
-        ROOT-STYLES.sur-spacing.len440
-      }else if(w>=400px){
-        ROOT-STYLES.sur-spacing.len400
-      }else if(w>=360px){
-        ROOT-STYLES.sur-spacing.len360
-      }else if(w>=320px){
-        ROOT-STYLES.sur-spacing.len320
-      }else if(w>=280px){
-        ROOT-STYLES.sur-spacing.len280
-      }else if(w>=240px){
-        ROOT-STYLES.sur-spacing.len240
-      }else if(w>=200px){
-        ROOT-STYLES.sur-spacing.len200
-      }else if(w>=160px){
-        ROOT-STYLES.sur-spacing.len160
-      }else if(w>=120px){
-        ROOT-STYLES.sur-spacing.len120
-      }else if(w>=80px){
-        ROOT-STYLES.sur-spacing.len80
-      }else if(w>=60px){
-        ROOT-STYLES.sur-spacing.len60
-      }else if(w>=40px){
-        ROOT-STYLES.sur-spacing.len40
-      }else if(w>=20px){
-        ROOT-STYLES.sur-spacing.len20
-      }else{
-        ROOT-STYLES.sur-spacing.none
-      }
-  }
-  pure public function deeper(theme:Themes,color:brush)->brush {
-      if(theme==Themes.Light){
-        ROOT-STYLES.light-deeper(color)
-      }else if(theme==Themes.Primary){
-        ROOT-STYLES.primary-deeper(color)
-      }else if(theme==Themes.Success){
-        ROOT-STYLES.success-deeper(color)
-      }else if(theme==Themes.Info){
-        ROOT-STYLES.info-deeper(color)
-      }else if(theme==Themes.Warning){
-        ROOT-STYLES.warning-deeper(color)
-      }else if(theme==Themes.Error){
-        ROOT-STYLES.error-deeper(color)
-      }else{
-        ROOT-STYLES.dark-deeper(color)
-      }
-  }
-  pure public function light-deeper(color:brush)->brush {
-    if(color==ROOT-STYLES.sur-theme-colors.light.weakest){
-      ROOT-STYLES.sur-theme-colors.light.weaker
-    }else if(color==ROOT-STYLES.sur-theme-colors.light.weaker){
-      ROOT-STYLES.sur-theme-colors.light.normal
-    }else if(color==ROOT-STYLES.sur-theme-colors.light.normal){
-      ROOT-STYLES.sur-theme-colors.light.deeper
-    }else{
-      ROOT-STYLES.sur-theme-colors.light.deepest
-    }
-  }
-  pure public function primary-deeper(color:brush)->brush {
-    if(color==ROOT-STYLES.sur-theme-colors.primary.weakest){
-      ROOT-STYLES.sur-theme-colors.primary.weaker
-    }else if(color==ROOT-STYLES.sur-theme-colors.primary.weaker){
-      ROOT-STYLES.sur-theme-colors.primary.normal
-    }else if(color==ROOT-STYLES.sur-theme-colors.primary.normal){
-      ROOT-STYLES.sur-theme-colors.primary.deeper
-    }else{
-      ROOT-STYLES.sur-theme-colors.primary.deepest
-    }
-  }
-  pure public function success-deeper(color:brush)->brush {
-    if(color==ROOT-STYLES.sur-theme-colors.success.weakest){
-      ROOT-STYLES.sur-theme-colors.success.weaker
-    }else if(color==ROOT-STYLES.sur-theme-colors.success.weaker){
-      ROOT-STYLES.sur-theme-colors.success.normal
-    }else if(color==ROOT-STYLES.sur-theme-colors.success.normal){
-      ROOT-STYLES.sur-theme-colors.success.deeper
-    }else{
-      ROOT-STYLES.sur-theme-colors.success.deepest
-    }
-  }
-  pure public function info-deeper(color:brush)->brush {
-    if(color==ROOT-STYLES.sur-theme-colors.info.weakest){
-      ROOT-STYLES.sur-theme-colors.info.weaker
-    }else if(color==ROOT-STYLES.sur-theme-colors.info.weaker){
-      ROOT-STYLES.sur-theme-colors.info.normal
-    }else if(color==ROOT-STYLES.sur-theme-colors.info.normal){
-      ROOT-STYLES.sur-theme-colors.info.deeper
-    }else{
-      ROOT-STYLES.sur-theme-colors.info.deepest
-    }
-  }
-  pure public function warning-deeper(color:brush)->brush {
-    if(color==ROOT-STYLES.sur-theme-colors.warning.weakest){
-      ROOT-STYLES.sur-theme-colors.warning.weaker
-    }else if(color==ROOT-STYLES.sur-theme-colors.warning.weaker){
-      ROOT-STYLES.sur-theme-colors.warning.normal
-    }else if(color==ROOT-STYLES.sur-theme-colors.warning.normal){
-      ROOT-STYLES.sur-theme-colors.warning.deeper
-    }else{
-      ROOT-STYLES.sur-theme-colors.warning.deepest
-    }
-  }
-  pure public function error-deeper(color:brush)->brush {
-    if(color==ROOT-STYLES.sur-theme-colors.error.weakest){
-      ROOT-STYLES.sur-theme-colors.error.weaker
-    }else if(color==ROOT-STYLES.sur-theme-colors.error.weaker){
-      ROOT-STYLES.sur-theme-colors.error.normal
-    }else if(color==ROOT-STYLES.sur-theme-colors.error.normal){
-      ROOT-STYLES.sur-theme-colors.error.deeper
-    }else{
-      ROOT-STYLES.sur-theme-colors.error.deepest
-    }
-  }
-  pure public function dark-deeper(color:brush)->brush {
-    if(color==ROOT-STYLES.sur-theme-colors.dark.weakest){
-      ROOT-STYLES.sur-theme-colors.dark.weaker
-    }else if(color==ROOT-STYLES.sur-theme-colors.dark.weaker){
-      ROOT-STYLES.sur-theme-colors.dark.normal
-    }else if(color==ROOT-STYLES.sur-theme-colors.dark.normal){
-      ROOT-STYLES.sur-theme-colors.dark.deeper
-    }else{
-      ROOT-STYLES.sur-theme-colors.dark.deepest
-    }
-  }
-  pure public function get-color(theme:Themes,level:ColorLevel)->brush{
-    if(theme==Themes.Light){
-      return get-color-light(level);
-    }else if(theme==Themes.Dark){
-      return get-color-dark(level);
-    }else if(theme==Themes.Error){
-      return get-color-error(level);
-    }else if(theme==Themes.Info){
-      return get-color-info(level);
-    }else if(theme==Themes.Success){
-      return get-color-success(level);
-    }else if(theme==Themes.Primary){
-      return get-color-primary(level);
-    }else{
-      return get-color-warning(level);
-    }
-  }
-  pure public function get-color-light(level:ColorLevel)->brush {
-    if(level==ColorLevel.Font){
-      ROOT-STYLES.sur-theme-colors.light.font
-    }else if(level==ColorLevel.Weakest){
-      ROOT-STYLES.sur-theme-colors.light.weakest
-    }else if(level==ColorLevel.Weaker){
-      ROOT-STYLES.sur-theme-colors.light.weaker
-    }else if(level==ColorLevel.Normal){
-      ROOT-STYLES.sur-theme-colors.light.normal
-    }else if(level==ColorLevel.Deeper){
-      ROOT-STYLES.sur-theme-colors.light.deeper
-    }else if(level==ColorLevel.Deepest){
-      ROOT-STYLES.sur-theme-colors.light.deepest
-    }else{
-      ROOT-STYLES.sur-theme-colors.light.opacity
-    }
-  }
-  pure public function get-color-dark(level:ColorLevel)->brush {
-    if(level==ColorLevel.Font){
-      ROOT-STYLES.sur-theme-colors.dark.font
-    }else if(level==ColorLevel.Weakest){
-      ROOT-STYLES.sur-theme-colors.dark.weakest
-    }else if(level==ColorLevel.Weaker){
-      ROOT-STYLES.sur-theme-colors.dark.weaker
-    }else if(level==ColorLevel.Normal){
-      ROOT-STYLES.sur-theme-colors.dark.normal
-    }else if(level==ColorLevel.Deeper){
-      ROOT-STYLES.sur-theme-colors.dark.deeper
-    }else if(level==ColorLevel.Deepest){
-      ROOT-STYLES.sur-theme-colors.dark.deepest
-    }else{
-      ROOT-STYLES.sur-theme-colors.dark.opacity
-    }
-  }
-  pure public function get-color-primary(level:ColorLevel)->brush {
-    if(level==ColorLevel.Font){
-      ROOT-STYLES.sur-theme-colors.primary.font
-    }else if(level==ColorLevel.Weakest){
-      ROOT-STYLES.sur-theme-colors.primary.weakest
-    }else if(level==ColorLevel.Weaker){
-      ROOT-STYLES.sur-theme-colors.primary.weaker
-    }else if(level==ColorLevel.Normal){
-      ROOT-STYLES.sur-theme-colors.primary.normal
-    }else if(level==ColorLevel.Deeper){
-      ROOT-STYLES.sur-theme-colors.primary.deeper
-    }else if(level==ColorLevel.Deepest){
-      ROOT-STYLES.sur-theme-colors.primary.deepest
-    }else{
-      ROOT-STYLES.sur-theme-colors.primary.opacity
-    }
-  }
-  pure public function get-color-info(level:ColorLevel)->brush {
-    if(level==ColorLevel.Font){
-      ROOT-STYLES.sur-theme-colors.info.font
-    }else if(level==ColorLevel.Weakest){
-      ROOT-STYLES.sur-theme-colors.info.weakest
-    }else if(level==ColorLevel.Weaker){
-      ROOT-STYLES.sur-theme-colors.info.weaker
-    }else if(level==ColorLevel.Normal){
-      ROOT-STYLES.sur-theme-colors.info.normal
-    }else if(level==ColorLevel.Deeper){
-      ROOT-STYLES.sur-theme-colors.info.deeper
-    }else if(level==ColorLevel.Deepest){
-      ROOT-STYLES.sur-theme-colors.info.deepest
-    }else{
-      ROOT-STYLES.sur-theme-colors.info.opacity
-    }
-  }
-  pure public function get-color-error(level:ColorLevel)->brush {
-    if(level==ColorLevel.Font){
-      ROOT-STYLES.sur-theme-colors.error.font
-    }else if(level==ColorLevel.Weakest){
-      ROOT-STYLES.sur-theme-colors.error.weakest
-    }else if(level==ColorLevel.Weaker){
-      ROOT-STYLES.sur-theme-colors.error.weaker
-    }else if(level==ColorLevel.Normal){
-      ROOT-STYLES.sur-theme-colors.error.normal
-    }else if(level==ColorLevel.Deeper){
-      ROOT-STYLES.sur-theme-colors.error.deeper
-    }else if(level==ColorLevel.Deepest){
-      ROOT-STYLES.sur-theme-colors.error.deepest
-    }else{
-      ROOT-STYLES.sur-theme-colors.error.opacity
-    }
-  }
-  pure public function get-color-success(level:ColorLevel)->brush {
-    if(level==ColorLevel.Font){
-      ROOT-STYLES.sur-theme-colors.success.font
-    }else if(level==ColorLevel.Weakest){
-      ROOT-STYLES.sur-theme-colors.success.weakest
-    }else if(level==ColorLevel.Weaker){
-      ROOT-STYLES.sur-theme-colors.success.weaker
-    }else if(level==ColorLevel.Normal){
-      ROOT-STYLES.sur-theme-colors.success.normal
-    }else if(level==ColorLevel.Deeper){
-      ROOT-STYLES.sur-theme-colors.success.deeper
-    }else if(level==ColorLevel.Deepest){
-      ROOT-STYLES.sur-theme-colors.success.deepest
-    }else{
-      ROOT-STYLES.sur-theme-colors.success.opacity
-    }
-  }
-  pure public function get-color-warning(level:ColorLevel)->brush {
-    if(level==ColorLevel.Font){
-      ROOT-STYLES.sur-theme-colors.warning.font
-    }else if(level==ColorLevel.Weakest){
-      ROOT-STYLES.sur-theme-colors.warning.weakest
-    }else if(level==ColorLevel.Weaker){
-      ROOT-STYLES.sur-theme-colors.warning.weaker
-    }else if(level==ColorLevel.Normal){
-      ROOT-STYLES.sur-theme-colors.warning.normal
-    }else if(level==ColorLevel.Deeper){
-      ROOT-STYLES.sur-theme-colors.warning.deeper
-    }else if(level==ColorLevel.Deepest){
-      ROOT-STYLES.sur-theme-colors.warning.deepest
-    }else{
-      ROOT-STYLES.sur-theme-colors.warning.opacity
-    }
-  }
 }

@@ -1,0 +1,34 @@
+struct ColorProps {
+  name:string,
+  weakest:brush,
+  weaker:brush,
+  normal:brush,
+  deeper:brush,
+  deepest:brush,
+  font:brush,
+  opacity:brush,
+}
+
+struct ThemeColor {
+  light:ColorProps,
+  primary: ColorProps,
+  success:ColorProps,
+  info:ColorProps,
+  warning:ColorProps,
+  error:ColorProps,
+  dark:ColorProps,
+}
+
+enum ColorLevel{
+  Weakest,
+  Weaker,
+  Normal,
+  Deeper,
+  Deepest,
+  Font,
+  Opacity
+}
+
+export { 
+  ThemeColor,ColorLevel,ColorProps
+}

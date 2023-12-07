@@ -1,5 +1,5 @@
 import {ROOT-STYLES} from "../../themes/index.slint";
-import {Themes} from "../index.slint";
+import {Themes,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
 import {GlobalProps} from "./index.slint";
 
 export global DefaultSCardProps {
@@ -14,9 +14,7 @@ export global DefaultSCardProps {
   //hight-width
   in-out property <length> card-height : GlobalProps.standard-height;
   in-out property <length> card-width : GlobalProps.standard-width;
-  in property <PaddingSize> padding-size:Normal;
-  in property <Shadows> shadow : Shadows.Low1;
-  in property <Borders> border : Borders.Normal;
-  in-out property <PaddingItem> card-padding;
-  
+  in property <PaddingType> padding-type:PaddingType.Normal;
+  in property <ShadowType> shadow-type: ShadowType.Low1;
+  in property <BorderType> border-type : BorderType.Normal;
 }

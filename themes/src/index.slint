@@ -1,4 +1,4 @@
-import {FontProps,TextActionProps,TextAlignmentProps,Themes} from "../index.slint";
+import {FontProps,TextActionProps,TextAlignmentProps,Themes,UseSurrealismFn} from "../../use/index.slint";
 import {ROOT-STYLES} from "../../themes/index.slint";
 
 export global GlobalProps {
@@ -18,8 +18,7 @@ export global GlobalProps {
     letter-spacing : 0,
   };
   in-out property <length> line-height : ROOT-STYLES.sur-font.font-size * 1.5;
-  in-out property <length> standard-height : ROOT-STYLES.count-height(line-height,ROOT-STYLES.sur-padding.normal.top-bottom);
-  in-out property <length> standard-width : ROOT-STYLES.count-width(ROOT-STYLES.sur-font.font-size,ROOT-STYLES.sur-padding.normal.left-right);
-
+  in-out property <length> standard-height : UseSurrealismFn.count-height(line-height,ROOT-STYLES.sur-padding.normal.padding-top);
+  in-out property <length> standard-width : UseSurrealismFn.count-width(ROOT-STYLES.sur-font.font-size,ROOT-STYLES.sur-padding.normal.padding-left);
 }
 

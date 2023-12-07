@@ -1,0 +1,24 @@
+import {ROOT-STYLES} from "../index.slint";
+import {Themes,TextActionProps,TextAlignmentProps} from "../../use/index.slint";
+import { GlobalProps } from "./index.slint";
+
+export global DefaultSTextProps {
+  //font
+  in property <string> font-family : GlobalProps.font.font-family;
+  in property <int> font-weight : GlobalProps.font.font-weight;
+  in property <length> font-size: GlobalProps.font.font-size;
+  in property <brush> color : GlobalProps.font.color;
+  in property <bool> font-italic : GlobalProps.font.font-italic;
+  //theme
+  in property <Themes> theme : Themes.Light;
+  in property <TextActionProps> text-action : {
+    wrap : TextWrap.word-wrap,
+    overflow : TextOverflow.elide,
+    letter-spacing : 0,
+  };
+  in property <TextAlignmentProps> text-alignment : {
+    horizontal-alignment : TextHorizontalAlignment.left,
+    vertical-alignment : TextVerticalAlignment.center,
+  };
+  
+}
