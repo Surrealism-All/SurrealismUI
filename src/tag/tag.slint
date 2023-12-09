@@ -1,18 +1,17 @@
 /**
 * ============================================
 * @author:syf20020816@outlook.com
-* @since:20230907
-* @version:0.0.1
+* @since:20231210
+* @version:0.3.0
 * @type:interface
 * @description:
 * # STag
 * A small tag used to display data
 * ## properties
-* - in property <string> content : the content of the tag
-* - in property <brush> font-color : tag font color
-* - in property <length> font-size : tag font size
+* - in property <string> text : text in tag
 * ## functions
-* see card's functions
+* pure public function get() -> string : get tag text
+* public function set(value:string) : set tag text
 * ## callbacks
 * - callback clicked(string) : run if you click the tag
 * ============================================
@@ -21,28 +20,40 @@ import {ROOT_STYLES,DefaultSTagProps} from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
 import { Themes } from "../../use/index.slint";
+
 export component Tag inherits SCard { 
+  in-out property <string> text : DefaultSTagProps.text;
+  callback clicked(string);
+  pure public function get() -> string {
+    return inner.get();
+  }
+  public function set(value:string) {
+    text = value;
+  }
   card-height: inner.height;
   card-width: inner.width;
-  padding-type: text==""?None:Tag;
   border-radius: self.height / 2;
   font-color<=> inner.color;
+  font-weight: DefaultSTagProps.font-weight;
+  font-italic: DefaultSTagProps.font-italic;
+  font-family: DefaultSTagProps.font-family;
   font-size:DefaultSTagProps.font-size;
-  in property <string> text : DefaultSTagProps.text;
-  callback clicked(string);
-  inner:=SText{
-    theme: root.theme;
-    z:12;
-    text: root.text;
-    font-size: root.font-size;
-    font-weight: root.font-weight;
-    font-family: root.font-family;
-    font-italic: root.font-italic;
-  }
+  padding-type: DefaultSTagProps.padding-type;
+  border-type: DefaultSTagProps.border-type;
+  shadow-type: DefaultSTagProps.shadow-type;
   TouchArea {
     z: 13;
     clicked => {
       root.clicked(root.text);
+    }
+    inner:=SText{
+      theme: root.theme;
+      z:12;
+      text: root.text;
+      font-size: root.font-size;
+      font-weight: root.font-weight;
+      font-family: root.font-family;
+      font-italic: root.font-italic;
     }
   }
 } 

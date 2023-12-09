@@ -40,8 +40,8 @@ export component Span inherits Text{
   in property <Themes> theme : DefaultSTextProps.theme;
   
   //functions
-  public function set(content:string) {
-    self.text= content;
+  public function set(value:string) {
+    self.text = value;
   }
   pure public function get()->string {
     self.text

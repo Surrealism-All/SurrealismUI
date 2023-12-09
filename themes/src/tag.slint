@@ -5,4 +5,10 @@ import {ROOT-STYLES} from "./theme.slint";
 export global DefaultSTagProps {
   in-out property <string> text : "";
   in property <length> font-size : ROOT-STYLES.tag-size;
+  in-out property <int> font-weight : GlobalProps.font.font-weight;
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  in-out property <PaddingType> padding-type : PaddingType.Tag;
+  in-out property <BorderType> border-type : BorderType.Normal;
+  in-out property <ShadowType> shadow-type : ShadowType.Low1;
 }
