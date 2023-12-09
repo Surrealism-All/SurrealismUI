@@ -55,7 +55,7 @@ export component Card inherits Rectangle{
   drop-shadow-blur : card-shadow.blur;
   drop-shadow-offset-x : card-shadow.x;
   drop-shadow-offset-y : card-shadow.y;
-  
+  clip: DefaultSCardProps.clip;
   states [
     light when theme == Themes.Light: {
       root.background : ROOT-STYLES.sur-theme-colors.light.normal;

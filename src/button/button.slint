@@ -8,14 +8,12 @@
 * # SButton 
 * SButton is a button component that you can freely perform regular attribute operations on
 * ## properties
-* - in property <image> icon : Button icon
-* - in property <length> font-size: button font size
-* - in property <length> letter-spacing : button letter spacing
-* - in property <bool> font-italic : button font italic
-* - in property <int> font-weight: button font weight
-* - in property <string> font-family: button font family
-* - in-out property <string> text : the text of the button;
-* - in property <bool> show-icon : control  the icon load or not
+* - in property <image> icon : button icon in the left;
+* - in property <bool> show-icon : show icon or not;
+* - out property <bool> has-hover : hover button or not;
+* - in-out property <string> text : text display in button;
+* - in property <length> letter-spacing : text letter-spacing;
+* - in property <bool> round  : button is round or not;
 * ## functions
 * ## callbacks 
 * - clicked : run if you click the button
@@ -26,18 +24,32 @@
 import {SText} from "../text/index.slint";
 import {SIcon} from "../icon/index.slint";
 import {SCard} from "../card/index.slint";
-import {ROOT-STYLES} from "../../themes/index.slint";
+import {ROOT-STYLES,DefaultSButtonProps} from "../../themes/index.slint";
 import { HorizontalBox } from "std-widgets.slint";
 import { Themes,UseSurrealismFn } from "../../use/index.slint";
 
 export component Button inherits SCard {
-  card-width: layout.width;
-  theme: Light;
-  in property <image> icon;
-  in property <bool> show-icon : false;
+  in property <image> icon : DefaultSButtonProps.icon;
+  in property <bool> show-icon : DefaultSButtonProps.show-icon;
   out property <bool> has-hover <=>toucharea.has-hover;
-  in-out property <string> text : "SButton";
-  in property <length> letter-spacing;
+  in-out property <string> text : DefaultSButtonProps.text;
+  in property <length> letter-spacing : DefaultSButtonProps.letter-spacing;
+  in property <bool> round  : DefaultSButtonProps.round;
+  clip: DefaultSButtonProps.clip;
+  card-width: layout.width;
+  card-height: layout.height;
+  theme: DefaultSButtonProps.theme;
+  border-type: DefaultSButtonProps.border-type;
+  padding-type: DefaultSButtonProps.padding-type;
+  shadow-type: DefaultSButtonProps.shadow-type;
+  font-color<=> btn-txt.color;
+  font-weight: DefaultSButtonProps.font-weight;
+  font-italic: DefaultSButtonProps.font-italic;
+  font-family: DefaultSButtonProps.font-family;
+  font-size:DefaultSButtonProps.font-size;
+  init => {
+    self.border-radius = self.round ? self.height / 2 : self.card-border.border-radius;
+  }
   states [
     light when self.theme == Themes.Light: {
       root.background : toucharea.has-hover?UseSurrealismFn.light-deeper(ROOT-STYLES.sur-theme-colors.light.normal):ROOT-STYLES.sur-theme-colors.light.normal;
@@ -120,7 +132,7 @@ export component Button inherits SCard {
     z: 10;
   }
   layout:=HorizontalLayout{
-    height: root.height;
+    height: btn-txt.height;
     width: show-icon?txt-container.width + root.font-size : txt-container.width;
     spacing: show-icon?UseSurrealismFn.get-space(self.width):0;
     if root.show-icon:icon-container:= Rectangle {

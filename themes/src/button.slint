@@ -1,7 +1,7 @@
 import {Themes,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
 import {GlobalProps} from "./index.slint";
 
-export global DefaultSCardProps {
+export global DefaultSButtonProps {
   //font
   in-out property <int> font-weight : GlobalProps.font.font-weight;
   in-out property <length> font-size: GlobalProps.font.font-size;
@@ -10,11 +10,15 @@ export global DefaultSCardProps {
   in-out property <string> font-family : GlobalProps.font.font-family;
   //theme
   in-out property <Themes> theme : GlobalProps.theme;
-  //hight-width
-  in-out property <length> card-height : GlobalProps.standard-height;
-  in-out property <length> card-width : GlobalProps.standard-width;
+  
   in property <PaddingType> padding-type:PaddingType.Normal;
   in property <ShadowType> shadow-type: ShadowType.Low1;
   in property <BorderType> border-type : BorderType.Normal;
+
+  in property <image> icon;
+  in property <bool> show-icon : false;
+  in-out property <string> text : "SButton";
+  in property <length> letter-spacing : GlobalProps.text-action.letter-spacing;
   in property <bool> clip : GlobalProps.clip;
+  in property <bool> round : false;
 }
