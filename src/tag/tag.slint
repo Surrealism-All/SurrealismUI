@@ -17,7 +17,7 @@
 * - callback clicked(string) : run if you click the tag
 * ============================================
 */
-import {ROOT_STYLES} from "../../themes/index.slint";
+import {ROOT_STYLES,DefaultSTagProps} from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
 import { Themes } from "../../use/index.slint";
@@ -27,15 +27,17 @@ export component Tag inherits SCard {
   padding-type: text==""?None:Tag;
   border-radius: self.height / 2;
   font-color<=> inner.color;
-  font-size:12px;
-  in property <string> text : "";
+  font-size:DefaultSTagProps.font-size;
+  in property <string> text : DefaultSTagProps.text;
   callback clicked(string);
-  
   inner:=SText{
     theme: root.theme;
     z:12;
     text: root.text;
     font-size: root.font-size;
+    font-weight: root.font-weight;
+    font-family: root.font-family;
+    font-italic: root.font-italic;
   }
   TouchArea {
     z: 13;

@@ -9,7 +9,7 @@ export global DefaultSTextProps {
   in property <brush> color : GlobalProps.font.color;
   in property <bool> font-italic : GlobalProps.font.font-italic;
   //theme
-  in property <Themes> theme : Themes.Light;
+  in property <Themes> theme : GlobalProps.theme;
   in property <TextActionProps> text-action : {
     wrap : TextWrap.word-wrap,
     overflow : TextOverflow.elide,

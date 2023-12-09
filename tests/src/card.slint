@@ -2,41 +2,26 @@ import {SButton,SCard,SText} from "../../index.slint";
 import {Themes} from "../../use/index.slint";
 
 
-component TestCard inherits Window {
-  height: 560px;
-  width: 900px;
-  background: #F5F5F5;
-  
-  SCard { 
-    x:20px;
-    y: 20px;
-    card-width:text.width;
-    text:=SText {
-      text: "SCard";
+export component TestCard inherits Window {
+  height: 400px;
+  width: 600px;
+  VerticalLayout {
+    padding: 20px;
+    spacing: 20px;
+    SCard {
+      SText {
+        text: "card";
+      }
     }
-   }
-   SCard { 
-    x:400px;
-    y: 20px;
-    card-width:240px;
-    card-height:120px;
-    theme: Themes.Warning;
-   }
-   SCard { 
-    x:20px;
-    y: 240px;
-    theme: Themes.Dark;
-    card-width:240px;
-    card-height:120px;
-    border-type: X-Large;
-   }
-
-   SCard { 
-    x:400px;
-    y: 240px;
-    theme: Themes.Primary;
-    card-width:240px;
-    card-height:120px;
-    border-type: Large;
-   }
+    SCard {
+      card-height: 36px;
+      card-width: 168px;
+      theme: Light;
+    }
+    SCard {
+      card-height: 124px;
+      width: 400px;
+      theme: Primary;
+    }
+  }
 }

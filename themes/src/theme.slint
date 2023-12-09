@@ -2,7 +2,7 @@ import {Themes} from "../../use/src/theme.slint";
 import {ThemePadding,PaddingType,PaddingProps} from "../../use/src/padding.slint";
 import {FontProps, TextAlignmentProps, TextActionProps} from "../../use/src/text.slint";
 import { BorderType,BorderProps,ThemeBorder } from "../../use/src/border.slint";
-import { ShadowType } from "../../use/src/shadow.slint";
+import { ShadowType,ThemeShadow } from "../../use/src/shadow.slint";
 import {ThemeColor,ColorLevel,ColorProps} from "../../use/src/color.slint";
 import {ResultType} from "../../use/src/result.slint";
 import {ThemeSpace} from "../../use/src/spacing.slint";
@@ -111,14 +111,7 @@ export global ROOT_STYLES {
     largest:48px
   };
   out property <length> scroll-bar-width : 14px;
-  out property <{
-    low1:{x:length,y:length,blur:length},
-    low2:{x:length,y:length,blur:length},
-    low3:{x:length,y:length,blur:length},
-    high1:{x:length,y:length,blur:length},
-    high2:{x:length,y:length,blur:length},
-    high-empty:{x:length,y:length,blur:length}
-  }> sur-shadow:{
+  out property <ThemeShadow> sur-shadow:{
     low1:{x:0,y:1px,blur:2px},
     low2:{x:0,y:2px,blur:4px},
     low3:{x:0,y:4px,blur:8px},

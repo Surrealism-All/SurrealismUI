@@ -2,7 +2,7 @@ import {Themes} from "./theme.slint";
 import {ThemePadding,PaddingType,PaddingProps} from "./padding.slint";
 import {FontProps, TextAlignmentProps, TextActionProps} from "./text.slint";
 import { BorderType,BorderProps,ThemeBorder } from "./border.slint";
-import { ShadowType } from "./shadow.slint";
+import { ShadowType,ShadowProps } from "./shadow.slint";
 import {ThemeColor,ColorLevel,ColorProps} from "./color.slint";
 import {ResultType} from "./result.slint";
 import {ThemeSpace} from "./spacing.slint";
@@ -35,6 +35,21 @@ export global UseSurrealismFn {
       ROOT-STYLES.sur-padding.tag
     }else{
       ROOT-STYLES.sur-padding.icon
+    }
+  }
+  pure public function get-shadow(shadow:ShadowType)->ShadowProps {
+    if(shadow==ShadowType.Low1){
+      ROOT-STYLES.sur-shadow.low1
+    }else if(shadow==ShadowType.Low2){
+      ROOT-STYLES.sur-shadow.low2
+    }else if(shadow==ShadowType.Low3){
+      ROOT-STYLES.sur-shadow.low3
+    }else if(shadow==ShadowType.High1){
+      ROOT-STYLES.sur-shadow.high1
+    }else if(shadow==ShadowType.High2){
+      ROOT-STYLES.sur-shadow.high2
+    }else {
+      ROOT-STYLES.sur-shadow.high-empty
     }
   }
   pure public function get-shadow-x(shadow:ShadowType)->length {

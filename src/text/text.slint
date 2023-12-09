@@ -37,7 +37,7 @@ export component Span inherits Text{
   wrap: DefaultSTextProps.text-action.wrap;
   overflow: DefaultSTextProps.text-action.overflow;
   //props
-  in property <Themes> theme : Themes.Light;
+  in property <Themes> theme : DefaultSTextProps.theme;
   
   //functions
   public function set(content:string) {

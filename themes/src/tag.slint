@@ -1,0 +1,8 @@
+import {Themes,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+import {ROOT-STYLES} from "./theme.slint";
+
+export global DefaultSTagProps {
+  in-out property <string> text : "";
+  in property <length> font-size : ROOT-STYLES.tag-size;
+}

@@ -21,7 +21,7 @@
 
 
 import {ROOT_STYLES,DefaultSCardProps} from "../../themes/index.slint";
-import {Themes,PaddingType,ShadowType,BorderType,UseSurrealismFn,PaddingProps} from "../../use/index.slint";
+import {Themes,PaddingType,ShadowType,BorderType,UseSurrealismFn,PaddingProps,BorderProps,ShadowProps} from "../../use/index.slint";
 enum Alignment{
   Horizontal,
   Vertical
@@ -29,44 +29,38 @@ enum Alignment{
 
 
 export component Card inherits Rectangle{
-  // height: UseSurrealismFn.count-height(card-height,self.padding-top);
-  // width: UseSurrealismFn.count-width(card-width,self.padding-left);
-  // border-radius: ROOT-STYLES.get-border(border).border-radius;
-  // border-width : ROOT-STYLES.get-border(border).border-width;
-  // padding: ROOT-STYLES.sur-padding.normal.padding-same;
-  // drop-shadow-offset-x : UseSurrealismFn.get-shadow-x(shadow);
-  // drop-shadow-offset-y : UseSurrealismFn.get-shadow-y(shadow);
-  // drop-shadow-blur : UseSurrealismFn.get-shadow-blur(shadow);
+  
   in property <Themes> theme : DefaultSCardProps.theme;
-  in property <length> card-height:DefaultSCardProps.card-height;
-  in property <length> card-width:DefaultSCardProps.card-width;
+  in property <length> card-height: DefaultSCardProps.card-height;
+  in property <length> card-width: DefaultSCardProps.card-width;
   in property <PaddingType> padding-type : DefaultSCardProps.padding-type;
   in property <ShadowType> shadow-type : DefaultSCardProps.shadow-type;
   in property <BorderType> border-type : DefaultSCardProps.border-type;
-  in-out property <PaddingProps> card-padding;
   in property <int> font-weight : DefaultSCardProps.font-weight;
   in property <length> font-size: DefaultSCardProps.font-size;
   in property <brush> font-color : DefaultSCardProps.color;
   in property <bool> font-italic : DefaultSCardProps.font-italic;
   in property <string> font-family : DefaultSCardProps.font-family;
+  in-out property <PaddingProps> card-padding : UseSurrealismFn.get-padding(padding-type);
+  in-out property <BorderProps> card-border : UseSurrealismFn.get-border(border-type);
+  in-out property <ShadowProps> card-shadow : UseSurrealismFn.get-shadow(shadow-type);
+  height : UseSurrealismFn.count-height(self.card-height,self.padding-top);
+  width : UseSurrealismFn.count-width(self.card-width,self.padding-left);
+  border-width : self.card-border.border-width;
+  border-radius : self.card-border.border-radius;
+  padding-top : self.card-padding.padding-top;
+  padding-bottom : self.card-padding.padding-bottom;
+  padding-left : self.card-padding.padding-left;
+  padding-right : self.card-padding.padding-right;
+  drop-shadow-blur : card-shadow.blur;
+  drop-shadow-offset-x : card-shadow.x;
+  drop-shadow-offset-y : card-shadow.y;
   
-  
-  init => {
-    self.card-padding = UseSurrealismFn.get-padding(padding-type);
-    self.padding-top = self.card-padding.padding-top;
-    self.padding-bottom = self.card-padding.padding-bottom;
-    self.padding-left = self.card-padding.padding-left;
-    self.padding-right = self.card-padding.padding-right;
-    self.drop-shadow-blur = UseSurrealismFn.get-shadow-blur(shadow-type);
-    self.drop-shadow-offset-x = UseSurrealismFn.get-shadow-x(shadow-type);
-    self.drop-shadow-offset-y = UseSurrealismFn.get-shadow-y(shadow-type);
-  }
   states [
     light when theme == Themes.Light: {
       root.background : ROOT-STYLES.sur-theme-colors.light.normal;
       root.border-color : ROOT-STYLES.sur-theme-colors.light.normal;
       root.drop-shadow-color : ROOT-STYLES.sur-theme-colors.light.deepest;
-      
     }
     primary when theme == Themes.Primary: {
       root.background : ROOT-STYLES.sur-theme-colors.primary.normal;
