@@ -15,10 +15,11 @@
 */
 
 import { SCard } from "../card/index.slint";
-import { IconSources , ROOT-STYLES} from "../../themes/index.slint";
+import { ROOT-STYLES} from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { SText } from "../text/index.slint";
 import { ScrollView } from "std-widgets.slint";
+import {UseIcons} from "../../use/index.slint";
 
 export struct TreeChildren {
   icon:image,
@@ -86,17 +87,17 @@ export component Tree inherits SCard{
   width: 100%;
   clip: true;
   in-out property <TreeData> tree-data : {
-    icon : IconSources.icons.Folder,
+    icon : UseIcons.icons.Folder,
     label: "parent_folder",
     extra:"",
     children:[
       {
-        icon:IconSources.icons.FileCode,
+        icon:UseIcons.icons.FileCode,
         label:"slint.slint",
         extra:"12KB", 
       },
       {
-        icon:IconSources.icons.FileCode,
+        icon:UseIcons.icons.FileCode,
         label:"surrealism.slint",
         extra:"126KB", 
       }

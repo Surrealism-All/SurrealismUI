@@ -1,11 +1,35 @@
-import {Icons} from "../../themes/src/icon.slint";
-
-struct IconItem {
-  name:Icons,
-  icon:image
+struct Icons {
+  Null:image,
+  Loading:image,
+  Avatar:image,
+  Success:image,
+  Smiling_face:image,
+  Info:image,
+  Close_one:image,
+  Attention:image,
+  Help:image,
+  Share:image,
+  Up:image,
+  Down:image,
+  Down_one:image,
+  Right:image,
+  Right_one:image,
+  Link_left:image,
+  Preview_close:image,
+  Preview_open:image,
+  Close_one:image,
+  Setting_two:image,
+  Folder:image,
+  Folder_filled:image,
+  FileCode:image
 }
 
-global IconSources {
+struct IconProps {
+  name:string,
+  source:image
+}
+
+global UseIcons {
     out property <Icons> icons : {
       Null:@image-url(""),
       Loading:@image-url("../../icons/loading.svg"),
@@ -33,4 +57,6 @@ global IconSources {
     };
 }
 
-export { IconItem,IconSources }
+
+
+export { Icons,IconProps,UseIcons }

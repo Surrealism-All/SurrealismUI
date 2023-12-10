@@ -24,8 +24,8 @@
 import { SPopup } from "../popup/index.slint";
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
-import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,BorderProps } from "../../use/index.slint";
-import {ROOT_STYLES,IconSources} from "../../themes/index.slint";
+import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,BorderProps,UseIcons } from "../../use/index.slint";
+import {ROOT_STYLES} from "../../themes/index.slint";
 
 export component Loading inherits Window {
   height: 100%;
@@ -39,7 +39,7 @@ export component Loading inherits Window {
   opacity: 1;
   visible: is-show;
   z: 1000;
-  in property <image> loading-icon : IconSources.icons.Loading;
+  in property <image> loading-icon : UseIcons.icons.Loading;
   in-out property <duration> duration : 1200ms;
   in property <bool> an : true;
   in property <string> content : "Loading ...";

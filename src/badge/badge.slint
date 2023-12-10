@@ -20,10 +20,10 @@
 * ============================================
 */
 import { SCard } from "../card/index.slint";
-import { ROOT_STYLES,IconSources} from "../../themes/index.slint";
+import { ROOT_STYLES} from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { SText } from "../text/index.slint";
-import { Themes,ResultType,BorderType,UseSurrealismFn } from "../../use/index.slint";
+import { Themes,ResultType,BorderType,UseSurrealismFn,UseIcons } from "../../use/index.slint";
 
 export enum Position {
   Left-Top,
@@ -39,8 +39,8 @@ export component Badge inherits SCard {
   border-radius: self.height / 2;
   
   in property <Position> position : Position.Right-Bottom;
-  in-out property <image> icon : IconSources.icons.Success;
-  in property <brush> icon-color <=> badge-icon.icon-color;
+  in-out property <image> icon : UseIcons.icons.Success;
+  in property <brush> icon-color <=> badge-icon.colorize;
   font-color<=>badge-txt.color;
   in property <ResultType> res-type:ResultType.Help;
   in-out property <string> content;
@@ -71,27 +71,27 @@ export component Badge inherits SCard {
    
     if(res-type==ResultType.Primary){
       self.theme = Themes.Primary;
-      self.icon = IconSources.icons.Smiling-face;
+      self.icon = UseIcons.icons.Smiling-face;
       self.content = "primary message!";
     }else if (res-type==ResultType.Success){
       self.theme = Themes.Success;
       self.content = "success message!";
-      self.icon = IconSources.icons.Success;
+      self.icon = UseIcons.icons.Success;
     }else if (res-type==ResultType.Info){
       self.theme = Themes.Info;
-      self.icon = IconSources.icons.Info;
+      self.icon = UseIcons.icons.Info;
       self.content = "info message!";
     }else if (res-type==ResultType.Error){
       self.theme = Themes.Error;
-      self.icon = IconSources.icons.Close-one;
+      self.icon = UseIcons.icons.Close-one;
       self.content = "error message!"
     }else if (res-type==ResultType.Warning){
       self.theme = Themes.Warning;
-      self.icon = IconSources.icons.Attention;
+      self.icon = UseIcons.icons.Attention;
       self.content = "warning message!"
     }else{
       self.theme = Themes.Light;
-      self.icon = IconSources.icons.Help;
+      self.icon = UseIcons.icons.Help;
       self.content = "help message!"
     }
   }

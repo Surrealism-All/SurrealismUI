@@ -25,12 +25,12 @@
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
 import { SIcon } from "../icon/index.slint";
-import { IconSources,ROOT-STYLES } from "../../themes/index.slint";
-import { Themes,ShadowType,ColorLevel,UseSurrealismFn } from "../../use/index.slint";
+import { ROOT-STYLES } from "../../themes/index.slint";
+import { Themes,ShadowType,ColorLevel,UseSurrealismFn,UseIcons } from "../../use/index.slint";
 
 export component Link {
   callback clicked(string);
-  in property <image> icon : IconSources.icons.Share;
+  in property <image> icon : UseIcons.icons.Share;
   in property <bool> funny : false;
   in property <bool> underline : true;
   out property <bool> has-hover <=> touch-area.has-hover;
@@ -43,7 +43,7 @@ export component Link {
   states [
     hover when touch-area.has-hover: {
       inner-text.color : UseSurrealismFn.deeper(root.theme,UseSurrealismFn.get-color(root.theme,ColorLevel.Font));
-      link-icon.icon-color : UseSurrealismFn.deeper(root.theme,UseSurrealismFn.get-color(root.theme,ColorLevel.Font)); 
+      link-icon.colorize : UseSurrealismFn.deeper(root.theme,UseSurrealismFn.get-color(root.theme,ColorLevel.Font)); 
     }
   ]
   touch-area:=TouchArea {

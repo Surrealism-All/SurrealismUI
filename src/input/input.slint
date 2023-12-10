@@ -36,10 +36,10 @@
 * - callback changed(string) : run when content changed
 * ============================================
 */
-import {ROOT_STYLES,IconSources} from "../../themes/index.slint";
+import {ROOT_STYLES} from "../../themes/index.slint";
 import {SText } from "../text/index.slint";
 import {SIcon} from "../icon/index.slint";
-import { Themes } from "../../use/index.slint";
+import { Themes,UseIcons } from "../../use/index.slint";
 
 export component Input inherits Rectangle {
   height:input.height;
@@ -51,7 +51,7 @@ export component Input inherits Rectangle {
   horizontal-stretch: 1;
   in property <string> placeholder : "please input";
   in property <Themes> theme : Themes.Light;
-  // in property <image> icon : IconSources.icons.Null;
+  // in property <image> icon : UseIcons.icons.Null;
   in property <length> input-width : 16rem;
   in property <length> font-size : ROOT-STYLES.sur-font.font-size;
   in property <bool> disabled:false;
@@ -229,14 +229,14 @@ export component Input inherits Rectangle {
       if root.password: eye-icon:= Rectangle{
         eye:=SIcon {
           theme: root.theme;
-          source:IconSources.icons.Preview-close;
+          source:UseIcons.icons.Preview-close;
           clicked => {
-            if(self.source==IconSources.icons.Preview-close){
+            if(self.source==UseIcons.icons.Preview-close){
               root.type = InputType.text;
-              self.source = IconSources.icons.Preview-open
+              self.source = UseIcons.icons.Preview-open
             }else{
               root.type = InputType.password;
-              self.source = IconSources.icons.Preview-close
+              self.source = UseIcons.icons.Preview-close
             }
           }
         }
@@ -244,7 +244,7 @@ export component Input inherits Rectangle {
       if root.clearable:clear-icon:= Rectangle {
         SIcon{
           theme: root.theme;
-          source: IconSources.icons.Close-one;
+          source: UseIcons.icons.Close-one;
           clicked => {
             root.clear();
           }

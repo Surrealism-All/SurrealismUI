@@ -11,33 +11,29 @@
 * - out property <bool> has-hover : has hover or not
 * - in property <image> icon : icon source
 * - in property <Themes> theme : Surrealism theme
-* - in-out property <brush> icon-color : icon color 
+* - in-out property <brush> colorize : icon color 
 * ## callbacks: 
 * - callback clicked : run if you click the icon
-* ## functions:
-* - pure function get-icon(item:IconItem)->image : get icon src from for iter item ⛔
 * ============================================
 */
-import {IconItem,IconSources} from "./dev.slint";
-import {ROOT_STYLES} from "../../themes/index.slint";
+import {ROOT_STYLES,DefaultSIconProps} from "../../themes/index.slint";
 import {Themes} from "../../use/index.slint";
+
 export component Icon{
-  //default icon size
-  padding: 0;
-  height: ROOT-STYLES.sur-font.font-size;
-  width:ROOT-STYLES.sur-font.font-size;
   //params
   out property <bool> has-hover<=>toucharea.has-hover;
-  in property <image> source;
-  in property <Themes> theme : Themes.Light;
-  in-out property <brush> icon-color;
+  in property <image> source : DefaultSIconProps.source;
+  in property <Themes> theme : DefaultSIconProps.theme;
+  in-out property <brush> colorize : DefaultSIconProps.colorize;
   // get icon src from for iter item
-
   callback clicked;
-  clicked => {}
+   //default icon size
+  padding: DefaultSIconProps.padding;
+  height: DefaultSIconProps.height;
+  width: DefaultSIconProps.width;
   states [
     light when theme == Themes.Light: {
-      icon-color :ROOT-STYLES.sur-theme-colors.light.font;
+      colorize :ROOT-STYLES.sur-theme-colors.light.font;
       out{
         animate  * {
           duration: ROOT-STYLES.sur-an-duration;
@@ -46,7 +42,7 @@ export component Icon{
       }
     }
     primary when theme == Themes.Primary: {
-      icon-color :ROOT-STYLES.sur-theme-colors.primary.font;
+      colorize :ROOT-STYLES.sur-theme-colors.primary.font;
       out{
         animate  * {
           duration: ROOT-STYLES.sur-an-duration;
@@ -55,7 +51,7 @@ export component Icon{
       }
     }
     success when theme == Themes.Success: {
-      icon-color :ROOT-STYLES.sur-theme-colors.success.font;
+      colorize :ROOT-STYLES.sur-theme-colors.success.font;
       out{
         animate  * {
           duration: ROOT-STYLES.sur-an-duration;
@@ -64,7 +60,7 @@ export component Icon{
       }
     }
     info when theme == Themes.Info: {
-      icon-color :ROOT-STYLES.sur-theme-colors.info.font;
+      colorize :ROOT-STYLES.sur-theme-colors.info.font;
       out{
         animate  * {
           duration: ROOT-STYLES.sur-an-duration;
@@ -73,7 +69,7 @@ export component Icon{
       }
     }
     warning when theme == Themes.Warning: {
-      icon-color :ROOT-STYLES.sur-theme-colors.warning.font;
+      colorize :ROOT-STYLES.sur-theme-colors.warning.font;
       out{
         animate  * {
           duration: ROOT-STYLES.sur-an-duration;
@@ -82,7 +78,7 @@ export component Icon{
       }
     }
     error when theme == Themes.Error: {
-      icon-color :ROOT-STYLES.sur-theme-colors.error.font;
+      colorize :ROOT-STYLES.sur-theme-colors.error.font;
       out{
         animate  * {
           duration: ROOT-STYLES.sur-an-duration;
@@ -91,7 +87,7 @@ export component Icon{
       }
     }
     dark when theme == Themes.Dark: {
-      icon-color :ROOT-STYLES.sur-theme-colors.dark.font;
+      colorize :ROOT-STYLES.sur-theme-colors.dark.font;
       out{
         animate  * {
           duration: ROOT-STYLES.sur-an-duration;
@@ -111,14 +107,7 @@ export component Icon{
       source: root.source;
       height: root.height;
       width: root.width;
-      colorize: root.icon-color;
+      colorize: root.colorize;
     }
   }
-  
-  
 }
-
-
-
-
-

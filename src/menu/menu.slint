@@ -21,9 +21,9 @@
 */
 import { SCard } from "../card/index.slint";
 import { SIcon } from "../icon/index.slint";
-import {IconSources,ROOT-STYLES} from "../../themes/index.slint";
+import {ROOT-STYLES} from "../../themes/index.slint";
 import { STip } from "../tip/index.slint";
-import { Themes } from "../../use/index.slint";
+import { Themes,UseIcons } from "../../use/index.slint";
 
 export struct MenuData {
     id:int,
@@ -121,12 +121,12 @@ export component Menu inherits SCard {
         height: icon-size * 2;
         empty:=SIcon{
           theme: root.theme;
-          source: IconSources.icons.Null;
+          source: UseIcons.icons.Null;
         }
       }
       account-box:=MenuItem{
         height: icon-box-size;
-        icon: IconSources.icons.Avatar;
+        icon: UseIcons.icons.Avatar;
         icon-size: root.icon-size;
         theme: root.theme;
         clicked => {
@@ -135,7 +135,7 @@ export component Menu inherits SCard {
       }
       setting-box:=MenuItem{
         height: icon-box-size;
-        icon: IconSources.icons.Setting-two;
+        icon: UseIcons.icons.Setting-two;
         icon-size: root.icon-size;
         theme: root.theme;
         clicked => {

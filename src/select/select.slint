@@ -23,12 +23,12 @@
 * ============================================
 */
 
-import {ROOT_STYLES,IconSources} from "../../themes/index.slint";
+import {ROOT_STYLES} from "../../themes/index.slint";
 import { SCard } from "../card/index.slint";
 import { SText } from "../text/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { ListView } from "std-widgets.slint";
-import { Themes } from "../../use/index.slint";
+import { Themes,UseIcons } from "../../use/index.slint";
 
 export enum ValueType {
     String,
@@ -45,9 +45,9 @@ component Selector inherits TouchArea {
   clicked => {
     open = !open;
     if(open){
-      open-icon.source = IconSources.icons.Up;
+      open-icon.source = UseIcons.icons.Up;
     }else{
-      open-icon.source = IconSources.icons.Down;
+      open-icon.source = UseIcons.icons.Down;
     }
     show()
   }
@@ -66,7 +66,7 @@ component Selector inherits TouchArea {
       height: root.height;
       width: open-icon.width;
       open-icon:=SIcon { 
-        source: IconSources.icons.Down;
+        source: UseIcons.icons.Down;
         clicked => {
           root.clicked();
         }

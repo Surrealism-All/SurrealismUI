@@ -23,16 +23,9 @@ import {SCard} from "../card/index.slint";
 import {SIcon} from "../icon/index.slint";
 import {SButton} from "../button/index.slint";
 import {SText} from "../text/index.slint";
-import {ROOT_STYLES,IconSources} from "../../themes/index.slint";
-import { Themes,ResultType,UseSurrealismFn } from "../../use/index.slint";
-// export enum ResultType{
-//   Primary,
-//   Success,
-//   Info,
-//   Error,
-//   Warning,
-//   Help
-// }
+import {ROOT_STYLES} from "../../themes/index.slint";
+import { Themes,ResultType,UseSurrealismFn,UseIcons } from "../../use/index.slint";
+
 
 export component Result inherits SCard { 
   card-height: 200px;
@@ -41,7 +34,7 @@ export component Result inherits SCard {
   in-out property <string> btn;
   in-out property <string> content;
   in property <ResultType> res-type:ResultType.Success;
-  in-out property <image> icon:IconSources.icons.Success;
+  in-out property <image> icon:UseIcons.icons.Success;
   padding-type: Normal;
   callback clicked();
   init => {
@@ -53,32 +46,32 @@ export component Result inherits SCard {
     if(res-type==ResultType.Primary){
       self.theme = Themes.Primary;
       self.btn = "PRIMARY";
-      self.icon = IconSources.icons.Smiling-face;
+      self.icon = UseIcons.icons.Smiling-face;
       self.content = "This is a primary message!";
     }else if (res-type==ResultType.Success){
       self.theme = Themes.Success;
       self.btn = "SUCCESS";
       self.content = "This is a success message!";
-      self.icon = IconSources.icons.Success;
+      self.icon = UseIcons.icons.Success;
     }else if (res-type==ResultType.Info){
       self.theme = Themes.Info;
       self.btn = "INFO";
-      self.icon = IconSources.icons.Info;
+      self.icon = UseIcons.icons.Info;
       self.content = "This is a info message!";
     }else if (res-type==ResultType.Error){
       self.theme = Themes.Error;
       self.btn = "ERROR";
-      self.icon = IconSources.icons.Close-one;
+      self.icon = UseIcons.icons.Close-one;
       self.content = "This is a error message!"
     }else if (res-type==ResultType.Warning){
       self.theme = Themes.Warning;
       self.btn = "WARNING";
-      self.icon = IconSources.icons.Attention;
+      self.icon = UseIcons.icons.Attention;
       self.content = "This is a warning message!"
     }else{
       self.theme = Themes.Light;
       self.btn = "HELP";
-      self.icon = IconSources.icons.Help;
+      self.icon = UseIcons.icons.Help;
       self.content = "This is a help message!"
     }
   }

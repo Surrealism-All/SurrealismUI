@@ -18,17 +18,17 @@
 */
 
 import { SCard } from "../card/index.slint";
-import { ROOT-STYLES,IconSources } from "../../themes/index.slint";
+import { ROOT-STYLES } from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
 import { SIcon } from "../icon/index.slint";
-import { Themes,BorderType } from "../../use/index.slint";
+import { Themes,BorderType,UseIcons } from "../../use/index.slint";
 export component Divider inherits Rectangle{
   height: 14px;
   in property <string> content : "divider";
-  in property <image> icon : IconSources.icons.Null;
+  in property <image> icon : UseIcons.icons.Null;
   in property <Themes> theme : Themes.Primary;
   function show-what()->int {
-      if(icon!=IconSources.icons.Null){
+      if(icon!=UseIcons.icons.Null){
         0
       }else{
         1

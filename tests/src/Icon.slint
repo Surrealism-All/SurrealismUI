@@ -1,11 +1,11 @@
 import {SIcon} from "../../index.slint";
-import {IconSources} from "../../themes/index.slint";
-import {Size,Themes} from "../../use/index.slint";
+import {Size,Themes,UseIcons} from "../../use/index.slint";
 export component TestIcon inherits Window {
   height: 400px;
   width: 400px;
   GridLayout {
     spacing: 40px;
+    padding: 20px;
     Row{
       
       SIcon{
@@ -19,6 +19,7 @@ export component TestIcon inherits Window {
         width: 30px;
         source: @image-url("../../icons/add-computer.svg");
         theme: Themes.Success;
+        colorize : #f60;
       }
       SIcon{
         height: 30px;

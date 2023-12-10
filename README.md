@@ -154,7 +154,7 @@ component TestWindow inherits Window {
 
 ```
 import {SIcon} from "../../index.slint";
-import {IconSources,Size,Themes} from "../../themes/index.slint";
+import {UseIcons,Size,Themes} from "../../themes/index.slint";
 export component TestIcon inherits Window {
   height: 400px;
   width: 400px;
@@ -367,7 +367,7 @@ SButton is a button component that you can freely perform regular attribute oper
 
 ```
 import {SButton} from "../../index.slint";
-import {Themes,IconSources} from "../../themes/index.slint";
+import {Themes,UseIcons} from "../../themes/index.slint";
 component TestButton inherits Window {
   height: 400px;
   width: 400px;
@@ -551,7 +551,7 @@ export component TestInput inherits Window {
 
 ```
 import {SStar,SButton} from "../../index.slint";
-import {Themes,IconSources} from "../../themes/index.slint";
+import {Themes,UseIcons} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -873,7 +873,7 @@ You can customize the components or use the default text display method in it
 
 ```
 import {SCollapse,SCollapseItem,SButton,STable,STableColumn} from "../../index.slint";
-import {Themes,IconSources} from "../../themes/index.slint";
+import {Themes,UseIcons} from "../../themes/index.slint";
 
 
 component TestWindow inherits Window {
@@ -1085,7 +1085,7 @@ SLink is commonly used to represent text connections or sharing
 
 ```
 import {SLink} from "../../index.slint";
-import {Themes,IconSources} from "../../themes/index.slint";
+import {Themes,UseIcons} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
   height: 420px;
@@ -1138,7 +1138,7 @@ SURAvatar is a avatar component that defaults to Icons.Avatar when there are no 
 
 ```
 import {SURAvatar} from "../../index.slint";
-import {Themes,IconSources,ROOT-STYLES} from "../../themes/index.slint";
+import {Themes,UseIcons,ROOT-STYLES} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
   height: 400px;
@@ -1291,7 +1291,7 @@ Use dividers along with spacing and headers to organize content in your layout.
 
 ```
 import {SDivider} from "../../index.slint";
-import {Themes,IconSources} from "../../themes/index.slint";
+import {Themes,UseIcons} from "../../themes/index.slint";
 
 component TestDivider inherits Window {
   height: 400px;
@@ -1825,7 +1825,7 @@ SMenu is a menu bar located on the left side that you can quickly generate throu
 
 ```
 import { SMenu , SIcon} from "../../index.slint";
-import {IconSources} from "../../themes/index.slint";
+import {UseIcons} from "../../use/index.slint";
 
 component TestMenu inherits Window {
     height: 600px;
@@ -2119,7 +2119,7 @@ STree can be used to display directory structure, forming a parent-child relatio
 
 ```
 import {STree } from "../../index.slint";
-import { IconSources } from "../../themes/index.slint";
+
 
 component TestTree inherits Window {
   height: 400px;
@@ -2130,17 +2130,17 @@ component TestTree inherits Window {
     height: 45%;
     width: 96%;
     tree-data:{
-      icon : IconSources.icons.Folder_filled,
+      icon : UseIcons.icons.Folder_filled,
       label: "SurrealismUI",
       extra:"",
       children:[
         {
-          icon:IconSources.icons.FileCode,
+          icon:UseIcons.icons.FileCode,
           label:"slint.slint",
           extra:"12KB", 
         },
         {
-          icon:IconSources.icons.FileCode,
+          icon:UseIcons.icons.FileCode,
           label:"surrealism.slint",
           extra:"126KB", 
         },
@@ -2195,7 +2195,7 @@ SFile can help users present file selectors GUI
 
 ```
 import {SFile,ItemConfigs,FileItem,ItemConfigs} from "../../index.slint";
-import { Themes,PaddingType,IconSources} from "../../themes/index.slint";
+import { Themes,PaddingType,UseIcons} from "../../themes/index.slint";
 
 export component TestFile inherits Window {
   height: 400px;
@@ -2219,11 +2219,11 @@ export component TestFile inherits Window {
       icon-size:16px
     };
     files : [
-      {icon:IconSources.icons.Folder-filled , name : "font" , datetime : "2023-11-06" , file-type : "folder" , size : "900KB"},
-      {icon:IconSources.icons.FileCode , name : "index.slint" , datetime : "2023-11-06" , file-type : "SLINT file" , size : "3KB"},
-      {icon:IconSources.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"},
-      {icon:IconSources.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"},
-      {icon:IconSources.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"}
+      {icon:UseIcons.icons.Folder-filled , name : "font" , datetime : "2023-11-06" , file-type : "folder" , size : "900KB"},
+      {icon:UseIcons.icons.FileCode , name : "index.slint" , datetime : "2023-11-06" , file-type : "SLINT file" , size : "3KB"},
+      {icon:UseIcons.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"},
+      {icon:UseIcons.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"},
+      {icon:UseIcons.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"}
     ];
     tab-clicked(index,item)=>{
       debug(index);

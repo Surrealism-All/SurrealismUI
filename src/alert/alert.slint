@@ -21,8 +21,8 @@
 import { SCard } from "../card/index.slint";
 import { SText } from "../text/index.slint";
 import { SIcon } from "../icon/index.slint";
-import { IconSources } from "../../themes/index.slint";
-import { Themes,ResultType } from "../../use/index.slint";
+
+import { Themes,ResultType,UseIcons } from "../../use/index.slint";
 export component Alert inherits Window{
   height: 100%;
   width: 100%;
@@ -48,36 +48,37 @@ export component Alert inherits Window{
   init => {
     if(res-type==ResultType.Primary){
       root.theme = Themes.Primary;
-      root.icon = IconSources.icons.Smiling-face;
+      root.icon = UseIcons.icons.Smiling-face;
       root.content = "This is a primary message!";
     }else if (res-type==ResultType.Success){
       root.theme = Themes.Success;
       root.content = "This is a success message!";
-      root.icon = IconSources.icons.Success;
+      root.icon = UseIcons.icons.Success;
     }else if (res-type==ResultType.Info){
       root.theme = Themes.Info;
-      root.icon = IconSources.icons.Info;
+      root.icon = UseIcons.icons.Info;
       root.content = "This is a info message!";
     }else if (res-type==ResultType.Error){
       root.theme = Themes.Error;
-      root.icon = IconSources.icons.Close-one;
+      root.icon = UseIcons.icons.Close-one;
       root.content = "This is a error message!"
     }else if (res-type==ResultType.Warning){
       root.theme = Themes.Warning;
-      root.icon = IconSources.icons.Attention;
+      root.icon = UseIcons.icons.Attention;
       root.content = "This is a warning message!"
     }else{
       root.theme = Themes.Light;
-      root.icon = IconSources.icons.Help;
+      root.icon = UseIcons.icons.Help;
       root.content = "This is a help message!"
     }
   }
   alert:=SCard { 
     y: 6px;
     clip: true;
-    width: parent.width * 0.86;
+    card-width: parent.width * 0.86;
+    card-height: info.height;
     theme: root.theme;
-    HorizontalLayout {
+    layuot := HorizontalLayout {
       alignment: LayoutAlignment.start;
       icon-view:=Rectangle{
         icon:=SIcon { 
@@ -87,15 +88,18 @@ export component Alert inherits Window{
           width: 18px;
         }
       }
-      info:=SText { 
-        theme: root.theme;
-        text: root.content;
-        width: parent.width - 60px;
-        horizontal-alignment: left;
+      Rectangle {
+        width: info.width;
+        info:=SText {
+          theme: root.theme;
+          text: root.content;
+          width: layuot.width - 60px;
+          horizontal-alignment: left;
+        }
       }
       close-view:=Rectangle{
         close:=SIcon{
-          source: IconSources.icons.Close-one;
+          source: UseIcons.icons.Close-one;
           theme: root.theme;
           clicked => {
             root.close();

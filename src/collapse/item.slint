@@ -24,9 +24,9 @@
 
 import { SCard } from "../card/index.slint";
 import { SText } from "../text/index.slint";
-import {ROOT_STYLES,IconSources} from "../../themes/index.slint";
+import {ROOT_STYLES} from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
-import { Themes } from "../../use/index.slint";
+import { Themes,UseIcons } from "../../use/index.slint";
 
 export component CollapseItem inherits Rectangle{
   height: header.height;
@@ -59,13 +59,13 @@ export component CollapseItem inherits Rectangle{
         clicked => {
           root.show=!root.show;
           if(show){
-            icon.source = IconSources.icons.Down-one;
+            icon.source = UseIcons.icons.Down-one;
             root.height = root.item-height;
             details.height = root.height - header.height;
             details.visible = true;
             
           }else{
-            icon.source = IconSources.icons.Right-one;
+            icon.source = UseIcons.icons.Right-one;
             root.height = header.height;
             details.height = 0;
             details.visible = false;
@@ -89,7 +89,7 @@ export component CollapseItem inherits Rectangle{
             theme: root.theme;
             height: 20px;
             width: 20px;
-            source:IconSources.icons.Right-one;
+            source:UseIcons.icons.Right-one;
             clicked => {
              area.clicked()
             }

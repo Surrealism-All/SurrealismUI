@@ -1,5 +1,5 @@
 import {STree } from "../../index.slint";
-import { IconSources } from "../../themes/index.slint";
+import {UseIcons} from "../../use/index.slint";
 
 component TestTree inherits Window {
   height: 400px;
@@ -10,17 +10,17 @@ component TestTree inherits Window {
     height: 45%;
     width: 96%;
     tree-data:{
-      icon : IconSources.icons.Folder_filled,
+      icon : UseIcons.icons.Folder_filled,
       label: "SurrealismUI",
       extra:"",
       children:[
         {
-          icon:IconSources.icons.FileCode,
+          icon:UseIcons.icons.FileCode,
           label:"slint.slint",
           extra:"12KB", 
         },
         {
-          icon:IconSources.icons.FileCode,
+          icon:UseIcons.icons.FileCode,
           label:"surrealism.slint",
           extra:"126KB", 
         },

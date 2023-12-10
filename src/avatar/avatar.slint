@@ -14,8 +14,8 @@
 */
 import { SCard } from "../card/index.slint";
 import { SIcon } from "../icon/index.slint";
-import {ROOT_STYLES,IconSources} from "../../themes/index.slint";
-import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,BorderProps,UseSurrealismFn } from "../../use/index.slint";
+import {ROOT_STYLES} from "../../themes/index.slint";
+import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,BorderProps,UseSurrealismFn,UseIcons } from "../../use/index.slint";
 
 export component Avatar inherits SCard { 
   border-type:Circle-Normal;
@@ -38,7 +38,7 @@ export component Avatar inherits SCard {
     z: 13;
     height: avatar-size;
     width: avatar-size;
-    source: IconSources.icons.Avatar;
+    source: UseIcons.icons.Avatar;
     theme: root.theme;
   }
   Image {

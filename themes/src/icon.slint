@@ -1,27 +1,11 @@
-struct Icons {
-  Null:image,
-  Loading:image,
-  Avatar:image,
-  Success:image,
-  Smiling_face:image,
-  Info:image,
-  Close_one:image,
-  Attention:image,
-  Help:image,
-  Share:image,
-  Up:image,
-  Down:image,
-  Down_one:image,
-  Right:image,
-  Right_one:image,
-  Link_left:image,
-  Preview_close:image,
-  Preview_open:image,
-  Close_one:image,
-  Setting_two:image,
-  Folder:image,
-  Folder_filled:image,
-  FileCode:image
-}
+import {Themes,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
 
-export { Icons }
+export global DefaultSIconProps {
+  in-out property <Themes> theme : GlobalProps.theme;
+  in-out property <length> height : GlobalProps.standard-icon-size;
+  in-out property <length> width : GlobalProps.standard-icon-size;
+  in-out property <length> padding : 0;
+  in-out property <image> source;
+  in-out property <brush> colorize;
+}
