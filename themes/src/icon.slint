@@ -1,11 +1,21 @@
-import {Themes,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
+import {Themes,RotationProps} from "../../use/index.slint";
 import {GlobalProps} from "./index.slint";
+
+
 
 export global DefaultSIconProps {
   in-out property <Themes> theme : GlobalProps.theme;
   in-out property <length> height : GlobalProps.standard-icon-size;
   in-out property <length> width : GlobalProps.standard-icon-size;
   in-out property <length> padding : 0;
+  //image props
   in-out property <image> source;
   in-out property <brush> colorize;
+  in property <ImageFit> image-fit : ImageFit.contain;
+  in property <ImageRendering> image-rendering : ImageRendering.smooth;
+  in-out property <RotationProps> rotation : {
+    rotation-angle : 0,
+    rotation-origin-x : 0,
+    rotation-origin-y: 0,
+  };
 }

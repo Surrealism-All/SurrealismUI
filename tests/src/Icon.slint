@@ -1,5 +1,5 @@
 import {SIcon} from "../../index.slint";
-import {Size,Themes,UseIcons} from "../../use/index.slint";
+import {Size,Themes,UseIcons,RotationProps} from "../../use/index.slint";
 export component TestIcon inherits Window {
   height: 400px;
   width: 400px;
@@ -20,6 +20,11 @@ export component TestIcon inherits Window {
         source: @image-url("../../icons/add-computer.svg");
         theme: Themes.Success;
         colorize : #f60;
+        rotation : {
+          rotation-angle : 30deg,
+          rotation-origin-x : 10px,
+          rotation-origin-y: 0,
+        };
       }
       SIcon{
         height: 30px;

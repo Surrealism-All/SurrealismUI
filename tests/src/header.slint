@@ -18,7 +18,7 @@ component TestHeader inherits Window {
       font-size: 16px;
       clicked(index,node)=>{
         txt.index = index;
-        txt.name = node;
+        txt.name = node.label;
       }
     }
     txt:=Text{

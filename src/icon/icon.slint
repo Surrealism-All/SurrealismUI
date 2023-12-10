@@ -8,26 +8,30 @@
 * # SIcon
 * there are 2658 different icons in SIcon from : https://github.com/bytedance/iconpark
 * ## properties:
-* - out property <bool> has-hover : has hover or not
-* - in property <image> icon : icon source
-* - in property <Themes> theme : Surrealism theme
-* - in-out property <brush> colorize : icon color 
+* - in property <Themes> theme : surrealism theme;
+* - in property <image> source : icon source;
+* - in-out property <brush> colorize : icon color;
+* - in property <ImageFit> image-fit : origin Image.image-fit;
+* - in property <ImageRendering> image-rendering : origin Image.image-rendering;
+* - in-out property <RotationProps> rotation : origin Image.rotation props;
 * ## callbacks: 
 * - callback clicked : run if you click the icon
 * ============================================
 */
 import {ROOT_STYLES,DefaultSIconProps} from "../../themes/index.slint";
-import {Themes} from "../../use/index.slint";
+import {Themes,RotationProps} from "../../use/index.slint";
 
 export component Icon{
-  //params
-  out property <bool> has-hover<=>toucharea.has-hover;
-  in property <image> source : DefaultSIconProps.source;
+  //image props
   in property <Themes> theme : DefaultSIconProps.theme;
+  in property <image> source : DefaultSIconProps.source;
   in-out property <brush> colorize : DefaultSIconProps.colorize;
+  in property <ImageFit> image-fit : DefaultSIconProps.image-fit;
+  in property <ImageRendering> image-rendering : DefaultSIconProps.image-rendering;
+  in-out property <RotationProps> rotation : DefaultSIconProps.rotation;
   // get icon src from for iter item
   callback clicked;
-   //default icon size
+  //default icon size
   padding: DefaultSIconProps.padding;
   height: DefaultSIconProps.height;
   width: DefaultSIconProps.width;
@@ -95,19 +99,16 @@ export component Icon{
         }
       }
     }
-   
   ]
-  toucharea:=TouchArea{
-    mouse-cursor: pointer;
-    clicked => {
-      root.clicked()
-    }
-    // for iter to match then get icon source
-    img:=Image {
-      source: root.source;
-      height: root.height;
-      width: root.width;
-      colorize: root.colorize;
+  TouchArea {
+    inner:=Image{
+      source : root.source;
+      colorize : root.colorize;
+      image-fit : root.image-fit;
+      image-rendering : root.image-rendering;
+      rotation-angle: root.rotation.rotation-angle;
+      rotation-origin-x: root.rotation.rotation-origin-x;
+      rotation-origin-y: root.rotation.rotation-origin-y;
     }
   }
 }
