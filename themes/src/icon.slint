@@ -1,8 +1,6 @@
 import {Themes,RotationProps} from "../../use/index.slint";
 import {GlobalProps} from "./index.slint";
 
-
-
 export global DefaultSIconProps {
   in-out property <Themes> theme : GlobalProps.theme;
   in-out property <length> height : GlobalProps.standard-icon-size;
@@ -18,4 +16,8 @@ export global DefaultSIconProps {
     rotation-origin-x : 0,
     rotation-origin-y: 0,
   };
+  in-out property <int> source-clip-x : 0;
+  in-out property <int> source-clip-y : 0;
+  in-out property <int> source-clip-height : 0;
+  in-out property <int> source-clip-width : 0;
 }

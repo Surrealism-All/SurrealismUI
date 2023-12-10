@@ -1,18 +1,21 @@
-import {Themes} from "../use/src/theme.slint";
-import {ThemePadding,PaddingType,PaddingProps} from "../use/src/padding.slint";
-import {FontProps, TextAlignmentProps, TextActionProps} from "../use/src/text.slint";
+import { Themes } from "../use/src/theme.slint";
+import { ThemePadding,PaddingType,PaddingProps } from "../use/src/padding.slint";
+import { FontProps, TextAlignmentProps, TextActionProps } from "../use/src/text.slint";
 import { BorderType,BorderProps,ThemeBorder } from "../use/src/border.slint";
 import { ShadowType } from "../use/src/shadow.slint";
-import {ThemeColor,ColorLevel,ColorProps} from "../use/src/color.slint";
+import { ThemeColor,ColorLevel,ColorProps } from "../use/src/color.slint";
 //surrealism-component-props
 import {DefaultSTextProps} from "./src/text.slint";
 import {DefaultSCardProps} from "./src/card.slint";
 import {DefaultSTagProps} from "./src/tag.slint";
 import {DefaultSButtonProps} from "./src/button.slint";
 import {DefaultSIconProps} from "./src/icon.slint";
+import {DefaultSLinkProps} from "./src/link.slint";
+import { DefaultSPersonaProps} from "./src/persona.slint";
 import {DefaultSHeaderProps,SHeaderNode} from "./src/header.slint";
 import {GlobalProps} from "./src/index.slint";
 import {ROOT-STYLES} from "./src/theme.slint";
+import { ComponentSchema } from "./src/schema.slint";
 
 export { 
   ROOT-STYLES,
@@ -22,6 +25,9 @@ export {
   DefaultSHeaderProps,
   DefaultSButtonProps,
   DefaultSIconProps,
+  DefaultSLinkProps,
+  DefaultSPersonaProps,
   SHeaderNode,
-  GlobalProps
+  GlobalProps,
+  ComponentSchema
 }

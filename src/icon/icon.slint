@@ -29,12 +29,17 @@ export component Icon{
   in property <ImageFit> image-fit : DefaultSIconProps.image-fit;
   in property <ImageRendering> image-rendering : DefaultSIconProps.image-rendering;
   in-out property <RotationProps> rotation : DefaultSIconProps.rotation;
+  in property <int> source-clip-x : DefaultSIconProps.source-clip-x;
+  in property <int> source-clip-y : DefaultSIconProps.source-clip-y;
+  in property <int> source-clip-height : DefaultSIconProps.source-clip-height;
+  in property <int> source-clip-width : DefaultSIconProps.source-clip-width;
   // get icon src from for iter item
   callback clicked;
   //default icon size
   padding: DefaultSIconProps.padding;
   height: DefaultSIconProps.height;
   width: DefaultSIconProps.width;
+  
   states [
     light when theme == Themes.Light: {
       colorize :ROOT-STYLES.sur-theme-colors.light.font;
@@ -109,6 +114,12 @@ export component Icon{
       rotation-angle: root.rotation.rotation-angle;
       rotation-origin-x: root.rotation.rotation-origin-x;
       rotation-origin-y: root.rotation.rotation-origin-y;
+      source-clip-height: root.source-clip-height;
+      source-clip-width: root.source-clip-width;
+      source-clip-x: root.source-clip-x;
+      source-clip-y: root.source-clip-y;
+      height: root.height;
+      width: root.width;
     }
   }
 }

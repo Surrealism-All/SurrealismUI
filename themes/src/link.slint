@@ -1,0 +1,16 @@
+import { Themes,PaddingType,ShadowType,BorderType,UseIcons } from "../../use/index.slint";
+import { GlobalProps } from "./index.slint";
+import {ROOT-STYLES} from "./theme.slint";
+
+export global DefaultSLinkProps {
+  in-out property <image> icon : UseIcons.icons.Share;
+  in-out property <bool> funny :  false;
+  in-out property <bool> underline : true;
+  in-out property <MouseCursor> mouse-cursor : pointer;
+  in-out property <Themes> theme : GlobalProps.theme;
+  in-out property <length> font-size : GlobalProps.font.font-size;
+  in-out property <string> text:"";
+  in-out property <int> font-weight : 500;
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+}

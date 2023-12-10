@@ -1,24 +1,42 @@
 import {SPersona} from "../../index.slint";
-import {Themes} from "../../use/index.slint";
+import {Themes,UseIcons} from "../../use/index.slint";
+import { ComponentSchema,DefaultSButtonProps } from "../../themes/index.slint";
 
 component TestCollection inherits Window {
-  height: 700px;
-  width: 400px;
+  height: 500px;
+  width: 300px;
   
   SPersona {
-    y: 10px;
-  }
-  SPersona {
-    y: 350px;
-    btn-theme:Dark;
-    theme:Themes.Dark;
-    name-theme:Themes.Dark;
-    des-theme:Themes.Light;
-    avatar : @image-url("../../README/imgs/logo.png");
-    avatar-height:160px;
-    card-height: 310px;
-    clicked=>{
-      debug("view page!")
+    avatar: @image-url("../../README/imgs/logo.png");
+    avatar-height: 180px;
+    name: "SurrealismUI";
+    name-font-italic: true;
+    name-font-weight: 900;
+    des: @tr("A third-party UI library using Slint, I think it will give you an extraordinary experience");
+    des-font-size: 14px;
+    des-theme: Primary;
+    btns: [
+      ComponentSchema.button,
+      {
+        font-weight :700,
+        font-size : DefaultSButtonProps.font-size,
+        color : DefaultSButtonProps.color,
+        font-italic : DefaultSButtonProps.font-italic,
+        font-family : DefaultSButtonProps.font-family,
+        theme : Themes.Primary,
+        padding-type : DefaultSButtonProps.padding-type,
+        shadow-type : DefaultSButtonProps.shadow-type,
+        border-type : DefaultSButtonProps.border-type,
+        icon :  UseIcons.icons.Help,
+        show-icon : true,
+        text : "Addition",
+        letter-spacing : DefaultSButtonProps.letter-spacing,
+        clip :DefaultSButtonProps.clip,
+        round : true
+      }
+    ];
+    clicked(e) => {
+      debug(e);
     }
   }
 }

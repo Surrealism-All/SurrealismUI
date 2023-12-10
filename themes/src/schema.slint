@@ -1,0 +1,122 @@
+import { DefaultSTextProps } from "./text.slint";
+import { DefaultSButtonProps } from "./button.slint";
+import { DefaultSPersonaProps } from "./persona.slint";
+import { DefaultSLinkProps } from "./link.slint";
+import { DefaultSCardProps } from "./card.slint";
+import { DefaultSIconProps } from "./icon.slint";
+import { DefaultSTagProps } from "./tag.slint";
+import { 
+  SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
+  STagProps
+} from "../../use/index.slint";
+
+export global ComponentSchema {
+  //component props 
+  in-out property <SCardProps> card : {
+    font-weight : DefaultSCardProps.font-weight,
+    font-size: DefaultSCardProps.font-size,
+    color : DefaultSCardProps.color,
+    font-italic : DefaultSCardProps.font-italic,
+    font-family : DefaultSCardProps.font-family,
+    //theme
+    theme : DefaultSCardProps.theme,
+    //hight-width
+    card-height : DefaultSCardProps.card-height,
+    card-width : DefaultSCardProps.card-width,
+    padding-type: DefaultSCardProps.padding-type,
+    shadow-type: DefaultSCardProps.shadow-type,
+    border-type : DefaultSCardProps.border-type,
+    clip : DefaultSCardProps.clip,
+  };
+  in-out property <SButtonProps> button : {
+    font-weight : DefaultSButtonProps.font-weight,
+    font-size : DefaultSButtonProps.font-size,
+    color : DefaultSButtonProps.color,
+    font-italic : DefaultSButtonProps.font-italic,
+    font-family : DefaultSButtonProps.font-family,
+    theme : DefaultSButtonProps.theme,
+    padding-type : DefaultSButtonProps.padding-type,
+    shadow-type : DefaultSButtonProps.shadow-type,
+    border-type : DefaultSButtonProps.border-type,
+    icon : DefaultSButtonProps.icon,
+    show-icon : DefaultSButtonProps.show-icon,
+    text : DefaultSButtonProps.text,
+    letter-spacing : DefaultSButtonProps.letter-spacing,
+    clip :DefaultSButtonProps.clip,
+    round : DefaultSButtonProps.round
+  };
+  in-out property <STextProps> text : {
+    font-family : DefaultSTextProps.font-family,
+    font-weight : DefaultSTextProps.font-weight,
+    font-size : DefaultSTextProps.font-size,
+    color : DefaultSTextProps.color,
+    font-italic : DefaultSTextProps.font-italic,
+    theme : DefaultSTextProps.theme,
+    text-action : DefaultSTextProps.text-action,
+    text-alignment : DefaultSTextProps.text-alignment
+  };
+  in-out property <SIconProps> icon : {
+    theme : DefaultSIconProps.theme,
+    height : DefaultSIconProps.height,
+    width : DefaultSIconProps.width,
+    padding : DefaultSIconProps.padding,
+    //image props
+    source : DefaultSIconProps.source,
+    colorize : DefaultSIconProps.colorize,
+    image-fit : DefaultSIconProps.image-fit,
+    image-rendering : DefaultSIconProps.image-rendering,
+    rotation : DefaultSIconProps.rotation,
+    source-clip-x : DefaultSIconProps.source-clip-x,
+    source-clip-y : DefaultSIconProps.source-clip-y,
+    source-clip-height : DefaultSIconProps.source-clip-height,
+    source-clip-width : DefaultSIconProps.source-clip-width
+  };
+  in-out property <SLinkProps> link : {
+    icon : DefaultSLinkProps.icon,
+    funny :  DefaultSLinkProps.funny,
+    underline : DefaultSLinkProps.underline,
+    mouse-cursor : DefaultSLinkProps.mouse-cursor,
+    theme : DefaultSLinkProps.theme,
+    font-size : DefaultSLinkProps.font-size,
+    text: DefaultSLinkProps.text,
+    font-weight : DefaultSLinkProps.font-weight,
+    font-family : DefaultSLinkProps.font-family,
+    font-italic : DefaultSLinkProps.font-italic,
+  };
+  in-out property <STagProps> tag : {
+    text : DefaultSTagProps.text,
+    font-size : DefaultSTagProps.font-size,
+    font-weight : DefaultSTagProps.font-weight,
+    font-family : DefaultSTagProps.font-family,
+    font-italic : DefaultSTagProps.font-italic,
+    theme : DefaultSTagProps.theme,
+    padding-type : DefaultSTagProps.padding-type,
+    border-type : DefaultSTagProps.border-type,
+    shadow-type : DefaultSTagProps.shadow-type
+  };
+  in-out property <SPersonaProps> persona : {
+    btns : DefaultSPersonaProps.btns,
+    //avatar
+    avatar : DefaultSPersonaProps.avatar,
+    avatar-height: DefaultSPersonaProps.avatar-height,
+    avatar-theme : DefaultSPersonaProps.avatar-theme,
+    card-width : DefaultSPersonaProps.card-width,
+    spacing : DefaultSPersonaProps.spacing,
+    //name
+    name : DefaultSPersonaProps.name,
+    name-height: DefaultSPersonaProps.name-height,
+    name-font-size: DefaultSPersonaProps.name-font-size,
+    name-font-weight : DefaultSPersonaProps.name-font-weight,
+    name-theme: DefaultSPersonaProps.name-theme,
+    name-font-family: DefaultSPersonaProps.name-font-family,
+    name-font-italic: DefaultSPersonaProps.name-font-italic,
+    //des
+    des : DefaultSPersonaProps.des,
+    des-height: DefaultSPersonaProps.des-height,
+    des-font-size: DefaultSPersonaProps.des-font-size,
+    des-font-weight : DefaultSPersonaProps.des-font-weight,
+    des-theme: DefaultSPersonaProps.des-theme,
+    des-font-family: DefaultSPersonaProps.des-font-family,
+    des-font-italic: DefaultSPersonaProps.des-font-italic,
+  };
+}

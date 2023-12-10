@@ -1,3 +1,5 @@
+import { Themes } from "./theme.slint";
+
 /**文字类型属性 */
 struct FontProps {
   font-family : string,
@@ -20,4 +22,15 @@ struct TextActionProps {
   letter-spacing : length,
 }
 
-export { FontProps, TextAlignmentProps, TextActionProps}
+struct STextProps {
+  font-family : string,
+  font-weight : int,
+  font-size : length,
+  color : brush,
+  font-italic : bool,
+  theme : Themes,
+  text-action : TextActionProps,
+  text-alignment : TextAlignmentProps
+}
+
+export { FontProps, TextAlignmentProps, TextActionProps,STextProps }

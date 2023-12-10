@@ -25,21 +25,23 @@
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
 import { SIcon } from "../icon/index.slint";
-import { ROOT-STYLES } from "../../themes/index.slint";
+import { ROOT-STYLES,DefaultSLinkProps } from "../../themes/index.slint";
 import { Themes,ShadowType,ColorLevel,UseSurrealismFn,UseIcons } from "../../use/index.slint";
 
 export component Link {
-  callback clicked(string);
-  in property <image> icon : UseIcons.icons.Share;
-  in property <bool> funny : false;
-  in property <bool> underline : true;
+  in property <image> icon : DefaultSLinkProps.icon;
+  in property <bool> funny : DefaultSLinkProps.funny;
+  in property <bool> underline : DefaultSLinkProps.underline;
   out property <bool> has-hover <=> touch-area.has-hover;
-  in property <MouseCursor> mouse-cursor;
-  in property <Themes> theme : Light;
-  in property <length> font-size : ROOT-STYLES.sur-font.font-size;
-  in-out property <string> text<=>inner-text.text;
-  in property <int> font-weight:500;
+  in property <MouseCursor> mouse-cursor : DefaultSLinkProps.mouse-cursor;
+  in property <Themes> theme : DefaultSLinkProps.theme;
+  in property <length> font-size : DefaultSLinkProps.font-size;
+  in-out property <string> text : DefaultSLinkProps.text;
+  in property <int> font-weight : DefaultSLinkProps.font-weight;
+  in property <bool> font-italic : DefaultSLinkProps.font-italic;
+  in property <string> font-family : DefaultSLinkProps.font-family;
   private property <brush> text-color;
+  callback clicked(string);
   states [
     hover when touch-area.has-hover: {
       inner-text.color : UseSurrealismFn.deeper(root.theme,UseSurrealismFn.get-color(root.theme,ColorLevel.Font));
@@ -66,8 +68,11 @@ export component Link {
     HorizontalLayout {
       inner-text:=SText{
         theme: root.theme;
+        text: root.text;
         font-size: root.font-size;
         font-weight: root.font-weight;
+        font-family: root.font-family;
+        font-italic: root.font-italic;
       }
       Rectangle {
         height: link-icon.width;

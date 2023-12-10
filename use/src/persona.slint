@@ -1,0 +1,28 @@
+import { SButtonProps } from "./button.slint";
+import { Themes } from "./theme.slint";
+
+export struct SPersonaProps {
+  btns : [SButtonProps],
+  //avatar
+  avatar : image,
+  avatar-height: length,
+  avatar-theme : Themes,
+  card-width : length,
+  spacing : length,
+  //name
+  name : string,
+  name-height: length,
+  name-font-size: length,
+  name-font-weight : int,
+  name-theme: Themes,
+  name-font-family: string,
+  name-font-italic: bool,
+  //des
+  des : string,
+  des-height: length,
+  des-font-size: length,
+  des-font-weight : int,
+  des-theme: Themes,
+  des-font-family: string,
+  des-font-italic: bool,
+}

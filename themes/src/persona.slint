@@ -1,0 +1,46 @@
+
+import { GlobalProps } from "./index.slint";
+import { Themes,SButtonProps } from "../../use/index.slint";
+import { DefaultSButtonProps } from "./button.slint";
+
+export global DefaultSPersonaProps {
+  in-out property <[SButtonProps]> btns : [
+    {
+      font-weight : DefaultSButtonProps.font-weight,
+      font-size : DefaultSButtonProps.font-size,
+      font-italic : DefaultSButtonProps.font-italic,
+      font-family : DefaultSButtonProps.font-family,
+      theme : DefaultSButtonProps.theme,
+      padding-type : DefaultSButtonProps.padding-type,
+      shadow-type : DefaultSButtonProps.shadow-type,
+      border-type : DefaultSButtonProps.border-type,
+      icon : DefaultSButtonProps.icon,
+      show-icon : DefaultSButtonProps.show-icon,
+      text : "Click!",
+      letter-spacing : DefaultSButtonProps.letter-spacing,
+      clip : DefaultSButtonProps.clip,
+      round : DefaultSButtonProps.round
+    }
+  ];
+  in-out property <image> avatar : @image-url("");
+  in-out property <length> avatar-height:130px;
+  in-out property <Themes> avatar-theme : GlobalProps.theme;
+  in-out property <length> card-width : 200px;
+  in-out property <length> spacing : 8px;
+  //name
+  in-out property <string> name : "SYF20020816";
+  in-out property <length> name-height: GlobalProps.font.font-size * 3;
+  in-out property <length> name-font-size: GlobalProps.font.font-size + 2px;
+  in-out property <int> name-font-weight : 700;
+  in-out property <Themes> name-theme: GlobalProps.theme;
+  in-out property <string> name-font-family : GlobalProps.font.font-family;
+  in-out property <bool> name-font-italic : GlobalProps.font.font-italic;
+  //des
+  in-out property <string> des : @tr("A Rust | Vue Developer\nEmail:\nsyf20020816@outlook.com");
+  in-out property <length> des-height: des-font-size * 1.5 * 3;
+  in-out property <length> des-font-size: GlobalProps.font.font-size - 2px;
+  in-out property <int> des-font-weight : GlobalProps.font.font-weight;
+  in-out property <Themes> des-theme: GlobalProps.theme;
+  in-out property <string> des-font-family : GlobalProps.font.font-family;
+  in-out property <bool> des-font-italic : GlobalProps.font.font-italic;
+}

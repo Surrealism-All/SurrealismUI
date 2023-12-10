@@ -1,3 +1,6 @@
+import { Themes } from "./theme.slint";
+import { RotationProps } from "./rotation.slint";
+
 struct Icons {
   Null:image,
   Loading:image,
@@ -57,6 +60,21 @@ global UseIcons {
     };
 }
 
+struct SIconProps {
+  theme : Themes,
+  height : length,
+  width : length,
+  padding : length,
+  //image props
+  source : image,
+  colorize : brush,
+  image-fit : ImageFit,
+  image-rendering : ImageRendering,
+  rotation : RotationProps,
+  source-clip-x : int,
+  source-clip-y : int,
+  source-clip-height : int,
+  source-clip-width : int
+}
 
-
-export { Icons,IconProps,UseIcons }
+export { Icons,IconProps,UseIcons,SIconProps }

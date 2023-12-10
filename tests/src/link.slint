@@ -16,10 +16,14 @@ component TestWindow inherits Window {
     funny:true;
     theme: Warning;
     text: "funny for link!";
+    font-italic : true;
+    font-weight: 200;
+    font-family : "Verdana";
   }
   SLink {
     y: 220px;
     theme: Primary;
+   
     icon: @image-url("../../icons/share-one.svg");
     text: "share one";
   }
@@ -30,8 +34,9 @@ component TestWindow inherits Window {
     icon : @image-url("../../icons/share-sys.svg");
     font-size: 24px;
     text: "share sys";
-    clicked=>{
+    clicked(link-text)=>{
       debug("share sys!")
     }
   }
+  
 }
