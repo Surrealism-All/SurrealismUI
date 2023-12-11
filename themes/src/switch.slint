@@ -1,0 +1,23 @@
+import {Themes,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+import { ROOT-STYLES } from "./theme.slint";
+
+export global DefaultSSwitchProps {
+  //container
+  in-out property <length> card-height : 6px;
+  in-out property <length> card-width : 24px;
+  in-out property <PaddingType> padding-type: PaddingType.Normal;
+  in-out property <ShadowType> shadow-type: ShadowType.Low1;
+  in-out property <BorderType> border-type : BorderType.Small;
+  in-out property <bool> active : false;
+  in-out property <Themes> theme:GlobalProps.theme;
+  //switch-circle
+  in-out property <length> switch-height : 6px + ROOT-STYLES.sur-padding.normal.padding-same;
+  in-out property <length> switch-width : 6px + ROOT-STYLES.sur-padding.normal.padding-same;
+  in-out property <PaddingType> switch-padding-type: None;
+  in-out property <ShadowType> switch-shadow-type: ShadowType.Low1;
+  in-out property <BorderType> switch-border-type : Normal;
+  in-out property <brush> switch-background-color : ROOT-STYLES.sur-theme-colors.dark.deepest;
+  in-out property <brush> switch-border-color : ROOT-STYLES.sur-theme-colors.dark.deepest;
+  in-out property <color> switch-drop-shadow-color : ROOT-STYLES.sur-theme-colors.dark.weakest;
+}

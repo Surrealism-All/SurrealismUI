@@ -17,30 +17,36 @@
 * ============================================
 */
 import { SCard } from "../card/index.slint";
-import { ROOT-STYLES } from "../../themes/index.slint";
-import { Themes } from "../../use/index.slint";
+import { ROOT-STYLES,DefaultSSwitchProps } from "../../themes/index.slint";
+import { Themes,PaddingType,BorderType,ShadowType } from "../../use/index.slint";
 
-export component Switch inherits SCard { 
-  card-height: 6px;
-  card-width: 24px;
-  border-type: None;
-  border-radius: root.height / 2;
-  padding-type: Small;
-  in-out property <bool> active :false;
+export component Switch inherits SCard{
+  in-out property <bool> active : DefaultSSwitchProps.active;
   in property <brush> switch-background-color <=> switch-circle.background;
-  in property <brush> switch-border-color<=>switch-circle.border-color;
-  in property <color> switch-drop-shadow-color<=> switch-circle.drop-shadow-color;
+  in property <brush> switch-border-color <=> switch-circle.border-color;
+  in property <color> switch-drop-shadow-color <=> switch-circle.drop-shadow-color;
+  in property <length> switch-height : DefaultSSwitchProps.switch-height;
+  in property <length> switch-width : DefaultSSwitchProps.switch-width;
+  in property <PaddingType> switch-padding-type: DefaultSSwitchProps.switch-padding-type;
+  in property <ShadowType> switch-shadow-type: DefaultSSwitchProps.switch-shadow-type;
+  in property <BorderType> switch-border-type : DefaultSSwitchProps.switch-border-type;
   callback clicked(bool);
-
+  theme:DefaultSSwitchProps.theme;
+  card-height: DefaultSSwitchProps.card-height;
+  card-width: DefaultSSwitchProps.card-width;
+  border-type: DefaultSSwitchProps.border-type;
+  border-radius: self.height / 2;
+  padding-type: DefaultSSwitchProps.padding-type;
   switch-circle:=SCard{
     x: 2px;
     theme: root.theme;
-    card-height: 6px + ROOT-STYLES.sur-padding.normal.padding-same;
-    card-width: 6px + ROOT-STYLES.sur-padding.normal.padding-same;
+    card-height:root.switch-height;
+    card-width: root.switch-width;
     // border: None;
     border-radius: self.height / 2;
-    padding-type: None;
-    
+    padding-type: root.switch-padding-type;
+    border-type: root.switch-border-type;
+    shadow-type: root.switch-shadow-type;
     states [
       light when self.theme == Themes.Light: {
         switch-circle.background : ROOT-STYLES.sur-theme-colors.light.deepest;
@@ -81,7 +87,6 @@ export component Switch inherits SCard {
     ]
     TouchArea {
       mouse-cursor: pointer;
-      
       clicked => {
         root.active = !root.active;
         root.clicked(root.active);
@@ -93,4 +98,4 @@ export component Switch inherits SCard {
       }
     }
   }
-} 
+}

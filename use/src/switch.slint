@@ -1,0 +1,25 @@
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+import { ShadowType } from "./shadow.slint";
+import { BorderType } from "./border.slint";
+
+
+export struct SSwitchProps {
+  //container
+  card-height : length,
+  card-width : length,
+  padding-type: PaddingType,
+  shadow-type: ShadowType,
+  border-type : BorderType,
+  active : bool,
+  theme: Themes,
+  //switch-circle
+  switch-height : length,
+  switch-width : length,
+  switch-padding-type: PaddingType,
+  switch-shadow-type: ShadowType,
+  switch-border-type : BorderType,
+  switch-background-color : brush,
+  switch-border-color : brush,
+  switch-drop-shadow-color : color,
+}
