@@ -1,5 +1,5 @@
 import {SButton, SAlert} from "../../index.slint";
-import {ResultType,Themes} from "../../use/index.slint";
+import {ResultType,Themes,UseIcons} from "../../use/index.slint";
 
 component TestAlert inherits Window {
   height: 400px;
@@ -7,7 +7,6 @@ component TestAlert inherits Window {
   background: #535353;
  
   SButton {
-    
     text: "show";
     clicked => {
       p.open();
@@ -18,7 +17,9 @@ component TestAlert inherits Window {
  
 
   p:=SAlert { 
+    
+    icon :UseIcons.icons.Attention;
     res-type:ResultType.Success ;
-    content:"this is a success message!";
+    text:"this is a success long message .... long long long!";
   }
 }

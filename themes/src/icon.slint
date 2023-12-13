@@ -2,6 +2,7 @@ import {Themes,RotationProps} from "../../use/index.slint";
 import {GlobalProps} from "./index.slint";
 
 export global DefaultSIconProps {
+  in-out property <MouseCursor> mouse-cursor : MouseCursor.pointer;
   in-out property <Themes> theme : GlobalProps.theme;
   in-out property <length> height : GlobalProps.standard-icon-size;
   in-out property <length> width : GlobalProps.standard-icon-size;

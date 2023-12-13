@@ -9,7 +9,7 @@
 * SAlert is used to display important prompt information on the page
 * ## properties
 * - private property <Themes> theme : Surrealism theme ⛔
-* - in-out property <string> content :  alert content you want to display
+* - in-out property <string> text :  alert text you want to display
 * - in-out property <bool> is-show : show the alert or not
 * - in property <ResultType> res-type : result type👍
 * ## functions
@@ -21,7 +21,7 @@
 import { SCard } from "../card/index.slint";
 import { SText } from "../text/index.slint";
 import { SIcon } from "../icon/index.slint";
-
+import { DefaultSAlertProps } from "../../themes/index.slint";
 import { Themes,ResultType,UseIcons } from "../../use/index.slint";
 export component Alert inherits Window{
   height: 100%;
@@ -36,73 +36,82 @@ export component Alert inherits Window{
   visible: is-show;
   z: 1111;
   private property <Themes> theme : Success;
-  in-out property <string> content : "this is a alert message!";
+  in-out property <string> text : "this is a alert message!";
   in-out property <bool> is-show : false;
   in property <ResultType> res-type:ResultType.Success;
+  in property <image> close-icon : UseIcons.icons.Close-one;
+  in property <int> font-weight : DefaultSAlertProps.font-weight;
+  in property <length> font-size: DefaultSAlertProps.font-size;
+  in property <brush> font-color : DefaultSAlertProps.color;
+  in property <bool> font-italic : DefaultSAlertProps.font-italic;
+  in property <string> font-family : DefaultSAlertProps.font-family;
   public function open() {
       root.is-show = true;
   }
   public function close() {
     root.is-show = false;
   }
-  init => {
-    if(res-type==ResultType.Primary){
-      root.theme = Themes.Primary;
-      root.icon = UseIcons.icons.Smiling-face;
-      root.content = "This is a primary message!";
-    }else if (res-type==ResultType.Success){
-      root.theme = Themes.Success;
-      root.content = "This is a success message!";
-      root.icon = UseIcons.icons.Success;
-    }else if (res-type==ResultType.Info){
-      root.theme = Themes.Info;
-      root.icon = UseIcons.icons.Info;
-      root.content = "This is a info message!";
-    }else if (res-type==ResultType.Error){
-      root.theme = Themes.Error;
-      root.icon = UseIcons.icons.Close-one;
-      root.content = "This is a error message!"
-    }else if (res-type==ResultType.Warning){
-      root.theme = Themes.Warning;
-      root.icon = UseIcons.icons.Attention;
-      root.content = "This is a warning message!"
-    }else{
-      root.theme = Themes.Light;
-      root.icon = UseIcons.icons.Help;
-      root.content = "This is a help message!"
+  
+  states [
+    primary when res-type==ResultType.Primary: {
+      root.theme : Themes.Primary;
+      root.icon : UseIcons.icons.Smiling-face;
     }
-  }
+    success when res-type==ResultType.Success: {
+      root.theme : Themes.Success;
+      root.icon : UseIcons.icons.Success;
+    }
+    info when res-type==ResultType.Info: {
+      root.theme : Themes.Info;
+      root.icon : UseIcons.icons.Info;
+    }
+    warning when res-type==ResultType.Warning: {
+      root.theme : Themes.Warning;
+      root.icon : UseIcons.icons.Attention;
+    }
+    error when res-type==ResultType.Error: {
+      root.theme : Themes.Error;
+      root.icon : UseIcons.icons.Close-one;
+    }
+    help when res-type==ResultType.Help: {
+      root.theme : Themes.Light;
+      root.icon : UseIcons.icons.Help;
+    }
+  ]
   alert:=SCard { 
     y: 6px;
     clip: true;
-    card-width: parent.width * 0.86;
-    card-height: info.height;
+    card-width: parent.width * 0.8;
+    card-height: root.font-size * 1.5;
     theme: root.theme;
     layuot := HorizontalLayout {
-      alignment: LayoutAlignment.start;
-      icon-view:=Rectangle{
-        icon:=SIcon { 
-          theme: root.theme;
+      padding-left: 16px;
+      spacing: 16px;
+      padding-right: 16px;
+      // alignment: LayoutAlignment.space-between;
+      Rectangle {
+        width: type-icon.width;
+        type-icon:=SIcon {
           source: root.icon;
-          height: 18px;
-          width: 18px;
         }
+      }
+      SText {
+        theme: root.theme;
+        text: root.text;
+        font-family: root.font-family;
+        font-size: root.font-size;
+        font-italic: root.font-italic;
+        font-weight: root.font-weight;
+        color: root.font-color;
       }
       Rectangle {
-        width: info.width;
-        info:=SText {
-          theme: root.theme;
-          text: root.content;
-          width: layuot.width - 60px;
-          horizontal-alignment: left;
-        }
-      }
-      close-view:=Rectangle{
-        close:=SIcon{
-          source: UseIcons.icons.Close-one;
-          theme: root.theme;
+        width: close-icon.width;
+        close-icon:=SIcon {
+          source: root.close-icon;
+          height: root.font-size;
+          width: root.font-size;
           clicked => {
-            root.close();
+            root.close()
           }
         }
       }

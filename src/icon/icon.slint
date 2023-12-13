@@ -23,6 +23,7 @@ import {Themes,RotationProps} from "../../use/index.slint";
 
 export component Icon{
   //image props
+  in property <MouseCursor> mouse-cursor : DefaultSIconProps.mouse-cursor;
   in property <Themes> theme : DefaultSIconProps.theme;
   in property <image> source : DefaultSIconProps.source;
   in-out property <brush> colorize : DefaultSIconProps.colorize;
@@ -106,6 +107,7 @@ export component Icon{
     }
   ]
   TouchArea {
+    mouse-cursor: root.mouse-cursor;
     inner:=Image{
       source : root.source;
       colorize : root.colorize;
@@ -120,6 +122,9 @@ export component Icon{
       source-clip-y: root.source-clip-y;
       height: root.height;
       width: root.width;
+    }
+    clicked => {
+      root.clicked();
     }
   }
 }
