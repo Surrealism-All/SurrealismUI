@@ -9,7 +9,7 @@ component TestAlert inherits Window {
   SButton {
     text: "show";
     clicked => {
-      p.open();
+      p.error("success->error!!!");
       
       debug("sds1")
     }
@@ -17,9 +17,7 @@ component TestAlert inherits Window {
  
 
   p:=SAlert { 
-    
-    icon :UseIcons.icons.Attention;
-    res-type:ResultType.Success ;
-    text:"this is a success long message .... long long long!";
+    result-type:ResultType.Success ;
+    text:"this is a success message!";
   }
 }

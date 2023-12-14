@@ -11,7 +11,7 @@
 * - private property <Themes> theme : Surrealism theme ⛔
 * - in-out property <string> text :  alert text you want to display
 * - in-out property <bool> is-show : show the alert or not
-* - in property <ResultType> res-type : result type👍
+* - in property <ResultType> result-type : result type👍
 * ## functions
 * - public function open() : open alert
 * - public function close() : close alert
@@ -35,45 +35,79 @@ export component Alert inherits Window{
   opacity: 1;
   visible: is-show;
   z: 1111;
-  private property <Themes> theme : Success;
-  in-out property <string> text : "this is a alert message!";
-  in-out property <bool> is-show : false;
-  in property <ResultType> res-type:ResultType.Success;
-  in property <image> close-icon : UseIcons.icons.Close-one;
   in property <int> font-weight : DefaultSAlertProps.font-weight;
   in property <length> font-size: DefaultSAlertProps.font-size;
   in property <brush> font-color : DefaultSAlertProps.color;
   in property <bool> font-italic : DefaultSAlertProps.font-italic;
   in property <string> font-family : DefaultSAlertProps.font-family;
+  in property <TextOverflow> overflow : DefaultSAlertProps.overflow;
+  in property <length> spacing : DefaultSAlertProps.spacing;
+  in-out property <string> text : DefaultSAlertProps.text;
+  in-out property <bool> is-show : DefaultSAlertProps.is-show;
+  in property <length> alert-height : DefaultSAlertProps.alert-height;
+  in-out property <ResultType> result-type: DefaultSAlertProps.result-type;
+  in property <image> close-icon : DefaultSAlertProps.close-icon;
+  in property <length> icon-size : DefaultSAlertProps.icon-size;
+  private property <Themes> theme : Success;
   public function open() {
       root.is-show = true;
   }
   public function close() {
     root.is-show = false;
   }
+  public function success(text:string) {
+    root.result-type = ResultType.Success;
+    root.text = text;
+    root.open(); 
+  }
+  public function warning(text:string) {
+    root.result-type = ResultType.Warning;
+    root.text = text;
+    root.open(); 
+  }
+  public function error(text:string) {
+    root.result-type = ResultType.Error;
+    root.text = text;
+    root.open(); 
+  }
+  public function info(text:string) {
+    root.result-type = ResultType.Info;
+    root.text = text;
+    root.open(); 
+  }
+  public function help(text:string) {
+    root.result-type = ResultType.Help;
+    root.text = text;
+    root.open(); 
+  }
+  public function primary(text:string) {
+    root.result-type = ResultType.Primary;
+    root.text = text;
+    root.open(); 
+  }
   
   states [
-    primary when res-type==ResultType.Primary: {
+    primary when result-type==ResultType.Primary: {
       root.theme : Themes.Primary;
       root.icon : UseIcons.icons.Smiling-face;
     }
-    success when res-type==ResultType.Success: {
+    success when result-type==ResultType.Success: {
       root.theme : Themes.Success;
       root.icon : UseIcons.icons.Success;
     }
-    info when res-type==ResultType.Info: {
+    info when result-type==ResultType.Info: {
       root.theme : Themes.Info;
       root.icon : UseIcons.icons.Info;
     }
-    warning when res-type==ResultType.Warning: {
+    warning when result-type==ResultType.Warning: {
       root.theme : Themes.Warning;
       root.icon : UseIcons.icons.Attention;
     }
-    error when res-type==ResultType.Error: {
+    error when result-type==ResultType.Error: {
       root.theme : Themes.Error;
       root.icon : UseIcons.icons.Close-one;
     }
-    help when res-type==ResultType.Help: {
+    help when result-type==ResultType.Help: {
       root.theme : Themes.Light;
       root.icon : UseIcons.icons.Help;
     }
@@ -82,20 +116,21 @@ export component Alert inherits Window{
     y: 6px;
     clip: true;
     card-width: parent.width * 0.8;
-    card-height: root.font-size * 1.5;
+    card-height: root.alert-height;
     theme: root.theme;
     layuot := HorizontalLayout {
-      padding-left: 16px;
-      spacing: 16px;
-      padding-right: 16px;
-      // alignment: LayoutAlignment.space-between;
+      padding-left: root.spacing;
+      spacing: root.spacing;
+      padding-right: root.spacing;
       Rectangle {
         width: type-icon.width;
         type-icon:=SIcon {
           source: root.icon;
+          height: root.icon-size;
+          width: root.icon-size;
         }
       }
-      SText {
+      content-text:=SText {
         theme: root.theme;
         text: root.text;
         font-family: root.font-family;
@@ -103,13 +138,14 @@ export component Alert inherits Window{
         font-italic: root.font-italic;
         font-weight: root.font-weight;
         color: root.font-color;
+        overflow: root.overflow;
       }
       Rectangle {
         width: close-icon.width;
         close-icon:=SIcon {
           source: root.close-icon;
-          height: root.font-size;
-          width: root.font-size;
+          height: root.icon-size;
+          width: root.icon-size;
           clicked => {
             root.close()
           }
