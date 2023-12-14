@@ -21,6 +21,10 @@ export global GlobalProps {
     overflow : TextOverflow.elide,
     letter-spacing : 0,
   };
+  in property <TextAlignmentProps> text-alignment : {
+    horizontal-alignment : TextHorizontalAlignment.left,
+    vertical-alignment : TextVerticalAlignment.center,
+  };
   in-out property <length> line-height : ROOT-STYLES.sur-font.font-size * 1.5;
   in-out property <length> standard-height : UseSurrealismFn.count-height(line-height,ROOT-STYLES.sur-padding.normal.padding-top);
   in-out property <length> standard-width : UseSurrealismFn.count-width(ROOT-STYLES.sur-font.font-size,ROOT-STYLES.sur-padding.normal.padding-left);

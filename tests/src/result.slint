@@ -1,6 +1,6 @@
 import {SResult} from "../../index.slint";
 import {Themes,ResultType} from "../../use/index.slint";
-
+import {DefaultSButtonProps} from "../../themes/index.slint";
 export component TestResult inherits Window {
   height: 500px;
   width: 800px;
@@ -11,27 +11,68 @@ export component TestResult inherits Window {
   SResult {
     x: 220px;
     y: 10px;
-    res-type:ResultType.Primary;
+    result-type:ResultType.Primary;
+    clicked(e) => {
+      //没有设置btns获取的是空SButtonProps
+      debug(e);
+    }
   }
   SResult {
     x: 220px;
     y: 260px;
-    res-type:ResultType.Info;
+    card-width: 300px;
+    text : "use button slot";
+    font-size: 18px;
+    result-type:ResultType.Info;
+    btns:[
+      {
+        font-weight : DefaultSButtonProps.font-weight,
+        font-size : DefaultSButtonProps.font-size,
+        font-italic : DefaultSButtonProps.font-italic,
+        font-family : DefaultSButtonProps.font-family,
+        theme : DefaultSButtonProps.theme,
+        padding-type : DefaultSButtonProps.padding-type,
+        shadow-type : DefaultSButtonProps.shadow-type,
+        border-type : DefaultSButtonProps.border-type,
+        icon : DefaultSButtonProps.icon,
+        show-icon : DefaultSButtonProps.show-icon,
+        text : "Click!",
+        letter-spacing : DefaultSButtonProps.letter-spacing,
+        clip : DefaultSButtonProps.clip,
+        round : DefaultSButtonProps.round
+      },
+      {
+        font-weight : DefaultSButtonProps.font-weight,
+        font-size : DefaultSButtonProps.font-size,
+        font-italic : DefaultSButtonProps.font-italic,
+        font-family : DefaultSButtonProps.font-family,
+        theme : DefaultSButtonProps.theme,
+        padding-type : DefaultSButtonProps.padding-type,
+        shadow-type : DefaultSButtonProps.shadow-type,
+        border-type : DefaultSButtonProps.border-type,
+        icon : DefaultSButtonProps.icon,
+        show-icon : DefaultSButtonProps.show-icon,
+        text : "Click!",
+        letter-spacing : DefaultSButtonProps.letter-spacing,
+        clip : DefaultSButtonProps.clip,
+        round : DefaultSButtonProps.round
+      }
+    ];
   }
   SResult {
     x: 10px;
     y: 260px;
-    res-type:ResultType.Warning;
+    result-type:ResultType.Warning;
   }
 
   SResult {
     x: 440px;
     y: 10px;
-    res-type:ResultType.Error;
+    result-type:ResultType.Error;
   }
   SResult {
-    x: 440px;
+    x: 580px;
     y: 260px;
-    res-type:ResultType.Help;
+    result-type:ResultType.Help;
   }
 }

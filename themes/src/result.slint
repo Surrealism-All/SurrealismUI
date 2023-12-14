@@ -1,0 +1,25 @@
+import { DefaultSButtonProps } from "./button.slint";
+import {GlobalProps} from "./index.slint";
+import {ROOT_STYLES} from "./theme.slint";
+import {ResultType,Themes,PaddingType,ShadowType,BorderType,UseIcons,SButtonProps} from "../../use/index.slint";
+
+export global DefaultSResultProps {
+  in-out property <length> card-height : 200px;
+  in-out property <length> card-width : 140px;
+  in-out property <length> icon-size : 48px;
+  in-out property <[SButtonProps]> btns : [];
+  in-out property <string> btn-text : "CLICK!";
+  in-out property <ResultType> result-type:ResultType.Success;
+  in-out property <string> text : "This is a success message!";
+  in-out property <PaddingType> padding-type: PaddingType.Normal;
+  in-out property <ShadowType> shadow-type: ShadowType.Low1;
+  in-out property <BorderType> border-type : BorderType.Normal;
+  in-out property <image> icon : UseIcons.icons.Success;
+  in-out property <Themes> theme : Success;
+  in-out property <int> font-weight : GlobalProps.font.font-weight;
+  in-out property <length> font-size: GlobalProps.font.font-size;
+  in-out property <brush> color : ROOT-STYLES.sur-theme-colors.success.font;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  
+}

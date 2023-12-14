@@ -29,8 +29,11 @@ struct STextProps {
   color : brush,
   font-italic : bool,
   theme : Themes,
-  text-action : TextActionProps,
-  text-alignment : TextAlignmentProps
+  wrap :TextWrap,
+  overflow : TextOverflow,
+  letter-spacing : length,
+  horizontal-alignment : TextHorizontalAlignment,
+  vertical-alignment : TextVerticalAlignment,
 }
 
 export { FontProps, TextAlignmentProps, TextActionProps,STextProps }

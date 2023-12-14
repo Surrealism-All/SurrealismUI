@@ -10,13 +10,9 @@ export global DefaultSTextProps {
   in property <bool> font-italic : GlobalProps.font.font-italic;
   //theme
   in property <Themes> theme : GlobalProps.theme;
-  in property <TextActionProps> text-action : {
-    wrap : TextWrap.word-wrap,
-    overflow : TextOverflow.elide,
-    letter-spacing : 0,
-  };
-  in property <TextAlignmentProps> text-alignment : {
-    horizontal-alignment : TextHorizontalAlignment.left,
-    vertical-alignment : TextVerticalAlignment.center,
-  };
+  in-out property <TextWrap> wrap :GlobalProps.text-action.wrap;
+  in-out property <TextOverflow> overflow : GlobalProps.text-action.overflow;
+  in-out property <length> letter-spacing : GlobalProps.text-action.letter-spacing;
+  in-out property <TextHorizontalAlignment> horizontal-alignment : GlobalProps.text-alignment.horizontal-alignment;
+  in-out property <TextVerticalAlignment> vertical-alignment : GlobalProps.text-alignment.vertical-alignment;
 }

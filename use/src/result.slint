@@ -1,3 +1,9 @@
+import { SButtonProps } from "./button.slint";
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+import { ShadowType } from "./shadow.slint";
+import { BorderType } from "./border.slint";
+
 /**结果类型枚举，使用在SResult中 */
 export enum ResultType{
   Primary,
@@ -6,4 +12,19 @@ export enum ResultType{
   Error,
   Warning,
   Help
+}
+
+export struct SResultProps {
+  card-height : length,
+  card-width : length,
+  icon-size : length,
+  btns : [SButtonProps],
+  btn-text : string,
+  result-type: ResultType,
+  text : string,
+  padding-type: PaddingType,
+  shadow-type: ShadowType,
+  border-type : BorderType,
+  icon : image,
+  theme : Themes,
 }

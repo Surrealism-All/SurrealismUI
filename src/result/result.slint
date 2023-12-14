@@ -9,8 +9,8 @@
 * SResult helps you easily build a quick prompt , you can build it in popup window
 * ## properties
 * - in property <length> icon-size: icon size
-* - in-out property <string> btn : the content of the button
-* - in-out property <string> content : content of the result
+* - in-out property <string> btn : the text of the button
+* - in-out property <string> text : text of the result
 * - in property <ResultType> res-type : Result type
 * - in-out property <Icons> icon: Icon of the result
 * ## functions
@@ -23,58 +23,73 @@ import {SCard} from "../card/index.slint";
 import {SIcon} from "../icon/index.slint";
 import {SButton} from "../button/index.slint";
 import {SText} from "../text/index.slint";
-import {ROOT_STYLES} from "../../themes/index.slint";
-import { Themes,ResultType,UseSurrealismFn,UseIcons } from "../../use/index.slint";
+import {ROOT_STYLES,DefaultSResultProps} from "../../themes/index.slint";
+import { Themes,ResultType,UseSurrealismFn,UseIcons,SButtonProps } from "../../use/index.slint";
 
 
 export component Result inherits SCard { 
-  card-height: 200px;
-  card-width: 140px;
-  in property <length> icon-size:48px;
-  in-out property <string> btn;
-  in-out property <string> content;
-  in property <ResultType> res-type:ResultType.Success;
-  in-out property <image> icon:UseIcons.icons.Success;
-  padding-type: Normal;
-  callback clicked();
-  init => {
-    self.card-padding = UseSurrealismFn.get-padding(self.padding-type);
-    self.padding-top = self.card-padding.padding-top;
-    self.padding-bottom = self.card-padding.padding-bottom;
-    self.padding-left = self.card-padding.padding-left;
-    self.padding-right = self.card-padding.padding-right;
-    if(res-type==ResultType.Primary){
-      self.theme = Themes.Primary;
-      self.btn = "PRIMARY";
-      self.icon = UseIcons.icons.Smiling-face;
-      self.content = "This is a primary message!";
-    }else if (res-type==ResultType.Success){
-      self.theme = Themes.Success;
-      self.btn = "SUCCESS";
-      self.content = "This is a success message!";
-      self.icon = UseIcons.icons.Success;
-    }else if (res-type==ResultType.Info){
-      self.theme = Themes.Info;
-      self.btn = "INFO";
-      self.icon = UseIcons.icons.Info;
-      self.content = "This is a info message!";
-    }else if (res-type==ResultType.Error){
-      self.theme = Themes.Error;
-      self.btn = "ERROR";
-      self.icon = UseIcons.icons.Close-one;
-      self.content = "This is a error message!"
-    }else if (res-type==ResultType.Warning){
-      self.theme = Themes.Warning;
-      self.btn = "WARNING";
-      self.icon = UseIcons.icons.Attention;
-      self.content = "This is a warning message!"
-    }else{
-      self.theme = Themes.Light;
-      self.btn = "HELP";
-      self.icon = UseIcons.icons.Help;
-      self.content = "This is a help message!"
+  in-out property <string> btn-text : DefaultSResultProps.btn-text;
+  in property <length> icon-size : DefaultSResultProps.icon-size;
+  in property <[SButtonProps]> btns : DefaultSResultProps.btns; 
+  in property <ResultType> result-type: DefaultSResultProps.result-type;
+  in-out property <string> text : DefaultSResultProps.text;
+  in-out property <image> icon : DefaultSResultProps.icon;
+  card-height: DefaultSResultProps.card-height;
+  card-width: DefaultSResultProps.card-width;
+  padding-type: DefaultSResultProps.padding-type;
+  shadow-type: DefaultSResultProps.shadow-type;
+  border-type : DefaultSResultProps.border-type;
+  theme: DefaultSResultProps.theme;
+  font-color: DefaultSResultProps.color;
+  font-family: DefaultSResultProps.font-family;
+  font-size: DefaultSResultProps.font-size;
+  font-italic: DefaultSResultProps.font-italic;
+  font-weight: DefaultSResultProps.font-weight;
+  callback clicked(SButtonProps);
+  states [
+    primary when result-type==ResultType.Primary: {
+      root.theme : Themes.Primary;
+      root.icon : UseIcons.icons.Smiling-face;
+      root.text : "This is a primary message!";
+      root.btn-text : "PRIMARY";
+      root.font-color : ROOT-STYLES.sur-theme-colors.primary.font;
     }
-  }
+    success when result-type==ResultType.Success: {
+      root.theme : Themes.Success;
+      root.text : "This is a success message!";
+      root.icon : UseIcons.icons.Success;
+      root.btn-text : "SUCCESS";
+      root.font-color : ROOT-STYLES.sur-theme-colors.success.font;
+    }
+    info when result-type==ResultType.Info: {
+      root.theme : Themes.Info;
+      root.icon : UseIcons.icons.Info;
+      root.text : "This is a info message!";
+      root.btn-text : "INFO";
+      root.font-color : ROOT-STYLES.sur-theme-colors.info.font;
+    }
+    warning when result-type==ResultType.Warning: {
+      root.theme : Themes.Warning;
+      root.icon : UseIcons.icons.Attention;
+      root.text : "This is a warning message!";
+      root.btn-text : "WARNING";
+      root.font-color : ROOT-STYLES.sur-theme-colors.warning.font;
+    }
+    error when result-type==ResultType.Error: {
+      root.theme : Themes.Error;
+      root.icon : UseIcons.icons.Close-one;
+      root.text : "This is a error message!";
+      root.btn-text : "ERROR";
+      root.font-color : ROOT-STYLES.sur-theme-colors.error.font;
+    }
+    help when result-type==ResultType.Help: {
+      root.theme : Themes.Light;
+      root.icon : UseIcons.icons.Help;
+      root.text : "This is a help message!";
+      root.btn-text : "HELP";
+      root.font-color : ROOT-STYLES.sur-theme-colors.light.font;
+    }
+  ]
   layout:=VerticalLayout {
     height: root.card-height;
     width: root.card-width;
@@ -87,23 +102,54 @@ export component Result inherits SCard {
         width: root.icon-size;
         theme: root.theme;
         source: root.icon;
-        
       }
     }
     SText { 
       theme: root.theme;
-      text: root.content;
+      text: root.text;
+      font-size: root.font-size;
+      color: root.font-color;
+      font-weight: root.font-weight;
+      font-italic: root.font-italic;
+      font-family: root.font-family;
       wrap: word-wrap;
-      
+      vertical-alignment: center;
+      horizontal-alignment: center;
     }
-    Rectangle {
-      height: button.height;
-      width: parent.width;
-      button:=SButton { 
-        theme: root.theme;
-        text: root.btn;
+    if root.btns.length!=0: btn-view:=HorizontalLayout{
+      padding-top: 8px;
+      padding-bottom: 8px;
+      alignment: center;
+      spacing: 8px;
+      for btn[index] in root.btns: SButton {
+        font-family: btn.font-family;
+        font-italic: btn.font-italic;
+        font-size: btn.font-size;
+        font-weight: btn.font-weight;
+        theme: btn.theme;
+        padding-type: btn.padding-type;
+        shadow-type: btn.shadow-type;
+        border-type: btn.border-type;
+        icon : btn.icon;
+        show-icon: btn.show-icon;
+        text: btn.text;
+        letter-spacing: btn.letter-spacing;
+        clip: btn.clip;
+        round: btn.round;
         clicked => {
-          root.clicked()
+          root.clicked(btn);
+        }
+      }
+    }
+    if root.btns.length==0:HorizontalLayout{
+      padding-top: 8px;
+      padding-bottom: 8px;
+      alignment: center;
+      inner-btn:=SButton{
+        theme: root.theme;
+        text: root.btn-text;
+        clicked => {
+          root.clicked(root.btns[0]);
         }
       }
     }
