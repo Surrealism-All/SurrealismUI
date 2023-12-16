@@ -14,21 +14,21 @@
 */
 import { SCard } from "../card/index.slint";
 import { SIcon } from "../icon/index.slint";
-import {ROOT_STYLES} from "../../themes/index.slint";
+import {ROOT_STYLES,DefaultSAvatarProps} from "../../themes/index.slint";
 import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,BorderProps,UseSurrealismFn,UseIcons } from "../../use/index.slint";
 
 export component Avatar inherits SCard { 
-  border-type:Circle-Normal;
-  // padding: self.card-padding.padding-same;
-  card-height:avatar-size;
-  card-width:avatar-size;
-  in property <length> avatar-size : ROOT-STYLES.sur-size.normal * 2;
-  in property <image> avatar;
-  padding-type: Normal;
+  in property <length> avatar-size : DefaultSAvatarProps.avatar-size;
+  in property <image> avatar : DefaultSAvatarProps.avatar;
+  in-out property <image> alt :DefaultSAvatarProps.alt;
+  in property <ImageFit> image-fit : DefaultSAvatarProps.image-fit;
+  card-height:DefaultSAvatarProps.card-height;
+  card-width:DefaultSAvatarProps.card-width; 
+  padding-type: DefaultSAvatarProps.padding-type;
+  shadow-type: DefaultSAvatarProps.shadow-type;
+  border-type:DefaultSAvatarProps.border-type;
   clip: true;
   init => {
-    self.card-padding = UseSurrealismFn.get-padding(self.padding-type);
-    self.padding = self.card-padding.padding-same;
     self.padding-top = self.card-padding.padding-same;
     self.padding-bottom = self.card-padding.padding-same;
     self.padding-left = self.card-padding.padding-same;
@@ -36,9 +36,9 @@ export component Avatar inherits SCard {
   }
   SIcon {
     z: 13;
-    height: avatar-size;
-    width: avatar-size;
-    source: UseIcons.icons.Avatar;
+    height: root.avatar-size;
+    width: root.avatar-size;
+    source: root.alt;
     theme: root.theme;
   }
   Image {
@@ -46,6 +46,6 @@ export component Avatar inherits SCard {
     height: root.height;
     width: root.width;
     source: avatar;
-    image-fit: ImageFit.cover;
+    image-fit: root.image-fit;
   }
 }

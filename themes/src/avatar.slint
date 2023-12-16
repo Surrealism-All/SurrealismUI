@@ -1,0 +1,15 @@
+import {Themes,PaddingType,ShadowType,BorderType,UseIcons} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+import {ROOT_STYLES} from "./theme.slint";
+
+export global DefaultSAvatarProps {
+  in-out property <length> card-height : avatar-size;
+  in-out property <length> card-width : avatar-size;
+  in-out property <PaddingType> padding-type: PaddingType.Normal;
+  in-out property <ShadowType> shadow-type: ShadowType.Low1;
+  in-out property <BorderType> border-type : Circle-Normal;
+  in-out property <length> avatar-size : ROOT-STYLES.sur-size.normal * 2;
+  in-out property <image> avatar;
+  in-out property <image> alt : UseIcons.icons.Avatar;
+  in-out property <ImageFit> image-fit : ImageFit.cover;
+}

@@ -1,0 +1,16 @@
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+import { ShadowType } from "./shadow.slint";
+import { BorderType } from "./border.slint";
+
+export struct SAvatarProps {
+  card-height : length,
+  card-width : length,
+  padding-type: PaddingType,
+  shadow-type: ShadowType,
+  border-type : BorderType,
+  avatar-size : length,
+  avatar : image,
+  alt : image,
+  image-fit : ImageFit,
+}

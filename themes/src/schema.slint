@@ -9,9 +9,10 @@ import { DefaultSResultProps } from "./result.slint";
 import { DefaultSAlertProps } from "./alert.slint";
 import { DefaultSSwitchProps } from "./switch.slint";
 import { DefaultSRadioProps } from "./radio.slint";
+import { DefaultSAvatarProps } from "./avatar.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
-  STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps
+  STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -190,5 +191,16 @@ export global ComponentSchema {
     text : DefaultSRadioProps.text,
     value : DefaultSRadioProps.value,
     actived : DefaultSRadioProps.actived,
+  };
+  in-out property <SAvatarProps> avatar : {
+    card-height : DefaultSAvatarProps.card-height,
+    card-width : DefaultSAvatarProps.card-width,
+    padding-type: DefaultSAvatarProps.padding-type,
+    shadow-type: DefaultSAvatarProps.shadow-type,
+    border-type : DefaultSAvatarProps.border-type,
+    avatar-size : DefaultSAvatarProps.avatar-size,
+    avatar : DefaultSAvatarProps.avatar,
+    alt : DefaultSAvatarProps.alt,
+    image-fit : DefaultSAvatarProps.image-fit,
   };
 }
