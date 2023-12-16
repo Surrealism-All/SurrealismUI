@@ -23,6 +23,7 @@ export component TestResult inherits Window {
     card-width: 300px;
     text : "use button slot";
     font-size: 18px;
+    font-weight: 700;
     result-type:ResultType.Info;
     btns:[
       {
@@ -30,13 +31,13 @@ export component TestResult inherits Window {
         font-size : DefaultSButtonProps.font-size,
         font-italic : DefaultSButtonProps.font-italic,
         font-family : DefaultSButtonProps.font-family,
-        theme : DefaultSButtonProps.theme,
+        theme : Themes.Success,
         padding-type : DefaultSButtonProps.padding-type,
         shadow-type : DefaultSButtonProps.shadow-type,
         border-type : DefaultSButtonProps.border-type,
         icon : DefaultSButtonProps.icon,
         show-icon : DefaultSButtonProps.show-icon,
-        text : "Click!",
+        text : "confirm!",
         letter-spacing : DefaultSButtonProps.letter-spacing,
         clip : DefaultSButtonProps.clip,
         round : DefaultSButtonProps.round
@@ -46,16 +47,16 @@ export component TestResult inherits Window {
         font-size : DefaultSButtonProps.font-size,
         font-italic : DefaultSButtonProps.font-italic,
         font-family : DefaultSButtonProps.font-family,
-        theme : DefaultSButtonProps.theme,
+        theme : Themes.Light,
         padding-type : DefaultSButtonProps.padding-type,
         shadow-type : DefaultSButtonProps.shadow-type,
         border-type : DefaultSButtonProps.border-type,
         icon : DefaultSButtonProps.icon,
         show-icon : DefaultSButtonProps.show-icon,
-        text : "Click!",
+        text : "cancel!",
         letter-spacing : DefaultSButtonProps.letter-spacing,
         clip : DefaultSButtonProps.clip,
-        round : DefaultSButtonProps.round
+        round : true
       }
     ];
   }

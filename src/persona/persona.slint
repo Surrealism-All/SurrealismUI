@@ -35,7 +35,7 @@ import { ROOT_STYLES,DefaultSPersonaProps} from "../../themes/index.slint";
 import { Themes,SButtonProps } from "../../use/index.slint";
 
 export component Persona inherits SCard { 
-  
+  in-out property <string> btn-text : DefaultSPersonaProps.btn-text;
   in property <length> spacing : DefaultSPersonaProps.spacing;
   in property <[SButtonProps]> btns : DefaultSPersonaProps.btns;
   in property <image> avatar : DefaultSPersonaProps.avatar;
@@ -104,23 +104,33 @@ export component Persona inherits SCard {
         padding-bottom: 8px;
         alignment: center;
         spacing: root.spacing;
-        for btn[index] in root.btns: SButton {
-          font-family: btn.font-family;
-          font-italic: btn.font-italic;
-          font-size: btn.font-size;
-          font-weight: btn.font-weight;
-          theme: btn.theme;
-          padding-type: btn.padding-type;
-          shadow-type: btn.shadow-type;
-          border-type: btn.border-type;
-          icon : btn.icon;
-          show-icon: btn.show-icon;
-          text: btn.text;
-          letter-spacing: btn.letter-spacing;
-          clip: btn.clip;
-          round: btn.round;
+        if btns.length==0:SButton  {
+          text: btn-text;
+          theme: root.theme;
           clicked => {
-            root.clicked(btn);
+            root.clicked(btns[0]);
+          }
+        }
+        if btns.length!=0: HorizontalLayout {
+          spacing: root.spacing;
+          for btn[index] in root.btns: SButton {
+            font-family: btn.font-family;
+            font-italic: btn.font-italic;
+            font-size: btn.font-size;
+            font-weight: btn.font-weight;
+            theme: btn.theme;
+            padding-type: btn.padding-type;
+            shadow-type: btn.shadow-type;
+            border-type: btn.border-type;
+            icon : btn.icon;
+            show-icon: btn.show-icon;
+            text: btn.text;
+            letter-spacing: btn.letter-spacing;
+            clip: btn.clip;
+            round: btn.round;
+            clicked => {
+              root.clicked(btn);
+            }
           }
         }
       }

@@ -1,17 +1,38 @@
 import {SRadio} from "../../index.slint";
 import {Themes} from "../../use/index.slint";
+import { SText } from "../../src/text/index.slint";
 
 component TestCollection inherits Window {
   height: 560px;
   width: 600px;
-  
-  SRadio{
-    y: 60px;
-  }
-
-  SRadio{
-    y: 180px;
-    active-color : #4affae;
-    theme:Primary;
+  background: #515c74;
+  VerticalLayout {
+    spacing: 20px;
+    padding: 20px;
+    SRadio{}
+    SRadio{theme: Light;}
+    SRadio{theme: Primary;}
+    SRadio {theme: Error;}
+    SRadio {
+      theme: Warning;
+      font-weight: 700;
+      text : "Chinese";
+      font-color: #ff5e00;
+      font-italic: true;
+      font-family: "Verdana";
+    }
+    SRadio {
+      theme: Info;
+      clicked(text,value,actived) => {
+        debug(text);
+        debug(value);
+        debug(actived);
+      }
+    }
+    SRadio{
+      active-color : #4affae;
+      theme:Primary;
+      actived : true;
+    }
   }
 }

@@ -2,11 +2,11 @@ import {SPersona} from "../../index.slint";
 import {Themes,UseIcons} from "../../use/index.slint";
 import { ComponentSchema,DefaultSButtonProps } from "../../themes/index.slint";
 
-component TestCollection inherits Window {
+component TestPersona inherits Window {
   height: 500px;
-  width: 300px;
-  
+  width: 600px;
   SPersona {
+    x: 20px;
     avatar: @image-url("../../README/imgs/logo.png");
     avatar-height: 180px;
     name: "SurrealismUI";
@@ -38,5 +38,9 @@ component TestCollection inherits Window {
     clicked(e) => {
       debug(e);
     }
+  }
+  SPersona {
+    x: 300px;
+    btn-text: "GitHub GO!";
   }
 }

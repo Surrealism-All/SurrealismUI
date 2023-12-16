@@ -5,9 +5,13 @@ import { DefaultSLinkProps } from "./link.slint";
 import { DefaultSCardProps } from "./card.slint";
 import { DefaultSIconProps } from "./icon.slint";
 import { DefaultSTagProps } from "./tag.slint";
+import { DefaultSResultProps } from "./result.slint";
+import { DefaultSAlertProps } from "./alert.slint";
+import { DefaultSSwitchProps } from "./switch.slint";
+import { DefaultSRadioProps } from "./radio.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
-  STagProps
+  STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -98,6 +102,7 @@ export global ComponentSchema {
     shadow-type : DefaultSTagProps.shadow-type
   };
   in-out property <SPersonaProps> persona : {
+    btn-text : DefaultSPersonaProps.btn-text,
     btns : DefaultSPersonaProps.btns,
     //avatar
     avatar : DefaultSPersonaProps.avatar,
@@ -121,5 +126,69 @@ export global ComponentSchema {
     des-theme: DefaultSPersonaProps.des-theme,
     des-font-family: DefaultSPersonaProps.des-font-family,
     des-font-italic: DefaultSPersonaProps.des-font-italic,
+  };
+  in-out property <SResultProps> result : {
+    card-height : DefaultSResultProps.card-height,
+    card-width : DefaultSResultProps.card-width,
+    icon-size : DefaultSResultProps.icon-size,
+    btns :DefaultSResultProps.btns,
+    btn-text : DefaultSResultProps.btn-text,
+    result-type: DefaultSResultProps.result-type,
+    text : DefaultSResultProps.text,
+    padding-type: DefaultSResultProps.padding-type,
+    shadow-type: DefaultSResultProps.shadow-type,
+    border-type : DefaultSResultProps.border-type,
+    icon : DefaultSResultProps.icon,
+    theme : DefaultSResultProps.theme,
+  };
+  in-out property <SAlertProps> alert : {
+    font-weight : DefaultSAlertProps.font-weight,
+    font-size:  DefaultSAlertProps.font-size,
+    color : DefaultSAlertProps.color,
+    font-italic : DefaultSAlertProps.font-italic,
+    font-family : DefaultSAlertProps.font-family,
+    overflow : DefaultSAlertProps.overflow,
+    spacing : DefaultSAlertProps.spacing,
+    text : DefaultSAlertProps.text,
+    is-show : DefaultSAlertProps.is-show,
+    alert-height : DefaultSAlertProps.alert-height,
+    result-type: DefaultSAlertProps.result-type,
+    close-icon : DefaultSAlertProps.close-icon,
+    icon-size : DefaultSAlertProps.icon-size,
+  };
+  in-out property <SSwitchProps> switch : {
+    card-height : DefaultSSwitchProps.card-height,
+    card-width : DefaultSSwitchProps.card-width,
+    padding-type: DefaultSSwitchProps.padding-type,
+    shadow-type: DefaultSSwitchProps.shadow-type,
+    border-type : DefaultSSwitchProps.border-type,
+    active : DefaultSSwitchProps.active,
+    theme: DefaultSSwitchProps.theme,
+    //switch-circle
+    switch-height : DefaultSSwitchProps.switch-height,
+    switch-width : DefaultSSwitchProps.switch-width,
+    switch-padding-type: DefaultSSwitchProps.switch-padding-type,
+    switch-shadow-type: DefaultSSwitchProps.switch-shadow-type,
+    switch-border-type : DefaultSSwitchProps.switch-border-type,
+    switch-background-color : DefaultSSwitchProps.switch-background-color,
+    switch-border-color : DefaultSSwitchProps.switch-border-color,
+    switch-drop-shadow-color : DefaultSSwitchProps.switch-drop-shadow-color,
+  };
+  in-out property <SRadioProps> radio : {
+    font-weight : DefaultSRadioProps.font-weight,
+    font-size: DefaultSRadioProps.font-size,
+    color : DefaultSRadioProps.color,
+    font-italic : DefaultSRadioProps.font-italic,
+    font-family : DefaultSRadioProps.font-family,
+    card-height : DefaultSRadioProps.card-height,
+    card-width : DefaultSRadioProps.card-width,
+    theme : DefaultSRadioProps.theme,
+    active-color: DefaultSRadioProps.active-color,
+    padding-type: DefaultSRadioProps.padding-type,
+    shadow-type: DefaultSRadioProps.shadow-type,
+    border-type : DefaultSRadioProps.border-type,
+    text : DefaultSRadioProps.text,
+    value : DefaultSRadioProps.value,
+    actived : DefaultSRadioProps.actived,
   };
 }

@@ -4,24 +4,8 @@ import { Themes,SButtonProps } from "../../use/index.slint";
 import { DefaultSButtonProps } from "./button.slint";
 
 export global DefaultSPersonaProps {
-  in-out property <[SButtonProps]> btns : [
-    {
-      font-weight : DefaultSButtonProps.font-weight,
-      font-size : DefaultSButtonProps.font-size,
-      font-italic : DefaultSButtonProps.font-italic,
-      font-family : DefaultSButtonProps.font-family,
-      theme : DefaultSButtonProps.theme,
-      padding-type : DefaultSButtonProps.padding-type,
-      shadow-type : DefaultSButtonProps.shadow-type,
-      border-type : DefaultSButtonProps.border-type,
-      icon : DefaultSButtonProps.icon,
-      show-icon : DefaultSButtonProps.show-icon,
-      text : "Click!",
-      letter-spacing : DefaultSButtonProps.letter-spacing,
-      clip : DefaultSButtonProps.clip,
-      round : DefaultSButtonProps.round
-    }
-  ];
+  in-out property <string> btn-text : "Click";
+  in-out property <[SButtonProps]> btns : [];
   in-out property <image> avatar : @image-url("");
   in-out property <length> avatar-height:130px;
   in-out property <Themes> avatar-theme : GlobalProps.theme;
