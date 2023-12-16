@@ -21,59 +21,12 @@ import { SCard } from "../card/index.slint";
 import { ROOT-STYLES } from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
 import { SIcon } from "../icon/index.slint";
+import { DefaultSDividerProps } from "../../themes/index.slint";
 import { Themes,BorderType,UseIcons } from "../../use/index.slint";
-export component Divider inherits Rectangle{
-  height: 14px;
-  in property <string> content : "divider";
-  in property <image> icon : UseIcons.icons.Null;
-  in property <Themes> theme : Themes.Primary;
-  function show-what()->int {
-      if(icon!=UseIcons.icons.Null){
-        0
-      }else{
-        1
-      }
-  }
-  inner:=Rectangle {
-    z: 14;
-    height: 14px;
-    if show-what()==1: SCard{
-      theme: root.theme;
-      border-radius: self.height / 2;
-      height: txt.height;
-      width: txt.width + ROOT-STYLES.sur-padding.small.padding-left;
-      txt:=SText { 
-       text: root.content;
-        font-size: 12px;
-        theme: root.theme;
-      }
-    }
-    if show-what()==0: SCard {
-      theme: root.theme;
-      border-radius: self.height / 2;
-      card-height: icon.height;
-      card-width: icon.width;
-      padding: 0;
-      padding-left: 0;
-      padding-right: 0;
-      padding-top: 0;
-      padding-bottom: 0;
-      padding-type: Icon;
-       icon:= SIcon { 
-          theme: root.theme;
-          source: root.icon;
-        }
-    }
-  }
-  line:=SCard {
-    theme: root.theme;
-    border-radius: 0px; 
-    border-type: BorderType.Circle-None;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: ROOT-STYLES.sur-padding.small.padding-top;
-    padding-bottom: ROOT-STYLES.sur-padding.small.padding-bottom;
-    height: 1px;
-    width: parent.width;
-  }
+export component Divider inherits SCard{
+  height: DefaultSDividerProps.height;
+  shadow-type: DefaultSDividerProps.shadow-type;
+  border-type: DefaultSDividerProps.border-type;
+  padding-type: DefaultSDividerProps.padding-type; 
+  width: DefaultSDividerProps.width;
 }

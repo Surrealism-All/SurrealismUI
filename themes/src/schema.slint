@@ -10,9 +10,11 @@ import { DefaultSAlertProps } from "./alert.slint";
 import { DefaultSSwitchProps } from "./switch.slint";
 import { DefaultSRadioProps } from "./radio.slint";
 import { DefaultSAvatarProps } from "./avatar.slint";
+import { DefaultSDividerProps } from "./divider.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
-  STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps
+  STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
+  SDividerProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -202,5 +204,13 @@ export global ComponentSchema {
     avatar : DefaultSAvatarProps.avatar,
     alt : DefaultSAvatarProps.alt,
     image-fit : DefaultSAvatarProps.image-fit,
+  };
+  in-out property <SDividerProps> divider : {
+    theme : DefaultSDividerProps.theme,
+    height : DefaultSDividerProps.height,
+    width : DefaultSDividerProps.width,
+    padding-type: DefaultSDividerProps.padding-type,
+    shadow-type: DefaultSDividerProps.shadow-type,
+    border-type : DefaultSDividerProps.border-type,
   };
 }

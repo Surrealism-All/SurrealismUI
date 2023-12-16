@@ -1,0 +1,12 @@
+import {Themes,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+
+export global DefaultSDividerProps {
+  //theme
+  in-out property <Themes> theme : GlobalProps.theme;
+  in-out property <length> height : 2px;
+  in-out property <length> width : 100%;
+  in-out property <PaddingType> padding-type:PaddingType.None;
+  in-out property <ShadowType> shadow-type: ShadowType.Low1;
+  in-out property <BorderType> border-type : BorderType.None;
+}
