@@ -75,16 +75,16 @@ component Selector inherits TouchArea {
   }
 }
 
-export component Select inherits Rectangle {
+export component Select inherits SCard {
   padding-left: ROOT-STYLES.sur-padding.normal.padding-left;
   padding-right: ROOT-STYLES.sur-padding.normal.padding-right;
   width: count-width(180px);
   height: ROOT-STYLES.sur-font.font-size + ROOT-STYLES.sur-padding.normal.padding-top * 2;
   border-radius: ROOT-STYLES.sur-border.small.border-radius;
-  in property <Themes> theme : Light;
+  // in property <Themes> theme : Light;
+  theme: Dark;
+  clip: false;
   in property <[{id:int,label:string,value:string}]> ranges-string;
-  in property <[{id:int,label:string,value:int}]> ranges-int;
-  in property <[{id:int,label:string,value:float}]> ranges-float;
   in property <string> placeholder : "please select";
   private property <brush> input-color;
   private property <bool> open : false;
@@ -96,54 +96,50 @@ export component Select inherits Rectangle {
   init => {
     if(ranges-string.length!=0){
       range-type = 0;
-    }else if(ranges-float.length!=0){
-      range-type = 1;
-    }else if(ranges-int.length!=0){
-      range-type = 2
     }
   }
   states [
-    light when theme == Themes.Light: {
+    light when root.theme == Themes.Light: {
       root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.light.normal:ROOT-STYLES.sur-theme-colors.light.opacity;
       root.border-color: ROOT-STYLES.sur-theme-colors.light.deeper;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.light.deepest;
       input-color :focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.light.font:ROOT-STYLES.sur-theme-colors.light.weakest;
     }
-    primary when theme == Themes.Primary: {
+    primary when root.theme == Themes.Primary: {
       root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.primary.normal:ROOT-STYLES.sur-theme-colors.primary.opacity;
       root.border-color: ROOT-STYLES.sur-theme-colors.primary.deeper;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
       input-color :focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.primary.font:ROOT-STYLES.sur-theme-colors.primary.weakest;
     }
-    success when theme == Themes.Success: {
+    success when root.theme == Themes.Success: {
       root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.success.normal:ROOT-STYLES.sur-theme-colors.success.opacity;
       root.border-color: ROOT-STYLES.sur-theme-colors.success.deeper;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
       input-color :focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.success.font:ROOT-STYLES.sur-theme-colors.success.weakest;
 
     }
-    info when theme == Themes.Info: {
+    info when root.theme == Themes.Info: {
       root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.info.normal:ROOT-STYLES.sur-theme-colors.info.opacity;
       root.border-color: ROOT-STYLES.sur-theme-colors.info.deeper;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
       input-color :focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.info.font:ROOT-STYLES.sur-theme-colors.info.weakest;
 
     }
-    warning when theme == Themes.Warning: {
+    warning when root.theme == Themes.Warning: {
       root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.warning.normal:ROOT-STYLES.sur-theme-colors.warning.opacity;
       root.border-color: ROOT-STYLES.sur-theme-colors.warning.deeper;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
       input-color :focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.warning.font:ROOT-STYLES.sur-theme-colors.warning.weakest;
 
     }
-    error when theme == Themes.Error: {
+    error when root.theme == Themes.Error: {
       root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.error.normal:ROOT-STYLES.sur-theme-colors.error.opacity;
       root.border-color: ROOT-STYLES.sur-theme-colors.error.deeper;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
       input-color :focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.error.font:ROOT-STYLES.sur-theme-colors.error.weakest;
 
     }
-    dark when theme == Themes.Dark: {
+    dark when root.theme == Themes.Dark: {
       root.background : focus-scope.has-focus?ROOT-STYLES.sur-theme-colors.dark.normal:ROOT-STYLES.sur-theme-colors.dark.opacity;
       root.border-color: ROOT-STYLES.sur-theme-colors.dark.deeper;
       root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
@@ -192,83 +188,6 @@ export component Select inherits Rectangle {
       } 
     }
   }
-  if range-type==1:float-range:= Selector{
-    theme: root.theme;
-    content: root.placeholder;
-    show => {
-      f-list.height = 120px;
-      
-    }
-    f-list:=SCard {
-      height: 120px;
-      width: root.width;
-      theme: root.theme;
-      y: root.height + ROOT-STYLES.sur-padding.small.padding-same;
-      visible:float-range.open;
-      init => {
-        self.height = 0;
-        // self.visible = false;
-      }
-      ListView { 
-        for range[index] in root.ranges-float : TouchArea{
-          z: 1112;
-          height: f-list-item.height;
-          clicked => {
-            float-range.content = range.label;
-            root.changed(index,range.id,range.label,@tr("{}",range.value),ValueType.Float);
-          }
-          f-list-item:= Rectangle {
-            height: f-label.height + ROOT-STYLES.sur-padding.normal.padding-top * 2;
-            padding-left: ROOT-STYLES.sur-padding.normal.padding-left ;
-            padding-right: ROOT-STYLES.sur-padding.normal.padding-right ;
-           
-            f-label:=SText {
-              theme: root.theme;
-              text: range.label;
-            }
-          }
-        }
-      } 
-    }
-  }
-  if range-type==2:int-range:= Selector{
-    theme: root.theme;
-    content: root.placeholder;
-    show => {
-      i-list.height = 120px;
-      
-    }
-    i-list:=SCard {
-      height: 120px;
-      width: root.width;
-      theme: root.theme;
-      y: root.height + ROOT-STYLES.sur-padding.small.padding-same;
-      visible:int-range.open;
-      init => {
-        self.height = 0;
-        // self.visible = false;
-      }
-      ListView { 
-        for range[index] in root.ranges-int : TouchArea{
-          z: 1112;
-          height: i-list-item.height;
-          clicked => {
-            int-range.content = range.label;
-            root.changed(index,range.id,range.label,@tr("{}",range.value),ValueType.Int);
-          }
-          i-list-item:= Rectangle {
-            height: i-label.height + ROOT-STYLES.sur-padding.normal.padding-top * 2;
-            padding-left: ROOT-STYLES.sur-padding.normal.padding-left ;
-            padding-right: ROOT-STYLES.sur-padding.normal.padding-right ;
-           
-            i-label:=SText {
-              theme: root.theme;
-              text: range.label;
-            }
-          }
-        }
-      } 
-    }
-  }
+  
 }
     

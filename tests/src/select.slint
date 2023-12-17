@@ -16,11 +16,11 @@ component TestWindow inherits Window {
   SSelect {
     y: 200px;
     theme: Error;
-    ranges-float: [
-      {id:0,label:"Shangai",value:0.1},
-      {id:1,label:"Los Angeles",value:0.2},
-      {id:2,label:"New York",value:0.3},
-      {id:3,label:"Hong Kong",value:0.4},
+    ranges-string: [
+      {id:0,label:"Shangai",value:"s01"},
+      {id:1,label:"Los Angeles",value:"l02"},
+      {id:2,label:"New York",value:"n03"},
+      {id:3,label:"Hong Kong",value:"h04"},
     ];
     changed(index,id,label,value,value-type)=>{
       if(value-type==ValueType.String){
