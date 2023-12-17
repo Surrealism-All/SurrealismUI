@@ -10,8 +10,8 @@
 * ## properties
 * - in property <Themes> theme : Surrealism Theme
 * - in property <string> text : tip text
-* - in-out property <bool> show-tip : hover and tip will show
-* - in property <TipPosition> pos : the position of the tip
+* - in-out property <bool> is-show : hover and tip will show
+* - in property <TipPosition> position : the position of the tip
 * ## functions
 * - public function open() : open the tip
 * - public function close() : close the tip
@@ -21,9 +21,9 @@
 */
 
 import { SCard } from "../card/index.slint";
-import { ROOT-STYLES } from "../../themes/index.slint";
+import { ROOT-STYLES,DefaultSTipProps } from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
-import { Themes,PaddingType } from "../../use/index.slint";
+import { Themes,PaddingType,Position } from "../../use/index.slint";
   
 export enum TipPosition {
     Left,
@@ -131,6 +131,8 @@ component RightAngle inherits Path {
 component TopAngle inherits Path {
   in property <Themes> theme;
   in property <length> parent-height;
+  in property <length> parent-width;
+  x: parent-width;
   y: parent-height - self.height / 3;
   stroke-width: 1px;
   height: ROOT-STYLES.sur-font.font-size;
@@ -177,6 +179,8 @@ component TopAngle inherits Path {
 component BottomAngle inherits Path {
   in property <Themes> theme;
   in property <length> parent-height;
+  in property <length> parent-width;
+  x: parent-width;
   y: -self.height + self.height / 3;
   stroke-width: 1px;
   height: ROOT-STYLES.sur-font.font-size;
@@ -220,32 +224,51 @@ component BottomAngle inherits Path {
   Close{}
 }
 export component Tip inherits Rectangle{
-  in property <Themes> theme :Light;
-  in property <TipPosition> pos : Top;
-  in-out property <bool> show-tip <=> tip.visible;
-  in property <string> text : "default tips";
+  in-out property <string> font-family : DefaultSTipProps.font-family;
+  in-out property <int> font-weight : DefaultSTipProps.font-weight;
+  in-out property <length> font-size: DefaultSTipProps.font-size;
+  in-out property <brush> font-color : DefaultSTipProps.font-color;
+  in-out property <bool> font-italic : DefaultSTipProps.font-italic;
+  //theme
+  in-out property <Themes> theme : DefaultSTipProps.theme;
+  in-out property <TextWrap> wrap : DefaultSTipProps.wrap;
+  in-out property <TextOverflow> overflow : DefaultSTipProps.overflow;
+  in-out property <length> letter-spacing : DefaultSTipProps.letter-spacing;
+  in-out property <TextHorizontalAlignment> horizontal-alignment : DefaultSTipProps.horizontal-alignment;
+  in-out property <TextVerticalAlignment> vertical-alignment : DefaultSTipProps.vertical-alignment;
+  in-out property <Position> position :DefaultSTipProps.position;
+  in-out property <bool> is-show : DefaultSTipProps.is-show;
+  in-out property <string> text : DefaultSTipProps.text;
   
   public function open() {
-     tip.visible = true; 
+    is-show = true; 
   }
   public function close() {
-    tip.visible = false;
+    is-show = false;
   }
   pure public function count-x(w:length) ->length{
-    if(root.pos==TipPosition.Right){
+    if((root.position==Position.Right)||(root.position==Position.RightTop)||(root.position==Position.RightBottom)){
       return root.width + ROOT-STYLES.sur-font.font-size;
-    }else if(root.pos==TipPosition.Left){
+    }else if((root.position==Position.Left)||(root.position==Position.LeftTop)||(root.position==Position.LeftBottom)){
       return -w - ROOT-STYLES.sur-font.font-size;
+    }else if((root.position==Position.TopLeft)||(root.position==Position.BottomLeft)){
+      return root.width - w;
+    }else if((root.position==Position.TopRight||(root.position==Position.BottomRight))){
+      return 0;
     }else{
       return root.width / 2 - w / 2;
     }
   }
   pure public function count-y(h:length)->length {
-      if(root.pos==TipPosition.Top){
+      if((root.position==Position.Top)||(root.position==Position.TopLeft)||(root.position==Position.TopRight)){
         return -h - ROOT-STYLES.sur-font.font-size;
-      }else if(root.pos==TipPosition.Right){
+      }else if(root.position==Position.Right){
         return root.height / 2 - h / 2;
-      }else if(root.pos==TipPosition.Bottom){
+      }else if((root.position==Position.RightTop)||(root.position==Position.LeftTop)){
+        return 0;
+      }else if((root.position==Position.RightBottom)||(root.position==Position.LeftBottom)){
+        return - root.height + ROOT-STYLES.sur-padding.tip.padding-top * 2;
+      }else if((root.position==Position.Bottom)||(root.position==Position.BottomLeft)||(root.position==Position.BottomRight)){
         return h + ROOT-STYLES.sur-font.font-size;
       }else{
         return root.height / 2 - h / 2;
@@ -253,64 +276,88 @@ export component Tip inherits Rectangle{
   }
   callback clicked();
   clicked => {
-    tip.visible = !tip.visible
+    is-show = !is-show;
   }
-  // states [
-  //   light when theme == Themes.Light: {
-  //     angle.fill : ROOT-STYLES.sur-theme-colors.light.normal;
-  //     angle.stroke : transparent;
-  //   }
-  //   primary when theme == Themes.Primary: {
-  //     angle.fill : ROOT-STYLES.sur-theme-colors.primary.normal;
-  //   }
-  //   success when theme == Themes.Success: {
-  //     angle.fill : ROOT-STYLES.sur-theme-colors.success.normal;
-  //   }
-  //   info when theme == Themes.Info: {
-  //     angle.fill : ROOT-STYLES.sur-theme-colors.info.normal;
-  //   }
-  //   warning when theme == Themes.Warning: {
-  //     angle.fill : ROOT-STYLES.sur-theme-colors.warning.normal;
-  //   }
-  //   error when theme == Themes.Error: {
-  //     angle.fill : ROOT-STYLES.sur-theme-colors.error.normal;
-  //   }
-  //   dark when theme == Themes.Dark: {
-  //     angle.fill : ROOT-STYLES.sur-theme-colors.dark.normal;
-  //   }
-  // ]
+  
   @children
   tip:=SCard { 
     y: count-y(self.height);
-    x:count-x(self.width);
+    x: count-x(self.width);
     clip: false;
     card-width: txt.width;
     card-height: txt.height;
     padding-type: PaddingType.Tip;
-    visible: false;
+    visible: is-show;
     theme: root.theme;
     txt:=SText { 
       theme: root.theme;
       text: root.text;
-      font-size: ROOT-STYLES.sur-font.font-size - 2px;
-      wrap: word-wrap;
+      font-size: root.font-size;
+      wrap: root.wrap;
+      font-family: root.font-family;
+      font-italic: root.font-italic;
+      font-weight: root.font-weight;
+      letter-spacing: root.letter-spacing;
+      overflow: root.overflow;
+      horizontal-alignment: root.horizontal-alignment;
+      vertical-alignment: root.vertical-alignment;
      }
     // angle:=
-    if root.pos==TipPosition.Top: TopAngle{
+    if root.position==Position.Top: TopAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width: parent.width / 2 - self.width / 2;
+    }
+    if root.position==Position.TopLeft: TopAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width:  parent.width - self.width - 6px;
+    }
+    if root.position==Position.TopRight: TopAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width:   6px;
+    }
+    if root.position==Position.Right: RightAngle{
       theme: root.theme;
       parent-height: parent.height;
     }
-    if root.pos==TipPosition.Right: RightAngle{
+    if root.position==Position.RightTop: RightAngle{
       theme: root.theme;
-      parent-height: parent.height;
+      parent-height: 6px + self.height;
     }
-    if root.pos==TipPosition.Bottom: BottomAngle{
+    if root.position==Position.RightBottom: RightAngle{
       theme: root.theme;
-      parent-height: parent.height;
+      parent-height: parent.height + self.height * 2;
     }
-    if root.pos==TipPosition.Left: LeftAngle{
+    if root.position==Position.Bottom: BottomAngle{
       theme: root.theme;
       parent-height: parent.height;
+      parent-width: parent.width / 2 - self.width / 2;
+    }
+    if root.position==Position.BottomLeft: BottomAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width:  parent.width - self.width - 6px;
+    }
+    if root.position==Position.BottomRight: BottomAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width:  6px;
+    }
+    if root.position==Position.Left: LeftAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width: parent.width;
+    }
+    if root.position==Position.LeftTop: LeftAngle{
+      theme: root.theme;
+      parent-height: 6px + self.height;
+      parent-width: parent.width;
+    }
+    if root.position==Position.LeftBottom: LeftAngle{
+      theme: root.theme;
+      parent-height: parent.height + self.height * 2;
       parent-width: parent.width;
     }
   }

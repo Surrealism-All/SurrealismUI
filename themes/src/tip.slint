@@ -1,0 +1,21 @@
+import { GlobalProps } from "./index.slint";
+import {Themes,TextActionProps,TextAlignmentProps,Position} from "../../use/index.slint";
+
+export global DefaultSTipProps {
+  //font
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  in-out property <int> font-weight : GlobalProps.font.font-weight;
+  in-out property <length> font-size: GlobalProps.font.font-size;
+  in-out property <brush> font-color : GlobalProps.font.color;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  //theme
+  in-out property <Themes> theme : GlobalProps.theme;
+  in-out property <TextWrap> wrap :word-wrap;
+  in-out property <TextOverflow> overflow : GlobalProps.text-action.overflow;
+  in-out property <length> letter-spacing : GlobalProps.text-action.letter-spacing;
+  in-out property <TextHorizontalAlignment> horizontal-alignment : GlobalProps.text-alignment.horizontal-alignment;
+  in-out property <TextVerticalAlignment> vertical-alignment : GlobalProps.text-alignment.vertical-alignment;
+  in-out property <Position> position : Top;
+  in-out property <bool> is-show : false;
+  in-out property <string> text : "default tips";
+}

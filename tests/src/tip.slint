@@ -10,9 +10,9 @@ component TestWindow inherits Window {
      height:inner0.height;
      width: inner0.width;
      theme: Dark;
-     pos:Top;
+     position:Top;
      text:"this is a \n........tip window";
-     show-tip:inner0.has-hover;
+     is-show:inner0.has-hover;
      inner0:=SButton { 
        text: "hover";
      }
@@ -21,8 +21,8 @@ component TestWindow inherits Window {
     height:inner.height;
     width: inner.width;
     theme: Dark;
-    pos:Left;
-    text:"this is a \n........tip window";
+    position:LeftBottom;
+    text:"this is a \n........tip\n window";
     inner:=SButton { 
       text: "click";
       clicked => {
@@ -35,7 +35,7 @@ component TestWindow inherits Window {
     height:inner2.height;
     width: inner2.width;
     theme: Dark;
-    pos:Top;
+    position:Right;
     text:"this is a \n........tip window";
     inner2:=SButton { 
       text: "click";

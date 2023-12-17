@@ -1,0 +1,21 @@
+import { Themes } from "./theme.slint";
+import { Position } from "./position.slint";
+
+export struct DefaultSTipProps {
+  //font
+  font-family : string,
+  font-weight : int,
+  font-size: length,
+  font-color : brush,
+  font-italic : bool,
+  //theme
+  theme : Themes,
+  wrap : TextWrap,
+  overflow : TextOverflow,
+  letter-spacing : length,
+  horizontal-alignment : TextHorizontalAlignment,
+  vertical-alignment : TextVerticalAlignment,
+  position : Position,
+  is-show : bool,
+  text : string,
+}

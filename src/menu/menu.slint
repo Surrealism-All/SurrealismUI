@@ -100,8 +100,8 @@ export component Menu inherits SCard {
         width: icon-box-size;
         text: item.name;
         theme: root.theme;
-        pos: Right;
-        show-tip : menu-item.has-hover;
+        position: Right;
+        is-show : menu-item.has-hover;
         menu-item:=MenuItem{
           active: item.id == root.active;
           height: icon-box-size;
