@@ -1,0 +1,13 @@
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+import { Position } from "./position.slint";
+
+export struct SDrawerProps {
+  theme : Themes,
+  is-show : bool,
+  mask-opacity : percent,
+  padding-type: PaddingType,
+  drawer-theme : Themes,
+  position : Position,
+  proportion : percent,
+}

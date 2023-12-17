@@ -1,0 +1,8 @@
+import { Themes } from "../../use/index.slint";
+import { GlobalProps } from "./index.slint";
+
+export global DefaultSPopupProps {
+  in-out property <bool> is-show : false;
+  in-out property <Themes> theme : GlobalProps.theme;
+  in-out property <percent> mask-opacity : 80%;
+}

@@ -11,38 +11,46 @@
 * ## properties
 * - in property <Themes> drawer-theme : drawer theme
 * - in property <brush> drawer-background-color : drawer background color
-* - in property <CommonPosition > pos : drawer position (Left, Right, Top, Bottom)
+* - in property <Position > position : drawer position (Left, Right, Top, Bottom)
 * - in property <percent> proportion : drawer proportion 
 * ## functions
 * - function default-height-width()->{height:percent,width:percent} : count drawer height and width ⛔
-* - function get-pos()->{x:length,y:length} : count position ⛔
+* - function get-position()->{x:length,y:length} : count position ⛔
 * ============================================
 */
 
 
 import { SPopup } from "../popup/index.slint";
 import { SCard } from "../card/index.slint";
-import { Themes,CommonPosition } from "../../use/index.slint";
-
+import { Themes,Position,PaddingType,ShadowType } from "../../use/index.slint";
+import { DefaultSDrawerProps } from "../../themes/index.slint";
 
 export component Drawer inherits SPopup { 
-  in property <Themes> drawer-theme : Light;
+  theme: DefaultSDrawerProps.theme;
+  is-show: DefaultSDrawerProps.is-show;
+  mask-opacity: DefaultSDrawerProps.mask-opacity;
+  in property <Themes> drawer-theme : DefaultSDrawerProps.drawer-theme;
   in property <brush> drawer-background-color <=> drawer.background;
-  in property <CommonPosition > pos : Left;
-  in property <percent> proportion : 25%;
+  in property <PaddingType> padding-type: DefaultSDrawerProps.padding-type;
+  in property <Position> position : DefaultSDrawerProps.position;
+  in property <percent> proportion : DefaultSDrawerProps.proportion;
   function default-height-width()->{height:percent,width:percent} {
-      if((pos==CommonPosition.Left)||(pos==CommonPosition.Right)){
+      if((position==Position.Left)||(position==Position.Right)){
+        { height:100%,width:root.proportion}
+      }else if((position==Position.LeftTop)||(position==Position.LeftBottom)){
+        { height:100%,width:root.proportion}
+      }else if((position==Position.RightTop)||(position==Position.RightBottom)){
         { height:100%,width:root.proportion}
       }else{
         {height:root.proportion,width:100%}
       }
   }
-  function get-pos()->{x:length,y:length} {
-      if(pos==CommonPosition.Left){
+  function get-position()->{x:length,y:length} {
+      if((position==Position.Left)||(position==Position.LeftTop)||(position==Position.LeftBottom)){
         {x:0px,y:0px}
-      }else if(pos==CommonPosition.Right){
+      }else if((position==Position.Right)||(position==Position.RightTop)||(position==Position.RightBottom)){
         {x:root.width - drawer.width,y:0px}
-      }else if(pos==CommonPosition.Top){
+      }else if((position==Position.Top)||(position==Position.TopLeft)||(position==Position.TopRight)){
         {x:0px,y:0px}
       }else{
         {x:0px,y:root.height - drawer.height}
@@ -51,11 +59,11 @@ export component Drawer inherits SPopup {
   drawer:=SCard {
     height: default-height-width().height;
     width: default-height-width().width;
-    
     theme: root.drawer-theme;
-    x: get-pos().x;
-    y: get-pos().y;
-    border-type: None;
+    x: get-position().x;
+    y: get-position().y;
+    border-type:None;
+    padding-type: root.padding-type;
     clip: true;
     TouchArea {
       @children

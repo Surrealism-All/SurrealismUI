@@ -11,10 +11,12 @@ import { DefaultSSwitchProps } from "./switch.slint";
 import { DefaultSRadioProps } from "./radio.slint";
 import { DefaultSAvatarProps } from "./avatar.slint";
 import { DefaultSDividerProps } from "./divider.slint";
+import { DefaultSPopupProps } from "./popup.slint";
+import { DefaultSDrawerProps } from "./drawer.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
-  SDividerProps
+  SDividerProps,SPopupProps,SDrawerProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -212,5 +214,19 @@ export global ComponentSchema {
     padding-type: DefaultSDividerProps.padding-type,
     shadow-type: DefaultSDividerProps.shadow-type,
     border-type : DefaultSDividerProps.border-type,
+  };
+  in-out property <SPopupProps> popup : {
+    is-show : DefaultSPopupProps.is-show,
+    theme : DefaultSPopupProps.theme,
+    mask-opacity : DefaultSPopupProps.mask-opacity, 
+  };
+  in-out property <SDrawerProps> drawer : {
+    theme : DefaultSDrawerProps.theme,
+    is-show : DefaultSDrawerProps.is-show,
+    mask-opacity : DefaultSDrawerProps.mask-opacity,
+    padding-type: DefaultSDrawerProps.padding-type,
+    drawer-theme : DefaultSDrawerProps.drawer-theme,
+    position : DefaultSDrawerProps.position,
+    proportion : DefaultSDrawerProps.proportion,
   };
 }

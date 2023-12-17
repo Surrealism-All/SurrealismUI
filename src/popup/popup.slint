@@ -20,7 +20,7 @@
 */
 
 import { SCard } from "../card/index.slint";
-import {ROOT_STYLES} from "../../themes/index.slint";
+import {ROOT_STYLES,DefaultSPopupProps} from "../../themes/index.slint";
 import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,BorderProps } from "../../use/index.slint";
 
 export component Popup inherits Window {
@@ -35,22 +35,15 @@ export component Popup inherits Window {
   opacity: 1;
   visible: is-show;
   z: 1000;
-  in-out property <bool> is-show:false;
-  in property <Themes> theme :Dark;
+  in-out property <bool> is-show :DefaultSPopupProps.is-show;
+  in property <Themes> theme : DefaultSPopupProps.theme;
+  in property <percent> mask-opacity : DefaultSPopupProps.mask-opacity;
   public function open() {
     self.is-show = true;
   }
   public function close() {
     self.is-show = false;
   }
-  // callback open();
-  // callback close();
-  // open => {
-  //   self.is-show  = true;
-  // }
-  // close => {
-  //   self.is-show = false;
-  // }
   mask:=SCard {
     z: 100;
     height: 100%;
@@ -59,7 +52,7 @@ export component Popup inherits Window {
     drop-shadow-blur: 0;
     drop-shadow-offset-x: 0;
     drop-shadow-offset-y: 0;
-    opacity: 80%;
+    opacity: root.mask-opacity;
   }
   TouchArea {
     z: 110;
