@@ -1,0 +1,28 @@
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+import { ShadowType } from "./shadow.slint";
+import { BorderType } from "./border.slint";
+
+export struct SCollapseProps {
+  //font
+  font-weight : int,
+  font-size: length,
+  font-color : brush,
+  font-italic : bool,
+  font-family : string,
+  //theme
+  theme : Themes,
+  //header
+  header-height : length,
+  header-title : string,
+  header-padding-type: PaddingType,
+  header-shadow-type: ShadowType,
+  header-border-type : BorderType,
+  //details
+  details-height : length,
+  details-padding-type: PaddingType,
+  details-shadow-type: ShadowType,
+  details-border-type : BorderType,
+  is-show : bool,
+  collapse-icon : image,
+}

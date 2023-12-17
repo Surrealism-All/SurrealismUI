@@ -24,25 +24,39 @@
 
 import { SCard } from "../card/index.slint";
 import { SText } from "../text/index.slint";
-import {ROOT_STYLES} from "../../themes/index.slint";
+import {ROOT_STYLES,DefaultSCollapseProps} from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
-import { Themes,UseIcons } from "../../use/index.slint";
+import { Themes,UseIcons,PaddingType,ShadowType,BorderType } from "../../use/index.slint";
 
 export component CollapseItem inherits Rectangle{
   height: header.height;
   background: transparent;
-  in property <length> item-height:100px;
-  in property <string> name : "collapse";
-  in property <string> detail : "collapse details";
-  in property <bool> define : false;
-  in property <Themes> theme : Themes.Primary;
-  private property <bool> show:false;
+  in-out property <int> font-weight : DefaultSCollapseProps.font-weight;
+  in-out property <length> font-size: DefaultSCollapseProps.font-size;
+  in-out property <brush> font-color : DefaultSCollapseProps.font-color;
+  in-out property <bool> font-italic : DefaultSCollapseProps.font-italic;
+  in-out property <string> font-family : DefaultSCollapseProps.font-family;
+  //theme
+  in-out property <Themes> theme : DefaultSCollapseProps.theme;
+  //header
+  in-out property <length> header-height : DefaultSCollapseProps.header-height;
+  in-out property <string> header-title : DefaultSCollapseProps.header-title;
+  in-out property <PaddingType> header-padding-type:DefaultSCollapseProps.header-padding-type;
+  in-out property <ShadowType> header-shadow-type: DefaultSCollapseProps.header-shadow-type;
+  in-out property <BorderType> header-border-type : DefaultSCollapseProps.header-border-type;
+  //details
+  in-out property <length> details-height : DefaultSCollapseProps.details-height;
+  in-out property <PaddingType> details-padding-type:DefaultSCollapseProps.details-padding-type;
+  in-out property <ShadowType> details-shadow-type: DefaultSCollapseProps.details-shadow-type;
+  in-out property <BorderType> details-border-type : DefaultSCollapseProps.details-border-type;
+  in-out property <bool> is-show : DefaultSCollapseProps.is-show;
+  in-out property <image> collapse-icon : DefaultSCollapseProps.collapse-icon;
   pure public function get-height()->length {
       header.height
   }
   callback clicked();
   init => {
-    details.height = 0;
+    details-view.height = 0;
   }
   view:=VerticalLayout {
     height: root.height;
@@ -51,24 +65,27 @@ export component CollapseItem inherits Rectangle{
     header:=SCard{
       z: 11;
       theme: root.theme;
-      card-width: root.width - self.padding-left * 2;
-      card-height: ROOT-STYLES.sur-font.font-size;
+      card-width: root.width;
+      card-height: root.header-height;
       border-radius: 0;
+      padding-type: header-padding-type;
+      border-type: header-border-type;
+      shadow-type: header-shadow-type;
       area:=TouchArea {
         mouse-cursor: pointer;
         clicked => {
-          root.show=!root.show;
-          if(show){
+          root.is-show=!root.is-show;
+          if(is-show){
             icon.source = UseIcons.icons.Down-one;
-            root.height = root.item-height;
-            details.height = root.height - header.height;
-            details.visible = true;
+            root.height = root.details-height;
+            details-view.height = root.height - header.height;
+            details-view.visible = true;
             
           }else{
             icon.source = UseIcons.icons.Right-one;
             root.height = header.height;
-            details.height = 0;
-            details.visible = false;
+            details-view.height = 0;
+            details-view.visible = false;
           }
           root.clicked();
         }
@@ -76,20 +93,23 @@ export component CollapseItem inherits Rectangle{
       HorizontalLayout {
         alignment: space-between;
         width: parent.width;
-        padding-left: ROOT-STYLES.sur-padding.normal.padding-left;
-        padding-right: ROOT-STYLES.sur-padding.normal.padding-right;
-        name:=SText { 
+        padding-left: parent.padding-left;
+        padding-right: parent.padding-right;
+        title:=SText { 
           theme: root.theme;
-          text: root.name;
-          font-weight: 700;
+          text: root.header-title;
+          font-weight: root.font-weight;
+          font-family: root.font-family;
+          font-italic: root.font-italic;
+          font-size: root.font-size;
         }
         icon-view:=Rectangle{
           width:icon.width ;
           icon:=SIcon { 
             theme: root.theme;
-            height: 20px;
-            width: 20px;
-            source:UseIcons.icons.Right-one;
+            height: 16px;
+            width: 16px;
+            source: root.collapse-icon;
             clicked => {
              area.clicked()
             }
@@ -97,22 +117,16 @@ export component CollapseItem inherits Rectangle{
         }
       }
     }
-    details:=SCard{
-      card-height: root.item-height;
+    details-view:=SCard{
+      card-height: root.details-height;
       card-width: header.card-width;
       visible: false;
       border-radius: 0;
       drop-shadow-blur: 0;
       theme: root.theme;
-      padding: ROOT-STYLES.sur-padding.normal.padding-same;
-      if !define : txt:=SText {
-        horizontal-alignment:TextHorizontalAlignment.left;
-        width: header.width - ROOT-STYLES.sur-padding.normal.padding-same * 2;
-        text: root.detail;
-        font-size: 14px;
-        wrap: word-wrap;
-        
-      }
+      padding-type: details-padding-type;
+      shadow-type: details-shadow-type;
+      border-type: details-border-type;
       @children
     }
   }

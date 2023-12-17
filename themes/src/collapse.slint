@@ -1,0 +1,26 @@
+import {Themes,PaddingType,ShadowType,BorderType,UseIcons} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+
+export global DefaultSCollapseProps {
+  //font
+  in-out property <int> font-weight : GlobalProps.font.font-weight;
+  in-out property <length> font-size: GlobalProps.font.font-size;
+  in-out property <brush> font-color : GlobalProps.font.color;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  //theme
+  in-out property <Themes> theme : GlobalProps.theme;
+  //header
+  in-out property <length> header-height : GlobalProps.font.font-size;
+  in-out property <string> header-title : "collapse";
+  in-out property <PaddingType> header-padding-type:PaddingType.Normal;
+  in-out property <ShadowType> header-shadow-type: ShadowType.Low1;
+  in-out property <BorderType> header-border-type : BorderType.Normal;
+  //details
+  in-out property <length> details-height : 120px;
+  in-out property <PaddingType> details-padding-type:PaddingType.Normal;
+  in-out property <ShadowType> details-shadow-type: ShadowType.Low1;
+  in-out property <BorderType> details-border-type : BorderType.Normal;
+  in-out property <bool> is-show : false;
+  in-out property <image> collapse-icon : UseIcons.icons.Right-one;
+}

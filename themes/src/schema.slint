@@ -14,10 +14,11 @@ import { DefaultSDividerProps } from "./divider.slint";
 import { DefaultSPopupProps } from "./popup.slint";
 import { DefaultSDrawerProps } from "./drawer.slint";
 import { DefaultSDialogProps } from "./dialog.slint";
+import { DefaultSCollapseProps} from "./collapse.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
-  SDividerProps,SPopupProps,SDrawerProps,SDialogProps
+  SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -263,5 +264,28 @@ export global ComponentSchema {
     padding-type: DefaultSDialogProps.padding-type,
     shadow-type: DefaultSDialogProps.shadow-type,
     border-type : DefaultSDialogProps.border-type,
+  };
+  in-out property <SCollapseProps> collapse : {
+    //font
+    font-weight : DefaultSCollapseProps.font-weight,
+    font-size: DefaultSCollapseProps.font-size,
+    font-color : DefaultSCollapseProps.font-color,
+    font-italic : DefaultSCollapseProps.font-italic,
+    font-family : DefaultSCollapseProps.font-family,
+    //theme
+    theme : DefaultSCollapseProps.theme,
+    //header
+    header-height : DefaultSCollapseProps.header-height,
+    header-title : DefaultSCollapseProps.header-title,
+    header-padding-type: DefaultSCollapseProps.header-padding-type,
+    header-shadow-type: DefaultSCollapseProps.header-shadow-type,
+    header-border-type : DefaultSCollapseProps.header-border-type,
+    //details
+    details-height : DefaultSCollapseProps.details-height,
+    details-padding-type: DefaultSCollapseProps.details-padding-type,
+    details-shadow-type: DefaultSCollapseProps.details-shadow-type,
+    details-border-type : DefaultSCollapseProps.details-border-type,
+    is-show :DefaultSCollapseProps.is-show,
+    collapse-icon : DefaultSCollapseProps.collapse-icon
   };
 }

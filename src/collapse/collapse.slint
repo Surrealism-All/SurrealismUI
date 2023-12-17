@@ -18,11 +18,10 @@
 * ============================================
 */
 
-import { SCard } from "../card/index.slint";
 import { Themes } from "../../use/index.slint";
 
-export component Collapse inherits SCard { 
-  border-radius: 0;
+export component Collapse inherits Rectangle { 
+  clip: false;
   VerticalLayout {
     spacing: 0px;
     width: root.width;

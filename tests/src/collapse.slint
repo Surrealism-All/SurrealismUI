@@ -1,5 +1,7 @@
 import {SCollapse,SCollapseItem,SButton,STable,STableColumn} from "../../index.slint";
 import { UseIcons,Themes } from "../../use/index.slint";
+import { SText } from "../../src/text/index.slint";
+
 
 
 component TestWindow inherits Window {
@@ -9,26 +11,28 @@ component TestWindow inherits Window {
     y: 10px;
     // you can set 0 , it has no impact
     // recommend use the following way
-    height: item1.get-height() * 2;
+    height: item1.get-height() * 3;
     width: 360px;
-    theme: Primary;
     item1:=SCollapseItem {
-      name:"Feedback";
-      detail:" Operation feedback: enable the users to clearly perceive their operations by style updates and interactive effects";
-      
+      header-title:"Feedback";
+      SText {
+        wrap: word-wrap;
+        height: item1.details-height;
+        width: item1.width;
+        text:"Operation feedback: enable the users to clearly perceive their operations by style updates and interactive effects";
+      }
     }
     SCollapseItem {
       theme: Themes.Error;
-      define:true;
+      
       SButton { 
 
       }
     }
     SCollapseItem {
-      name:"table";
+      header-title:"table";
       theme: Themes.Dark;
-      define:true;
-      item-height:280px;
+      details-height:280px;
       STable {
         
         height: col1.get-height();
@@ -56,4 +60,5 @@ component TestWindow inherits Window {
       }
     }
   }
+  
 }
