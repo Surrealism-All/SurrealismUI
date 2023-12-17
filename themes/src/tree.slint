@@ -1,0 +1,40 @@
+import {GlobalProps} from "./index.slint";
+import {Themes,PaddingType,ShadowType,BorderType,TreeData,TreeChildren,UseIcons} from "../../use/index.slint";
+
+export global DefaultSTreeProps {
+  //font
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  in-out property <int> font-weight : 700;
+  in-out property <length> font-size: GlobalProps.font.font-size;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  //font
+  in-out property <string> item-font-family : GlobalProps.font.font-family;
+  in-out property <int> item-font-weight : GlobalProps.font.font-weight;
+  in-out property <length> item-font-size: GlobalProps.font.font-size - 2px;
+  in-out property <bool> item-font-italic : GlobalProps.font.font-italic;
+  //theme
+  in-out property <Themes> theme : GlobalProps.theme;
+  //hight-width
+  in-out property <length> height : 100%;
+  in-out property <length> width : 100%;
+  in-out property <PaddingType> padding-type:PaddingType.Normal;
+  in-out property <ShadowType> shadow-type: ShadowType.Low1;
+  in-out property <BorderType> border-type : BorderType.Normal;
+  in-out property <TreeData> tree-data : {
+    icon : UseIcons.icons.Folder,
+    label: "parent_folder",
+    extra:"",
+    children:[
+      {
+        icon:UseIcons.icons.FileCode,
+        label:"slint.slint",
+        extra:"12KB", 
+      },
+      {
+        icon:UseIcons.icons.FileCode,
+        label:"surrealism.slint",
+        extra:"126KB", 
+      }
+    ]
+  };
+}

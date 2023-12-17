@@ -1,0 +1,40 @@
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+import { ShadowType } from "./shadow.slint";
+import { BorderType } from "./border.slint";
+
+export struct TreeChildren {
+  icon:image,
+  label:string,
+  extra:string,  
+}
+
+export struct TreeData {
+  icon:image,
+  label:string,
+  extra:string,  
+  children:[TreeChildren]
+}
+
+
+export struct STreeProps {
+  //font
+  font-family : string,
+  font-weight : int,
+  font-size: length,
+  font-italic : bool,
+  //font
+  item-font-family : string,
+  item-font-weight : int,
+  item-font-size: length,
+  item-font-italic : bool,
+  //theme
+  theme : Themes,
+  //hight-width
+  height : length,
+  width : length,
+  padding-type: PaddingType,
+  shadow-type: ShadowType,
+  border-type : BorderType,
+  tree-data : TreeData
+}

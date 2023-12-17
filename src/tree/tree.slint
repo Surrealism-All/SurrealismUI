@@ -15,27 +15,14 @@
 */
 
 import { SCard } from "../card/index.slint";
-import { ROOT-STYLES} from "../../themes/index.slint";
+import { ROOT-STYLES,DefaultSTreeProps} from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { SText } from "../text/index.slint";
 import { ScrollView } from "std-widgets.slint";
-import {UseIcons} from "../../use/index.slint";
+import {UseIcons,Themes,PaddingType,ShadowType,BorderType,TreeChildren,TreeData} from "../../use/index.slint";
 
-export struct TreeChildren {
-  icon:image,
-  label:string,
-  extra:string,  
-}
-
-export struct TreeData {
-  icon:image,
-  label:string,
-  extra:string,  
-  children:[TreeChildren]
-}
 
 component TreeItem inherits SCard{
-  card-height: 20px;
   theme: Primary;
   border-type: None;
   drop-shadow-blur: 0;
@@ -55,26 +42,36 @@ component TreeItem inherits SCard{
   }
   HorizontalLayout {
     alignment: space-between;
+    padding-left: root.padding-left;
+    padding-right: root.padding-right;
     HorizontalLayout {
+      spacing: 6px;
       Rectangle {
+        width: i-icon.width;
         i-icon:=SIcon { 
-          height: 20px;
-          width: 20px;
+          height: root.font-size;
+          width: root.font-size;
           theme: root.theme;
           source: root.item-icon;
         }
       }
       i-name:=SText { 
         theme: root.theme;
-        font-size: 14px;
+        font-size: root.font-size;
         text: item-name;
+        font-weight: root.font-weight;
+        font-italic: root.font-italic;
+        font-family: root.font-family;
       }
     }
     HorizontalLayout {
       alignment: end;
       i-extra:=SText {
         theme: root.theme;
-        font-size: 14px;
+        font-size: root.font-size;
+        font-weight: root.font-weight;
+        font-italic: root.font-italic;
+        font-family: root.font-family;
         text: root.item-extra;
       } 
     }
@@ -83,35 +80,38 @@ component TreeItem inherits SCard{
 
 
 export component Tree inherits SCard{
-  height: 100%;
-  width: 100%;
+  height : DefaultSTreeProps.height;
+  width : DefaultSTreeProps.width;
   clip: true;
-  in-out property <TreeData> tree-data : {
-    icon : UseIcons.icons.Folder,
-    label: "parent_folder",
-    extra:"",
-    children:[
-      {
-        icon:UseIcons.icons.FileCode,
-        label:"slint.slint",
-        extra:"12KB", 
-      },
-      {
-        icon:UseIcons.icons.FileCode,
-        label:"surrealism.slint",
-        extra:"126KB", 
-      }
-    ]
-  };
+  //font
+  font-family: DefaultSTreeProps.font-family;
+  font-italic: DefaultSTreeProps.font-italic;
+  font-size:DefaultSTreeProps.font-size;
+  font-weight: DefaultSTreeProps.font-weight;
+  theme : DefaultSTreeProps.theme;
+  padding-type: DefaultSTreeProps.padding-type;
+  shadow-type: DefaultSTreeProps.shadow-type;
+  border-type : DefaultSTreeProps.border-type;
+  //font
+  in property <string> item-font-family : DefaultSTreeProps.item-font-family;
+  in property <int> item-font-weight : DefaultSTreeProps.item-font-weight;
+  in property <length> item-font-size: DefaultSTreeProps.item-font-size;
+  in property <bool> item-font-italic : DefaultSTreeProps.item-font-italic;
+  in-out property <TreeData> tree-data : DefaultSTreeProps.tree-data;
   callback clicked(int,string,string);
   view:=VerticalLayout {
     parent-root:= TreeItem{
+      card-height: root.font-size;
       width: 100%;
       theme: root.theme;
       item-index: -1;
       item-icon: tree-data.icon;
       item-name: tree-data.label;
       item-extra: tree-data.extra;
+      font-size: root.font-size;
+      font-italic: root.font-italic;
+      font-family: root.font-family;
+      font-weight: root.font-weight;
       clicked(i,n,e) => {
         root.clicked(i,n,e);
       }
@@ -122,12 +122,17 @@ export component Tree inherits SCard{
         padding-left: root.padding-left / 2;
         padding-right: root.padding-right / 2;
         for item[index] in tree-data.children: TreeItem{
+          card-height: root.item-font-size;
           width: 100%;
           theme: root.theme;
           item-index: index;
           item-icon: item.icon;
           item-name: item.label;
           item-extra: item.extra;
+          font-size: root.item-font-size;
+          font-italic: root.item-font-italic;
+          font-family: root.item-font-family;
+          font-weight: root.item-font-weight;
           clicked(i,n,e) => {
             root.clicked(i,n,e);
           }
