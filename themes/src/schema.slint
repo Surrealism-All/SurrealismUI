@@ -15,10 +15,12 @@ import { DefaultSPopupProps } from "./popup.slint";
 import { DefaultSDrawerProps } from "./drawer.slint";
 import { DefaultSDialogProps } from "./dialog.slint";
 import { DefaultSCollapseProps} from "./collapse.slint";
+import { DefaultSTipProps} from "./tip.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
-  SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps
+  SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
+  STipProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -287,5 +289,22 @@ export global ComponentSchema {
     details-border-type : DefaultSCollapseProps.details-border-type,
     is-show :DefaultSCollapseProps.is-show,
     collapse-icon : DefaultSCollapseProps.collapse-icon
+  };
+  in-out property <STipProps> tip : {
+    font-family : DefaultSTipProps.font-family,
+    font-weight : DefaultSTipProps.font-weight,
+    font-size: DefaultSTipProps.font-size,
+    font-color : DefaultSTipProps.font-color,
+    font-italic : DefaultSTipProps.font-italic,
+    //theme
+    theme : DefaultSTipProps.theme,
+    wrap : DefaultSTipProps.wrap,
+    overflow : DefaultSTipProps.overflow,
+    letter-spacing : DefaultSTipProps.letter-spacing,
+    horizontal-alignment : DefaultSTipProps.horizontal-alignment,
+    vertical-alignment : DefaultSTipProps.vertical-alignment,
+    position : DefaultSTipProps.position,
+    is-show : DefaultSTipProps.is-show,
+    text : DefaultSTipProps.text,
   };
 }
