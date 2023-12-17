@@ -1,0 +1,40 @@
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+import { ShadowType } from "./shadow.slint";
+import { BorderType } from "./border.slint";
+
+export struct SDialogProps {
+  //theme
+  theme : Themes,
+  cancel-btn-theme : Themes,
+  confirm-btn-theme : Themes,
+  cancel-btn-text : string,
+  confirm-btn-text : string,
+  is-show: bool,
+  mask-opacity : percent,
+  spacing : length,
+  //font
+  font-weight : int,
+  font-size: length,
+  font-color : brush,
+  font-italic : bool,
+  font-family : string,
+  //dialog
+  dialog-theme : Themes,
+  dialog-title : string,
+  dialog-title-size : length,
+  dialog-details : string,
+  dialog-height : float,
+  dialog-title-height : float,
+  dialog-view-height : float,
+  btn-view-height : float,
+  dialog-width : float,
+  dialog-details-padding-top : length,
+  dialog-details-padding-bottom : length,
+  dialog-details-padding-left : length,
+  dialog-details-padding-right : length,
+  dialog-details-alignment : LayoutAlignment,
+  padding-type:PaddingType,
+  shadow-type: ShadowType,
+  border-type : BorderType,
+}

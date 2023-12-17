@@ -1,0 +1,38 @@
+import {Themes,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+
+export global DefaultSDialogProps {
+  //theme
+  in-out property <Themes> theme : Dark;
+  in-out property <Themes> cancel-btn-theme : Info;
+  in-out property <Themes> confirm-btn-theme : Primary;
+  in-out property <string> cancel-btn-text : "Cancel";
+  in-out property <string> confirm-btn-text : "Confirm";
+  in-out property <bool> is-show:false;
+  in-out property <percent> mask-opacity : 80%;
+  in-out property <length> spacing : 16px;
+  //font
+  in-out property <int> font-weight : GlobalProps.font.font-weight;
+  in-out property <length> font-size: GlobalProps.font.font-size;
+  in-out property <brush> font-color : GlobalProps.font.color;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  //dialog
+  in-out property <Themes> dialog-theme : Dark;
+  in-out property <string> dialog-title : "Dialog Title";
+  in-out property <length> dialog-title-size : 18px;
+  in-out property <string> dialog-details : "This is a dialog info";
+  in-out property <float> dialog-height : 0.36;
+  in-out property <float> dialog-title-height : 0.2;
+  in-out property <float> dialog-view-height : 0.6;
+  in-out property <float> btn-view-height : 0.2;
+  in-out property <float> dialog-width : 0.6;
+  in-out property <length> dialog-details-padding-top : 0;
+  in-out property <length> dialog-details-padding-bottom : 0;
+  in-out property <length> dialog-details-padding-left : 0;
+  in-out property <length> dialog-details-padding-right : 0;
+  in-out property <LayoutAlignment> dialog-details-alignment : end;
+  in-out property <PaddingType> padding-type:PaddingType.Normal;
+  in-out property <ShadowType> shadow-type: ShadowType.Low1;
+  in-out property <BorderType> border-type : BorderType.Normal;
+}

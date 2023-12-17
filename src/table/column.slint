@@ -147,7 +147,8 @@ export component TableColumn inherits Rectangle{
           btn:=SButton { 
             theme: op.theme;
             text: op.name;
-            height: ROOT-STYLES.tag-size + ROOT-STYLES.sur-padding.small.padding-same * 2;
+            card-height: ROOT-STYLES.tag-size;
+            padding-type: Tip;
             // font-size: ROOT-STYLES.sur-font.tag-size;
             clicked => {
               root.clicked(index,op.name)
