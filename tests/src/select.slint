@@ -1,39 +1,35 @@
-import {SSelect,ValueType} from "../../index.slint";
+import {SSelect} from "../../index.slint";
 import {Themes} from "../../use/index.slint";
+import { SButton } from "../../src/button/index.slint";
 
 component TestWindow inherits Window {
   height: 440px;
   width: 400px;
   SSelect {
     y: 20px;
-    ranges-string: [
+    options: [
       {id:0,label:"Shangai",value:"s01"},
       {id:1,label:"Los Angeles",value:"l02"},
       {id:2,label:"New York",value:"n03"},
       {id:3,label:"Hong Kong",value:"h04"},
     ];
   }
+  
   SSelect {
     y: 200px;
+    font-weight: 700;
+    is-show: true;
     theme: Error;
-    ranges-string: [
+    options: [
       {id:0,label:"Shangai",value:"s01"},
       {id:1,label:"Los Angeles",value:"l02"},
       {id:2,label:"New York",value:"n03"},
       {id:3,label:"Hong Kong",value:"h04"},
     ];
-    changed(index,id,label,value,value-type)=>{
-      if(value-type==ValueType.String){
-        t.vt = "string";
-      }else if(value-type==ValueType.Float){
-        t.vt = "float"
-      }else{
-        t.vt = "int"
-      }
-      t.index = index;
-      t.id = id;
-      t.label = label;
-      t.value = value;
+    changed(index,label,value)=>{
+      debug(index);
+      debug(label);
+      debug(value);
     }
   }
   t:=Text{

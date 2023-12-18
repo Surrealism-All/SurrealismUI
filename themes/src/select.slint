@@ -1,0 +1,25 @@
+import {Themes,PaddingType,ShadowType,BorderType,Option} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+
+export global DefaultSSelectProps {
+  //font
+  in-out property <int> font-weight : GlobalProps.font.font-weight;
+  in-out property <length> font-size: GlobalProps.font.font-size;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  in-out property <int> item-font-weight : GlobalProps.font.font-weight;
+  in-out property <length> item-font-size: GlobalProps.font.font-size;
+  in-out property <bool> item-font-italic : GlobalProps.font.font-italic;
+  in-out property <string> item-font-family : GlobalProps.font.font-family;
+  //theme
+  in-out property <Themes> theme : GlobalProps.theme;
+  //hight-width
+  in-out property <length> card-height : font-size;
+  in-out property <length> card-width : 180px;
+  in-out property <PaddingType> padding-type:PaddingType.Normal;
+  in-out property <ShadowType> shadow-type: ShadowType.Low1;
+  in-out property <BorderType> border-type : BorderType.Normal;
+  in-out property <[Option]> options;
+  in-out property <string> placeholder : "please select";
+  in-out property <bool> is-show : false;
+}
