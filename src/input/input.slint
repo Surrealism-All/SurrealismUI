@@ -61,7 +61,7 @@ export component Input inherits Rectangle {
   in property <bool> password:false;
   out property <bool> has-focus<=>input.has-focus;
   private property <brush> placeholder-color;
-  in-out property <InputType> type : InputType.text;
+  in-out property <InputType> type : password? InputType.password:InputType.text;
   in-out property <brush> font-color;
   in-out property <brush> icon-color;
   in-out property <string> content <=> input.text;
