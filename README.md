@@ -1,18 +1,22 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.2.2-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.3.0-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+
+<strong style="color:#f60;">SurrealismUI is undergoing significant changes, please be patient and wait for the V0.3.0 version update (waiting -> 2023-12-24)</strong>
+
+<strong style="color:red;">Please refer to README.pdf for the documentation of version v0.2.2</strong>
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
-- updateDate：202301112
-- version：0.2.2
+- updateDate：20231219
+- version：0.3.0
 - email：syf20020816@outlook.com
 
 <img src="https://github.com/syf20020816/SurrealismUI/blob/main/README/imgs/logo.png">
 
-SurrealismUI是一个完全使用Slint进行构建的Slint第三方组件库
+**SurrealismUI是一个完全使用Slint进行构建的Slint第三方组件库**
 
-SurrealismUI is a third-party component library built entirely using Slint
+**SurrealismUI is a third-party component library built entirely using Slint**
 
 ## About Doc Icon
 
@@ -54,7 +58,7 @@ Built in 7 theme colors in SurrealismUI
 |   UI layer (write components)    |
 ————————————————————————————————————
 
-①：define a lot replaceable theme styles and binding styles use theme property , can be customized in slint file or logic control layer , means: all system components are wrapped (Customizing themes in third-party component libraries is very affordable as it acts on the UI layer. SLINT is like an integration of HTML and CSS, so I use this way)(By binding global singleton variables to styles, any component that uses variables can change styles simultaneously)
+①：define a lot replaceable theme styles and binding styles use theme property , can be customized in slint file or logic control layer , means: all system components are wrapped (Customizing themes in third-party component libraries is very affordable as it acts on the UI layer. slint is like an integration of HTML and CSS, so I use this way)(By binding global singleton variables to styles, any component that uses variables can change styles simultaneously)
 
 				System support (like iced)
 ————————————————————————————————————      ————————————————
@@ -67,8 +71,6 @@ Built in 7 theme colors in SurrealismUI
 
 ## Diff
 Slint differs from other GUI frameworks in that the UI layer is completed through. slint, which I believe is good and brings many advantages (compatibility with different platforms, instant preview, maintainability, parallel development, etc.). But this also leads to SLIT being unable to easily customize the theme of the component. Theme customization and switching are dynamic to static processes, which require a lot of logical processing, and this is also same as (HTML+CSS+js | ts)
-## Slint be careful
-Slint's work on topic definition will simultaneously affect the built-in components currently provided and other languages' API. Although this feature may seem simple, it may bring significant risks, which I believe need to be weighed and considered. Is this necessary? Because for third-party component libraries, although the workload of helping users define themes is large, it is not complex. As the author of SurrealismUI, it is evident that we have successfully implemented the definition of themes in static slint language and can be modified at the logical level. Users customize themes through static file overwriting.
 ```
 
 
@@ -2244,12 +2246,22 @@ export component TestFile inherits Window {
 - V0.3.0 (Slint 1.3.2)
   - 中文
     - 所有组件更名`SUR`为`S`
-    - 默认文字采用`Alimama_DongFangDaKai_Regular.ttf` (若你不需要请注意release的包名)
-    - 重写`SHeader`
-    - 优化`STip`：
-      - 修改属性名`content -> text`
-    - 
-  
+    - 默认文字采用`Arial`
+    - 重写所有组件
+    - 重构`themes/index.slint`（用于导出内置Schema，内置Global）
+    - 增加use方式导出内置方法，内置结构体，内置枚举等
+    - 使用use方式对组件进行插槽预备
+    - 修改内置主题色
+    - 重构项目结构
+  - English
+    - Renaming all components from `SUR` to `S`
+    - Default text adopts `Arial`
+    - Rewrite all components
+    - Refactoring `themes/index. slint` (used to export built-in schemas, built-in Global)
+    - Add use mode to export built-in functions, built-in struct, built-in enum, etc
+    - Prepare slots for components using the use method
+    - Modify built-in theme colors
+    - Refactoring project structure
 - V0.2.2（Slint 1.3.0）
   - 中文：
     - 优化内置Global：
