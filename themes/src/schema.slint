@@ -16,11 +16,13 @@ import { DefaultSDrawerProps } from "./drawer.slint";
 import { DefaultSDialogProps } from "./dialog.slint";
 import { DefaultSCollapseProps} from "./collapse.slint";
 import { DefaultSTipProps} from "./tip.slint";
+import { DefaultSSelectProps} from "./select.slint";
+import { DefaultSInputProps} from "./input.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
-  STipProps
+  STipProps,SSelectProps,SInputProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -28,7 +30,7 @@ export global ComponentSchema {
   in-out property <SCardProps> card : {
     font-weight : DefaultSCardProps.font-weight,
     font-size: DefaultSCardProps.font-size,
-    color : DefaultSCardProps.color,
+    font-color : DefaultSCardProps.font-color,
     font-italic : DefaultSCardProps.font-italic,
     font-family : DefaultSCardProps.font-family,
     //theme
@@ -306,5 +308,51 @@ export global ComponentSchema {
     position : DefaultSTipProps.position,
     is-show : DefaultSTipProps.is-show,
     text : DefaultSTipProps.text,
+  };
+  in-out property <SSelectProps> select : {
+    //font
+    font-weight : DefaultSSelectProps.font-weight,
+    font-size: DefaultSSelectProps.font-size,
+    font-italic : DefaultSSelectProps.font-italic,
+    font-family : DefaultSSelectProps.font-family,
+    item-font-weight :DefaultSSelectProps.item-font-weight,
+    item-font-size: DefaultSSelectProps.item-font-size,
+    item-font-italic : DefaultSSelectProps.item-font-italic,
+    item-font-family : DefaultSSelectProps.item-font-family,
+    //theme
+    theme : DefaultSSelectProps.theme,
+    //hight-width
+    card-height : DefaultSSelectProps.card-height,
+    card-width : DefaultSSelectProps.card-width,
+    padding-type:DefaultSSelectProps.padding-type,
+    shadow-type: DefaultSSelectProps.shadow-type,
+    border-type : DefaultSSelectProps.border-type,
+    options : DefaultSSelectProps.options,
+    placeholder : DefaultSSelectProps.placeholder,
+    is-show : DefaultSSelectProps.is-show,
+  };
+  in-out property <SInputProps> input : {
+    font-weight : DefaultSInputProps.font-weight,
+    font-size: DefaultSInputProps.font-size,
+    font-color : DefaultSInputProps.font-color,
+    font-italic : DefaultSInputProps.font-italic,
+    font-family : DefaultSInputProps.font-family,
+    //theme
+    theme : DefaultSInputProps.theme,
+    //hight-width
+    card-height : DefaultSInputProps.card-height,
+    card-width : DefaultSInputProps.card-width,
+    padding-type:DefaultSInputProps.padding-type,
+    shadow-type: DefaultSInputProps.shadow-type,
+    border-type : DefaultSInputProps.border-type,
+    placeholder : DefaultSInputProps.placeholder,
+    disabled:DefaultSInputProps.disabled,
+    clearable:DefaultSInputProps.clearable,
+    //use eye-icon
+    password:DefaultSInputProps.password,
+    has-focus:DefaultSInputProps.has-focus,
+    type : DefaultSInputProps.type,
+    icon-color : DefaultSInputProps.icon-color,
+    text : DefaultSInputProps.text,
   };
 }

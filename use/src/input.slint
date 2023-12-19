@@ -3,18 +3,13 @@ import { PaddingType } from "./padding.slint";
 import { ShadowType } from "./shadow.slint";
 import { BorderType } from "./border.slint";
 
-export struct SOption {label:string,value:string}
-
-export struct SSelectProps {
+export struct SInputProps {
   //font
   font-weight : int,
   font-size: length,
+  font-color : brush,
   font-italic : bool,
   font-family : string,
-  item-font-weight : int,
-  item-font-size: length,
-  item-font-italic : bool,
-  item-font-family : string,
   //theme
   theme : Themes,
   //hight-width
@@ -23,7 +18,13 @@ export struct SSelectProps {
   padding-type:PaddingType,
   shadow-type: ShadowType,
   border-type : BorderType,
-  options : [SOption],
   placeholder : string,
-  is-show : bool,
+  disabled:bool,
+  clearable:bool,
+  //use eye-icon
+  password:bool,
+  has-focus:bool,
+  type : InputType,
+  icon-color : brush,
+  text : string,
 }

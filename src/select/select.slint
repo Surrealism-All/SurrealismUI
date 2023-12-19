@@ -28,7 +28,7 @@ import { SCard } from "../card/index.slint";
 import { SText } from "../text/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { ListView } from "std-widgets.slint";
-import { Themes,UseIcons,UseSurrealismFn,Option } from "../../use/index.slint";
+import { Themes,UseIcons,UseSurrealismFn,SOption } from "../../use/index.slint";
 
 export component Select inherits SCard {
   card-width: DefaultSSelectProps.card-width;
@@ -46,7 +46,7 @@ export component Select inherits SCard {
   in property <length> item-font-size: DefaultSSelectProps.font-size;
   in property <bool> item-font-italic : DefaultSSelectProps.font-italic;
   in property <string> item-font-family : DefaultSSelectProps.font-family;
-  in property <[Option]> options : DefaultSSelectProps.options;
+  in property <[SOption]> options : DefaultSSelectProps.options;
   in property <string> placeholder : DefaultSSelectProps.placeholder;
   in-out property <bool> is-show : DefaultSSelectProps.is-show;
   callback changed(int,string,string);
@@ -99,8 +99,6 @@ export component Select inherits SCard {
     }
     clicked => {
       root.toggle();
-      // expand.visible=!expand.visible;
-      // select-icon.rotation.rotation-angle = expand.visible? 0deg : 180deg;
     }
   }
   expand:= SCard{
@@ -111,25 +109,29 @@ export component Select inherits SCard {
     list:=ListView { 
       padding-top: parent.padding-top;
       padding-bottom: parent.padding-bottom;
-      for range[index] in root.options : TouchArea{
-        mouse-cursor: pointer;
-        z: 111;
-        height: list-item.height;
-        clicked => {
-          select-text.text = range.label;
-          root.changed(index,range.label,range.value);
-        }
-        list-item:= SText {
-          height: UseSurrealismFn.count-height(root.item-font-size,root.card-padding.padding-top);
-          padding-left: root.padding-left;
-          padding-right: root.padding-right;
-          width: root.width - self.padding-left - self.padding-right;
-          theme: root.theme;
-          text: range.label;
-          font-family: item-font-family;
-          font-size: item-font-size;
-          font-weight: item-font-weight;
-          font-italic: item-font-italic;
+      for range[index] in root.options : Rectangle{
+        height: area.height;
+        background:area.has-hover?expand.background.brighter(0.1):expand.background;
+        area:=TouchArea{
+          mouse-cursor: pointer;
+          z: 111;
+          height: list-item.height;
+          clicked => {
+            select-text.text = range.label;
+            root.changed(index,range.label,range.value);
+          }
+          list-item:= SText {
+            height: UseSurrealismFn.count-height(root.item-font-size,root.card-padding.padding-top);
+            padding-left: root.padding-left;
+            padding-right: root.padding-right;
+            width: root.width - self.padding-left - self.padding-right;
+            theme: root.theme;
+            text: range.label;
+            font-family: item-font-family;
+            font-size: item-font-size;
+            font-weight: item-font-weight;
+            font-italic: item-font-italic;
+          }
         }
       }
     }

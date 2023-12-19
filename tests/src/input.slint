@@ -11,10 +11,10 @@ export component TestInput inherits Window {
   }
   SInput{
     y: 20px;
-    width: 60%;
     placeholder :"please enter your username";
-    input-width:300px;
+    card-width:300px;
     clearable: true;
+    text:"SurrealismUI - input";
     accepted(res)=>{
       debug("content in input:" + res);
       p.open();
@@ -27,37 +27,38 @@ export component TestInput inherits Window {
  
   w:=SInput{
     y: 80px;
-    width: 60%;
     theme:Themes.Success;
     type:InputType.password;
     password:true;
   }
   SInput{
     y: 140px;
-    width: 60%;
+    card-width: 20rem;
     theme:Themes.Error;
     disabled:true;
-    content:"disabled";
+    text:"disabled";
   }
   SInput{
     y: 200px;
-    width: 60%;
+    card-width: 18rem;
     theme:Themes.Dark;
   }
 
   SInput{
     y: 260px;
-    width: 60%;
+    card-width: 160px;
     theme:Themes.Warning;
     clearable:true;
   }
   SInput{
     y: 320px;
-    // width: 60%;
+    card-width: 18rem;
     theme:Themes.Info;
-    type:InputType.password;
+    type:InputType.text;
     clearable:true;
     password:true;
+    text:"test password";
+    
   }
   
 }

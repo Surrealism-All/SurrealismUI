@@ -9,7 +9,7 @@
 * This is a basic input box, often used in forms, divided into two types: text and password
 * ## properties:
 * - in property <int> font-weight : font weight for input
-* - in property <string> placeholder: default placeholder which you wanna show when no content
+* - in property <string> placeholder: default placeholder which you wanna show when no text
 * - in property <Themes> theme: Surrealism themes
 * - in property <length> input-width: Please do not use width to adjust the length of the input box , use this property to instead
 * - in property <length> font-size: font size 
@@ -21,61 +21,64 @@
 * - in-out property <InputType> type : input type (text or password)
 * - in-out property <brush> font-color : font color
 * - in-out property <brush> icon-color : icon color
-* - in-out property <string> content : the content of the input
+* - in-out property <string> text : the text of the input
 * ## functions:
-* - pure public function get() ->string : get content
-* - public function set(content:string) : set content
-* - public function clear() : clear content
+* - pure public function get() ->string : get text
+* - public function set(text:string) : set text
+* - public function clear() : clear text
 * - public function select-all() : select all 
 * - public function clear-selection() : clears the selection
 * - public function cut() : copies the selected text to the clipboard and removes it from the editable area
 * - public function copy() : copies the selected text to the clipboard
-* - public function paste() : pastes the text content of the clipboard at the cursor position
+* - public function paste() : pastes the text text of the clipboard at the cursor position
 * ## callbacks:
 * - callback accepted(string) : run when pressed down enter key
-* - callback changed(string) : run when content changed
+* - callback changed(string) : run when text changed
 * ============================================
 */
-import {ROOT_STYLES} from "../../themes/index.slint";
+import {ROOT_STYLES,DefaultSInputProps} from "../../themes/index.slint";
 import {SText } from "../text/index.slint";
 import {SIcon} from "../icon/index.slint";
 import { Themes,UseIcons } from "../../use/index.slint";
+import { SCard } from "../card/index.slint";
 
-export component Input inherits Rectangle {
-  height:input.height;
+export component Input inherits SCard {
+  card-height: DefaultSInputProps.card-height;
   min-width: 160px;   
-  width: 240px;
+  card-width: DefaultSInputProps.card-width;
   clip: false;
-  border-radius: ROOT-STYLES.sur-border.small.border-radius;
+  border-type: DefaultSInputProps.border-type;
+  shadow-type: DefaultSInputProps.shadow-type;
+  padding-type: DefaultSInputProps.padding-type;
   vertical-stretch: 0;
   horizontal-stretch: 1;
-  in property <string> placeholder : "please input";
-  in property <Themes> theme : Themes.Light;
-  // in property <image> icon : UseIcons.icons.Null;
-  in property <length> input-width : 16rem;
-  in property <length> font-size : ROOT-STYLES.sur-font.font-size;
-  in property <bool> disabled:false;
-  in property <bool> clearable:false;
-  in property <int> font-weight : 400;
+  font-color: DefaultSInputProps.font-color;
+  font-size: DefaultSInputProps.font-size;
+  font-weight: DefaultSInputProps.font-weight;
+  font-family: DefaultSInputProps.font-family;
+  font-italic: DefaultSInputProps.font-italic;
+  theme: DefaultSInputProps.theme;
+  in property <string> placeholder : DefaultSInputProps.placeholder;
+  in property <bool> disabled: DefaultSInputProps.disabled;
+  in property <bool> clearable:DefaultSInputProps.clearable;
   //use eye-icon
-  in property <bool> password:false;
+  in property <bool> password:DefaultSInputProps.password;
   out property <bool> has-focus<=>input.has-focus;
   private property <brush> placeholder-color;
-  in-out property <InputType> type : InputType.text;
-  in-out property <brush> font-color;
+  in-out property <InputType> type : password? InputType.password:InputType.text;
   in-out property <brush> icon-color;
-  in-out property <string> content <=> input.text;
+  in-out property <string> text <=> input.text;
   callback accepted(string);
   callback changed(string);
   //functions
   pure public function get() ->string{
-    self.content
+    self.text
   }
-  public function set(content:string) {
-    self.content = content
+  public function set(text:string) {
+    self.text = text
   }
   public function clear() {
-    root.content = "";
+    root.text = "";
   }
   public function select-all() {
     input.select-all();
@@ -97,8 +100,8 @@ export component Input inherits Rectangle {
     input.paste();
   }
     states [
-      light when theme == Themes.Light: {
-        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.light.opacity : ROOT-STYLES.sur-theme-colors.light.deeper;
+      light when root.theme == Themes.Light: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.light.opacity : ROOT-STYLES.sur-theme-colors.light.normal;
         root.border-color: ROOT-STYLES.sur-theme-colors.light.deeper;
         root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.light.deepest;
         font-color: ROOT-STYLES.sur-theme-colors.light.font;
@@ -108,8 +111,8 @@ export component Input inherits Rectangle {
         hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.light.deepest;
         root.placeholder-color : ROOT-STYLES.sur-theme-colors.light.deepest;
       }
-      primary when theme == Themes.Primary: {
-        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.primary.opacity : ROOT-STYLES.sur-theme-colors.primary.deeper;
+      primary when root.theme == Themes.Primary: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.primary.opacity : ROOT-STYLES.sur-theme-colors.primary.normal;
         root.border-color: ROOT-STYLES.sur-theme-colors.primary.deeper;
         root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
         font-color: ROOT-STYLES.sur-theme-colors.primary.font;
@@ -119,8 +122,8 @@ export component Input inherits Rectangle {
         hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.primary.weakest;
         root.placeholder-color : ROOT-STYLES.sur-theme-colors.primary.weakest;
       }
-      success when theme == Themes.Success: {
-        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.success.opacity:ROOT-STYLES.sur-theme-colors.success.deeper;
+      success when root.theme == Themes.Success: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.success.opacity:ROOT-STYLES.sur-theme-colors.success.normal;
         root.border-color: ROOT-STYLES.sur-theme-colors.success.deeper;
         root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
         font-color: ROOT-STYLES.sur-theme-colors.success.font;
@@ -130,69 +133,70 @@ export component Input inherits Rectangle {
         hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.success.weakest;
         root.placeholder-color : ROOT-STYLES.sur-theme-colors.success.weaker;
       }
-      info when theme == Themes.Info: {
-        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.info.opacity:ROOT-STYLES.sur-theme-colors.info.deeper;
+      info when root.theme == Themes.Info: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.info.opacity:ROOT-STYLES.sur-theme-colors.info.normal;
         root.border-color: ROOT-STYLES.sur-theme-colors.info.deeper;
         root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
         font-color: ROOT-STYLES.sur-theme-colors.info.font;
         icon-color: ROOT-STYLES.sur-theme-colors.info.font;
         input.selection-background-color : ROOT-STYLES.sur-theme-colors.info.normal;
         input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.info.font;
-        hight-light.background : ROOT-STYLES.sur-theme-colors.info.weaker;
         hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.info.weakest;
         root.placeholder-color : ROOT-STYLES.sur-theme-colors.info.weaker;
       }
-      warning when theme == Themes.Warning: {
-        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.warning.opacity:ROOT-STYLES.sur-theme-colors.warning.deeper;
+      warning when root.theme == Themes.Warning: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.warning.opacity:ROOT-STYLES.sur-theme-colors.warning.normal;
         root.border-color: ROOT-STYLES.sur-theme-colors.warning.deeper;
         root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
         font-color: ROOT-STYLES.sur-theme-colors.warning.font;
         icon-color: ROOT-STYLES.sur-theme-colors.warning.font;
         input.selection-background-color : ROOT-STYLES.sur-theme-colors.warning.normal;
         input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.warning.font;
-        hight-light.background : ROOT-STYLES.sur-theme-colors.warning.weaker;
         hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.warning.weakest;
         root.placeholder-color : ROOT-STYLES.sur-theme-colors.warning.weaker;
       }
-      error when theme == Themes.Error: {
-        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.error.opacity:ROOT-STYLES.sur-theme-colors.error.deeper;
+      error when root.theme == Themes.Error: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.error.opacity:ROOT-STYLES.sur-theme-colors.error.normal;
         root.border-color: ROOT-STYLES.sur-theme-colors.error.deeper;
         root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
         font-color: ROOT-STYLES.sur-theme-colors.error.font;
         icon-color: ROOT-STYLES.sur-theme-colors.error.font;
         input.selection-background-color : ROOT-STYLES.sur-theme-colors.error.normal;
         input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.error.font;
-        hight-light.background : ROOT-STYLES.sur-theme-colors.error.weaker;
         hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.error.weakest;
         root.placeholder-color : ROOT-STYLES.sur-theme-colors.error.weaker;
       }
-      dark when theme == Themes.Dark: {
-        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.dark.opacity:ROOT-STYLES.sur-theme-colors.dark.deeper;
+      dark when root.theme == Themes.Dark: {
+        root.background : !input.has-focus?ROOT-STYLES.sur-theme-colors.dark.opacity:ROOT-STYLES.sur-theme-colors.dark.normal;
         root.border-color: ROOT-STYLES.sur-theme-colors.dark.deeper;
         root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
         font-color: ROOT-STYLES.sur-theme-colors.dark.font;
         icon-color: ROOT-STYLES.sur-theme-colors.dark.font;
         input.selection-background-color : ROOT-STYLES.sur-theme-colors.dark.normal;
         input.selection-foreground-color : ROOT-STYLES.sur-theme-colors.dark.font;
-        hight-light.background : ROOT-STYLES.sur-theme-colors.dark.weaker;
         hight-light.background : !input.has-focus?transparent:ROOT-STYLES.sur-theme-colors.dark.weakest;
         root.placeholder-color : ROOT-STYLES.sur-theme-colors.dark.weaker;
       }
     ]
 
     view := HorizontalLayout {
-      padding-left: ROOT-STYLES.sur-padding.normal.padding-same;
-      padding-right: ROOT-STYLES.sur-padding.normal.padding-same;
-      spacing: 0;
+      padding-left: root.padding-left;
+      padding-right: root.padding-right;
+      spacing: 1.5rem;
 
       input-view:= Rectangle {
         clip: true;
-        if root.content=="" :i-placeholder := SText { 
+        if root.text=="" :i-placeholder := SText { 
           theme: root.theme;
           text: root.placeholder;
-          font-size: root.font-size;
           color: root.placeholder-color;
-          width: input.width - input.font-size ;
+          font-size: root.font-size;
+          font-weight: root.font-weight;
+          font-italic: root.font-italic;
+          font-family: root.font-family;
+          width: input.width - input.font-size;
+          wrap: no-wrap;
+          overflow: elide;
         }
 
         input := TextInput {
@@ -206,15 +210,17 @@ export component Input inherits Rectangle {
           vertical-alignment: center;
           font-size: root.font-size;
           font-weight: root.font-weight;
+          font-italic: root.font-italic;
+          font-family: root.font-family;
           read-only: root.disabled;
           single-line: true;
           input-type: root.type;
           wrap: no-wrap;
           accepted => {
-            root.accepted(root.content)
+            root.accepted(root.text)
           }
           edited => {
-            root.changed(root.content)
+            root.changed(root.text)
           }
 
           cursor-position-changed(cpos) => {
@@ -230,6 +236,15 @@ export component Input inherits Rectangle {
         eye:=SIcon {
           theme: root.theme;
           source:UseIcons.icons.Preview-close;
+          height: root.font-size;
+          width: root.font-size;
+          init => {
+            if(root.type==InputType.password){
+              self.source = UseIcons.icons.Preview-close;
+            }else{
+              self.source = UseIcons.icons.Preview-open;
+            }
+          }
           clicked => {
             if(self.source==UseIcons.icons.Preview-close){
               root.type = InputType.text;
@@ -243,6 +258,8 @@ export component Input inherits Rectangle {
       }
       if root.clearable:clear-icon:= Rectangle {
         SIcon{
+          height: root.font-size;
+          width: root.font-size;
           theme: root.theme;
           source: UseIcons.icons.Close-one;
           clicked => {
