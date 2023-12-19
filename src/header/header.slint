@@ -17,20 +17,27 @@
 * - callback back() : back to main page (it depends on you)
 * ============================================
 */
-import {ROOT_STYLES,DefaultSHeaderProps,SHeaderNode} from "../../themes/index.slint";
+import {ROOT_STYLES,DefaultSHeaderProps} from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
-import {Themes,UseIcons} from "../../use/index.slint";
+import {Themes,UseIcons,SOption} from "../../use/index.slint";
 
 export component Header inherits SCard { 
   width: 100%;
-  card-height: ROOT-STYLES.sur-font.font-size;
+  font-size: DefaultSHeaderProps.font-size;
+  font-family: DefaultSHeaderProps.font-family;
+  font-italic: DefaultSHeaderProps.font-italic;
+  font-weight: DefaultSHeaderProps.font-weight;
+  card-height: DefaultSHeaderProps.card-height;
+  theme: DefaultSHeaderProps.theme;
+  padding-type: DefaultSHeaderProps.padding-type;
+  shadow-type: DefaultSHeaderProps.shadow-type;
+  border-type: DefaultSHeaderProps.border-type;
   in property <length> spacing : DefaultSHeaderProps.spacing;
-  in property <[SHeaderNode]> value : DefaultSHeaderProps.value;
-  font-size : ROOT-STYLES.sur-font.font-size;
-  in property <image> source :UseIcons.icons.Right;
-  callback clicked(int,SHeaderNode);
+  in property <[SOption]> value : DefaultSHeaderProps.options;
+  in property <image> source : DefaultSHeaderProps.source;
+  callback clicked(int,SOption);
   HorizontalLayout {
     padding-left: parent.padding-left;
     padding-right: parent.padding-right;
@@ -57,6 +64,11 @@ export component Header inherits SCard {
             theme: root.theme;
             text: item.label;
             font-size: root.font-size;
+            font-weight: root.font-weight;
+            font-italic: root.font-italic;
+            font-family: root.font-family;
+            wrap: TextWrap.no-wrap;
+            color: root.font-color;
           }
         }
       }

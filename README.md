@@ -1,8 +1,8 @@
 <img src="https://img.shields.io/badge/SurrealismUI-0.3.0-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
-<strong style="color:#f60;">SurrealismUI is undergoing significant changes, please be patient and wait for the V0.3.0 version update (waiting -> 2023-12-24)</strong>
+<span style="color:#f60;font-weight:700;">SurrealismUI is undergoing significant changes, please be patient and wait for the V0.3.0 version update (waiting -> 2023-12-24)</span>
 
-<strong style="color:red;">Please refer to README.pdf for the documentation of version v0.2.2</strong>
+<span style="color:red;font-weight:700;">Please refer to README.pdf for the documentation of version v0.2.2</span>
 
 # SurrealismUI
 

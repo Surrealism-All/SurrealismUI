@@ -1,0 +1,24 @@
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+import { ShadowType } from "./shadow.slint";
+import { BorderType } from "./border.slint";
+import { SOption } from "./select.slint";
+
+export struct SHeaderProps {
+  spacing: length,
+  source : image,
+  options : [SOption],
+  font-weight : int,
+  font-size: length,
+  font-color : brush,
+  font-italic : bool,
+  font-family : string,
+  //theme
+  theme : Themes,
+  //hight-width
+  card-height : length,
+  card-width : length,
+  padding-type: PaddingType,
+  shadow-type: ShadowType,
+  border-type : BorderType,
+}

@@ -18,11 +18,12 @@ import { DefaultSCollapseProps} from "./collapse.slint";
 import { DefaultSTipProps} from "./tip.slint";
 import { DefaultSSelectProps} from "./select.slint";
 import { DefaultSInputProps} from "./input.slint";
+import { DefaultSHeaderProps} from "./header.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
-  STipProps,SSelectProps,SInputProps
+  STipProps,SSelectProps,SInputProps,SHeaderProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -354,5 +355,23 @@ export global ComponentSchema {
     type : DefaultSInputProps.type,
     icon-color : DefaultSInputProps.icon-color,
     text : DefaultSInputProps.text,
+  };
+  in-out property <SHeaderProps> header : {
+    spacing: DefaultSHeaderProps.spacing,
+    source : DefaultSHeaderProps.source,
+    options : DefaultSHeaderProps.options,
+    font-weight : DefaultSHeaderProps.font-weight,
+    font-size:DefaultSHeaderProps.font-size,
+    font-color : DefaultSHeaderProps.font-color,
+    font-italic : DefaultSHeaderProps.font-italic,
+    font-family : DefaultSHeaderProps.font-family,
+    //theme
+    theme : DefaultSHeaderProps.theme,
+    //hight-width
+    card-height : DefaultSHeaderProps.card-height,
+    card-width : DefaultSHeaderProps.card-width,
+    padding-type: DefaultSHeaderProps.padding-type,
+    shadow-type: DefaultSHeaderProps.shadow-type,
+    border-type : DefaultSHeaderProps.border-type,
   };
 }
