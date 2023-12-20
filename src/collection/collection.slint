@@ -23,66 +23,53 @@
 * - clicked(CollectionData) : run if you click item in SCollection
 * ============================================
 */
-import { SCard } from "../card/index.slint";
-import { ROOT_STYLES} from "../../themes/index.slint";
-import { ScrollView } from "std-widgets.slint";
-import { SText } from "../text/index.slint";
+import { ROOT_STYLES,DefaultSCollectionProps} from "../../themes/index.slint";
 import { Themes,BorderType,UseSurrealismFn } from "../../use/index.slint";
 
-export struct CollectionData {
-  id:int,
-  name:string,
-  source:image
-}
 
-
-export component Collection inherits SCard { 
-  border-type: BorderType.None;
-  in property <int> column-num : 4;
-  in property <int> row-num : 3;
-  in-out property <[[CollectionData]]> data;
-  in property <length> row-height : (root.card-height - 14px - row-spaceing * (row-num - 1)) / row-num;
-  in property <length> column-width : (root.card-width - 14px - column-spacing * (column-num - 1)) / column-num;
-  in property <length> row-spaceing :8px;
-  in property <length> column-spacing: UseSurrealismFn.get-space(self.width) ;
-  callback clicked(CollectionData);
-  ScrollView { 
-    height: root.card-height;
-    width: root.card-width;
-    viewport-width: root.card-width;
-    padding: 0;
-    VerticalLayout {
-      width: parent.width;
-      spacing: root.row-spaceing;
-      padding: 0;
-      for row in data: HorizontalLayout{
-        height: row-height;
-        width: parent.width;
-        spacing: column-spacing;
-        for col in row: Rectangle {
-          height: parent.height;
-          width: column-width;  
-          background: transparent;
-          TouchArea {
-            clicked => {
-              root.clicked(col);
-            }
-          }
-          VerticalLayout {
-            height: parent.height;
-            width: parent.width;
-            spacing: 2px;
-            icon:=Image {
-              source: col.source;
-            }
-            item-name:=SText { 
-              theme: root.theme;
-              text:col.name;
-              font-size: root.font-size;
-            }
-          }
+export component Collection{
+  in property <float> scale : DefaultSCollectionProps.scale;
+  in-out property <bool> is-scale : DefaultSCollectionProps.is-scale;
+  in property <easing> easing : DefaultSCollectionProps.easing;
+  in property <duration> duration : DefaultSCollectionProps.duration;
+  pure public function toggle-default(target:length)->length {
+    return is-scale?target / scale : target * scale;
+  }
+  pure public function toggle(target:length,scale-size:float)->length {
+    return is-scale?target / scale-size : target * scale-size;
+  }
+  callback clicked();
+  main-view:=Rectangle {
+    height: root.height;
+    width: root.width;
+    // animation
+    animate background {
+      duration: root.duration;
+      easing: root.easing;
+    }
+    animate height {
+      duration: root.duration;
+      easing: root.easing;
+    }
+    animate width {
+      duration: root.duration;
+      easing: root.easing;
+    }
+    TouchArea {
+      mouse-cursor: pointer;
+      clicked => {
+        if(is-scale){
+          main-view.height /= scale;
+          main-view.width /= scale;
+        }else{
+          main-view.height *= scale;
+          main-view.width *= scale;
         }
+        root.clicked();
+        is-scale=!is-scale;
+        
       }
+      @children
     }
   }
 }

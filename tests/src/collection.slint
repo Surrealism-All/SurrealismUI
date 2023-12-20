@@ -1,34 +1,32 @@
-import {SButton,SCollection} from "../../index.slint";
+import {SButton,SCollection, SText} from "../../index.slint";
 import {Themes} from "../../use/index.slint";
 
 component TestCollection inherits Window {
-  height: 560px;
-  width: 900px;
+  height: 600px;
+  width: 600px;
   
-  SCollection{
-    card-height: 300px;
-    card-width: 300px;
-    column-num: 3;
-    font-size : 16px;
-    theme: Dark;
-    data: [
-      [
-        {id:0,name:"box1",source:@image-url("./collection_imgs/box1.svg")},
-        {id:1,name:"box2",source:@image-url("./collection_imgs/box2.svg")},
-        {id:2,name:"box3",source:@image-url("./collection_imgs/box3.svg")}
-      ],
-      [
-        {id:3,name:"box4",source:@image-url("./collection_imgs/box4.svg")},
-        
-      ],
-      [
-        {id:4,name:"box6",source:@image-url("./collection_imgs/box6.svg")},
-        {id:5,name:"box7",source:@image-url("./collection_imgs/box7.svg")},
-      ]
-    ];
-    clicked(item)=>{
-      debug(item.name);
-      debug(item.id);
+  c:=SCollection{
+    height: 180px;
+    width: 180px;
+    scale : 3;
+    clicked => {
+      txt.font-size = self.toggle(txt.font-size,1.5);
+      btn.width = self.toggle(btn.width , 1.6);
+      btn.theme = c.is-scale ? Themes.Dark : Themes.Error;
+    }
+    VerticalLayout {
+      padding: 20px;
+      spacing: 20px;
+      alignment: center;
+      Rectangle {
+        txt:=SText {
+          text:"Surrealism";
+        }
+      }
+      Rectangle {
+        btn:=SButton{
+        }
+      }
     }
   }
   
