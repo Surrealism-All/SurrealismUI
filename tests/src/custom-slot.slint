@@ -1,0 +1,23 @@
+import { SButtonProps } from "../../use/index.slint";
+import { SButton } from "../../index.slint";
+import { ComponentSchema } from "../../themes/index.slint";
+
+component CustomWeight {
+  in property <[SButtonProps]> buttons;
+  VerticalLayout {
+    spacing: 10px;
+    for item in buttons: SButton {
+      text: item.text;
+    }
+  }
+}
+
+export component TestCustom{
+  height: 400px;
+  width: 400px;
+  CustomWeight {
+    buttons: [
+      ComponentSchema.button, ComponentSchema.button, ComponentSchema.button,
+    ];
+  }
+}

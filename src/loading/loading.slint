@@ -25,7 +25,7 @@ import { SPopup } from "../popup/index.slint";
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
 import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,BorderProps,UseIcons } from "../../use/index.slint";
-import {ROOT_STYLES} from "../../themes/index.slint";
+import {ROOT_STYLES,DefaultSLoadingProps} from "../../themes/index.slint";
 
 export component Loading inherits Window {
   height: 100%;
@@ -36,28 +36,28 @@ export component Loading inherits Window {
   padding-right: 0;
   padding-top: 0;
   always-on-top:true;
-  opacity: 1;
+  opacity: DefaultSLoadingProps.opacity;
   visible: is-show;
   z: 1000;
-  in property <image> loading-icon : UseIcons.icons.Loading;
-  in-out property <duration> duration : 1200ms;
-  in property <bool> an : true;
-  in property <string> content : "Loading ...";
-  in-out property <bool> is-show : false;
-  in property <Themes> theme : Dark;
+  in property <int> font-weight : DefaultSLoadingProps.font-weight;
+  in property <length> font-size: DefaultSLoadingProps.font-size;
+  in property <brush> font-color : DefaultSLoadingProps.font-color;
+  in property <bool> font-italic : DefaultSLoadingProps.font-italic;
+  in property <string> font-family : DefaultSLoadingProps.font-family;
+  in property <image> loading-icon : DefaultSLoadingProps.loading-icon;
+  in-out property <duration> duration : DefaultSLoadingProps.duration;
+  in property <string> text : DefaultSLoadingProps.text;
+  in-out property <bool> is-show : DefaultSLoadingProps.is-show;
+  in property <Themes> theme : DefaultSLoadingProps.theme;
+  in property <easing> easing : DefaultSLoadingProps.easing;
+  in-out property <int> iteration-count : DefaultSLoadingProps.iteration-count;
   private property <duration> loading-duration : 0ms ;
-  callback open();
-  callback close();
   init => {self.is-show = true;}
-  open => {
-    if(an){
-      self.is-show = true;
-    }
+  public function close() {
+    self.is-show = false;
   }
-  close => {
-    if(an){
-      self.is-show = false;
-    }
+  public function open() {
+    self.is-show = true;
   }
   states [
     light when theme == Themes.Light: {
@@ -116,7 +116,12 @@ export component Loading inherits Window {
         width: parent.width;
         loading-txt:=SText {
           theme: root.theme;
-          text: root.content;
+          text: root.text;
+          font-family: root.font-family;
+          font-weight: root.font-weight;
+          font-size: root.font-size;
+          font-italic: root.font-italic;
+          color: root.font-color;
         }
       }
     }

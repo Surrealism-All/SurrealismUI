@@ -19,11 +19,12 @@ import { DefaultSTipProps} from "./tip.slint";
 import { DefaultSSelectProps} from "./select.slint";
 import { DefaultSInputProps} from "./input.slint";
 import { DefaultSHeaderProps} from "./header.slint";
+import { DefaultSLoadingProps} from "./loading.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
-  STipProps,SSelectProps,SInputProps,SHeaderProps
+  STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -373,5 +374,20 @@ export global ComponentSchema {
     padding-type: DefaultSHeaderProps.padding-type,
     shadow-type: DefaultSHeaderProps.shadow-type,
     border-type : DefaultSHeaderProps.border-type,
+  };
+  in-out property <SLoadingProps> loading : {
+    font-weight : DefaultSLoadingProps.font-weight,
+    font-size:  DefaultSLoadingProps.font-size,
+    font-color :  DefaultSLoadingProps.font-color,
+    font-italic :  DefaultSLoadingProps.font-italic,
+    font-family :  DefaultSLoadingProps.font-family,
+    opacity : DefaultSLoadingProps.opacity,
+    is-show :  DefaultSLoadingProps.is-show,
+    theme :  DefaultSLoadingProps.theme,
+    loading-icon :  DefaultSLoadingProps.loading-icon,
+    duration :  DefaultSLoadingProps.duration,
+    text :  DefaultSLoadingProps.text,
+    easing :  DefaultSLoadingProps.easing,
+    iteration-count :  DefaultSLoadingProps.iteration-count,
   };
 }

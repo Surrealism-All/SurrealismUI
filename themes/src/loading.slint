@@ -1,0 +1,19 @@
+import {Themes,UseIcons} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+
+export global DefaultSLoadingProps {
+  in-out property <int> font-weight : GlobalProps.font.font-weight;
+  in-out property <length> font-size: GlobalProps.font.font-size;
+  in-out property <brush> font-color : GlobalProps.font.color;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  in-out property <float> opacity : 1;
+  in-out property <bool> is-show : false;
+  in-out property <Themes> theme : GlobalProps.theme;
+  in-out property <image> loading-icon : UseIcons.icons.Loading;
+  in-out property <duration> duration : 1200ms;
+  in-out property <string> text : "Loading ...";
+  in-out property <easing> easing : ease-in-out;
+  in-out property <int> iteration-count : -1;
+}
+
