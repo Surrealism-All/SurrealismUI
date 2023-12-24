@@ -20,86 +20,60 @@
 * ============================================
 */
 import { SCard } from "../card/index.slint";
-import { ROOT_STYLES} from "../../themes/index.slint";
+import { ROOT_STYLES,DefaultSBadgeProps} from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { SText } from "../text/index.slint";
-import { Themes,ResultType,BorderType,UseSurrealismFn,UseIcons } from "../../use/index.slint";
-
-export enum Position {
-  Left-Top,
-  Right-Top,
-  Left-Bottom,
-  Right-Bottom
-}
+import { Themes,ResultType,BorderType,UseSurrealismFn,UseIcons,Position } from "../../use/index.slint";
 
 export component Badge inherits SCard { 
-  theme: Light;
-  height: ROOT-STYLES.sur-font.font-size;
-  width: ROOT-STYLES.sur-font.font-size;
+  theme: DefaultSBadgeProps.theme;
+  card-height: DefaultSBadgeProps.card-height;
+  card-width: DefaultSBadgeProps.card-width;
   border-radius: self.height / 2;
-  
-  in property <Position> position : Position.Right-Bottom;
-  in-out property <image> icon : UseIcons.icons.Success;
-  in property <brush> icon-color <=> badge-icon.colorize;
+  border-type: None;
+  padding-type: None;
+  //remove all shadow
+  drop-shadow-blur: 0;
+  drop-shadow-offset-x: 0;
+  drop-shadow-offset-y: 0;
   font-color<=>badge-txt.color;
-  in property <ResultType> res-type:ResultType.Help;
-  in-out property <string> content;
+  font-size: DefaultSBadgeProps.font-size;
+  font-weight: DefaultSBadgeProps.font-weight;
+  font-italic: DefaultSBadgeProps.font-italic;
+  font-family: DefaultSBadgeProps.font-family;
+  in property <Position> position : DefaultSBadgeProps.position;
+  in-out property <image> icon : DefaultSBadgeProps.icon;
+  in property <brush> icon-color <=> badge-icon.colorize;
+  in-out property <string> text : DefaultSBadgeProps.text;
   clip: false;
   pure public function get-x(p_right:length)->length {
-      if(self.position == Position.Left-Top){
+      if((self.position == Position.LeftTop)||(self.position == Position.Left)||(self.position == Position.LeftBottom)){
         0px
-      }else if(self.position == Position.Left-Bottom){
+      }else if((self.position == Position.TopLeft)||(self.position == Position.BottomLeft)){
         0px
-      }else if(self.position == Position.Right-Top){
+      }else if((self.position == Position.RightTop)||(self.position == Position.RightBottom)||(self.position == Position.Right)){
         p_right - self.width
       }else{
         p_right - self.width
       }
   }
   pure public function get-y(p_bottom:length)->length {
-    if(self.position == Position.Left-Top){
+    if((self.position == Position.LeftTop)||(self.position == Position.RightTop)||(self.position == Position.Top)||(self.position == Position.TopLeft)||(self.position == Position.TopRight)){
       0px
-    }else if(self.position == Position.Left-Bottom){
+    }else if((self.position == Position.LeftBottom)||(self.position == Position.Bottom)||(self.position == Position.BottomLeft)||(self.position == Position.BottomRight)||(self.position == Position.RightBottom)){
       p_bottom - self.height
-    }else if(self.position == Position.Right-Top){
-      0px
     }else{
       p_bottom - self.height
     }
   }
-  init => {
-   
-    if(res-type==ResultType.Primary){
-      self.theme = Themes.Primary;
-      self.icon = UseIcons.icons.Smiling-face;
-      self.content = "primary message!";
-    }else if (res-type==ResultType.Success){
-      self.theme = Themes.Success;
-      self.content = "success message!";
-      self.icon = UseIcons.icons.Success;
-    }else if (res-type==ResultType.Info){
-      self.theme = Themes.Info;
-      self.icon = UseIcons.icons.Info;
-      self.content = "info message!";
-    }else if (res-type==ResultType.Error){
-      self.theme = Themes.Error;
-      self.icon = UseIcons.icons.Close-one;
-      self.content = "error message!"
-    }else if (res-type==ResultType.Warning){
-      self.theme = Themes.Warning;
-      self.icon = UseIcons.icons.Attention;
-      self.content = "warning message!"
-    }else{
-      self.theme = Themes.Light;
-      self.icon = UseIcons.icons.Help;
-      self.content = "help message!"
-    }
-  }
+  
   HorizontalLayout {
-    spacing: UseSurrealismFn.get-space(txt-view.width);
-    badge-icon:= SIcon { 
-      source: root.icon;
+    spacing: 6px;
+    badge-icon:= SIcon {
       theme: root.theme;
+      height: root.height;
+      width: root.width; 
+      source: root.icon;
       clicked => {
         txt-view.visible=!txt-view.visible
       }
@@ -110,12 +84,15 @@ export component Badge inherits SCard {
       height: root.height;
       card-width: badge-txt.width;
       padding-type: Small;
-      border-type: Large;
-      
+      border-type: None;
+      border-radius: self.height / 2;
       badge-txt:=SText { 
-        font-size: ROOT-STYLES.sur-font.font-size  - 4px;
-        text: root.content;
+        text: root.text;
         theme: root.theme;
+        font-family: root.font-family;
+        font-size: root.font-size;
+        font-weight: root.font-weight;
+        font-italic: root.font-italic;
       }
     }
   }

@@ -1,0 +1,20 @@
+import {Themes,PaddingType,ShadowType,BorderType,Position,UseIcons} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+
+export global DefaultSBadgeProps {
+  //font
+  in-out property <int> font-weight : GlobalProps.font.font-weight;
+  in-out property <length> font-size: GlobalProps.font.font-size - 2px;
+  in-out property <brush> font-color : GlobalProps.font.color;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  //theme
+  in-out property <Themes> theme : GlobalProps.theme;
+  //hight-width
+  in-out property <length> card-height : font-size;
+  in-out property <length> card-width : font-size;
+  in-out property <string> text : "";
+  in-out property <image> icon : UseIcons.icons.Attention;
+  in-out property <Position> position : Position.RightTop;
+  in-out property <brush> icon-color : GlobalProps.font.color;
+}

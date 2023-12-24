@@ -7,9 +7,11 @@
 * @description:
 * # SAvatar
 * SAvatar is a avatar component that defaults to Icons.Avatar when there are no images available
-* ## properties
-* - in property <length> avatar-size : avatar size
-* - in property <image> avatar : avatar image
+* ## properties inherits SCard
+* - in property <length> avatar-size : avatar image size;
+* - in property <image> avatar : avatar image;
+* - in-out property <image> alt : if the image can be displayed the default alt will instead;
+* - in property <ImageFit> image-fit : image fit;
 * ============================================
 */
 import { SCard } from "../card/index.slint";

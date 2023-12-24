@@ -14,26 +14,26 @@ component TestCollection inherits Window {
     
     } 
     SBadge {
+      text : "this is a badge";
       x: self.get-x(avatar.width);
       y: self.get-y(avatar.height);
     }
   }
   b2:=Rectangle {
-    
     y: 120px;
     height: avatar2.height;
     width: avatar2.width;
     avatar2:=SAvatar {
     } 
     SBadge {
+      theme: Primary;
+      text:"theme primary";
       x: self.get-x(avatar2.width);
       y: self.get-y(avatar2.height);
-      position: Left-Bottom;
-      res-type: Success;
+      position: LeftBottom;
     }
   }
   b3:=Rectangle {
-   
     y: 210px;
     height: avatar3.height;
     width: avatar3.width;
@@ -41,10 +41,11 @@ component TestCollection inherits Window {
     
     } 
     SBadge {
+      theme: Light;
+      text:"theme light";
       x: self.get-x(avatar3.width);
       y: self.get-y(avatar3.height);
-      position: Left-Top;
-      res-type: Warning;
+      position: LeftTop;
       icon-color:#ff0000;
       font-color:#ff0000;
     }
@@ -58,8 +59,7 @@ component TestCollection inherits Window {
     SBadge {
       x: self.get-x(avatar4.width);
       y: self.get-y(avatar4.height);
-      position: Right-Top;
-      res-type: Error;
+      position: RightTop;
     }
   }
   
