@@ -17,17 +17,75 @@
 * ============================================
 */
 
-import { StandardTableView } from "std-widgets.slint";
-import {ROOT_STYLES} from "../../themes/index.slint";
+import { StandardTableView , ScrollView} from "std-widgets.slint";
+import {ROOT_STYLES,DefaultSTableProps} from "../../themes/index.slint";
 import { SCard } from "../card/index.slint";
-import { Themes } from "../../use/index.slint";
+import { SText } from "../text/index.slint";
+import { Themes,UseSurrealismFn,PaddingType,SOption,FileItem } from "../../use/index.slint";
 
-export component Table inherits Rectangle { 
-  border-radius: 0;
-  
-  view:=HorizontalLayout {
-    spacing: 0px;
-    width: root.width;
-    @children
+export component Table inherits SCard{
+  width: 100%;
+  height: 100%;
+  font-family : DefaultSTableProps.font-family;
+  font-weight : DefaultSTableProps.font-weight;
+  font-size: DefaultSTableProps.font-size;
+  font-color : DefaultSTableProps.font-color;
+  font-italic : DefaultSTableProps.font-italic;
+  padding-type: DefaultSTableProps.padding-type;
+  shadow-type: DefaultSTableProps.shadow-type;
+  border-type : DefaultSTableProps.border-type;
+  in property <[Themes]> column-themes:DefaultSTableProps.column-themes;
+  in property <length> viewport-height: root.height - table-header.height;
+  in property <TextHorizontalAlignment> alignment : DefaultSTableProps.alignment;
+  in property <[SOption]> columns : DefaultSTableProps.columns;
+  in-out property <[length]> column-width : DefaultSTableProps.column-width;
+  callback clicked(int,SOption);
+  pure public function get-column-width(w:length,index:int)->length {
+    root.column-width.length==0?w/columns.length:column-width[index]
   }
+  VerticalLayout {
+    table-header:=HorizontalLayout {
+      for t-item[t-index] in columns: SCard{
+        border-type: None;
+        drop-shadow-blur: 0;
+        drop-shadow-offset-x: 0;
+        drop-shadow-offset-y: 0;
+        card-height: root.font-size;
+        width: get-column-width(parent.width,t-index);
+        padding-type: root.padding-type;
+        theme: column-themes.length!=columns.length?root.theme:column-themes[t-index];
+        HorizontalLayout {
+          padding-left: parent.card-padding.padding-left;
+          padding-right: parent.card-padding.padding-right;
+          TouchArea {
+            mouse-cursor: pointer;
+            clicked => {
+              root.clicked(t-index,t-item);
+            }
+            SText {
+              width: parent.width;
+              height: parent.height;
+              text: t-item.label;
+              horizontal-alignment: root.alignment;
+              theme: root.theme;
+              font-family: root.font-family;
+              font-weight: root.font-weight;
+              font-size: root.font-size;
+              font-italic: root.font-italic;
+              wrap: no-wrap;
+            }
+          }
+        }
+      } 
+    }
+    // 滚动列表 ， 通过双层循环从横列转纵列
+    scroll-view:=ScrollView {
+      viewport-height: root.viewport-height;
+      HorizontalLayout {
+        width: parent.width;
+        @children
+        
+      }
+    }
+  } 
 }

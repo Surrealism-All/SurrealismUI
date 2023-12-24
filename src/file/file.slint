@@ -17,7 +17,6 @@
 * - callback item-clicked(int,FileItem) : run if you click a file item
 * ============================================
 */
-import { STable,STableColumn } from "../table/index.slint";
 import { SCard } from "../card/index.slint";
 import { ROOT_STYLES,DefaultSFileProps } from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
@@ -87,19 +86,6 @@ export component File inherits SCard{
       } 
     }
     // 滚动列表 ， 通过双层循环从横列转纵列
-    // ScrollView {
-      
-    //   // viewport-height: files.length * (item-configs.height + (UseSurrealismFn.get-padding(item-configs.padding-type).padding-top * 2));
-    //   // columns-list:=HorizontalLayout {
-    //   //   width: parent.width;
-        
-    //   //   // padding-top:  UseSurrealismFn.get-padding(tab-configs.padding-type).padding-top;
-    //   //   // padding-bottom: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-bottom;
-    //   //   // padding-right: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-right;
-    //   //   // padding-left: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-left;
-        
-    //   // }
-    // }
     scroll-view:=ScrollView {
       viewport-height: files.length * (item-font-size + (UseSurrealismFn.get-padding(item-padding-type).padding-top * 2));
       HorizontalLayout {

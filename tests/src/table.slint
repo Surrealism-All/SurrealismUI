@@ -1,67 +1,148 @@
-import {STable,STableColumn} from "../../index.slint";
-import {Themes} from "../../use/index.slint";
+import {STable,STableColumn, SCard} from "../../index.slint";
+import {Themes,PaddingType,ShadowType,BorderType,PaddingProps,BorderProps,ShadowProps,UseSurrealismFn} from "../../use/index.slint";
+import { ROOT-STYLES,DefaultSCardProps } from "../../themes/index.slint";
+import { ScrollView } from "std-widgets.slint";
+
 
 export component TestTable inherits Window {
   height: 500px;
   width: 500px;
-  t1:=STable {
-
-    y: 10px;
-    // you can use this way to get height
-    // it depends on how many datas in column
-    height: col1.get-height();
-    width: 300px;
+ 
+  
+  STable{
+    theme: Dark;
+    width: 86%;
+    height: 36%;
+    column-themes:[Themes.Primary,Themes.Dark,Themes.Error];
+    viewport-height:col1.height;
+    alignment: center;
+    columns: [
+      {label:"序号",value:"$index"},
+      {label:"username",value:"name"},
+      {label:"age",value:"age"},
+    ];
+    clicked(index,item)=>{
+      debug(index);
+      debug(item);
+    }
     
     col1:=STableColumn {
-      border:false;
-      theme:Themes.Error;
-      width: 100px;
-      name:"id";
-      // row-height:60px;
-      datas: ["101","102","103"];
+      alignment: left;
+      datas:[
+        "1",
+        "2",
+        "3",
+        "3",
+        "3",
+      ];
+      width: parent.get-column-width(parent.width , 0);
     }
     STableColumn {
-      theme:Themes.Error;
-      width: 100px;
-      name:"name";
-      datas: ["Mat","Jarry","Kaven"];
+      index:1;
+      width: parent.get-column-width(parent.width , 1);
+      datas:[
+        "Matt",
+        "John",
+        "Gary",
+        "Harry",
+        "Mary",
+      ];
+      clicked(col-index,index,value)=>{
+        debug(col-index);
+        debug(index);
+        debug(value);
+      }
     }
     STableColumn {
-      theme:Themes.Error;
-      width: 100px;
-      name:"age";
-      datas: ["16","23","18"];
+      theme: Light;
+      width: parent.get-column-width(parent.width , 2);
+      datas:[
+        "16",
+        "12",
+        "19",
+        "21",
+        "11",
+      ];
     }
+   
   }
-  t2:=STable {
 
-    y: t1.height + 40px;
-    // you can use this way to get height
-    // it depends on how many datas in column
-    height: tcol1.get-height();
-    width: 350px;
+  // t1:=STable {
+
+  //   y: 10px;
+  //   // you can use this way to get height
+  //   // it depends on how many datas in column
+  //   height: col1.get-height();
+  //   width: 300px;
     
-    tcol1:=STableColumn {
-      border:false;
-      theme:Themes.Primary;
-      width: 100px;
-      name:"id";
-      // row-height:60px;
-      datas: ["101","102","103"];
-    }
-    STableColumn {
-      theme:Themes.Primary;
-      width: 100px;
-      name:"name";
-      datas: ["Mat","Jarry","Kaven"];
-    }
-    STableColumn {
-      theme:Themes.Primary;
-      width: 150px;
-      name:"Operations";
-      // cheat datas
-      datas: [" "," "," "];
-      operation-enabled:true;
-    }
-  }
+  //   ScrollView {
+  //     height: t1.height - col1.header-height;
+  //     viewport-height: t1.height;
+  //     HorizontalLayout {
+  //       col1:=STableColumn {
+  //         border:false;
+  //         theme:Themes.Error;
+  //         width: 100px;
+  //         column:{
+  //           label:"id",value:"id"
+  //         };
+  //         // row-height:60px;
+  //         datas: ["101","102","103"];
+  //       }
+  //       STableColumn {
+  //         theme:Themes.Error;
+  //         width: 100px;
+  //         column:{
+  //           label:"name",value:"username"
+  //         };
+  //         datas: ["Mat","Jarry","Kaven"];
+  //       }
+  //       STableColumn {
+  //         theme:Themes.Error;
+  //         width: 100px;
+  //         column:{
+  //           label:"age",value:"age"
+  //         };
+  //         datas: ["16","23","18"];
+  //       }
+  //     }
+  //   }
+  // }
+  // t2:=STable {
+
+  //   y: t1.height + 40px;
+  //   // you can use this way to get height
+  //   // it depends on how many datas in column
+  //   height: tcol1.get-height();
+  //   width: 350px;
+    
+  //   tcol1:=STableColumn {
+  //     border:false;
+  //     theme:Themes.Primary;
+  //     width: 100px;
+  //     column:{
+  //       label:"id",value:"id"
+  //     };
+  //     // row-height:60px;
+  //     datas: ["101","102","103"];
+  //   }
+  //   STableColumn {
+  //     theme:Themes.Primary;
+  //     width: 100px;
+  //     column:{
+  //       label:"name",value:"display name"
+  //     };
+  //     datas: ["Mat","Jarry","Kaven"];
+  //   }
+  //   STableColumn {
+  //     theme:Themes.Primary;
+  //     width: 150px;
+  //     column:{
+  //       label:"Operations",value:"opt"
+  //     };
+  //     // cheat datas
+  //     datas: [" "," "," "];
+  //     operation-enabled:true;
+  //   }
+  // }
 }

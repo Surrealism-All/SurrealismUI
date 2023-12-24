@@ -23,12 +23,13 @@ import { DefaultSLoadingProps} from "./loading.slint";
 import { DefaultSCollectionProps} from "./collection.slint";
 import { DefaultSFileProps} from "./file.slint";
 import { DefaultSProgressProps} from "./progress.slint";
+import { DefaultSBadgeProps } from "./badge.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
-  SFileProps,SSwitchGroupProps,SProgressProps
+  SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -449,5 +450,21 @@ export global ComponentSchema {
     width : DefaultSProgressProps.width,
     text : DefaultSProgressProps.text,
     progress : DefaultSProgressProps.progress,
+  };
+  in-out property <SBadgeProps> badge : {
+    font-weight : DefaultSBadgeProps.font-weight,
+    font-size: DefaultSBadgeProps.font-size,
+    font-color : DefaultSBadgeProps.font-color,
+    font-italic : DefaultSBadgeProps.font-italic,
+    font-family : DefaultSBadgeProps.font-family,
+    //theme
+    theme : DefaultSBadgeProps.theme,
+    //hight-width
+    card-height : DefaultSBadgeProps.card-height,
+    card-width : DefaultSBadgeProps.card-width,
+    text : DefaultSBadgeProps.text,
+    icon : DefaultSBadgeProps.icon,
+    position :DefaultSBadgeProps.position,
+    icon-color : DefaultSBadgeProps.icon-color,
   };
 }
