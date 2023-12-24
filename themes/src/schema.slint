@@ -7,7 +7,7 @@ import { DefaultSIconProps } from "./icon.slint";
 import { DefaultSTagProps } from "./tag.slint";
 import { DefaultSResultProps } from "./result.slint";
 import { DefaultSAlertProps } from "./alert.slint";
-import { DefaultSSwitchProps } from "./switch.slint";
+import { DefaultSSwitchProps,DefaultSSwitchGroupProps } from "./switch.slint";
 import { DefaultSRadioProps } from "./radio.slint";
 import { DefaultSAvatarProps } from "./avatar.slint";
 import { DefaultSDividerProps } from "./divider.slint";
@@ -22,12 +22,13 @@ import { DefaultSHeaderProps} from "./header.slint";
 import { DefaultSLoadingProps} from "./loading.slint";
 import { DefaultSCollectionProps} from "./collection.slint";
 import { DefaultSFileProps} from "./file.slint";
+
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
-  SFileProps
+  SFileProps,SSwitchGroupProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -421,4 +422,19 @@ export global ComponentSchema {
     item-font-italic : DefaultSFileProps.item-font-italic,
     item-padding-type:DefaultSFileProps.item-padding-type,
   };
+  in-out property <SSwitchGroupProps> switch-group:{
+    card-height : DefaultSSwitchGroupProps.card-height,
+    card-width : DefaultSSwitchGroupProps.card-width,
+    padding-type: DefaultSSwitchGroupProps.padding-type,
+    shadow-type: DefaultSSwitchGroupProps.shadow-type,
+    border-type : DefaultSSwitchGroupProps.border-type,
+    active : DefaultSSwitchGroupProps.active,
+    theme: DefaultSSwitchGroupProps.theme,
+    switchs : DefaultSSwitchGroupProps.switchs,
+    font-family : DefaultSSwitchGroupProps.font-family,
+    font-weight : DefaultSSwitchGroupProps.font-weight,
+    font-size: DefaultSSwitchGroupProps.font-size,
+    font-italic : DefaultSSwitchGroupProps.font-italic,
+  };
+  
 }

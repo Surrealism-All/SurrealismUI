@@ -17,27 +17,26 @@
 * ============================================
 */
 import { SCard } from "../card/index.slint";
-import { ROOT-STYLES } from "../../themes/index.slint";
+import { ROOT-STYLES,DefaultSSwitchGroupProps } from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
-import { Themes,ShadowType,UseSurrealismFn } from "../../use/index.slint";
+import { Themes,ShadowType,UseSurrealismFn,PaddingType,SOption } from "../../use/index.slint";
 
 export component SwitchGroup inherits SCard { 
-  card-height: self.font-size / 2;
-  card-width: 138px;
-  border-type: None;
+  card-height: DefaultSSwitchGroupProps.card-height;
+  card-width: DefaultSSwitchGroupProps.card-width;
+  border-type: DefaultSSwitchGroupProps.border-type;
+  shadow-type: DefaultSSwitchGroupProps.shadow-type;
   border-radius: root.height / 2;
-  padding-type: Small;
+  padding-type: DefaultSSwitchGroupProps.padding-type;
   clip: true;
-  in-out property <int> active : 0;
-  in-out property <[string]> switchs : [
-    "first","second","third"
-  ];
-  font-size : 12px;
-  // in property <brush> switch-background-color <=> switch-circle.background;
-  // in property <brush> switch-border-color<=>switch-circle.border-color;
-  // in property <color> switch-drop-shadow-color<=> switch-circle.drop-shadow-color;
+  in-out property <int> active : DefaultSSwitchGroupProps.active;
+  in-out property <[SOption]> switchs : DefaultSSwitchGroupProps.switchs;
+  font-size : DefaultSSwitchGroupProps.font-size;
+  font-weight: DefaultSSwitchGroupProps.font-weight;
+  font-italic: DefaultSSwitchGroupProps.font-italic;
+  font-family: DefaultSSwitchGroupProps.font-family;
   private property <brush> theme-color : root.background;
-  callback clicked(int,string);
+  callback clicked(int,SOption);
   view:= HorizontalLayout {
     width: root.width - root.padding-left / 4 - root.padding-right / 4 ;
     alignment: space-between;
@@ -66,7 +65,10 @@ export component SwitchGroup inherits SCard {
         }
         inner-text:= SText {
           font-size: root.font-size;
-          text: item;
+          font-italic: root.font-italic;
+          font-weight: root.font-weight;
+          font-family: root.font-family;
+          text: item.label;
           theme: root.theme;
         }
       }

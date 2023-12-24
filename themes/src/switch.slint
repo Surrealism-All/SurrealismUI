@@ -1,4 +1,4 @@
-import {Themes,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
+import {Themes,PaddingType,ShadowType,BorderType,SOption} from "../../use/index.slint";
 import {GlobalProps} from "./index.slint";
 import { ROOT-STYLES } from "./theme.slint";
 
@@ -20,4 +20,19 @@ export global DefaultSSwitchProps {
   in-out property <brush> switch-background-color : ROOT-STYLES.sur-theme-colors.dark.deepest;
   in-out property <brush> switch-border-color : ROOT-STYLES.sur-theme-colors.dark.deepest;
   in-out property <color> switch-drop-shadow-color : ROOT-STYLES.sur-theme-colors.dark.weakest;
+}
+
+export global DefaultSSwitchGroupProps {
+  in-out property <Themes> theme:GlobalProps.theme;
+  in-out property <length> card-height : self.font-size / 2;
+  in-out property <length> card-width : 140px;
+  in-out property <PaddingType> padding-type: PaddingType.Normal;
+  in-out property <ShadowType> shadow-type: ShadowType.Low1;
+  in-out property <BorderType> border-type : BorderType.None;
+  in-out property <int> active : 0;
+  in-out property <[SOption]> switchs : [];
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  in-out property <int> font-weight : GlobalProps.font.font-weight;
+  in-out property <length> font-size: 14px;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
 }

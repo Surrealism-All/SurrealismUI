@@ -5,6 +5,12 @@ component TestSwitchGroup inherits Window {
   width: 400px;
   SSwitchGroup {
    theme: Primary;
+   width: 240px;
+   switchs:[
+    {label:"Option1",value:"0"},
+    {label:"Option2",value:"2"},
+    {label:"Option3",value:"3"},
+  ];
     clicked(i,name) => {
       debug(i);
       debug(name);
@@ -13,7 +19,13 @@ component TestSwitchGroup inherits Window {
   SSwitchGroup {
     y: 120px;
     theme:Dark;
-    switchs:["1","2","3","4"];
+    padding-type: Small;
+    switchs:[
+      {label:"1",value:"0"},
+      {label:"2",value:"2"},
+      {label:"3",value:"3"},
+      {label:"4",value:"1"},
+    ];
      clicked(i,name) => {
        debug(i);
        debug(name);
