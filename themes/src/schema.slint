@@ -20,11 +20,14 @@ import { DefaultSSelectProps} from "./select.slint";
 import { DefaultSInputProps} from "./input.slint";
 import { DefaultSHeaderProps} from "./header.slint";
 import { DefaultSLoadingProps} from "./loading.slint";
+import { DefaultSCollectionProps} from "./collection.slint";
+import { DefaultSFileProps} from "./file.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
-  STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps
+  STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
+  SFileProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -389,5 +392,33 @@ export global ComponentSchema {
     text :  DefaultSLoadingProps.text,
     easing :  DefaultSLoadingProps.easing,
     iteration-count :  DefaultSLoadingProps.iteration-count,
+  };
+  in-out property <SCollectionProps> collection : {
+    scale : DefaultSCollectionProps.scale,
+    is-scale : DefaultSCollectionProps.is-scale,
+    easing : DefaultSCollectionProps.easing,
+    duration : DefaultSCollectionProps.duration,
+  };
+  in-out property <SFileProps> file : {
+    theme : DefaultSFileProps.theme,
+    tabs : DefaultSFileProps.tabs,
+    column-width :DefaultSFileProps.column-width,
+    //tab
+    font-family : DefaultSFileProps.font-family,
+    font-weight : DefaultSFileProps.font-weight,
+    font-size: DefaultSFileProps.font-size,
+    font-color : DefaultSFileProps.font-color,
+    font-italic : DefaultSFileProps.font-italic,
+    padding-type:DefaultSFileProps.padding-type,
+    shadow-type: DefaultSFileProps.shadow-type,
+    border-type : DefaultSFileProps.border-type,
+    text-alignment: DefaultSFileProps.text-alignment,
+    // item
+    files : DefaultSFileProps.files,
+    item-font-family : DefaultSFileProps.item-font-family,
+    item-font-weight : DefaultSFileProps.item-font-weight,
+    item-font-size: DefaultSFileProps.item-font-size,
+    item-font-italic : DefaultSFileProps.item-font-italic,
+    item-padding-type:DefaultSFileProps.item-padding-type,
   };
 }

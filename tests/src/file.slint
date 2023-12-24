@@ -1,27 +1,20 @@
-import {SFile,ItemConfigs,FileItem,ItemConfigs} from "../../index.slint";
-import { Themes,PaddingType,UseIcons} from "../../use/index.slint";
+import {SFile} from "../../index.slint";
+import { Themes,PaddingType,UseIcons,FileItem} from "../../use/index.slint";
 
 export component TestFile inherits Window {
   height: 400px;
   width: 800px;
   SFile{
     theme: Dark;
-    width: 90%;
-    height: 46%;
-    tab-configs : {
-      height:16px,
-      font-size:14px,
-      padding-type:PaddingType.Tip,
-      theme: Themes.Dark,
-      column-width:[200px,100px,100px,80px]
-    };
-    item-configs : {
-      height:16px,
-      font-size:12px,
-      padding-type:PaddingType.Normal,
-      theme: Themes.Dark,
-      icon-size:16px
-    };
+    width: 86%;
+    height: 40%;
+    item-font-size: 14px;
+    tabs: [
+      {label:"名称",value:"name"},
+      {label:"时间",value:"dateTime"},
+      {label:"文件类型",value:"file-type"},
+      {label:"大小",value:"size"}
+    ];
     files : [
       {icon:UseIcons.icons.Folder-filled , name : "font" , datetime : "2023-11-06" , file-type : "folder" , size : "900KB"},
       {icon:UseIcons.icons.FileCode , name : "index.slint" , datetime : "2023-11-06" , file-type : "SLINT file" , size : "3KB"},
@@ -33,8 +26,9 @@ export component TestFile inherits Window {
       debug(index);
       debug(item);
     }
-    item-clicked(index,item)=>{
+    item-clicked(index,cindex,item)=>{
       debug(index);
+      debug(cindex);
       debug(item);
     }
   }

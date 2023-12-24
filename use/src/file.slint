@@ -1,0 +1,37 @@
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+import { ShadowType } from "./shadow.slint";
+import { BorderType } from "./border.slint";
+import { SOption } from "./select.slint";
+
+export struct FileItem {
+  icon:image,
+  name:string,
+  datetime:string,
+  file-type:string,
+  size:string,
+}
+
+export struct SFileProps {
+  //theme
+  theme : Themes,
+  tabs : [SOption],
+  column-width : [length],
+  //tab
+  font-family : string,
+  font-weight : int,
+  font-size: length,
+  font-color : brush,
+  font-italic : bool,
+  padding-type:PaddingType,
+  shadow-type: ShadowType,
+  border-type : BorderType,
+  text-alignment: TextHorizontalAlignment,
+  // item
+  files : [FileItem],
+  item-font-family : string,
+  item-font-weight : int,
+  item-font-size: length,
+  item-font-italic : bool,
+  item-padding-type:PaddingType,
+}

@@ -19,169 +19,159 @@
 */
 import { STable,STableColumn } from "../table/index.slint";
 import { SCard } from "../card/index.slint";
-import { ROOT_STYLES } from "../../themes/index.slint";
+import { ROOT_STYLES,DefaultSFileProps } from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
 import { SIcon } from "../icon/index.slint";
-import { ScrollView } from "std-widgets.slint";
-import { Themes,PaddingType,UseSurrealismFn,UseIcons } from "../../use/index.slint";
+import { ScrollView , ListView} from "std-widgets.slint";
+import { Themes,PaddingType,UseSurrealismFn,UseIcons,FileItem,SOption,ShadowType,BorderType } from "../../use/index.slint";
 
-
-export struct ItemConfigs {
-  height:length,
-  font-size:length,
-  padding-type:PaddingType,
-  theme:Themes,
-  icon-size:length
-}
-export struct TabConfigs {
-  height:length,
-  font-size:length,
-  padding-type:PaddingType,
-  theme:Themes,
-  column-width:[length]
-}
-
-export struct FileItem {
-  icon:image,
-  name:string,
-  datetime:string,
-  file-type:string,
-  size:string,
-}
-
-// name : the name of the tab
-// value : the real value of the tab
-export struct TabItem {
-  name:string,
-  value:string
-}
 
 export component File inherits SCard{
   width: 100%;
   height: 100%;
-  in property <[TabItem]> tabs : [
-    {name:"名称",value:"name"},
-    {name:"创建时间",value:"datetime"},
-    {name:"文件类型",value:"type"},
-    {name:"大小",value:"size"}
-  ];
-  in property <TabConfigs> tab-configs : {
-    height:16px,
-    font-size:14px,
-    padding-type:PaddingType.Tip,
-    theme: Themes.Light,
-    column-width:[200px,100px,100px,80px]
-  };
-  in-out property <[FileItem]> files : [
-    {icon:UseIcons.icons.Folder-filled , name : "font" , datetime : "2023-11-06" , file-type : "folder" , size : "900KB"},
-    {icon:UseIcons.icons.FileCode , name : "index.slint" , datetime : "2023-11-06" , file-type : "SLINT file" , size : "3KB"},
-    {icon:UseIcons.icons.FileCode , name : "LICENSE" , datetime : "2023-11-06" , file-type : "file" , size : "2KB"}
-  ];
-  in property <ItemConfigs> item-configs : {
-    height:16px,
-    font-size:12px,
-    padding-type:PaddingType.Tip,
-    theme: Themes.Light,
-    icon-size:16px
-  };
-  callback tab-clicked(int,TabItem);
-  callback item-clicked(int,FileItem);
+  font-family : DefaultSFileProps.font-family;
+  font-weight : DefaultSFileProps.font-weight;
+  font-size: DefaultSFileProps.font-size;
+  font-color : DefaultSFileProps.font-color;
+  font-italic : DefaultSFileProps.font-italic;
+  padding-type: DefaultSFileProps.padding-type;
+  shadow-type: DefaultSFileProps.shadow-type;
+  border-type : DefaultSFileProps.border-type;
+  in property <TextHorizontalAlignment> text-alignment : DefaultSFileProps.text-alignment;
+  in property <[SOption]> tabs : DefaultSFileProps.tabs;
+  in-out property <[length]> column-width : DefaultSFileProps.column-width;
+  in-out property <[FileItem]> files : DefaultSFileProps.files;
+  in-out property <string> item-font-family : DefaultSFileProps.item-font-family;
+  in-out property <int> item-font-weight : DefaultSFileProps.item-font-weight;
+  in-out property <length> item-font-size: DefaultSFileProps.item-font-size;
+  in-out property <bool> item-font-italic : DefaultSFileProps.item-font-italic;
+  in-out property <PaddingType> item-padding-type:DefaultSFileProps.item-padding-type;
+  callback tab-clicked(int,SOption);
+  callback item-clicked(int,int,FileItem);
+  pure function get-column-width(w:length,index:int)->length {
+    root.column-width.length==0?w/4:column-width[index]
+  }
   VerticalLayout {
     HorizontalLayout {
-      padding-top:  UseSurrealismFn.get-padding(tab-configs.padding-type).padding-top;
-      padding-bottom: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-bottom;
-      padding-right: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-right;
-      padding-left: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-left;
       for t-item[t-index] in tabs: SCard{
         border-type: None;
         drop-shadow-blur: 0;
         drop-shadow-offset-x: 0;
         drop-shadow-offset-y: 0;
-        card-height: tab-configs.height;
-        card-width: tab-configs.column-width[t-index];
-        padding-type: tab-configs.padding-type;
-        theme: tab-configs.theme;
-        TouchArea {
-          mouse-cursor: pointer;
-          clicked => {
-            root.tab-clicked(t-index,t-item);
-          }
-        }
-        VerticalLayout {
-          SText {
-            height: parent.height;
-            text: t-item.name;
-            horizontal-alignment: left;
-            theme: tab-configs.theme;
-            font-size: tab-configs.font-size;
+        card-height: root.font-size;
+        width: get-column-width(parent.width,t-index);
+        padding-type: root.padding-type;
+        theme: root.theme;
+        HorizontalLayout {
+          padding-left: parent.card-padding.padding-left;
+          padding-right: parent.card-padding.padding-right;
+          TouchArea {
+            mouse-cursor: pointer;
+            clicked => {
+              root.tab-clicked(t-index,t-item);
+            }
+            SText {
+              width: parent.width;
+              height: parent.height;
+              text: t-item.label;
+              horizontal-alignment: root.text-alignment;
+              theme: root.theme;
+              font-family: root.font-family;
+              font-weight: root.font-weight;
+              font-size: root.font-size;
+              font-italic: root.font-italic;
+              wrap: no-wrap;
+            }
           }
         }
       } 
     }
     // 滚动列表 ， 通过双层循环从横列转纵列
-    ScrollView {
-      viewport-height: files.length * (item-configs.height + (UseSurrealismFn.get-padding(item-configs.padding-type).padding-top * 2));
+    // ScrollView {
+      
+    //   // viewport-height: files.length * (item-configs.height + (UseSurrealismFn.get-padding(item-configs.padding-type).padding-top * 2));
+    //   // columns-list:=HorizontalLayout {
+    //   //   width: parent.width;
+        
+    //   //   // padding-top:  UseSurrealismFn.get-padding(tab-configs.padding-type).padding-top;
+    //   //   // padding-bottom: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-bottom;
+    //   //   // padding-right: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-right;
+    //   //   // padding-left: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-left;
+        
+    //   // }
+    // }
+    scroll-view:=ScrollView {
+      viewport-height: files.length * (item-font-size + (UseSurrealismFn.get-padding(item-padding-type).padding-top * 2));
       HorizontalLayout {
-        padding-top:  UseSurrealismFn.get-padding(tab-configs.padding-type).padding-top;
-        padding-bottom: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-bottom;
-        padding-right: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-right;
-        padding-left: UseSurrealismFn.get-padding(tab-configs.padding-type).padding-left;
+        width: parent.width;
         for t-item[t-index] in tabs: SCard{
           border-type: None;
           drop-shadow-blur: 0;
           drop-shadow-offset-x: 0;
           drop-shadow-offset-y: 0;
-          card-height: tab-configs.height;
-          card-width: tab-configs.column-width[t-index];
-          padding-type: tab-configs.padding-type;
-          theme: tab-configs.theme;
+          width: get-column-width(parent.width,t-index);
+          padding-type: item-padding-type;
+          theme: root.theme;
+          height: 100%;
           VerticalLayout {
+            padding-left: parent.card-padding.padding-left;
+            padding-right: parent.card-padding.padding-right;
+            height: parent.height;
             for f-item[f-index] in files: TouchArea {
               z: 100;
               mouse-cursor: pointer;
               clicked => {
-                root.item-clicked(f-index,f-item);
+                root.item-clicked(f-index,t-index,f-item);
               }
               VerticalLayout{
                 if t-index==0: HorizontalLayout {
-                  height: item-configs.height + (UseSurrealismFn.get-padding(item-configs.padding-type).padding-top * 2);
+                  // height: item-configs.height + (UseSurrealismFn.get-padding(item-configs.padding-type).padding-top * 2);
                   spacing: 6px;
                   Rectangle {
                     width: f-icon.width;
                     f-icon:=SIcon {
-                      height: item-configs.icon-size;
-                      width: item-configs.icon-size;
-                      theme: item-configs.theme;
+                      height: item-font-size;
+                      width: item-font-size;
+                      theme: root.theme;
                       source: f-item.icon;
                     }
                   }
                   SText {
-                    theme: item-configs.theme;
+                    theme: root.theme;
                     horizontal-alignment: left;
                     text: f-item.name;
-                    font-size: root.item-configs.font-size;
+                    font-size: item-font-size;
+                    font-weight: item-font-weight;
+                    font-italic: item-font-italic;
+                    font-family: item-font-family;
                   }
                 }
                 if t-index==1: SText{
-                  theme: item-configs.theme;
-                  height: item-configs.height + (UseSurrealismFn.get-padding(item-configs.padding-type).padding-top * 2);
-                  horizontal-alignment: left;
+                  theme: root.theme;
+                  horizontal-alignment: root.text-alignment;
                   text: f-item.datetime;
-                  font-size: root.item-configs.font-size;
+                  font-size: item-font-size;
+                  font-weight: item-font-weight;
+                  font-italic: item-font-italic;
+                  font-family: item-font-family;
                 }
                 if t-index == 2: SText{
-                  theme: item-configs.theme;
-                  height: item-configs.height + (UseSurrealismFn.get-padding(item-configs.padding-type).padding-top * 2);
-                  horizontal-alignment: left;
+                  theme: root.theme;
+                  horizontal-alignment: root.text-alignment;
                   text: f-item.file-type;
-                  font-size: root.item-configs.font-size;
+                  font-size: item-font-size;
+                  font-weight: item-font-weight;
+                  font-italic: item-font-italic;
+                  font-family: item-font-family;
                 }
                 if t-index == 3: SText{
-                  theme: item-configs.theme;
-                  height: item-configs.height + (UseSurrealismFn.get-padding(item-configs.padding-type).padding-top * 2);
-                  horizontal-alignment: left;
+                  theme: root.theme;
+                  horizontal-alignment: root.text-alignment;
                   text: f-item.size;
-                  font-size: root.item-configs.font-size;
+                  font-size: item-font-size;
+                  font-weight: item-font-weight;
+                  font-italic: item-font-italic;
+                  font-family: item-font-family;
                 }
               }
             }
@@ -189,6 +179,5 @@ export component File inherits SCard{
         }
       }
     }
-  }
- 
+  } 
 }

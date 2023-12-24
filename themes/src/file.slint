@@ -1,0 +1,26 @@
+import {Themes,PaddingType,ShadowType,BorderType,Position,SOption,FileItem} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+
+export global DefaultSFileProps {
+  //theme
+  in-out property <Themes> theme :GlobalProps.theme;
+  in-out property <[SOption]> tabs : [];
+  in-out property <[length]> column-width : [];
+  //tab
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  in-out property <int> font-weight : 700;
+  in-out property <length> font-size: GlobalProps.font.font-size;
+  in-out property <brush> font-color : GlobalProps.font.color;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  in-out property <PaddingType> padding-type:PaddingType.Normal;
+  in-out property <ShadowType> shadow-type: ShadowType.Low1;
+  in-out property <BorderType> border-type : BorderType.Normal;
+  in-out property <TextHorizontalAlignment> text-alignment: TextHorizontalAlignment.left;
+  // item
+  in-out property <[FileItem]> files : [];
+  in-out property <string> item-font-family : GlobalProps.font.font-family;
+  in-out property <int> item-font-weight : GlobalProps.font.font-weight;
+  in-out property <length> item-font-size: GlobalProps.font.font-size;
+  in-out property <bool> item-font-italic : GlobalProps.font.font-italic;
+  in-out property <PaddingType> item-padding-type:PaddingType.Normal;
+}
