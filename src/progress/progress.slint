@@ -23,14 +23,19 @@
 */
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
-import { ROOT_STYLES } from "../../themes/index.slint";
+import { ROOT_STYLES,DefaultSProgressProps } from "../../themes/index.slint";
 import { Themes } from "../../use/index.slint";
 export component Progress inherits Rectangle {
   width: 100%;
   height: layout.height;
-  in property <Themes> theme :Light;
-  in property <string> content : @tr("now: {}% used 100%" , progress);
-  in-out property <float> progress : 16;
+  in property <Themes> theme :DefaultSProgressProps.theme;
+  in property <string> text : @tr("now: {}% used 100%" , progress);
+  in-out property <float> progress : DefaultSProgressProps.progress;
+  in-out property <int> font-weight : DefaultSProgressProps.font-weight;
+  in-out property <length> font-size: DefaultSProgressProps.font-size;
+  in-out property <brush> font-color : DefaultSProgressProps.font-color;
+  in-out property <bool> font-italic : DefaultSProgressProps.font-italic;
+  in-out property <string> font-family : DefaultSProgressProps.font-family;
   private property <length> unit : self.width / 100;
   public function add(num:float) {
       if(progress<=100 - num){
@@ -48,6 +53,7 @@ export component Progress inherits Rectangle {
   public function full() {
       root.progress = 100;
   }
+  
   states [
     light when theme == Themes.Light: {
       inner.background : ROOT-STYLES.sur-theme-colors.light.deepest;
@@ -79,10 +85,11 @@ export component Progress inherits Rectangle {
         height: outer.height;
         outer:=SCard { 
           theme: Light;
-          height: 8px;
+          height: inner.height + 2px;
           width: 100%;
           border-radius: self.height / 2;
           clip: true;
+          border-type: Normal;
           inner:=SCard {
             x: 0;
             theme: root.theme;
@@ -101,12 +108,15 @@ export component Progress inherits Rectangle {
         }
       }
       txt-view:=Rectangle{
-        height: txt.height * 1.5;
+        height: txt.font-size * 2;
         txt:=SText { 
           theme: root.theme;
           width: parent.width;
-          text:root.content;
-          font-size: ROOT-STYLES.sur-font.font-size - 4px;
+          text:root.text;
+          font-family: root.font-family;
+          font-size: root.font-size;
+          font-weight: root.font-weight;
+          font-italic: root.font-italic;
           horizontal-alignment: left;
          }
       }

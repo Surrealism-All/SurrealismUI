@@ -1,0 +1,18 @@
+import {Themes,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+
+export global DefaultSProgressProps {
+  //font
+  in-out property <int> font-weight : GlobalProps.font.font-weight;
+  in-out property <length> font-size: GlobalProps.font.font-size - 2px;
+  in-out property <brush> font-color : GlobalProps.font.color;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  //theme
+  in-out property <Themes> theme : GlobalProps.theme;
+  //hight-width
+  in-out property <length> height : 8px + font-size * 2;
+  in-out property <length> width : 100%;
+  in-out property <string> text : @tr("now: {}% used 100%" , progress);
+  in-out property <float> progress : 0;
+}

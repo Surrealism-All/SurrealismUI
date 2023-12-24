@@ -1,0 +1,17 @@
+import { Themes } from "./theme.slint";
+
+export struct SProgressProps {
+  //font
+  font-weight : int,
+  font-size: length,
+  font-color : brush,
+  font-italic : bool,
+  font-family : string,
+  //theme
+  theme : Themes,
+  //hight-width
+  height : length,
+  width : length,
+  text : string,
+  progress : float,
+}

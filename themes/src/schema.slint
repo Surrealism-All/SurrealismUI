@@ -22,13 +22,13 @@ import { DefaultSHeaderProps} from "./header.slint";
 import { DefaultSLoadingProps} from "./loading.slint";
 import { DefaultSCollectionProps} from "./collection.slint";
 import { DefaultSFileProps} from "./file.slint";
-
+import { DefaultSProgressProps} from "./progress.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
-  SFileProps,SSwitchGroupProps
+  SFileProps,SSwitchGroupProps,SProgressProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -436,5 +436,18 @@ export global ComponentSchema {
     font-size: DefaultSSwitchGroupProps.font-size,
     font-italic : DefaultSSwitchGroupProps.font-italic,
   };
-  
+  in-out property <SProgressProps> progress:{
+    font-weight : DefaultSProgressProps.font-weight,
+    font-size: DefaultSProgressProps.font-size,
+    font-color : DefaultSProgressProps.font-color,
+    font-italic : DefaultSProgressProps.font-italic,
+    font-family : DefaultSProgressProps.font-family,
+    //theme
+    theme : DefaultSProgressProps.theme,
+    //hight-width
+    height : DefaultSProgressProps.height,
+    width : DefaultSProgressProps.width,
+    text : DefaultSProgressProps.text,
+    progress : DefaultSProgressProps.progress,
+  };
 }
