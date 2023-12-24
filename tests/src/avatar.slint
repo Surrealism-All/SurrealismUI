@@ -1,4 +1,4 @@
-import {SURAvatar} from "../../index.slint";
+import {SAvatar} from "../../index.slint";
 import {ROOT-STYLES} from "../../themes/index.slint";
 
 component TestWindow inherits Window {
@@ -8,22 +8,22 @@ component TestWindow inherits Window {
   VerticalLayout {
     padding: 20px;
     spacing: 20px;
-    SURAvatar {
+    SAvatar {
     }
-    SURAvatar {
+    SAvatar {
       avatar-size : ROOT-STYLES.sur-size.small * 2;
       padding-type : Small;
       theme: Primary;
     }
-    SURAvatar {
+    SAvatar {
       theme: Warning;
     }
-    SURAvatar {
+    SAvatar {
       avatar-size : ROOT-STYLES.sur-size.small * 2;
       padding-type : Small;
       theme: Error;
     }
-    SURAvatar {
+    SAvatar {
       avatar-size : ROOT-STYLES.sur-size.large * 2;
       padding-type : Large;
       theme: Dark;

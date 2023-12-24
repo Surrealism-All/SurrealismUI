@@ -9,27 +9,29 @@
 * A very simple universal card without any layout or restrictions
 * you can add anything you want to the card
 * ## properties
-* - in property <Themes> theme : Surrealism Themes
-* - in property <length> card-height : card height 👍
-* - in property <length> card-width : card width 👍
-* - in property <PaddingType> padding-type : card padding size
-* - in property <ShadowType> shadow : card shadow type
-* - in property <BorderType> border : card border type
-* - in-out property <PaddingProps> card-padding : card padding 
+* - in property <Themes> theme : Surrealism theme;
+* - in property <length> card-height: card height (not contain padding);
+* - in property <length> card-width: card width (not contain padding);
+* - in property <PaddingType> padding-type : padding type;
+* - in property <ShadowType> shadow-type : shadow type;
+* - in property <BorderType> border-type : border type;
+* - in property <int> font-weight : font weight;
+* - in property <length> font-size: font size;
+* - in property <brush> font-color : font color;
+* - in property <bool> font-italic : font italic;
+* - in property <string> font-family : font family;
+* - in-out property <PaddingProps> card-padding : inner card padding struct;
+* - in-out property <BorderProps> card-border : inner card border struct;
+* - in-out property <ShadowProps> card-shadow : inner card shadow struct;
 * ============================================
 */
 
 
 import {ROOT_STYLES,DefaultSCardProps} from "../../themes/index.slint";
 import {Themes,PaddingType,ShadowType,BorderType,UseSurrealismFn,PaddingProps,BorderProps,ShadowProps} from "../../use/index.slint";
-enum Alignment{
-  Horizontal,
-  Vertical
-}
 
 
 export component Card inherits Rectangle{
-  
   in property <Themes> theme : DefaultSCardProps.theme;
   in property <length> card-height: DefaultSCardProps.card-height;
   in property <length> card-width: DefaultSCardProps.card-width;

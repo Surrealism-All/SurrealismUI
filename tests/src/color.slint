@@ -8,17 +8,17 @@ global themes {
       {name:"success",c:[{color:#8FCEC4,name:"weakest"},{name:"weaker",color:#61BF84},{name:"normal",color:#38A762},{name:"deeper",color:#21964A},{name:"deepest",color:#118A3D},{name:"font",color:#e5fffb},{name:"opacity",color:#38A76288}    ]},
       {name:"info",c:[{color:#F6F6F6,name:"weakest"},{name:"weaker",color:#eaeaea},{name:"normal",color:#E0E0E0},{name:"deeper",color:#D2D2D2},{name:"deepest",color:#BDBDBD},{name:"font",color:#484848},{name:"opacity",color:#E0E0E088}]},
       {name:"warning",c:[{color:#ffd5bd,name:"weakest"},{name:"weaker",color:#FCBD99},{name:"normal",color:#F9A677},{name:"deeper",color:#F9955C},{name:"deepest",color:#F8894A},{name:"font",color:#fff4ec},{name:"opacity",color:#F9A67788}]},
-      {name:"error",c:[{color:#e9a9a7,name:"weakest"},{name:"weaker",color:#F294B3},{name:"normal",color:#EE6F9A},{name:"deeper",color:#EB5889},{name:"deepest",color:#EA467E},{name:"font",color:#ffe5e4},{name:"opacity",color:#EE6F9A88}]},
+      {name:"error",c:[{color:#e9a7a7,name:"weakest"},{name:"weaker",color:#f48989},{name:"normal",color:#ed5e5e},{name:"deeper",color:#ed4e4e},{name:"deepest",color:#ed3b3b},{name:"font",color:#ffe5e4},{name:"opacity",color:#ed4e4e88}]},
       {name:"dark",c:[{color:#707070,name:"weakest"},{name:"weaker",color:#616161},{name:"normal",color:#424242},{name:"deeper",color:#242424},{name:"deepest",color:#000000},{name:"font",color:#BDBDBD},{name:"opacity",color:#42424288}]}
     ];
 }
 
 export component TestColor inherits Window {
   height: 1400px;
-  width: 1000px;
+  width: 1100px;
   VerticalLayout {
     height: 1400px;
-    width: root.width;
+    width: root.width -100px;
     for t in themes.colors: Rectangle {
       HorizontalLayout{
         SText { 
