@@ -4,7 +4,7 @@
 
 - author：syf20020816@outlook.com
 - createDate：20230908
-- updateDate：20231226
+- updateDate：20231225
 - version：0.3.0
 - email：syf20020816@outlook.com
 
@@ -16,13 +16,77 @@
 
 ### use Slimk
 
+1. Install Slimk : https://github.com/Surrealism-All/slimk
+2. run `slimk create hello --template slimk`
+
 ### Github
+
+1. GoTo ：https://github.com/Surrealism-All/SurrealismUI/releases
+2. Find the latest release
 
 ## QuickStart
 
+### Config SurrealismUI as Library (optional)
 
+1. Open VsCode and choose Settings , then search `Slint:Library Paths`  
+2. Choose edit in settings.json
+3. Find `slint.libraryPaths` and add `"SurrealismUI":"parent_file_path\\surrealism-ui\\index.slint"`❗
 
+```json
+  "slint.libraryPaths": {
+    "SurrealismUI":"E:\\test_try\\test-surrealism\\ui\\modules\\surrealism-ui\\index.slint"
+  },
+```
 
+<img src="./README\imgs\image-20231225233105029.png">
+
+### Import and Use
+
+```slint
+import { STag,SCard,SInput,SText,SButton  } from "./modules/surrealism-ui/index.slint";
+
+export component App inherits Window {
+  height: 600px;
+  width: 800px;
+  title: "Surrealism";
+  Rectangle {
+    VerticalLayout {
+      padding: 20px;
+      spacing: 60px;
+      SText {
+        height: 3rem;
+        text: "SurrealismUI";
+      }
+      SButton {
+        text: "Try SurrealismUI";
+      }
+      SCard {
+        STag{
+          theme: Warning;
+          text:"test tag";
+        }
+      }
+      Rectangle {
+        SInput{
+          theme: Primary;
+          placeholder :"please enter your username";
+          card-width:300px;
+          clearable: true;
+          text:"SurrealismUI - input";
+          accepted(res)=>{
+            debug("content in input:" + res);
+          }
+          changed(change-res)=>{
+            debug(change-res);
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+<img src="./README\imgs\image-20231226000051318.png">
 
 ## What SurrealismUI Do？
 
@@ -67,16 +131,6 @@ Slint differs from other GUI frameworks in that the UI layer is completed throug
 Built in 7 theme colors in SurrealismUI
 
 ### themes-color
-
-| theme   | weakest | weaker | normal | deeper | deepest | font | opacity |
-| ------- | ------- | ------ | ------ | ------ | ------- | ---- | ------- |
-| Dark    |         |        |        |        |         |      |         |
-| Light   |         |        |        |        |         |      |         |
-| Primary |         |        |        |        |         |      |         |
-| Success |         |        |        |        |         |      |         |
-| Warning |         |        |        |        |         |      |         |
-| Info    |         |        |        |        |         |      |         |
-| Error   |         |        |        |        |         |      |         |
 
 <table cellspacing="0" border="0">
       <thead>
@@ -165,7 +219,13 @@ Built in 7 theme colors in SurrealismUI
       </tbody>
     </table>
 
+<img src="README\imgs\image-20231225231237367.png">
 
+## Wiki
+
+https://github.com/Surrealism-All/SurrealismUI/wiki
+
+**I will try my best to update wiki** 😂 (please waiting...)
 
 ## Components
 
@@ -205,6 +265,24 @@ Built in 7 theme colors in SurrealismUI
 
 ## Updates
 
+### 中文 
+
+V0.3.0版本是一个重大变更的版本，几乎所有的组件都经历了一次重构，优化了所有组件的结构，对整体项目目录进行了调整，处理了在之前版本中的不合理问题（组件名字，组件属性，方法，回调，内置方法，内置属性，内置Global等）。本次大更新更探索了类似于VNode的可能性（但目前并没有完美的方案）。将所有组件属性进行提取并使用结构体进行管理，这使得对组件样式的控制更加彻底，并使得使用rust，c++，js动态控制组件更加容易，动态生成组件这一需求也得到了解决。
+
+在本次大型更新后，SurrealismUI中属性的写法与原生属性更加接近，这不仅减少了学习成本，更有利于使用者的理解。在后续0.3.x的版本中将会持续优化(每个版本的更新周期约2周)。此外0.3.0版本后可能不再涉及如此大范围的更新，该项目的稳定性将会持续提升。
+
+感谢各位的阅读，如果您有任何问题，请发送邮件到syf20020816@outlook.com或在SurrealismUI仓库的讨论或issue中提出
+
+<hr />
+
+### English
+
+V0.3.0 is a major change version. Almost all components have undergone a rebuiding, optimizing the structure of all components, adjusting the overall project directory, and dealing with unreasonable problems in the previous version (component name, component properties, functions, callbacks, built-in  functions, built-in properties, built-in Global, ...). This big update explores the possibility of something similar to VNode (but there is no perfect solution at present). All component attributes are extracted and managed by using struct, which makes the control of component style more thorough, and makes it easier to use Rust, C + +, JS to dynamically control components, and the requirement of dynamically generating components is also solved.
+
+ After this major update, the writing of attributes in SurrealismUI is closer to the native attributes, which not only reduces the learning cost, but also is more conducive to the user's understanding. Optimization will continue in subsequent 0.3.x releases (approximately 2 weeks per release). In addition, the 0.3.0 version may no longer involve such a wide range of updates, and the stability of the project will continue to improve. 
+
+Thank you for reading, and if you have any questions, please send an email to syf20020816@outlook.com or raise them in a discussion or issue at the SurrealismUI repository
+
 - V0.3.0 (Slint 1.3.2)
   - 中文
     - 所有组件更名`SUR`为`S`
@@ -224,103 +302,3 @@ Built in 7 theme colors in SurrealismUI
     - Prepare slots for components using the use method
     - Modify built-in theme colors
     - Refactoring project structure
-- V0.2.2（Slint 1.3.0）
-  - 中文：
-    - 优化内置Global：
-      - 修复标准内置方法：`get-padding()`
-      - 增加`PaddingType Enum`类型`PaddingType.Tag`
-      - 增加标准内置方法`get-color()`
-      - 增加标准内置枚举`ColorLevel`
-    - 优化`SText`
-      - 修改属性名`content -> text`
-    - 优化`STag`：
-      - 修复`STag`样式异常
-      - `STag` remove content property , please use text (as Builtin `Text`)
-      - `callback clicked(string)`增加返回参数(`tag text`)
-    - 优化`SIcon`
-      - 修改属性名`icon -> source`
-      - 移除`get-icon()`
-    - 优化`SButton`
-      - 增加`show-icon`属性控制是否加载图片
-      - 修复按钮异常
-      - 修改属性名`content -> text`
-    - 优化`SLink`
-      - 修改属性名`content -> text`
-      - `callback clicked(string)`增加返回参数(`link text`)
-      - 增加hover控制下划线触发效果
-      - 增加`underline`属性控制下划线显示
-    - 修复`SURAvatar`默认Icon消失问题
-  - English
-    - Optimize built-in Global:
-      - Fix standard built-in methods: ` get padding ()`
-      - Add `PaddingType Enum` type `PaddingType.Tag`
-      - Add Standard Built-in Method ` get color()`
-      - Add Standard Built-in Enumeration ` ColorLevel`
-    - Optimize ` SText`
-      - Modify Attribute Name ` content ->text`
-    - Optimize `STag`:
-      - Fix `STag` style anomalies
-      - `STag` remove content property, please use text (as Built in `Text`)
-      - `callback clicked (string)` Add return parameter (`tag text`)
-    - Optimize ` SIcon`
-      - Modify Attribute Name ` icon ->source`
-      - Remove ` get icon ()`
-    - Optimize ` SButton`
-      - Add the `show icon` attribute to control whether to load images
-      - Fix button error
-      - Modify Attribute Name ` content ->text`
-    - Optimize ` SLink`
-      - Modify Attribute Name ` content ->text`
-      - `callback clicked (string)` Add return parameters (`link text`)
-      - Add hover control underline trigger effect
-      - Add the `underline` attribute to control the display of underscores
-    - Fix the issue of `SURAvatar` default Icon disappearing
-
-- V0.2.1
-  - add `STree`
-  - add `SFile`
-
-- V0.2.0
-  - add `SSwitchOption`
-  - add `SSwitchGroup`
-  - optimize `SInput`
-
-- V0.1.7
-  - add `SSwitch`
-  - add `SDrawer`
-  - add `SAlert`
-
-- V0.1.6
-  - solve `SLoading` animation!
-
-- V0.1.5
-  - add `SMenu`
-  - enhance `STip` (the location of the tip can be changed now  and you can show it with hover ! )
-
-- V0.1.4
-  - add `STip`
-  - add `SLoading`
-  - add `SDialog`
-
-- V0.1.3
-  - add `SBadge`
-  - add `Progress`
-  - add `Persona`
-- V0.1.2
-  - rebuild components (have `SIcon`)
-  - rebuild `SIcon`
-  - rebuild file structure
-  - solve memery overflow issue
-  - use minimize import principle (remove inner loop to judge component show!)❗
-  - test use Rust✅
-- V0.1.1
-  - add `SRadio`
-  - add `SDivider`
-  - add `SCollection`
-  - add `SPopup`
-- V0.1.0
-  - Adopting Fluent2's component design style
-  - Multiple default methods are provided for consumers to call (see index.slint which on the outermost side)
-  - Decoupling functions and components
-  - Fix some style errors
-  - add `SLink` and `SURAvatar`
