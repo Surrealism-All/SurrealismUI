@@ -1,0 +1,43 @@
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+import { ShadowType } from "./shadow.slint";
+import { BorderType } from "./border.slint";
+import { SOption } from "./select.slint";
+
+export struct STableProps {
+  //theme
+  columns : [SOption],
+  column-width : [length],
+  column-themes:[Themes],
+  viewport-height:length,
+  //tab
+  font-weight : int,
+  font-size: length,
+  font-color : brush,
+  font-italic : bool,
+  font-family : string,
+  //theme
+  theme : Themes,
+  padding-type: PaddingType,
+  shadow-type: ShadowType,
+  border-type : BorderType,
+  alignment: TextHorizontalAlignment,
+}
+
+export struct STableColumnProps {
+  index : int,
+  datas : [string],
+  height : length,
+  width : length,
+  //tab
+  font-weight : int,
+  font-size: length,
+  font-color : brush,
+  font-italic : bool,
+  font-family : string,
+  theme : Themes,
+  padding-type: PaddingType,
+  shadow-type: ShadowType,
+  border-type : BorderType,
+  alignment: TextHorizontalAlignment,
+}

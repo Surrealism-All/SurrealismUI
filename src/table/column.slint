@@ -27,23 +27,26 @@
 * ============================================
 */
 
-import {ROOT_STYLES} from "../../themes/index.slint";
+import {ROOT_STYLES,DefaultSTableColumnProps} from "../../themes/index.slint";
 import { SCard } from "../card/index.slint";
 import { SText } from "../text/index.slint";
-import { SButton } from "../button/index.slint";
 import { Themes,SOption,UseSurrealismFn,PaddingType } from "../../use/index.slint";
-import { ScrollView } from "std-widgets.slint";
+
 
 export component TableColumn inherits SCard{
-    theme: Dark;
-    border-type: None;
+    theme: DefaultSTableColumnProps.theme;
+    border-type: DefaultSTableColumnProps.border-type;
     height: count-column-height();
-    in-out property <int> index;
-    in property <[string]> datas;
-    in property <TextHorizontalAlignment> alignment : center;
-    in property <PaddingType> item-padding-type : PaddingType.Normal;
+    padding-type : DefaultSTableColumnProps.padding-type;
+    font-family: DefaultSTableColumnProps.font-family;
+    font-size: DefaultSTableColumnProps.font-size;
+    font-weight: DefaultSTableColumnProps.font-weight;
+    font-italic: DefaultSTableColumnProps.font-italic;
+    in-out property <int> index : DefaultSTableColumnProps.index;
+    in property <[string]> datas : DefaultSTableColumnProps.datas;
+    in property <TextHorizontalAlignment> alignment : DefaultSTableColumnProps.alignment;
     pure public function count-column-height()->length {
-       return datas.length * UseSurrealismFn.count-height(root.font-size,UseSurrealismFn.get-padding(root.item-padding-type).padding-top);
+       return datas.length * UseSurrealismFn.count-height(root.font-size,UseSurrealismFn.get-padding(root.padding-type).padding-top);
     }
     callback clicked(int,int,string);
     layout:=VerticalLayout {
@@ -56,7 +59,7 @@ export component TableColumn inherits SCard{
                 width: root.width;
                 card-height: root.font-size;
                 border-type: None;
-                padding-type: root.item-padding-type;
+                padding-type: root.padding-type;
                 theme: root.theme;
                 drop-shadow-offset-x: 0;
                 drop-shadow-offset-y: 0;

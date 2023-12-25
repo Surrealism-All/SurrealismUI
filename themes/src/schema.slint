@@ -24,12 +24,13 @@ import { DefaultSCollectionProps} from "./collection.slint";
 import { DefaultSFileProps} from "./file.slint";
 import { DefaultSProgressProps} from "./progress.slint";
 import { DefaultSBadgeProps } from "./badge.slint";
+import { DefaultSTableColumnProps,DefaultSTableProps } from "./table.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
-  SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps
+  SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps,STableProps,STableColumnProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -466,5 +467,40 @@ export global ComponentSchema {
     icon : DefaultSBadgeProps.icon,
     position :DefaultSBadgeProps.position,
     icon-color : DefaultSBadgeProps.icon-color,
+  };
+  in-out property <STableProps> table : {
+    columns : DefaultSTableProps.columns,
+    column-width : DefaultSTableProps.column-width,
+    column-themes:DefaultSTableProps.column-themes,
+    viewport-height:DefaultSTableProps.viewport-height,
+    //tab
+    font-weight : DefaultSTableProps.font-weight,
+    font-size: DefaultSTableProps.font-size,
+    font-color : DefaultSTableProps.font-color,
+    font-italic : DefaultSTableProps.font-italic,
+    font-family : DefaultSTableProps.font-family,
+    //theme
+    theme : DefaultSTableProps.theme,
+    padding-type: DefaultSTableProps.padding-type,
+    shadow-type: DefaultSTableProps.shadow-type,
+    border-type : DefaultSTableProps.border-type,
+    alignment: DefaultSTableProps.alignment,
+  };
+  in-out property <STableColumnProps> table-column:{
+    index : DefaultSTableColumnProps.index,
+    datas : DefaultSTableColumnProps.datas,
+    height : DefaultSTableColumnProps.height,
+    width : DefaultSTableColumnProps.width,
+    //tab
+    font-weight : DefaultSTableColumnProps.font-weight,
+    font-size: DefaultSTableColumnProps.font-size,
+    font-color : DefaultSTableColumnProps.font-color,
+    font-italic : DefaultSTableColumnProps.font-italic,
+    font-family : DefaultSTableColumnProps.font-family,
+    theme : DefaultSTableColumnProps.theme,
+    padding-type: DefaultSTableColumnProps.padding-type,
+    shadow-type: DefaultSTableColumnProps.shadow-type,
+    border-type : DefaultSTableColumnProps.border-type,
+    alignment: DefaultSTableColumnProps.alignment,
   };
 }
