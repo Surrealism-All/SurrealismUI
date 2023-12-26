@@ -19,14 +19,14 @@
 * ============================================
 */
 import {ROOT_STYLES,DefaultSIconProps} from "../../themes/index.slint";
-import {Themes,RotationProps} from "../../use/index.slint";
+import {Themes,RotationProps,UseSurrealismFn,ColorLevel} from "../../use/index.slint";
 
 export component Icon{
   //image props
   in property <MouseCursor> mouse-cursor : DefaultSIconProps.mouse-cursor;
   in property <Themes> theme : DefaultSIconProps.theme;
   in property <image> source : DefaultSIconProps.source;
-  in-out property <brush> colorize : DefaultSIconProps.colorize;
+  in-out property <brush> colorize;
   in property <ImageFit> image-fit : DefaultSIconProps.image-fit;
   in property <ImageRendering> image-rendering : DefaultSIconProps.image-rendering;
   in-out property <RotationProps> rotation : DefaultSIconProps.rotation;
@@ -34,6 +34,10 @@ export component Icon{
   in property <int> source-clip-y : DefaultSIconProps.source-clip-y;
   in property <int> source-clip-height : DefaultSIconProps.source-clip-height;
   in property <int> source-clip-width : DefaultSIconProps.source-clip-width;
+  out property <bool> has-hover <=> area.has-hover;
+  pure public function get-colorize()->brush {
+      return UseSurrealismFn.get-color(root.theme , ColorLevel.Font);
+  }
   // get icon src from for iter item
   callback clicked;
   //default icon size
@@ -41,72 +45,7 @@ export component Icon{
   height: DefaultSIconProps.height;
   width: DefaultSIconProps.width;
   
-  states [
-    light when theme == Themes.Light: {
-      colorize :ROOT-STYLES.sur-theme-colors.light.font;
-      out{
-        animate  * {
-          duration: ROOT-STYLES.sur-an-duration;
-          easing: ROOT-STYLES.sur-an-easing;
-        }
-      }
-    }
-    primary when theme == Themes.Primary: {
-      colorize :ROOT-STYLES.sur-theme-colors.primary.font;
-      out{
-        animate  * {
-          duration: ROOT-STYLES.sur-an-duration;
-          easing: ROOT-STYLES.sur-an-easing;
-        }
-      }
-    }
-    success when theme == Themes.Success: {
-      colorize :ROOT-STYLES.sur-theme-colors.success.font;
-      out{
-        animate  * {
-          duration: ROOT-STYLES.sur-an-duration;
-          easing: ROOT-STYLES.sur-an-easing;
-        }
-      }
-    }
-    info when theme == Themes.Info: {
-      colorize :ROOT-STYLES.sur-theme-colors.info.font;
-      out{
-        animate  * {
-          duration: ROOT-STYLES.sur-an-duration;
-          easing: ROOT-STYLES.sur-an-easing;
-        }
-      }
-    }
-    warning when theme == Themes.Warning: {
-      colorize :ROOT-STYLES.sur-theme-colors.warning.font;
-      out{
-        animate  * {
-          duration: ROOT-STYLES.sur-an-duration;
-          easing: ROOT-STYLES.sur-an-easing;
-        }
-      }
-    }
-    error when theme == Themes.Error: {
-      colorize :ROOT-STYLES.sur-theme-colors.error.font;
-      out{
-        animate  * {
-          duration: ROOT-STYLES.sur-an-duration;
-          easing: ROOT-STYLES.sur-an-easing;
-        }
-      }
-    }
-    dark when theme == Themes.Dark: {
-      colorize :ROOT-STYLES.sur-theme-colors.dark.font;
-      out{
-        animate  * {
-          duration: ROOT-STYLES.sur-an-duration;
-          easing: ROOT-STYLES.sur-an-easing;
-        }
-      }
-    }
-  ]
-  TouchArea {
+  area:=TouchArea {
     mouse-cursor: root.mouse-cursor;
     inner:=Image{
       source : root.source;

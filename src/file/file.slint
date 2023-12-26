@@ -116,6 +116,7 @@ export component File inherits SCard{
                   Rectangle {
                     width: f-icon.width;
                     f-icon:=SIcon {
+                      colorize: self.get-colorize();
                       height: item-font-size;
                       width: item-font-size;
                       theme: root.theme;

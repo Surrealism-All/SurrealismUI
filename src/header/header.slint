@@ -52,6 +52,7 @@ export component Header inherits SCard {
         icon-view:=Rectangle{
           width: icon.width;
           icon:=SIcon{
+            colorize: self.get-colorize();
             height: root.font-size;
             width: root.font-size;
             theme: root.theme;

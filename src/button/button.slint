@@ -137,6 +137,7 @@ export component Button inherits SCard {
     spacing: show-icon?UseSurrealismFn.get-space(self.width):0;
     if root.show-icon:icon-container:= Rectangle {
       btn-icon:= SIcon {
+        colorize: self.get-colorize();
         source:root.icon;
         height: root.font-size;
         width: root.font-size;

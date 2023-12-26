@@ -98,6 +98,7 @@ export component Result inherits SCard {
       height: icon.height;
       width: parent.width;
       icon:=SIcon { 
+        colorize: self.get-colorize();
         height: root.icon-size;
         width: root.icon-size;
         theme: root.theme;

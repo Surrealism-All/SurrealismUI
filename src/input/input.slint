@@ -234,6 +234,7 @@ export component Input inherits SCard {
       }
       if root.password: eye-icon:= Rectangle{
         eye:=SIcon {
+          colorize: self.get-colorize();
           theme: root.theme;
           source:UseIcons.icons.Preview-close;
           height: root.font-size;
@@ -258,6 +259,7 @@ export component Input inherits SCard {
       }
       if root.clearable:clear-icon:= Rectangle {
         SIcon{
+          colorize: self.get-colorize();
           height: root.font-size;
           width: root.font-size;
           theme: root.theme;

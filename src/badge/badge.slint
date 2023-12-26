@@ -70,6 +70,7 @@ export component Badge inherits SCard {
   HorizontalLayout {
     spacing: 6px;
     badge-icon:= SIcon {
+      colorize: self.get-colorize();
       theme: root.theme;
       height: root.height;
       width: root.width; 

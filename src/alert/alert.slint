@@ -140,6 +140,7 @@ export component Alert inherits Window{
       Rectangle {
         width: type-icon.width;
         type-icon:=SIcon {
+          colorize: self.get-colorize();
           source: root.icon;
           height: root.icon-size;
           width: root.icon-size;
@@ -158,6 +159,7 @@ export component Alert inherits Window{
       Rectangle {
         width: close-icon.width;
         close-icon:=SIcon {
+          colorize: self.get-colorize();
           source: root.close-icon;
           height: root.icon-size;
           width: root.icon-size;

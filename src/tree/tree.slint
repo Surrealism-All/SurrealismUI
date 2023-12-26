@@ -49,6 +49,7 @@ component TreeItem inherits SCard{
       Rectangle {
         width: i-icon.width;
         i-icon:=SIcon { 
+          colorize: self.get-colorize();
           height: root.font-size;
           width: root.font-size;
           theme: root.theme;

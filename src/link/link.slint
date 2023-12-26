@@ -26,7 +26,7 @@ import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { ROOT-STYLES,DefaultSLinkProps } from "../../themes/index.slint";
-import { Themes,ShadowType,ColorLevel,UseSurrealismFn,UseIcons } from "../../use/index.slint";
+import { Themes,ShadowType,ColorLevel,UseSurrealismFn,UseIcons,BorderType } from "../../use/index.slint";
 
 export component Link {
   in property <image> icon : DefaultSLinkProps.icon;
@@ -63,7 +63,7 @@ export component Link {
       padding-right: 0;
       padding-top: 0;
       padding-bottom: 0;
-      border-type: root.funny? Circle-None: None;
+      border-type: root.funny? BorderType.Circle-None: BorderType.None;
     }
     HorizontalLayout {
       inner-text:=SText{
@@ -80,6 +80,7 @@ export component Link {
         padding-left: 2px;
         link-icon:=SIcon{
           x: 2px;
+          colorize: self.get-colorize();
           source: root.icon;
           theme: root.theme;
           height: root.font-size / 1.4;

@@ -106,6 +106,7 @@ export component CollapseItem inherits Rectangle{
         icon-view:=Rectangle{
           width:icon.width ;
           icon:=SIcon { 
+            colorize: self.get-colorize();
             theme: root.theme;
             height: 16px;
             width: 16px;

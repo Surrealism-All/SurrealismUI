@@ -288,10 +288,13 @@ Thank you for reading, and if you have any questions, please send an email to sy
   - 中文
     - 补充丢失的SVG图片
     - 修复组件中`PaddingType.None`以及`BorderType.None`产生的与Rust 的`Option` 的编译冲突
+    - 修复`SIcon`中colorize属性导致的闪烁和None冲突
+    - `SIcon`弥补方案:`self.get-colorize()`
   - English
     -  add missing SVG images
     - fix the `PaddingType.None` and `BorderType.None` in the component Compilation conflict with Rust  `Option`
-
+    - fix None conflict and flicker causes by colorize property in `SIcon`
+    - `SICon` Remedial solution:`self.get-colorize()`
 - V0.3.0 (Slint 1.3.2)
   - 中文
     - 所有组件更名`SUR`为`S`
@@ -311,7 +314,3 @@ Thank you for reading, and if you have any questions, please send an email to sy
     - Prepare slots for components using the use method
     - Modify built-in theme colors
     - Refactoring project structure
-
-
-
-https://github.com/Surrealism-All/SurrealismUI/blob/main/README/imgs/
