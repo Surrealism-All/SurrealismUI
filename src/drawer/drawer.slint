@@ -22,7 +22,7 @@
 
 import { SPopup } from "../popup/index.slint";
 import { SCard } from "../card/index.slint";
-import { Themes,Position,PaddingType,ShadowType } from "../../use/index.slint";
+import { Themes,Position,PaddingType,ShadowType,BorderType } from "../../use/index.slint";
 import { DefaultSDrawerProps } from "../../themes/index.slint";
 
 export component Drawer inherits SPopup { 
@@ -62,7 +62,7 @@ export component Drawer inherits SPopup {
     theme: root.drawer-theme;
     x: get-position().x;
     y: get-position().y;
-    border-type:None;
+    border-type:BorderType.None;
     padding-type: root.padding-type;
     clip: true;
     TouchArea {

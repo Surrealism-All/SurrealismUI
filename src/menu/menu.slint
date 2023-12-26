@@ -23,7 +23,7 @@ import { SCard } from "../card/index.slint";
 import { SIcon } from "../icon/index.slint";
 import {ROOT-STYLES} from "../../themes/index.slint";
 import { STip } from "../tip/index.slint";
-import { Themes,UseIcons } from "../../use/index.slint";
+import { Themes,UseIcons,BorderType } from "../../use/index.slint";
 
 export struct MenuData {
     id:int,
@@ -55,7 +55,7 @@ component MenuItem inherits Rectangle {
     height: root.height;
     width: 2px;
     theme: root.theme;
-    border-type: None;
+    border-type: BorderType.None;
     border-radius: 0;
     background: ROOT-STYLES.radio-active;
     drop-shadow-blur: 0;

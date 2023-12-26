@@ -1,5 +1,5 @@
 import { SSwitchGroup } from "../../index.slint";
-
+import { PaddingType } from "../../use/index.slint";
 component TestSwitchGroup inherits Window {
   height: 400px;
   width: 400px;
@@ -19,7 +19,7 @@ component TestSwitchGroup inherits Window {
   SSwitchGroup {
     y: 120px;
     theme:Dark;
-    padding-type: Small;
+    padding-type: PaddingType.Small;
     switchs:[
       {label:"1",value:"0"},
       {label:"2",value:"2"},

@@ -23,15 +23,15 @@ import { SCard } from "../card/index.slint";
 import { ROOT_STYLES,DefaultSBadgeProps} from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { SText } from "../text/index.slint";
-import { Themes,ResultType,BorderType,UseSurrealismFn,UseIcons,Position } from "../../use/index.slint";
+import { Themes,ResultType,BorderType,UseSurrealismFn,UseIcons,Position,PaddingType } from "../../use/index.slint";
 
 export component Badge inherits SCard { 
   theme: DefaultSBadgeProps.theme;
   card-height: DefaultSBadgeProps.card-height;
   card-width: DefaultSBadgeProps.card-width;
   border-radius: self.height / 2;
-  border-type: None;
-  padding-type: None;
+  border-type: BorderType.None;
+  padding-type: PaddingType.None;
   //remove all shadow
   drop-shadow-blur: 0;
   drop-shadow-offset-x: 0;
@@ -83,8 +83,8 @@ export component Badge inherits SCard {
       theme: root.theme;
       height: root.height;
       card-width: badge-txt.width;
-      padding-type: Small;
-      border-type: None;
+      padding-type: PaddingType.Small;
+      border-type: BorderType.None;
       border-radius: self.height / 2;
       badge-txt:=SText { 
         text: root.text;

@@ -24,7 +24,7 @@
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
 import { ROOT_STYLES,DefaultSProgressProps } from "../../themes/index.slint";
-import { Themes } from "../../use/index.slint";
+import { Themes,BorderType } from "../../use/index.slint";
 export component Progress inherits Rectangle {
   width: 100%;
   height: layout.height;
@@ -89,7 +89,7 @@ export component Progress inherits Rectangle {
           width: 100%;
           border-radius: self.height / 2;
           clip: true;
-          border-type: Normal;
+          border-type: BorderType.Normal;
           inner:=SCard {
             x: 0;
             theme: root.theme;

@@ -19,7 +19,7 @@
 import { SCard } from "../card/index.slint";
 import { ROOT-STYLES,DefaultSSwitchGroupProps } from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
-import { Themes,ShadowType,UseSurrealismFn,PaddingType,SOption } from "../../use/index.slint";
+import { Themes,ShadowType,UseSurrealismFn,PaddingType,SOption,BorderType } from "../../use/index.slint";
 
 export component SwitchGroup inherits SCard { 
   card-height: DefaultSSwitchGroupProps.card-height;
@@ -45,10 +45,10 @@ export component SwitchGroup inherits SCard {
       theme: root.theme;
       card-width: inner-text.width;
       height: parent.height;
-      padding-type: Small;
+      padding-type: PaddingType.Small;
       background: root.active == index ? UseSurrealismFn.deeper(root.theme,root.theme-color) : theme-color;
       // remove border
-      border-type: None;
+      border-type: BorderType.None;
       // make border-radius round
       border-radius: self.height / 2;
       // remove shadow

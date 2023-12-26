@@ -21,7 +21,7 @@ import { StandardTableView , ScrollView} from "std-widgets.slint";
 import {ROOT_STYLES,DefaultSTableProps} from "../../themes/index.slint";
 import { SCard } from "../card/index.slint";
 import { SText } from "../text/index.slint";
-import { Themes,UseSurrealismFn,PaddingType,SOption,FileItem } from "../../use/index.slint";
+import { Themes,UseSurrealismFn,PaddingType,SOption,FileItem,BorderType } from "../../use/index.slint";
 
 export component Table inherits SCard{
   width: 100%;
@@ -46,7 +46,7 @@ export component Table inherits SCard{
   VerticalLayout {
     table-header:=HorizontalLayout {
       for t-item[t-index] in columns: SCard{
-        border-type: None;
+        border-type: BorderType.None;
         drop-shadow-blur: 0;
         drop-shadow-offset-x: 0;
         drop-shadow-offset-y: 0;

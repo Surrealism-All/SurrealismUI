@@ -30,7 +30,7 @@
 import {ROOT_STYLES,DefaultSTableColumnProps} from "../../themes/index.slint";
 import { SCard } from "../card/index.slint";
 import { SText } from "../text/index.slint";
-import { Themes,SOption,UseSurrealismFn,PaddingType } from "../../use/index.slint";
+import { Themes,SOption,UseSurrealismFn,PaddingType,BorderType } from "../../use/index.slint";
 
 
 export component TableColumn inherits SCard{
@@ -58,7 +58,7 @@ export component TableColumn inherits SCard{
             SCard {
                 width: root.width;
                 card-height: root.font-size;
-                border-type: None;
+                border-type: BorderType.None;
                 padding-type: root.padding-type;
                 theme: root.theme;
                 drop-shadow-offset-x: 0;

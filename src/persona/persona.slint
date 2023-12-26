@@ -32,7 +32,7 @@ import { Avatar } from "../avatar/avatar.slint";
 import { SText } from "../text/index.slint";
 import { SButton } from "../button/index.slint";
 import { ROOT_STYLES,DefaultSPersonaProps} from "../../themes/index.slint";
-import { Themes,SButtonProps } from "../../use/index.slint";
+import { Themes,SButtonProps,BorderType } from "../../use/index.slint";
 
 export component Persona inherits SCard { 
   in-out property <string> btn-text : DefaultSPersonaProps.btn-text;
@@ -67,7 +67,7 @@ export component Persona inherits SCard {
       theme: root.avatar-theme;
       height: root.avatar-height;
       width: 100%;
-      border-type: None;
+      border-type: BorderType.None;
       avatar: root.avatar;
     }
     footer-layout:=VerticalLayout {

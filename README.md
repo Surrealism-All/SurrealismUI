@@ -1,11 +1,11 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.3.0-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.3.1-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
 - updateDate：20231225
-- version：0.3.0
+- version：0.3.1
 - email：syf20020816@outlook.com
 
 <img src="./README/imgs/logo.png">
@@ -22,7 +22,8 @@
 ### Github
 
 1. GoTo ：https://github.com/Surrealism-All/SurrealismUI/releases
-2. Find the latest release
+2. Find the latest release and download
+3. unzip and add into your project
 
 ## QuickStart
 
@@ -283,6 +284,14 @@ V0.3.0 is a major change version. Almost all components have undergone a rebuidi
 
 Thank you for reading, and if you have any questions, please send an email to syf20020816@outlook.com or raise them in a discussion or issue at the SurrealismUI repository
 
+- V0.3.1
+  - 中文
+    - 补充丢失的SVG图片
+    - 修复组件中`PaddingType.None`以及`BorderType.None`产生的与Rust 的`Option` 的编译冲突
+  - English
+    -  add missing SVG images
+    - fix the `PaddingType.None` and `BorderType.None` in the component Compilation conflict with Rust  `Option`
+
 - V0.3.0 (Slint 1.3.2)
   - 中文
     - 所有组件更名`SUR`为`S`
@@ -302,3 +311,7 @@ Thank you for reading, and if you have any questions, please send an email to sy
     - Prepare slots for components using the use method
     - Modify built-in theme colors
     - Refactoring project structure
+
+
+
+https://github.com/Surrealism-All/SurrealismUI/blob/main/README/imgs/
