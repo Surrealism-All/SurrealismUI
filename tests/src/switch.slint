@@ -4,32 +4,34 @@ component TestSwitch inherits Window {
   height: 400px;
   width: 400px;
   
-  SSwitch {
-    y: 30px;
-  }
-  SSwitch {
-    theme: Primary;
-    y: 80px;
-    switch-background-color:#ddd;
-    switch-border-color:#ff00bb;
-  }
-  SSwitch {
-    y: 130px;
-    theme: Dark;
-    clicked(active-or-not)=>{
-      debug(active-or-not);
+  
+    VerticalLayout {
+      spacing: 20px;
+      padding: 20px;
+      SSwitch {
+      }
+      SSwitch {
+        active: true;
+        theme: Primary;
+        switch-background-color:#ddd;
+        switch-border-color:#ff00bb;
+      }
+      SSwitch {
+        theme: Dark;
+        active: false;
+        clicked(active-or-not)=>{
+          debug(active-or-not);
+        }
+      }
+      SSwitch {
+        theme: Warning;
+      }
+      SSwitch {
+        theme: Error;
+      }
+      SSwitch {
+        theme: Info;
+      }
     }
-  }
-  SSwitch {
-    y: 180px;
-    theme: Warning;
-  }
-  SSwitch {
-    y: 230px;
-    theme: Error;
-  }
-  SSwitch {
-    y: 280px;
-    theme: Info;
-  }
+  
 }

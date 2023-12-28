@@ -29,7 +29,7 @@ export component SwitchGroup inherits SCard {
   border-radius: root.height / 2;
   padding-type: DefaultSSwitchGroupProps.padding-type;
   clip: true;
-  in-out property <int> active : DefaultSSwitchGroupProps.active;
+  in-out property <string> active : DefaultSSwitchGroupProps.active;
   in-out property <[SOption]> switchs : DefaultSSwitchGroupProps.switchs;
   font-size : DefaultSSwitchGroupProps.font-size;
   font-weight: DefaultSSwitchGroupProps.font-weight;
@@ -46,7 +46,7 @@ export component SwitchGroup inherits SCard {
       card-width: inner-text.width;
       height: parent.height;
       padding-type: PaddingType.Small;
-      background: root.active == index ? UseSurrealismFn.deeper(root.theme,root.theme-color) : theme-color;
+      background: root.active == item.value ? UseSurrealismFn.deeper(root.theme,root.theme-color) : theme-color;
       // remove border
       border-type: BorderType.None;
       // make border-radius round
@@ -59,8 +59,8 @@ export component SwitchGroup inherits SCard {
         mouse-cursor: pointer;
         clicked => {
           root.clicked(index,item);
-          if(root.active != index){
-           root.active = index; 
+          if(root.active != item.value){
+           root.active = item.value; 
           }
         }
         inner-text:= SText {

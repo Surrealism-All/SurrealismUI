@@ -87,6 +87,13 @@ export component Switch inherits SCard{
     ]
     TouchArea {
       mouse-cursor: pointer;
+      init => {
+        if(root.active){
+          parent.x = root.width - parent.width - 2px
+        }else{
+          parent.x = 2px
+        }
+      }
       clicked => {
         root.active = !root.active;
         root.clicked(root.active);
