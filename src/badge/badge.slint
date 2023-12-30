@@ -7,12 +7,11 @@
 * @description:
 * # SBadge
 * SBadge is a quick way to display user status or events
-* ## properties (card)
-* - in property <Position> position : where the badge show
-* - in-out property <image> icon : icon of the badge
-* - in property <brush> icon-color : icon color
-* - in property <brush> font-color : font color
-* - in property <ResultType> res-type : icon Type see result!(but you can define without use this property)
+* ## properties inherits SCard
+* -  in property <Position> position : badge position of the main component
+* -  in-out property <image> icon : badge icon;
+* -  in property <brush> icon-color : badge icon color;
+* -  in-out property <string> text : text of the badge;
 * ## functions
 * - pure public function get-x(p_right:length)->length 👍
 * - pure public function get-y(p_bottom:length)->length 👍

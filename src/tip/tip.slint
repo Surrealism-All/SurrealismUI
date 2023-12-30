@@ -232,7 +232,7 @@ export component Tip inherits Rectangle{
   in-out property <Position> position :DefaultSTipProps.position;
   in-out property <bool> is-show : DefaultSTipProps.is-show;
   in-out property <string> text : DefaultSTipProps.text;
-  
+  in property <length> tip-width : DefaultSTipProps.tip-width;
   public function open() {
     is-show = true; 
   }
@@ -283,6 +283,7 @@ export component Tip inherits Rectangle{
     visible: is-show;
     theme: root.theme;
     txt:=SText { 
+      width: tip-width==0?cheat.width+1px:tip-width;
       theme: root.theme;
       text: root.text;
       font-size: root.font-size;
@@ -294,6 +295,12 @@ export component Tip inherits Rectangle{
       overflow: root.overflow;
       horizontal-alignment: root.horizontal-alignment;
       vertical-alignment: root.vertical-alignment;
+     }
+     cheat:=SText{
+      height: 0;
+      visible: false;
+      text: root.text;
+      font-size: root.font-size;
      }
     // angle:=
     if root.position==Position.Top: TopAngle{

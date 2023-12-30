@@ -284,6 +284,14 @@ V0.3.0 is a major change version. Almost all components have undergone a rebuidi
 
 Thank you for reading, and if you have any questions, please send an email to syf20020816@outlook.com or raise them in a discussion or issue at the SurrealismUI repository
 
+- V0.3.2
+  - 中文
+    - `SSwitch`和`SSwitchGroup`增加响应式选择（由active属性进行控制）
+    - 优化`STip`文字显示
+  - English
+    - `SSwitch` and `SSwitchGroup` add responsive selection (controlled by the active property)
+    - Optimize text display of `STip`
+
 - V0.3.1
   - 中文
     - 补充丢失的SVG图片

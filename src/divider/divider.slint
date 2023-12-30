@@ -8,20 +8,12 @@
 * # SDivider
 * A divider groups sections of content to create visual rhythm and hierarchy. 
 * Use dividers along with spacing and headers to organize content in your layout. 
-* ## properties
-* - in property <string> content : divider content
-* - in property <image> icon : divider icon
-* - in property <Themes> theme : Surrealism Theme
-* ## functions
-* - function show-what()->int : show icon or content ⛔
+* ## properties inherits SCard
 * ============================================
 */
 
 import { SCard } from "../card/index.slint";
-import { ROOT-STYLES } from "../../themes/index.slint";
-import { SText } from "../text/index.slint";
 import { DefaultSDividerProps } from "../../themes/index.slint";
-import { Themes,BorderType,UseIcons } from "../../use/index.slint";
 export component Divider inherits SCard{
   height: DefaultSDividerProps.height;
   shadow-type: DefaultSDividerProps.shadow-type;

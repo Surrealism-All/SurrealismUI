@@ -23,7 +23,10 @@ component TestWindow inherits Window {
     width: inner.width;
     theme: Primary;
     position:LeftBottom;
-    text:"this is a \n........tip\n window";
+    overflow: TextOverflow.elide;
+    tip-width : 120px;
+    horizontal-alignment: center;
+    text:"this is a ....\n....tip\n window";
     inner:=SButton { 
       text: "click";
       clicked => {
@@ -37,7 +40,9 @@ component TestWindow inherits Window {
     width: inner2.width;
     theme: Dark;
     position:Right;
-    text:"this is a \n........tip window";
+    // wrap: TextWrap.no-wrap;
+    text:"测试文本文字";
+    font-size: 16px;
     inner2:=SButton { 
       text: "click";
       clicked => {

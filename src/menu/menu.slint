@@ -77,6 +77,7 @@ export component Menu inherits SCard {
   width: 60px;
   border-radius: 0;
   clip: false;
+  in property <length> tip-width;
   in-out property <length> icon-box-size : 60px;
   in-out property <length> icon-size : ROOT-STYLES.sur-font.font-size * 2 ;
   in property <[MenuData]> menu-data : [
@@ -103,6 +104,7 @@ export component Menu inherits SCard {
         theme: root.theme;
         position: Right;
         is-show : menu-item.has-hover;
+        tip-width: root.tip-width;
         menu-item:=MenuItem{
           active: item.id == root.active;
           height: icon-box-size;

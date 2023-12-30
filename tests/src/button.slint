@@ -1,5 +1,4 @@
 import {SButton} from "../../index.slint";
-import {UseIcons} from "../../use/index.slint";
 import {Themes} from "../../use/index.slint";
 
 component TestButton inherits Window {
@@ -22,7 +21,6 @@ component TestButton inherits Window {
     text:"Save";
     clicked => {
       self.text = "clicked";
-      
     }
   }
   SButton {
@@ -30,7 +28,6 @@ component TestButton inherits Window {
     y: 100px;
     text:"Success";
     theme:Themes.Success;
-
   }
   SButton {
     x: 20px;
@@ -54,7 +51,6 @@ component TestButton inherits Window {
   SButton {
     x: 200px;
     y: 200px;
-    
     theme:Themes.Warning;
   }
 }
