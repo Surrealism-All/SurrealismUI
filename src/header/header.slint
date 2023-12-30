@@ -7,14 +7,13 @@
 * @description:
 * # SHeader
 * SHeader is a simple header component that is generated based on routing information
-* ## properties
-* - in property <length> spacing : spacing of the header ⛔
-* - in property <Route> route : detail routes , like:`{home:"Surrealism",routes:["user","info"]};`
-* - in property <length> font-size : font size
+* ## properties inherits SCard
+* - in property <length> spacing : the spacing of header
+* - in property <[SOption]> value : route value of header
+* - in property <image> source : split icon of header
 * ## functions
 * ## callbacks
-* - callback to(int,string) : to page (it depends on you)
-* - callback back() : back to main page (it depends on you)
+* - callback clicked(int,SOption) : run if you click the header
 * ============================================
 */
 import {ROOT_STYLES,DefaultSHeaderProps} from "../../themes/index.slint";
