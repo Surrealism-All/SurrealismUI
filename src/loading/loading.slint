@@ -6,14 +6,20 @@
 * @type:interface
 * @description:
 * # SLoading
-* This is a loading component that you can embed anywhere you want to add a loading animation (now animation have some error)
-* ## properties
-* - in-out property <bool> is-show : the popup layer is show or not
-* - in property <Themes> theme : Surrealism Themes
+* This is a loading component that you can embed anywhere you want to add a loading animation
+* ## properties inherits Window
+* - in property <int> font-weight : loading text font weight
+* - in property <length> font-size: loading text font size
+* - in property <brush> font-color : loading text font color
+* - in property <bool> font-italic : loading text font italic
+* - in property <string> font-family : loading text font family
 * - in property <image> loading-icon : loading icon
-* - in property <duration> duration : animation duration
-* - in property <bool> an : open animation or not 
-* - in property <string> content : loading content
+* - in-out property <duration> duration : loading animation duration
+* - in property <string> text : loading text 
+* - in-out property <bool> is-show : loading is show or not
+* - in property <Themes> theme : SurrealismUI theme
+* - in property <easing> easing : loading animation easing type
+* - in-out property <int> iteration-count : loading animation iteration count
 * ## functions
 * ## callbacks
 * - callback open() : open the loading
@@ -51,7 +57,6 @@ export component Loading inherits Window {
   in property <Themes> theme : DefaultSLoadingProps.theme;
   in property <easing> easing : DefaultSLoadingProps.easing;
   in-out property <int> iteration-count : DefaultSLoadingProps.iteration-count;
-  private property <duration> loading-duration : 0ms ;
   init => {self.is-show = true;}
   public function close() {
     self.is-show = false;

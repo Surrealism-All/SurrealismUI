@@ -7,13 +7,13 @@
 * @description:
 * # SSwitchGroup
 * SSwitchGroup switch group can contain more switch cases
-* ## properties
-* - in-out property <bool> active : active option index;
-* - in-out property <[string]> switchs : switch options
+* ## properties inherits SCard
+* - in-out property <string> active : active option value
+* - in-out property <[SOption]> switchs : switch options
 * - in property <length> font-size : font size , it will effect switch component height
-* - private property <brush> theme-color : inner theme color ⛔
+* - private property <brush> theme-color : inner theme color
 * ## callbacks
-* - callback clicked(int,string) : run if you click the switch , it will back option index and option name
+* - callback clicked(int,SOption) : run if you click the switch , it will back option index and option name
 * ============================================
 */
 import { SCard } from "../card/index.slint";
