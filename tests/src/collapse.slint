@@ -2,8 +2,6 @@ import {SCollapse,SCollapseItem,SButton,STable,STableColumn} from "../../index.s
 import { UseIcons,Themes } from "../../use/index.slint";
 import { SText } from "../../src/text/index.slint";
 
-
-
 component TestWindow inherits Window {
   height: 500px;
   width: 400px;
@@ -33,29 +31,60 @@ component TestWindow inherits Window {
       header-title:"table";
       theme: Themes.Dark;
       details-height:280px;
-      STable {
+      STable{
+        theme: Dark;
+        width: 86%;
+        height: 80%;
+        column-themes:[Themes.Dark,Themes.Dark,Themes.Dark];
+        viewport-height: col1.height;
+        alignment: center;
+        columns: [
+          {label:"序号",value:"$index"},
+          {label:"username",value:"name"},
+          {label:"age",value:"age"},
+        ];
+        clicked(index,item)=>{
+          debug(index);
+          debug(item);
+        }
         
-        height: col1.get-height();
-        width: 300px;
         col1:=STableColumn {
-          border:false;
-          theme:Themes.Error;
-          width: 100px;
-          name:"id";
-          // row-height:60px;
-          datas: ["101","102","103"];
+          alignment: left;
+          datas:[
+            "1",
+            "2",
+            "3",
+            "3",
+            "3",
+          ];
+          width: parent.get-column-width(parent.width , 0);
         }
         STableColumn {
-          theme:Themes.Success;
-          width: 100px;
-          name:"name";
-          datas: ["Mat","Jarry","Kaven"];
+          index:1;
+          width: parent.get-column-width(parent.width , 1);
+          datas:[
+            "Matt",
+            "John",
+            "Gary",
+            "Harry",
+            "Mary",
+          ];
+          clicked(col-index,index,value)=>{
+            debug(col-index);
+            debug(index);
+            debug(value);
+          }
         }
         STableColumn {
-          theme:Themes.Error;
-          width: 100px;
-          name:"age";
-          datas: ["16","23","18"];
+          theme: Light;
+          width: parent.get-column-width(parent.width , 2);
+          datas:[
+            "16",
+            "12",
+            "19",
+            "21",
+            "11",
+          ];
         }
       }
     }

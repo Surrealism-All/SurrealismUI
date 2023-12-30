@@ -6,14 +6,17 @@
 * @type:interface
 * @description:
 * # STable
-* This is the outter of the Table, and the column data of the table is separated from the outter
-* The outter only serves as a standard layout , this is a zero cost construction
-* ## properties
-* - see SCard
+* In fact, it is just the header of a table and needs to be used in conjunction with STableColumn
+* ## properties inherits SCard
+* - in property <[Themes]> column-themes: table header columns' theme;
+* - in property <length> viewport-height: table body viewport height
+* - in property <TextHorizontalAlignment> alignment : table header horizontal alignment
+* - in property <[SOption]> columns : table columns
+* - in-out property <[length]> column-width : table column width
 * ## functions
-* - see SCard
+* - pure public function get-column-width(w:length,index:int)->length : get each column width depand on the index
 * ## callbacks
-* - see SCard
+* - callback clicked(int,SOption) : run if click the Table Header
 * ============================================
 */
 

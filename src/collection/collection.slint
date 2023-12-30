@@ -8,17 +8,15 @@
 * # SCollection
 * SCollection is an expandable box that can be zoomed in or out by clicking (internal can also be used)
 * ## properties (card)
-* - in property <length> font-size : font size
-* - in property <int> column-num : column number
-* - in property <int> row-num : row number
-* - in-out property <[[CollectionData]]> data : collection data , this is the real data!
-* - in property <length> row-height : row height
-* - in property <length> column-width : column width
-* - in property <length> row-spaceing : row spaceing
-* - in property <length> column-spacing: column spacing
+* - in property <float> scale : collection scale size;
+* - in-out property <bool> is-scale : collection is scale or not;
+* - in property <easing> easing : animation easing type;
+* - in property <duration> duration : animation duration;
 * ## functions
+* - pure public function toggle-default(target:length)->length
+* - pure public function toggle(target:length,scale-size:float)->length
 * ## callbacks
-* - clicked(CollectionData) : run if you click item in SCollection
+* - clicked() : run if you click item in SCollection
 * ============================================
 */
 import { ROOT_STYLES,DefaultSCollectionProps} from "../../themes/index.slint";

@@ -6,24 +6,15 @@
 * @type:interface
 * @description:
 * # STableColumn
-* STableColumn is a component of STable, and each STableColumn forms a complete column of the table
-* If it's gone, the table will become a card with a horizontal layout
-* ## properties
-* - in property <bool> border : add border or not
-* - in property <string> name : table header name
-* - in property <[string]> datas : table datas
-* - in property <brush> header-background : define header background
-* - in property <brush> row-background : define row background
-* - in property <Themes> theme : Surrealism Themes
-* - in property <length> header-height : define header height
-* - in property <length> row-height : define each row height
-* - in property <bool> operation-enabled: enable operation
-* - in property <[{name:string,theme:Themes}]> operation : the operations you wanna do
+*  STableColumn is table body , it covers the data of the table
+* ## properties inherits SCard
+* - in-out property <int> index : column index
+* - in property <[string]> datas : column datas
+* - in property <TextHorizontalAlignment> alignment : row text horizontal alignment
 * ## functions
-* - function count() ->int : count the number of row ⛔
-* - pure public function get-height()->length : auto count the height of the table and return height
+* - pure public function count-column-height()->length : count column height
 * ## callbacks
-* - callback clicked(int,string) : run if operation-enabled is true , you will get which operation button you clicked
+* - callback clicked(int,int,string) : run if click the row item
 * ============================================
 */
 

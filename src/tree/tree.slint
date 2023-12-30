@@ -7,10 +7,14 @@
 * @description:
 * # STree
 * STree can be used to display directory structure, forming a parent-child relationship, and can be easily displayed
-* ## properties
-* - in-out property <TreeData> tree-data : the data to be displayed
+* ## properties inherits SCard
+* - in property <string> item-font-family : tree item font family
+* - in property <int> item-font-weight : tree item font weight
+* - in property <length> item-font-size: tree item font size
+* - in property <bool> item-font-italic : tree item font italic
+* - in-out property <TreeData> tree-data : tree data
 * ## callbacks
-* - callback clicked(int,string,string) : run after you click an item
+* - callback clicked(int,string,string) : run if you click an item
 * ============================================
 */
 

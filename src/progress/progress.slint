@@ -8,11 +8,16 @@
 * # SProgress
 * SProgress is commonly used to display download progress or event processing progress
 * And you can fully control it through the progress property
-* ## properties
-* - in property <Themes> theme : Surrealism theme
-* - in property <string> content : what you wanna show to others
-* - in-out property <float> progress : progress
-* - private property <length> unit : unit of progress length
+* ## properties inherits Rectangle
+* - in property <Themes> theme : progress theme
+* - in property <string> text : display text
+* - in-out property <float> progress : progress vaslue
+* - in-out property <int> font-weight : display text font weight
+* - in-out property <length> font-size: display text font size
+* - in-out property <brush> font-color : display text font color
+* - in-out property <bool> font-italic : display text font italic
+* - in-out property <string> font-family : display text font family
+* - private property <length> unit : unit of the progress
 * ## functions
 * - pure public function get-progress() : get timely progress
 * - public function full() : make progress 100%

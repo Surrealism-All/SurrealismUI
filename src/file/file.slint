@@ -8,13 +8,20 @@
 * # SFile
 * SFile can help users present file selectors GUI
 * ## properties
-* - in property <[TabItem]> tabs : tabs will be displayed 
-* - in property <TabConfigs> tab-configs : configurations of the tab
-* - in-out property <[FileItem]> files : files and folders details
-* - in property <ItemConfigs> item-configs : configurations of files and folders details
+* - in property <TextHorizontalAlignment> text-alignment : file item horizontal alignment
+* - in property <[SOption]> tabs : file tabs
+* - in-out property <[length]> column-width : file item column width
+* - in-out property <[FileItem]> files : file item font files
+* - in-out property <string> item-font-family : file item font family
+* - in-out property <int> item-font-weight : file item font weight
+* - in-out property <length> item-font-size: file item font size
+* - in-out property <bool> item-font-italic : file item font italic
+* - in-out property <PaddingType> item-padding-type: file item padding type
+* ## functions
+* - pure function get-column-width(w:length,index:int)->length : get file item column width
 * ## callbacks
-* - callback tab-clicked(int,TabItem) : run if you click the tab
-* - callback item-clicked(int,FileItem) : run if you click a file item
+* - callback tab-clicked(int,SOption) : run if you click the tab
+* - callback item-clicked(int,int,FileItem) : run if you click a file item
 * ============================================
 */
 import { SCard } from "../card/index.slint";

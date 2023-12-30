@@ -7,23 +7,30 @@
 * @description:
 * # SPersona
 * This component is used to display simple user introduction information
-* ## properties (card)
-* - in property <string> name : person name
-* - in property <string> des : person description
-* - in property <string> btn : click button content
-* - in property <image> avatar : avatar image
-* - in property <length> name-font-size : name font size
-* - in property <length> des-font-size: des font size
-* - in property <length> avatar-height: avatar height
-* - in property <length> name-height: name height
-* - in property <length> des-height: des height
-* - in property <Themes> avatar-theme : avatar theme
-* - in property <Themes> name-theme: name theme
-* - in property <Themes> des-theme: des theme
-* - in property <Themes> btn-theme: btn theme
+* ## properties inherits SCard
+* - in-out property <string> btn-text : button text
+* - in property <length> spacing : spacing of persona 
+* - in property <[SButtonProps]> btns : buttons slot
+* - in property <image> avatar : persona avatar image
+* - in property <length> avatar-height: persona avatar height
+* - in property <Themes> avatar-theme : persona avatar theme
+* - in-out property <string> name : persona name
+* - in-out property <length> name-height: persona name height
+* - in-out property <length> name-font-size: persona name font size
+* - in-out property <int> name-font-weight : persona name font weight
+* - in-out property <Themes> name-theme: persona name theme
+* - in-out property <string> name-font-family : persona name font family
+* - in-out property <bool> name-font-italic : persona name font italic
+* - in-out property <string> des : persona description text
+* - in-out property <length> des-height: persona description height
+* - in-out property <length> des-font-size: persona description font size
+* - in-out property <int> des-font-weight : persona description font weight
+* - in-out property <Themes> des-theme: persona description theme
+* - in-out property <string> des-font-family : persona description font family
+* - in-out property <bool> des-font-italic : persona description font italic
 * ## functions
 * ## callbacks
-* - callback clicked() : run if you click the target button
+* - callback clicked(SButtonProps): run if you click the buttons
 * ============================================
 */
 
