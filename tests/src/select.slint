@@ -20,6 +20,7 @@ component TestWindow inherits Window {
     font-weight: 700;
     is-show: true;
     theme: Error;
+    card-width: 300px;
     options: [
       {id:0,label:"Shangai",value:"s01"},
       {id:1,label:"Los Angeles",value:"l02"},
@@ -30,6 +31,7 @@ component TestWindow inherits Window {
       debug(index);
       debug(label);
       debug(value);
+      self.close();
     }
   }
   t:=Text{

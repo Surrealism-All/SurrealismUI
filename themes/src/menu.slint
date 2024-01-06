@@ -1,0 +1,24 @@
+import {Themes,MenuData,UseIcons} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+
+export global DefaultSMenuProps {
+  in-out property <Themes> theme : GlobalProps.theme;
+  in-out property <length> height : 100%;
+  in-out property <length> width : 60px;
+  in-out property <length> tip-width;
+  in-out property <length> icon-box-size : 60px;
+  in-out property <length> icon-size : GlobalProps.font.font-size * 2 ;
+  in-out property <string> active : "0";
+  in-out property <brush> active-color : GlobalProps.active-color;
+  in-out property <[MenuData]> menu-data : [
+    {id:"0",icon:UseIcons.icons.FileCode,name:"Code"},
+    {id:"1",icon:UseIcons.icons.Search,name:"Search"},
+    {id:"2",icon:UseIcons.icons.Help,name:"Help"},
+  ];
+  in-out property <[MenuData]> sub-menu-data : [
+    {id:"2-1",icon:UseIcons.icons.Avatar,name:"User"},
+    {id:"2-2",icon:UseIcons.icons.Setting-two,name:"Settings"}
+  ];
+  in-out property <length> more-height; 
+  in-out property <length> more-width;
+}

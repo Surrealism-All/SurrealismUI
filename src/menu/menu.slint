@@ -21,15 +21,12 @@
 */
 import { SCard } from "../card/index.slint";
 import { SIcon } from "../icon/index.slint";
-import {ROOT-STYLES} from "../../themes/index.slint";
+import {ROOT-STYLES,DefaultSMenuProps} from "../../themes/index.slint";
 import { STip } from "../tip/index.slint";
-import { Themes,UseIcons,BorderType } from "../../use/index.slint";
+import { Themes,UseIcons,BorderType,MenuData } from "../../use/index.slint";
+import { SPopup } from "../popup/index.slint";
+import { GridBox } from "std-widgets.slint";
 
-export struct MenuData {
-    id:int,
-    icon : image,
-    name : string,
-}
 
 component MenuItem inherits Rectangle {
   in property <brush> hover-icon-color;
@@ -37,6 +34,7 @@ component MenuItem inherits Rectangle {
   in property <length> icon-size;
   in property <Themes> theme;
   in property <bool> active;
+  in property <brush> active-color : ROOT-STYLES.radio-active;
   out property <bool> has-hover <=> area.has-hover;
   states [
     hover when area.has-hover:{icon.colorize : hover-icon-color;}
@@ -57,14 +55,14 @@ component MenuItem inherits Rectangle {
     theme: root.theme;
     border-type: BorderType.None;
     border-radius: 0;
-    background: ROOT-STYLES.radio-active;
+    background: root.active-color;
     drop-shadow-blur: 0;
-    drop-shadow-color: ROOT-STYLES.radio-active;
+    drop-shadow-color: root.active-color;
     drop-shadow-offset-x: 0;
     drop-shadow-offset-y: 0;
   }
   icon:=SIcon {
-    colorize: self.get-colorize();
+    colorize: active?root.active-color:self.get-colorize();
     theme: root.theme; 
     height:root.icon-size;
     width: root.icon-size;
@@ -74,28 +72,32 @@ component MenuItem inherits Rectangle {
 
 export component Menu inherits SCard {
   height: 100%;
-  width: 60px;
+  width: DefaultSMenuProps.width;
   border-radius: 0;
   clip: false;
-  in property <length> tip-width;
-  in-out property <length> icon-box-size : 60px;
-  in-out property <length> icon-size : ROOT-STYLES.sur-font.font-size * 2 ;
-  in property <[MenuData]> menu-data : [
-    {id:0,icon:@image-url("../../icons/file-code.svg"),name:"Code"},
-    {id:1,icon:@image-url("../../icons/search.svg"),name:"Search"},
-    {id:2,icon:@image-url("../../icons/bug.svg"),name:"Debug"},
-  ];
-  in-out property <int> active : 0;
-  private property <brush> hover-icon-color : empty.colorize.brighter(1);
+  theme: DefaultSMenuProps.theme;
+  in property <brush> active-color : DefaultSMenuProps.active-color;
+  in property <length> tip-width : DefaultSMenuProps.tip-width;
+  in-out property <length> icon-box-size : DefaultSMenuProps.icon-box-size;
+  in-out property <length> icon-size : DefaultSMenuProps.icon-size ;
+  in property <[MenuData]> menu-data : DefaultSMenuProps.menu-data;
+  in-out property <[MenuData]> sub-menu-data : DefaultSMenuProps.sub-menu-data;
+  in-out property <string> active : "0";
+  in property <length> more-height :icon-box-size;
+  in property <length> more-width : icon-box-size * (menu-data.length - (top-view.height / icon-box-size));
+  private property <brush> hover-icon-color : active-color.brighter(1.1);
   // params : 
   // 1. index
   // 2. menu item
   callback change(int,MenuData);
-  callback clicked-account();
-  callback clicked-setting();
+  pure function show-more-icon(h:length)->bool {
+    return menu-data.length * icon-box-size > h;
+  }
   VerticalLayout {
+    spacing: 0;
+    alignment: space-between;
     top-view:=VerticalLayout {
-      height: parent.height - bottom-view.height;
+      height: parent.height - (sub-menu-data.length + 2) * icon-box-size;
       alignment: start;
       for item[index] in menu-data: STip { 
         height: menu-item.height;
@@ -106,6 +108,9 @@ export component Menu inherits SCard {
         is-show : menu-item.has-hover;
         tip-width: root.tip-width;
         menu-item:=MenuItem{
+          visible: (top-view.height / icon-box-size) > index;
+          hover-icon-color: root.active-color;
+          active-color: root.active-color;
           active: item.id == root.active;
           height: icon-box-size;
           icon: item.icon;
@@ -114,39 +119,66 @@ export component Menu inherits SCard {
           clicked => {
             root.active = item.id;
             root.change(index,item);
-            
           }
         }
       }
     }
+    
     bottom-view:=VerticalLayout{
-      height:empty-box.height + 120px ;
-      empty-box:=Rectangle{
-        height: icon-size * 2;
-        empty:=SIcon{
-          colorize: self.get-colorize();
+      height: (sub-menu-data.length + 2) * icon-box-size;
+      Rectangle {
+        height: icon-box-size;
+        width: icon-box-size;
+        more-icon:=SIcon{
+          visible: root.show-more-icon(top-view.height);
+          source: UseIcons.icons.More;
           theme: root.theme;
-          source: UseIcons.icons.Null;
+          height: icon-size;
+          width: icon-size;
+          clicked => {
+            if(more-popup.is-show){
+              more-popup.close();
+            }else{
+              more-popup.open();
+            }
+          }
+        }
+        more-popup:=SPopup {
+          x: root.width + 12px;
+          width: more-width;
+          height: more-height;
+          more-wrapper:= SCard {
+            height: parent.height;
+            width: parent.width;
+            @children
+          }
         }
       }
-      account-box:=MenuItem{
-        height: icon-box-size;
-        icon: UseIcons.icons.Avatar;
-        icon-size: root.icon-size;
+      empty-box:=Rectangle{
+        height: icon-box-size; 
+      }
+      for item[index] in sub-menu-data: STip { 
+        height: sub-menu-item.height;
+        width: icon-box-size;
+        text: item.name;
         theme: root.theme;
-        clicked => {
-          root.clicked-account();
+        position: Right;
+        is-show : sub-menu-item.has-hover;
+        tip-width: root.tip-width;
+        sub-menu-item:=MenuItem{
+          hover-icon-color: root.active-color;
+          active-color: root.active-color;
+          active: item.id == root.active;
+          height: icon-box-size;
+          icon: item.icon;
+          icon-size: root.icon-size;
+          theme: root.theme;
+          clicked => {
+            root.active = item.id;
+            root.change(index,item);
+          }
         }
       }
-      setting-box:=MenuItem{
-        height: icon-box-size;
-        icon: UseIcons.icons.Setting-two;
-        icon-size: root.icon-size;
-        theme: root.theme;
-        clicked => {
-          root.clicked-setting();
-        }
-      }
-    }
+    } 
   }
 }

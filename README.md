@@ -226,7 +226,6 @@ Built in 7 theme colors in SurrealismUI
 
 https://github.com/Surrealism-All/SurrealismUI/wiki
 
-**I will try my best to update wiki** 😂 (please waiting...)
 
 ## Components
 
@@ -283,6 +282,10 @@ V0.3.0 is a major change version. Almost all components have undergone a rebuidi
  After this major update, the writing of attributes in SurrealismUI is closer to the native attributes, which not only reduces the learning cost, but also is more conducive to the user's understanding. Optimization will continue in subsequent 0.3.x releases (approximately 2 weeks per release). In addition, the 0.3.0 version may no longer involve such a wide range of updates, and the stability of the project will continue to improve. 
 
 Thank you for reading, and if you have any questions, please send an email to syf20020816@outlook.com or raise them in a discussion or issue at the SurrealismUI repository
+
+- V0.3.3
+  - 中文
+    - `SIcon`增加state,hover颜色效果
 
 - V0.3.2
   - 中文

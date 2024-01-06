@@ -24,13 +24,15 @@ import { DefaultSCollectionProps} from "./collection.slint";
 import { DefaultSFileProps} from "./file.slint";
 import { DefaultSProgressProps} from "./progress.slint";
 import { DefaultSBadgeProps } from "./badge.slint";
+import { DefaultSMenuProps } from "./menu.slint";
 import { DefaultSTableColumnProps,DefaultSTableProps } from "./table.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
-  SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps,STableProps,STableColumnProps
+  SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps,STableProps,STableColumnProps,
+  SMenuProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -503,5 +505,19 @@ export global ComponentSchema {
     shadow-type: DefaultSTableColumnProps.shadow-type,
     border-type : DefaultSTableColumnProps.border-type,
     alignment: DefaultSTableColumnProps.alignment,
+  };
+  in-out property <SMenuProps> menu:{
+    theme : DefaultSMenuProps.theme,
+    height : DefaultSMenuProps.height,
+    width :DefaultSMenuProps.width,
+    tip-width: DefaultSMenuProps.tip-width,
+    icon-box-size : DefaultSMenuProps.icon-box-size,
+    icon-size : DefaultSMenuProps.icon-size,
+    active : DefaultSMenuProps.active,
+    active-color :DefaultSMenuProps.active-color,
+    menu-data : DefaultSMenuProps.menu-data,
+    sub-menu-data : DefaultSMenuProps.sub-menu-data,
+    more-height : DefaultSMenuProps.more-height, 
+    more-width : DefaultSMenuProps.more-width,
   };
 }

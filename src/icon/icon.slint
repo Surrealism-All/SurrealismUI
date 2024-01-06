@@ -52,7 +52,11 @@ export component Icon{
   padding: DefaultSIconProps.padding;
   height: DefaultSIconProps.height;
   width: DefaultSIconProps.width;
-  
+  states [
+    hover when area.has-hover: {
+        inner.colorize : colorize.brighter(0.2);
+    }
+  ]
   area:=TouchArea {
     mouse-cursor: root.mouse-cursor;
     inner:=Image{
