@@ -1,22 +1,24 @@
-import {STable,STableColumn, SCard} from "../../index.slint";
+import {STable,STableColumn, SCard,STableColumnOperate} from "../../index.slint";
 import {Themes,PaddingType,ShadowType,BorderType,PaddingProps,BorderProps,ShadowProps,UseSurrealismFn} from "../../use/index.slint";
-import { ROOT-STYLES,DefaultSCardProps } from "../../themes/index.slint";
+import { ROOT-STYLES,DefaultSCardProps,ComponentSchema } from "../../themes/index.slint";
 import { ScrollView } from "std-widgets.slint";
+
 
 export component TestTable inherits Window {
   height: 500px;
-  width: 500px;
+  width: 600px;
   STable{
     theme: Dark;
-    width: 86%;
+    width: 90%;
     height: 36%;
-    column-themes:[Themes.Primary,Themes.Dark,Themes.Error];
+    column-themes:[Themes.Primary,Themes.Dark,Themes.Error,Themes.Dark];
     viewport-height:col1.height;
     alignment: center;
     columns: [
       {label:"序号",value:"$index"},
       {label:"username",value:"name"},
       {label:"age",value:"age"},
+      {label:"operate",value:"opt"},
     ];
     clicked(index,item)=>{
       debug(index);
@@ -51,6 +53,7 @@ export component TestTable inherits Window {
       }
     }
     STableColumn {
+      index: 2;
       theme: Light;
       width: parent.get-column-width(parent.width , 2);
       datas:[
@@ -61,5 +64,27 @@ export component TestTable inherits Window {
         "11",
       ];
     }
+    STableColumnOperate {
+      index: 3;
+      theme: Dark;
+      width: parent.get-column-width(parent.width , 3);
+      len:5;
+      // btns:[];
+      // btns:[
+      //   ComponentSchema.button,
+      // ];
+    }
+    // STableColumn {
+    //   index: 3;
+    //   theme: Light;
+    //   width: parent.get-column-width(parent.width , 3);
+    //   datas:[
+    //     "16",
+    //     "12",
+    //     "19",
+    //     "21",
+    //     "11",
+    //   ];
+    // }
   }
 }

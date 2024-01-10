@@ -286,6 +286,8 @@ Thank you for reading, and if you have any questions, please send an email to sy
 - V0.3.3
   - 中文
     - `SIcon`增加state,hover颜色效果
+    - 重写`SMenu`
+    - 优化`STable`
 
 - V0.3.2
   - 中文

@@ -1,0 +1,88 @@
+import {ROOT_STYLES,DefaultSTableColumnProps} from "../../../themes/index.slint";
+import { SCard } from "../../card/index.slint";
+import { SText } from "../../text/index.slint";
+import { Themes,SOption,UseSurrealismFn,PaddingType,BorderType,SButtonProps } from "../../../use/index.slint";
+import { SButton } from "../../button/index.slint";
+
+
+
+export component TableColumnOperate inherits SCard{
+  theme: DefaultSTableColumnProps.theme;
+  border-type: DefaultSTableColumnProps.border-type;
+  height: count-column-height();
+  padding-type : DefaultSTableColumnProps.padding-type;
+  font-family: DefaultSTableColumnProps.font-family;
+  font-size: DefaultSTableColumnProps.font-size;
+  font-weight: DefaultSTableColumnProps.font-weight;
+  font-italic: DefaultSTableColumnProps.font-italic;
+  in-out property <int> index : DefaultSTableColumnProps.index;
+  in property <Themes> btn-theme : Themes.Dark;
+  in property <int> len;
+  in property <string> btn-text : "operate";
+  in property <[SButtonProps]> btns;
+  in property <LayoutAlignment> alignment : LayoutAlignment.center;
+  pure public function count-column-height()->length {
+     return (btns.length==0?len:btns.length) * UseSurrealismFn.count-height(root.font-size,UseSurrealismFn.get-padding(root.padding-type).padding-top);
+  }
+  callback clicked(int,int,string);
+    if btns.length==0:VerticalLayout {
+        for item[i-index] in len: TouchArea{
+            height: root.height / len;
+            mouse-cursor: pointer;
+            clicked => {
+                root.clicked(index,i-index,btn-text);
+            }
+            SCard {
+                width: root.width;
+                card-height: root.font-size;
+                border-type: BorderType.None;
+                padding-type: root.padding-type;
+                theme: root.theme;
+                drop-shadow-offset-x: 0;
+                drop-shadow-offset-y: 0;
+                drop-shadow-color: transparent;
+                HorizontalLayout {
+                    padding-left: parent.card-padding.padding-left;
+                    padding-right: parent.card-padding.padding-right;
+                    alignment: root.alignment;
+                    SButton {
+                        font-family: root.font-family;
+                        font-italic: root.font-italic;
+                        font-size: root.font-size;
+                        font-weight: root.font-weight;
+                        theme: root.btn-theme;
+                        padding-type: PaddingType.Tip;
+                        shadow-type: root.shadow-type;
+                        border-type: root.border-type;
+                        text: btn-text;
+                    }
+                }
+            }  
+        } 
+    }
+    if btns.length!=0: layout:=VerticalLayout {
+        for item[i-index] in btns: TouchArea{
+            mouse-cursor: pointer;
+            clicked => {
+                root.clicked(index,i-index,item.text);
+            }
+            SCard {
+                width: root.width;
+                card-height: root.font-size;
+                border-type: BorderType.None;
+                padding-type: root.padding-type;
+                theme: root.theme;
+                drop-shadow-offset-x: 0;
+                drop-shadow-offset-y: 0;
+                drop-shadow-color: transparent;
+                HorizontalLayout {
+                    padding-left: parent.card-padding.padding-left;
+                    padding-right: parent.card-padding.padding-right;
+                    SButton {
+                    text: item.text;
+                    }
+                }
+            }  
+        } 
+    }
+}

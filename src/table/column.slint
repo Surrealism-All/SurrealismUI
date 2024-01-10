@@ -21,7 +21,7 @@
 import {ROOT_STYLES,DefaultSTableColumnProps} from "../../themes/index.slint";
 import { SCard } from "../card/index.slint";
 import { SText } from "../text/index.slint";
-import { Themes,SOption,UseSurrealismFn,PaddingType,BorderType } from "../../use/index.slint";
+import { Themes,SOption,UseSurrealismFn,PaddingType,BorderType} from "../../use/index.slint";
 
 
 export component TableColumn inherits SCard{
@@ -41,6 +41,7 @@ export component TableColumn inherits SCard{
     }
     callback clicked(int,int,string);
     layout:=VerticalLayout {
+        
         for item[i-index] in datas: TouchArea{
             mouse-cursor: pointer;
             clicked => {
@@ -58,7 +59,7 @@ export component TableColumn inherits SCard{
                 HorizontalLayout {
                     padding-left: parent.card-padding.padding-left;
                     padding-right: parent.card-padding.padding-right;
-                    inner-text:=SText{
+                    SText{
                         font-family: root.font-family;
                         font-weight: root.font-weight;
                         font-size: root.font-size;
@@ -70,6 +71,7 @@ export component TableColumn inherits SCard{
                     }
                 }
             }
-        }
+        } 
     }
 }
+
