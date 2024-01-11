@@ -1,7 +1,8 @@
-import {STable,STableColumn, SCard,STableColumnOperate} from "../../index.slint";
+import {STable,STableColumn, SCard,STableColumnItem,STableColumnFlex, SButton} from "../../index.slint";
 import {Themes,PaddingType,ShadowType,BorderType,PaddingProps,BorderProps,ShadowProps,UseSurrealismFn} from "../../use/index.slint";
 import { ROOT-STYLES,DefaultSCardProps,ComponentSchema } from "../../themes/index.slint";
 import { ScrollView } from "std-widgets.slint";
+import { STag } from "../../src/tag/index.slint";
 
 
 export component TestTable inherits Window {
@@ -52,39 +53,53 @@ export component TestTable inherits Window {
         debug(value);
       }
     }
-    STableColumn {
+    STableColumnFlex {
       index: 2;
       theme: Light;
       width: parent.get-column-width(parent.width , 2);
-      datas:[
-        "16",
-        "12",
-        "19",
-        "21",
-        "11",
-      ];
+      height: self.count-column-height(5);
+      
+      for item[index] in ["16","22","31","9","18"]: STableColumnItem {
+        theme: parent.theme;
+        height: parent.height / 5;
+        callback row-click(string);
+        clicked => {
+          self.row-click(item);
+        }
+        row-click(row-item) => {
+          debug(row-item);
+        }
+        Rectangle {
+          STag {
+            text: @tr("Tag-{}",item);
+            theme: Primary;
+          }
+        }
+      }
     }
-    STableColumnOperate {
+    STableColumnFlex {
       index: 3;
       theme: Dark;
       width: parent.get-column-width(parent.width , 3);
-      len:5;
-      // btns:[];
-      // btns:[
-      //   ComponentSchema.button,
-      // ];
+      height: self.count-column-height(5);
+      for item[index] in ["1","2","3"]: STableColumnItem {
+        height: parent.height / 5;
+        SButton {
+          text: @tr("operate-{}",item);
+          padding-type: PaddingType.Tag;
+        }
+      }
+      for item[index] in ["change","delete"]: STableColumnItem {
+        height: parent.height / 5;
+        SButton {
+          theme: Warning;
+          text: item;
+          padding-type: PaddingType.Tag;
+          clicked => {
+            debug("I am click!");
+          }
+        }
+      }
     }
-    // STableColumn {
-    //   index: 3;
-    //   theme: Light;
-    //   width: parent.get-column-width(parent.width , 3);
-    //   datas:[
-    //     "16",
-    //     "12",
-    //     "19",
-    //     "21",
-    //     "11",
-    //   ];
-    // }
   }
 }

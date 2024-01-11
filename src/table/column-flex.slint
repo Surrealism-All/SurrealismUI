@@ -1,0 +1,81 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20230907
+* @version:0.0.1
+* @type:interface
+* @description:
+* # STableColumn
+*  STableColumn is table body , it covers the data of the table
+* ## properties inherits SCard
+* - in-out property <int> index : column index
+* - in property <[string]> datas : column datas
+* - in property <TextHorizontalAlignment> alignment : row text horizontal alignment
+* ## functions
+* - pure public function count-column-height()->length : count column height
+* ## callbacks
+* - callback clicked(int,int,string) : run if click the row item
+* ============================================
+*/
+
+import {ROOT_STYLES,DefaultSTableColumnProps} from "../../themes/index.slint";
+import { SCard } from "../card/index.slint";
+import { SText } from "../text/index.slint";
+import { Themes,SOption,UseSurrealismFn,PaddingType,BorderType,ShadowType} from "../../use/index.slint";
+
+
+export component TableColumnFlex inherits SCard{
+    theme: DefaultSTableColumnProps.theme;
+    border-type: DefaultSTableColumnProps.border-type;
+    height: 100%;
+    padding-type : DefaultSTableColumnProps.padding-type;
+    font-family: DefaultSTableColumnProps.font-family;
+    font-size: DefaultSTableColumnProps.font-size;
+    font-weight: DefaultSTableColumnProps.font-weight;
+    font-italic: DefaultSTableColumnProps.font-italic;
+    in-out property <int> index : DefaultSTableColumnProps.index;
+    in property <TextHorizontalAlignment> alignment : DefaultSTableColumnProps.alignment;
+    pure public function count-column-height(len:int)->length {
+       return len * UseSurrealismFn.count-height(root.font-size,UseSurrealismFn.get-padding(root.padding-type).padding-top);
+    }
+    callback clicked(int,int,string);
+    layout:=VerticalLayout {
+        @children
+    }
+}
+
+
+export component ColumnItem {
+  in property <Themes> theme : DefaultSTableColumnProps.theme;
+  in property <int> font-weight : DefaultSTableColumnProps.font-weight;
+  in property <length> font-size: DefaultSTableColumnProps.font-size;
+  in property <brush> font-color : DefaultSTableColumnProps.font-color;
+  in property <bool> font-italic : DefaultSTableColumnProps.font-italic;
+  in property <string> font-family : DefaultSTableColumnProps.font-family;
+  in property <PaddingType> padding-type : DefaultSTableColumnProps.padding-type;
+  in property <ShadowType> shadow-type : DefaultSTableColumnProps.shadow-type;
+  in property <BorderType> border-type : DefaultSTableColumnProps.border-type;
+  callback clicked();
+  TouchArea{
+    height: root.height;
+    mouse-cursor: pointer;
+    clicked => {
+      root.clicked();
+    }
+    SCard {
+        width: root.width;
+        card-height: root.font-size;
+        border-type: BorderType.None;
+        padding-type: root.padding-type;
+        theme: root.theme;
+        drop-shadow-offset-x: 0;
+        drop-shadow-offset-y: 0;
+        drop-shadow-color: transparent;
+        HorizontalLayout {
+            padding-left: parent.card-padding.padding-left;
+            padding-right: parent.card-padding.padding-right;
+            @children
+        }
+    }
+  } 
+}

@@ -43,6 +43,7 @@ export component TableColumn inherits SCard{
     layout:=VerticalLayout {
         
         for item[i-index] in datas: TouchArea{
+            height: root.height / datas.length;
             mouse-cursor: pointer;
             clicked => {
                 root.clicked(index,i-index,item);
