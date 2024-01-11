@@ -287,8 +287,11 @@ Thank you for reading, and if you have any questions, please send an email to sy
   - 中文
     - `SIcon`增加state,hover颜色效果
     - 重写`SMenu`
-    - 优化`STable`
-
+    - 优化`STable`,增加表格列自定义组件 (see wiki [STable](https://github.com/Surrealism-All/SurrealismUI/wiki/07_Data-Components-%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6#stable-%E8%A1%A8%E6%A0%BC))
+  - English
+    - Add state and hover color effects to `SIcon`
+    - Rewrite `SMenu`
+    - Optimize `STable` , Add Self DefineComponent  (see wiki [STable](https://github.com/Surrealism-All/SurrealismUI/wiki/07_Data-Components-%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6#stable-%E8%A1%A8%E6%A0%BC))
 - V0.3.2
   - 中文
     - `SSwitch`和`SSwitchGroup`增加响应式选择（由active属性进行控制）
