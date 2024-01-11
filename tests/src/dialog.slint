@@ -1,5 +1,6 @@
 import {SDialog,SButton,STable,STableColumn} from "../../index.slint";
 import {Themes} from "../../use/index.slint";
+import { SText } from "../../src/text/index.slint";
 
 component TestDialog inherits Window {
   height: 600px;
@@ -31,34 +32,8 @@ component TestDialog inherits Window {
     }
     dialog-detail:=Rectangle {
       height: 200px;
-      STable {
-        // you can use this way to get height
-        // it depends on how many datas in column
-        height: tcol1.get-height();
-        width: 350px;
-        
-        tcol1:=STableColumn {
-          border:false;
-          theme:Themes.Primary;
-          width: 100px;
-          name:"id";
-          // row-height:60px;
-          datas: ["101","102","103"];
-        }
-        STableColumn {
-          theme:Themes.Primary;
-          width: 100px;
-          name:"name";
-          datas: ["Mat","Jarry","Kaven"];
-        }
-        STableColumn {
-          theme:Themes.Primary;
-          width: 150px;
-          name:"Operations";
-          // cheat datas
-          datas: [" "," "," "];
-          operation-enabled:true;
-        }
+      SText {
+        text:"This is a dialog";
       }
     }
   }

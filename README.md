@@ -1,11 +1,11 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.3.2-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.3.3-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
-- updateDate：20231231
-- version：0.3.2
+- updateDate：20230112
+- version：0.3.3
 - email：syf20020816@outlook.com
 
 <img src="./README/imgs/logo.png">
@@ -238,20 +238,24 @@ https://github.com/Surrealism-All/SurrealismUI/wiki
 -  `SSelect` ：SSelect is a selector that provides three types of optional input parameter values
 -  `STag` ：A small tag used to display data
 -  `SHeader` ：SHeader is a simple header component that is generated based on routing information
--  `STable` ：This is the outter of the Table, and the column data of the table is separated from the outter . The outter only serves as a standard layout , this is a zero cost construction
--  `STableColumn` ：STableColumn is a component of STable, and each STableColumn forms a complete column of the table . If it's gone, the table will become a card with a horizontal layout
--  `SCollapse` ：SCollapse is a foldable panel. This is the outter of the Collapse, what really works is SCollapseItem. The outter only serves as a standard layout , this is a zero cost construction
--  `SCollapseItem` ：SCollapseItem is a component of SCollapse, without which SCollapse will not work , You can customize the components or use the default text display method in it
--  `SResult` ：SResult helps you easily build a quick prompt , you can build it in popup window
--  `SAvatar` ：SAvatar is a avatar component that defaults to Icons.Avatar when there are no images available
--  `SLink` ：SLink is commonly used to represent text connections or sharing
+-  `STable` ：In fact, it is just the header of the table and needs to be used together with `STableColumn` or `STableColumnFlex`
+   -  `STableColumn` ：It is table body , it covers the data of the table , It is easy for just show text in Table
+   -  `STableColumnFlex` ：It is also a kind of table body , but this component is more flexible ,  you can use with `STableColumnItem` together and define what will show in the table
+   -  `STableColumnItem` ：It is a component used to describe a cell in a table , It can help you define tables more easily.
+
+-  `SCollapse` ：`SCollapse` is a foldable panel. This is the outter of the Collapse, what really works is `SCollapseItem`. The outter only serves as a standard layout , this is a zero cost construction
+   -  `SCollapseItem` ：`SCollapseItem` is a component of `SCollapse`, without which `SCollapse` will not work , You can customize the components or use the default text display method in it
+
+-  `SResult` ：`SResult` helps you easily build a quick prompt , you can build it in popup window
+-  `SAvatar` ：`SAvatar` is a avatar component that defaults to Icons.Avatar when there are no images available
+-  `SLink` ：`SLink` is commonly used to represent text connections or sharing
 -  `SDivider` ：A divider groups sections of content to create visual rhythm and hierarchy. Use dividers along with spacing and headers to organize content in your layout. 
 -  `SPopup` ：A masked pop-up layer appears in the current window . And users will not be able to use the pop-up layer to cover the components under it. Clicking on the pop-up layer again will close it
--  `SCollection` ：SCollection is an expandable box that can be zoomed in or out by clicking (internal can also be used)
+-  `SCollection` ：`SCollection` is an expandable box that can be zoomed in or out by clicking (internal can also be used)
 -  `SRadio` ：Radio let people select a single item
--  `SBadge` ：SBadge is a quick way to display user status or events
+-  `SBadge` ：`SBadge` is a quick way to display user status or events
 -  `SPersona` ：This component is used to display simple user introduction information
--  `SProgress` ：SProgress is commonly used to display download progress or event processing progress . And you can fully control it through the progress property
+-  `SProgress` ：`SProgress` is commonly used to display download progress or event processing progress . And you can fully control it through the progress property
 -  `STip` ：A tip provides supplemental, contextual information elevated near its target component
 -  `SLoading` ： This is a loading component that you can embed anywhere you want to add a loading animation 
 -  `SDialog` ：SDialogs are used to confirm messages or events and display text
