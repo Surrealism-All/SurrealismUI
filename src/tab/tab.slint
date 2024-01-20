@@ -1,0 +1,122 @@
+import { ScrollView } from "std-widgets.slint";
+import { SCard } from "../card/index.slint";
+import {SOption,Themes,UseIcons} from "../../use/index.slint";
+import { GlobalProps } from "../../themes/index.slint";
+import { SText } from "../text/index.slint";
+import { SIcon } from "../icon/index.slint";
+
+export component Tab inherits Window{
+  height: 100%;
+  width: 100%;
+  in property <Themes> theme : Themes.Dark;
+  in property <length> font-size : 18px;
+  in property <int> font-weight : 700;
+  in property <[SOption]> tabs;
+  in-out property <string> active : "0";
+  function to-left() {
+    if(header-scroll.viewport-width > root.width){
+      header-scroll.viewport-x += root.width;
+      header-scroll.viewport-width -= root.width;
+    }
+  }
+  function to-right() {
+    header-scroll.viewport-x -= root.width;
+    header-scroll.viewport-width += root.width;
+  }
+  callback changed(SOption);
+  callback mouted(string);
+  init => {
+    mouted(self.active);
+  }
+  VerticalLayout {
+    tab-header:=Rectangle{
+      height: 48px;
+      width: 100%;
+      header-scroll:=ScrollView {
+        height: parent.height;
+        width: parent.width;
+        viewport-height: parent.height;
+        viewport-width:header-layout.width;
+        
+        header-layout:=HorizontalLayout {
+          x: 0;
+          width: tab-header.width;
+          alignment: space-between;
+          padding-left: 8px;
+          padding-right: 8px;
+          headers:=HorizontalLayout{
+            for tab in tabs:tab-item:= HorizontalLayout {
+              alignment: start;
+              width: tab-title.width + 24px;
+              states [
+                  active when tab.value==root.active: {
+                      tab-title.color : GlobalProps.active-color;
+                    }
+                  hover when tab-title-area.has-hover: {
+                      tab-title.color : GlobalProps.active-color;
+                  }
+              ]
+              tab-title-area:=TouchArea {
+                mouse-cursor: pointer;
+                clicked => {
+                  root.active = tab.value;
+                  root.changed(tab);
+                }
+                tab-title:=SText {
+                  text : tab.label;
+                  font-size: root.font-size;
+                  font-weight: root.font-weight;
+                  theme: root.theme;
+                }
+                if active==tab.value: Rectangle {
+                    height: 2px;
+                    width: parent.width;
+                    background: GlobalProps.active-color;
+                    y: parent.height - self.height * 2;
+                }
+              }
+            }
+          }
+          
+        }
+        tools:=SCard{
+          height: 100%;
+          x: header-scroll.viewport-width - self.width;         
+          width: tools-layout.width;
+          tools-layout:=HorizontalLayout{
+            width: left-icon.width+right-icon.width + self.spacing;
+            spacing: 6px;
+              Rectangle {
+                left-icon:=SIcon {
+                  theme: root.theme;
+                  colorize: self.get-colorize();
+                  height: root.font-size;
+                  width: root.font-size;
+                  source: UseIcons.icons.Left;
+                  clicked => {
+                    root.to-left();
+                  }
+                }
+              }
+              Rectangle {
+                right-icon:=SIcon {
+                  theme: root.theme;
+                  colorize: self.get-colorize();
+                  height: root.font-size;
+                  width: root.font-size;
+                  source: UseIcons.icons.Right;
+                  clicked => {
+                    root.to-right();
+                  }
+                }
+              }
+          }
+        }
+      }
+    }
+    panel:=Rectangle {
+      height: root.height - header-layout.height;
+      @children
+    }
+  }
+}
