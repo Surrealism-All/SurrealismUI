@@ -359,6 +359,10 @@ V0.3.0 is a major change version. Almost all components have undergone a rebuidi
 
 Thank you for reading, and if you have any questions, please send an email to syf20020816@outlook.com or raise them in a discussion or issue at the SurrealismUI repository
 
+- V0.3.4
+  - 中文
+    - `SSelect`组件icon、文字使用主题色变化
+    - 
 - V0.3.3
   - 中文
     - `SIcon`增加state,hover颜色效果

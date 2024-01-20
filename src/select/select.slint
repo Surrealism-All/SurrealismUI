@@ -76,6 +76,7 @@ export component Select inherits SCard {
       padding-left: root.padding-left;
       padding-right: root.padding-right;
       select-text:=SText {
+        theme: root.theme;
         text: placeholder;
         font-family: root.font-family;
         font-size: root.font-size;
@@ -86,6 +87,7 @@ export component Select inherits SCard {
         z: 110;
         width: select-icon.width;
         select-icon:=SIcon{
+          theme: root.theme;
           colorize: self.get-colorize();
           source: UseIcons.icons.Down;
           rotation: {
