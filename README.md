@@ -14,7 +14,7 @@
 
 ## Install 
 
-### use Slimk
+### use cargo-generate
 
 #### 1. Install cargo-generate
 
