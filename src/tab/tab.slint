@@ -1,3 +1,27 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20240120
+* @version:0.3.4
+* @type:interface
+* @description:
+* # STab
+* provide tab functionality, so that users can switch between different content sections
+* ## properties inherits SCard
+* - in property <Themes> theme : Surrealism Themes
+* - in property <length> font-size : header font size
+* - in property <int> font-weight : header font weight
+* - in property <[SOption]> tabs : tab datas
+* - in-out property <string> active : active item
+* ## functions
+* - function to-left() : let tab header to pre page 
+* - function to-right() : let tab header to next page
+* ## callbacks
+* - callback change(SOption) : run after you change the tab
+* - callback mounted(string) : run when init callback happend
+* ============================================
+*/
+
 import { ScrollView } from "std-widgets.slint";
 import { SCard } from "../card/index.slint";
 import {SOption,Themes,UseIcons} from "../../use/index.slint";
@@ -24,9 +48,9 @@ export component Tab inherits Window{
     header-scroll.viewport-width += root.width;
   }
   callback changed(SOption);
-  callback mouted(string);
+  callback mounted(string);
   init => {
-    mouted(self.active);
+    mounted(self.active);
   }
   VerticalLayout {
     tab-header:=Rectangle{

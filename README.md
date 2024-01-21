@@ -361,8 +361,11 @@ Thank you for reading, and if you have any questions, please send an email to sy
 
 - V0.3.4
   - 中文
-    - `SSelect`组件icon、文字使用主题色变化
-    - 
+    - 修复`SSelect`组件icon、文字使用主题色变化
+    - 增加`STab`组件提供选项卡功能，以便用户可以在不同的内容板块之间切换
+  -  English
+    - Fix changes in the theme color of the 'SSelect' component icon and text usage
+    - Add the 'STab' component to provide tab functionality, so that users can switch between different content sections
 - V0.3.3
   - 中文
     - `SIcon`增加state,hover颜色效果
