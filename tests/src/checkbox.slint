@@ -1,0 +1,13 @@
+import { SCheckbox } from "../../index.slint";
+component TestCheckbox {
+  height: 400px;
+  width: 600px;
+  VerticalLayout {
+    spacing: 20px;
+    padding: 20px;
+    SCheckbox {}
+    SCheckbox {theme:Error;}
+    SCheckbox {theme:Light;}
+    SCheckbox {theme:Primary;}
+  }
+}
