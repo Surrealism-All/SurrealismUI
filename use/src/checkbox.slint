@@ -1,0 +1,22 @@
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+import { ShadowType } from "./shadow.slint";
+import { BorderType } from "./border.slint";
+
+export struct SCheckboxProps {
+  font-weight : int,
+  font-size: length,
+  color : brush,
+  font-italic : bool,
+  font-family : string,
+  card-height : length,
+  card-width : length,
+  theme : Themes,
+  active-color: brush,
+  padding-type: PaddingType,
+  shadow-type: ShadowType,
+  border-type : BorderType,
+  text : string,
+  value : string,
+  actived : bool,
+}

@@ -367,6 +367,7 @@ https://github.com/Surrealism-All/SurrealismUI/wiki
 -  `STree` ：`STree` can be used to display directory structure, forming a parent-child relationship, and can be easily displayed
 -  `SFile` ：`SFile` can help users present file selectors GUI
 -  `STab` ：provide tab functionality, so that users can switch between different content sections
+-  `SCheckbox` ：`SCheckbox` let people select multi items
 
 ## Updates
 
@@ -388,6 +389,11 @@ V0.3.0 is a major change version. Almost all components have undergone a rebuidi
 
 Thank you for reading, and if you have any questions, please send an email to syf20020816@outlook.com or raise them in a discussion or issue at the SurrealismUI repository
 
+- V0.3.5
+  - 中文
+    - 增加`SCheckbox`(当用户需要多选时)
+  - English
+    - Add `SCheckbox`(when people want to select multi items)
 - V0.3.4
   - 中文
     - 修复`SSelect`组件icon、文字使用主题色变化
