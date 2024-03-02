@@ -53,24 +53,31 @@ export component Checkbox inherits Rectangle{
   states [
     light when self.theme == Themes.Light: {
       inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.light.normal;
+      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.light.normal;
     }
     primary when self.theme == Themes.Primary: {
       inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.primary.normal;
+      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.primary.normal;
     }
     success when self.theme == Themes.Success: {
       inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.success.normal;
+      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.success.normal;
     }
     info when self.theme == Themes.Info: {
       inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.info.normal;
+      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.info.normal;
     }
     warning when self.theme == Themes.Warning: {
       inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.warning.normal;
+      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.warning.normal;
     }
     error when self.theme == Themes.Error: {
       inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.error.normal;
+      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.error.normal;
     }
     dark when self.theme == Themes.Dark: {
       inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.dark.normal;
+      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.dark.normal;
     }
   ]
   HorizontalLayout {
@@ -89,7 +96,7 @@ export component Checkbox inherits Rectangle{
         card-width: root.card-width - 4px;
         border-radius: 2px;
         padding-type: PaddingType.None;
-        border-type: BorderType.None;
+        border-type: BorderType.Small;
         drop-shadow-blur: 0;
         drop-shadow-offset-x: 0;
         drop-shadow-offset-y: 0;

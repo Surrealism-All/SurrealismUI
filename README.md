@@ -1,4 +1,4 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.3.5-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584">  <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.3.5-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584"> <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
@@ -12,7 +12,7 @@
 
 **SurrealismUI is a third-party component library built entirely using Slint**
 
-## Install 
+## Install
 
 ### use cargo-generate
 
@@ -57,7 +57,7 @@ cargo run
 
 ### Config SurrealismUI as Library (optional)
 
-1. Open VsCode and choose Settings , then search `Slint:Library Paths`  
+1. Open VsCode and choose Settings , then search `Slint:Library Paths`
 2. Choose edit in settings.json
 3. Find `slint.libraryPaths` and add `"SurrealismUI":"parent_file_path\\surrealism-ui\\index.slint"`❗
 
@@ -175,7 +175,7 @@ export component App inherits Window {
                   }
                 }
               }
-              
+
             }
         }
       }
@@ -326,69 +326,73 @@ Built in 7 theme colors in SurrealismUI
 
 https://github.com/Surrealism-All/SurrealismUI/wiki
 
-
 ## Components
 
--  `SText` ：It is the simplest and most common component in SurrealismUI
--  `SButton` ：`SButton` is a button component that you can freely perform regular attribute operations on
--  `SIcon` ：this is a icon container ,  better than Image
--  `SInput` ：This is a basic input box, often used in forms, divided into two types: text and password
--  `SCard` ：A very simple universal card without any layout or restrictions ， you can add anything you want to the card
--  `SStar` ： `SStar` is a scoring component
--  `SSelect` ：`SSelect` is a selector that provides three types of optional input parameter values
--  `STag` ：A small tag used to display data
--  `SHeader` ：`SHeader` is a simple header component that is generated based on routing information
--  `STable` ：In fact, it is just the header of the table and needs to be used together with `STableColumn` or `STableColumnFlex`
-   -  `STableColumn` ：It is table body , it covers the data of the table , It is easy for just show text in Table
-   -  `STableColumnFlex` ：It is also a kind of table body , but this component is more flexible ,  you can use with `STableColumnItem` together and define what will show in the table
-   -  `STableColumnItem` ：It is a component used to describe a cell in a table , It can help you define tables more easily.
+- `SText` ：It is the simplest and most common component in SurrealismUI
+- `SButton` ：`SButton` is a button component that you can freely perform regular attribute operations on
+- `SIcon` ：this is a icon container , better than Image
+- `SInput` ：This is a basic input box, often used in forms, divided into two types: text and password
+- `SCard` ：A very simple universal card without any layout or restrictions ， you can add anything you want to the card
+- `SStar` ： `SStar` is a scoring component
+- `SSelect` ：`SSelect` is a selector that provides three types of optional input parameter values
+- `STag` ：A small tag used to display data
+- `SHeader` ：`SHeader` is a simple header component that is generated based on routing information
+- `STable` ：In fact, it is just the header of the table and needs to be used together with `STableColumn` or `STableColumnFlex`
 
--  `SCollapse` ：`SCollapse` is a foldable panel. This is the outter of the Collapse, what really works is `SCollapseItem`. The outter only serves as a standard layout , this is a zero cost construction
-   -  `SCollapseItem` ：`SCollapseItem` is a component of `SCollapse`, without which `SCollapse` will not work , You can customize the components or use the default text display method in it
+  - `STableColumn` ：It is table body , it covers the data of the table , It is easy for just show text in Table
+  - `STableColumnFlex` ：It is also a kind of table body , but this component is more flexible , you can use with `STableColumnItem` together and define what will show in the table
+  - `STableColumnItem` ：It is a component used to describe a cell in a table , It can help you define tables more easily.
 
--  `SResult` ：`SResult` helps you easily build a quick prompt , you can build it in popup window
--  `SAvatar` ：`SAvatar` is a avatar component that defaults to Icons.Avatar when there are no images available
--  `SLink` ：`SLink` is commonly used to represent text connections or sharing
--  `SDivider` ：A divider groups sections of content to create visual rhythm and hierarchy. Use dividers along with spacing and headers to organize content in your layout. 
--  `SPopup` ：A masked pop-up layer appears in the current window . And users will not be able to use the pop-up layer to cover the components under it. Clicking on the pop-up layer again will close it
--  `SCollection` ：`SCollection` is an expandable box that can be zoomed in or out by clicking (internal can also be used)
--  `SRadio` ：`Radio `let people select a single item
--  `SBadge` ：`SBadge` is a quick way to display user status or events
--  `SPersona` ：This component is used to display simple user introduction information
--  `SProgress` ：`SProgress` is commonly used to display download progress or event processing progress . And you can fully control it through the progress property
--  `STip` ：A tip provides supplemental, contextual information elevated near its target component
--  `SLoading` ： This is a loading component that you can embed anywhere you want to add a loading animation 
--  `SDialog` ：`SDialogs` are used to confirm messages or events and display text
--  `SMenu` ：`SMenu` is a menu bar located on the left side that you can quickly generate through the menu-data property
--  `SSwitch` ：`SSwitch` is a switch used for simple judgment scenarios
--  `SDrawer` ：Sometimes, the Dialogue component does not meet our needs , such as your form being too long, or if you need to temporarily display some documents, please use the `SDrawer`
--  `SAlert` ：`SAlert` is used to display important prompt information on the page
--  `SSwitchGroup` ：`SSwitchGroup` switch group can contain more switch cases
--  `STree` ：`STree` can be used to display directory structure, forming a parent-child relationship, and can be easily displayed
--  `SFile` ：`SFile` can help users present file selectors GUI
--  `STab` ：provide tab functionality, so that users can switch between different content sections
--  `SCheckbox` ：`SCheckbox` let people select multi items
+- `SCollapse` ：`SCollapse` is a foldable panel. This is the outter of the Collapse, what really works is `SCollapseItem`. The outter only serves as a standard layout , this is a zero cost construction
+
+  - `SCollapseItem` ：`SCollapseItem` is a component of `SCollapse`, without which `SCollapse` will not work , You can customize the components or use the default text display method in it
+
+- `SResult` ：`SResult` helps you easily build a quick prompt , you can build it in popup window
+- `SAvatar` ：`SAvatar` is a avatar component that defaults to Icons.Avatar when there are no images available
+- `SLink` ：`SLink` is commonly used to represent text connections or sharing
+- `SDivider` ：A divider groups sections of content to create visual rhythm and hierarchy. Use dividers along with spacing and headers to organize content in your layout.
+- `SPopup` ：A masked pop-up layer appears in the current window . And users will not be able to use the pop-up layer to cover the components under it. Clicking on the pop-up layer again will close it
+- `SCollection` ：`SCollection` is an expandable box that can be zoomed in or out by clicking (internal can also be used)
+- `SRadio` ：`Radio `let people select a single item
+- `SBadge` ：`SBadge` is a quick way to display user status or events
+- `SPersona` ：This component is used to display simple user introduction information
+- `SProgress` ：`SProgress` is commonly used to display download progress or event processing progress . And you can fully control it through the progress property
+- `STip` ：A tip provides supplemental, contextual information elevated near its target component
+- `SLoading` ： This is a loading component that you can embed anywhere you want to add a loading animation
+- `SDialog` ：`SDialogs` are used to confirm messages or events and display text
+- `SMenu` ：`SMenu` is a menu bar located on the left side that you can quickly generate through the menu-data property
+- `SSwitch` ：`SSwitch` is a switch used for simple judgment scenarios
+- `SDrawer` ：Sometimes, the Dialogue component does not meet our needs , such as your form being too long, or if you need to temporarily display some documents, please use the `SDrawer`
+- `SAlert` ：`SAlert` is used to display important prompt information on the page
+- `SSwitchGroup` ：`SSwitchGroup` switch group can contain more switch cases
+- `STree` ：`STree` can be used to display directory structure, forming a parent-child relationship, and can be easily displayed
+- `SFile` ：`SFile` can help users present file selectors GUI
+- `STab` ：provide tab functionality, so that users can switch between different content sections
+- `SCheckbox` ：`SCheckbox` let people select multi items
 
 ## Updates
 
-### 中文 
+### 中文
 
-V0.3.0版本是一个重大变更的版本，几乎所有的组件都经历了一次重构，优化了所有组件的结构，对整体项目目录进行了调整，处理了在之前版本中的不合理问题（组件名字，组件属性，方法，回调，内置方法，内置属性，内置Global等）。本次大更新更探索了类似于VNode的可能性（但目前并没有完美的方案）。将所有组件属性进行提取并使用结构体进行管理，这使得对组件样式的控制更加彻底，并使得使用rust，c++，js动态控制组件更加容易，动态生成组件这一需求也得到了解决。
+V0.3.0 版本是一个重大变更的版本，几乎所有的组件都经历了一次重构，优化了所有组件的结构，对整体项目目录进行了调整，处理了在之前版本中的不合理问题（组件名字，组件属性，方法，回调，内置方法，内置属性，内置 Global 等）。本次大更新更探索了类似于 VNode 的可能性（但目前并没有完美的方案）。将所有组件属性进行提取并使用结构体进行管理，这使得对组件样式的控制更加彻底，并使得使用 rust，c++，js 动态控制组件更加容易，动态生成组件这一需求也得到了解决。
 
-在本次大型更新后，SurrealismUI中属性的写法与原生属性更加接近，这不仅减少了学习成本，更有利于使用者的理解。在后续0.3.x的版本中将会持续优化(每个版本的更新周期约2周)。此外0.3.0版本后可能不再涉及如此大范围的更新，该项目的稳定性将会持续提升。
+在本次大型更新后，SurrealismUI 中属性的写法与原生属性更加接近，这不仅减少了学习成本，更有利于使用者的理解。在后续 0.3.x 的版本中将会持续优化(每个版本的更新周期约 2 周)。此外 0.3.0 版本后可能不再涉及如此大范围的更新，该项目的稳定性将会持续提升。
 
-感谢各位的阅读，如果您有任何问题，请发送邮件到syf20020816@outlook.com或在SurrealismUI仓库的讨论或issue中提出
+感谢各位的阅读，如果您有任何问题，请发送邮件到syf20020816@outlook.com或在 SurrealismUI 仓库的讨论或 issue 中提出
 
 <hr />
 
 ### English
 
-V0.3.0 is a major change version. Almost all components have undergone a rebuiding, optimizing the structure of all components, adjusting the overall project directory, and dealing with unreasonable problems in the previous version (component name, component properties, functions, callbacks, built-in  functions, built-in properties, built-in Global, ...). This big update explores the possibility of something similar to VNode (but there is no perfect solution at present). All component attributes are extracted and managed by using struct, which makes the control of component style more thorough, and makes it easier to use Rust, C + +, JS to dynamically control components, and the requirement of dynamically generating components is also solved.
+V0.3.0 is a major change version. Almost all components have undergone a rebuiding, optimizing the structure of all components, adjusting the overall project directory, and dealing with unreasonable problems in the previous version (component name, component properties, functions, callbacks, built-in functions, built-in properties, built-in Global, ...). This big update explores the possibility of something similar to VNode (but there is no perfect solution at present). All component attributes are extracted and managed by using struct, which makes the control of component style more thorough, and makes it easier to use Rust, C + +, JS to dynamically control components, and the requirement of dynamically generating components is also solved.
 
- After this major update, the writing of attributes in SurrealismUI is closer to the native attributes, which not only reduces the learning cost, but also is more conducive to the user's understanding. Optimization will continue in subsequent 0.3.x releases (approximately 2 weeks per release). In addition, the 0.3.0 version may no longer involve such a wide range of updates, and the stability of the project will continue to improve. 
+After this major update, the writing of attributes in SurrealismUI is closer to the native attributes, which not only reduces the learning cost, but also is more conducive to the user's understanding. Optimization will continue in subsequent 0.3.x releases (approximately 2 weeks per release). In addition, the 0.3.0 version may no longer involve such a wide range of updates, and the stability of the project will continue to improve.
 
 Thank you for reading, and if you have any questions, please send an email to syf20020816@outlook.com or raise them in a discussion or issue at the SurrealismUI repository
 
+- V0.4.0
+  - 中文
+    - `SCheckbox`内部选择区添加 border，优化显示
 - V0.3.5
   - 中文
     - 增加`SCheckbox`(当用户需要多选时)
@@ -396,23 +400,24 @@ Thank you for reading, and if you have any questions, please send an email to sy
     - Add `SCheckbox`(when people want to select multi items)
 - V0.3.4
   - 中文
-    - 修复`SSelect`组件icon、文字使用主题色变化
+    - 修复`SSelect`组件 icon、文字使用主题色变化
     - 增加`STab`组件提供选项卡功能，以便用户可以在不同的内容板块之间切换
-  -  English
-    - Fix changes in the theme color of the 'SSelect' component icon and text usage
-    - Add the 'STab' component to provide tab functionality, so that users can switch between different content sections
+  - English
+  - Fix changes in the theme color of the 'SSelect' component icon and text usage
+  - Add the 'STab' component to provide tab functionality, so that users can switch between different content sections
 - V0.3.3
   - 中文
-    - `SIcon`增加state,hover颜色效果
+    - `SIcon`增加 state,hover 颜色效果
     - 重写`SMenu`
     - 优化`STable`,增加表格列自定义组件 (see wiki [STable](https://github.com/Surrealism-All/SurrealismUI/wiki/07_Data-Components-%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6#stable-%E8%A1%A8%E6%A0%BC))
   - English
     - Add state and hover color effects to `SIcon`
     - Rewrite `SMenu`
-    - Optimize `STable` , Add Self DefineComponent  (see wiki [STable](https://github.com/Surrealism-All/SurrealismUI/wiki/07_Data-Components-%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6#stable-%E8%A1%A8%E6%A0%BC))
+    - Optimize `STable` , Add Self DefineComponent (see wiki [STable](https://github.com/Surrealism-All/SurrealismUI/wiki/07_Data-Components-%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6#stable-%E8%A1%A8%E6%A0%BC))
 - V0.3.2
+
   - 中文
-    - `SSwitch`和`SSwitchGroup`增加响应式选择（由active属性进行控制）
+    - `SSwitch`和`SSwitchGroup`增加响应式选择（由 active 属性进行控制）
     - 优化`STip`文字显示
   - English
     - `SSwitch` and `SSwitchGroup` add responsive selection (controlled by the active property)
@@ -420,13 +425,13 @@ Thank you for reading, and if you have any questions, please send an email to sy
 
 - V0.3.1
   - 中文
-    - 补充丢失的SVG图片
-    - 修复组件中`PaddingType.None`以及`BorderType.None`产生的与Rust 的`Option` 的编译冲突
-    - 修复`SIcon`中colorize属性导致的闪烁和None冲突
+    - 补充丢失的 SVG 图片
+    - 修复组件中`PaddingType.None`以及`BorderType.None`产生的与 Rust 的`Option` 的编译冲突
+    - 修复`SIcon`中 colorize 属性导致的闪烁和 None 冲突
     - `SIcon`弥补方案:`self.get-colorize()`
   - English
-    -  add missing SVG images
-    - fix the `PaddingType.None` and `BorderType.None` in the component Compilation conflict with Rust  `Option`
+    - add missing SVG images
+    - fix the `PaddingType.None` and `BorderType.None` in the component Compilation conflict with Rust `Option`
     - fix None conflict and flicker causes by colorize property in `SIcon`
     - `SICon` Remedial solution:`self.get-colorize()`
 - V0.3.0 (Slint 1.3.2)
@@ -434,9 +439,9 @@ Thank you for reading, and if you have any questions, please send an email to sy
     - 所有组件更名`SUR`为`S`
     - 默认文字采用`Arial`
     - 重写所有组件 (`SMenu` 除外)
-    - 重构`themes/index.slint`（用于导出内置Schema，内置Global）
-    - 增加use方式导出内置方法，内置结构体，内置枚举等
-    - 使用use方式对组件进行插槽预备
+    - 重构`themes/index.slint`（用于导出内置 Schema，内置 Global）
+    - 增加 use 方式导出内置方法，内置结构体，内置枚举等
+    - 使用 use 方式对组件进行插槽预备
     - 修改内置主题色
     - 重构项目结构
   - English
