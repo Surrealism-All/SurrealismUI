@@ -1,0 +1,139 @@
+import { SText } from "../text/index.slint";
+import { SCard } from "../card/index.slint";
+import {Themes,UseIcons} from "../../use/index.slint";
+import { SDivider } from "../divider/index.slint";
+import { SButton } from "../../index.slint";
+import { ROOT_STYLES } from "../../themes/index.slint";
+
+export struct SStepOption {
+  label: string,
+  value: string,
+  info: string,
+}
+
+export component Step {
+    in property <Themes> theme : Dark;
+    in property <int> name;
+    in-out property <length> font-size;
+    in-out property <int> font-weight;
+    in-out property <bool> font-italic;
+    in-out property <string> font-family;
+    in-out property <brush> font-color;
+    in-out property <int> active: 1;
+    in property <brush> active-color: ROOT-STYLES.sur-theme-colors.primary.normal;
+    in property <brush> done-color: ROOT-STYLES.sur-theme-colors.success.normal;
+    in property <brush> undone-color: ROOT-STYLES.sur-theme-colors.dark.normal;
+    private property <int> inner-active <=> active;
+    in property <[SStepOption]> options : [];
+    pure function count-align(index:int) -> LayoutAlignment{
+       if index==0{
+          return LayoutAlignment.start;
+       }else if index == root.options.length - 1{
+         return LayoutAlignment.end;
+       }else{
+         return LayoutAlignment.center;
+       }
+    }
+    public function next() {
+      if root.inner-active != root.options.length + 1{
+        root.inner-active += 1;
+      }
+    }
+    public function clear() {
+      root.inner-active = 1;
+    }
+    public function done(){
+      root.inner-active = root.options.length + 1;
+    }
+    pure public function get-active() -> int{
+      return root.active;
+    }
+    pure function status-color(index:int) -> brush {
+        if inner-active == index + 1{
+          return root.active-color;
+        }else if inner-active > index + 1{
+          return root.done-color;
+        }else{
+          return root.undone-color;
+        }
+    }
+    width: 100%;
+    VerticalLayout {
+      z: 111;
+      alignment: space-between;
+      step-layout:= HorizontalLayout {
+        alignment: space-between;
+        padding-bottom: 8px;
+        padding-top: 8px;
+        for item[index] in root.options: step-item-wrap:= Rectangle {
+          height: item-step.height;
+          width: parent.width / options.length - 12px;
+          VerticalLayout {
+            width: parent.width;
+            spacing: 6px;
+            HorizontalLayout {
+              alignment: center;
+              height: item-step.height;
+              item-step:= SCard{
+                theme: root.theme;
+                height: 30px;
+                width: 30px;
+                border-radius: self.height / 2;
+                border-color: status-color(index);
+                background: status-color(index);
+                SText {
+                  theme: root.theme;
+                  text: index + 1;
+                  font-weight: 700;
+                  font-family: root.font-family;
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        } 
+      }
+      HorizontalLayout {
+        for item[index] in root.options: details-wrap:=Rectangle {
+          VerticalLayout {
+            spacing: 4px;
+            item-title:= SText{
+              theme: root.theme;
+              text: item.label;
+              font-weight: 700;
+              font-size: root.font-size;
+              font-family: root.font-family;
+              font-italic: root.font-italic;
+              horizontal-alignment: center;
+              color: status-color(index);
+            }
+            item-info:= SText{
+              text: item.info;
+              font-weight: 500;
+              font-family: root.font-family;
+              font-size: root.font-size - 3px;
+              theme: root.theme;
+              horizontal-alignment: center;
+              color: status-color(index);
+            }
+          }
+        }
+      }
+    }
+    if options.length != 0: HorizontalLayout{
+    
+      for item[index] in options.length - 1: HorizontalLayout{
+        alignment: center;
+        width: step-layout.width / options.length;
+        Rectangle {
+          SDivider {
+            z: 11;
+            x: 0;
+            y: step-layout.height / 2 - self.height / 2;
+            theme: root.theme;
+            width: step-layout.width / options.length;
+          }
+        }
+      }
+    }
+}

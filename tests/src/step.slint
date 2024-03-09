@@ -1,0 +1,74 @@
+import { SButton,SStep } from "../../index.slint";
+component TestStep {
+  height: 400px;
+  width: 400px;
+  VerticalLayout {
+    padding: 24px;
+    spacing: 60px;
+    SStep {
+      active: 1;
+      height: 100px;
+      font-size: 16px;
+      options: [
+        {
+          label: "Step 1",
+          value: "1",
+          info: "This is Step 1😅",
+        },
+        {
+          label: "Step 2",
+          value: "2",
+          info: "This is Step 2",
+        },
+      ];
+    }
+    s:= SStep {
+      height: 100px;
+      font-size: 16px;
+      options: [
+        {
+          label: "Step 1",
+          value: "1",
+          info: "This is Step 1",
+        },
+        {
+          label: "Step 2",
+          value: "2",
+          info: "This is Step 2",
+        },
+        {
+          label: "Step 3",
+          value: "3",
+          info: "This is Step 3✅",
+        }
+      ];
+    }
+    HorizontalLayout {
+      spacing: 24px;
+      SButton {
+        text: "Next";
+        clicked => {
+          s.next();
+        }
+      }
+      SButton {
+        text: "Clear";
+        clicked => {
+          s.clear();
+        }
+      }
+      SButton {
+        text: "Done";
+        clicked => {
+          s.done();
+        }
+      }
+      SButton {
+        text: "Active";
+        clicked => {
+          debug(s.get-active());
+        }
+      }
+    }
+  }
+}
