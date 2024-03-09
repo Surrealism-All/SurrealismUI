@@ -1,0 +1,10 @@
+import { Themes,Position } from "../../use/index.slint";
+import { GlobalProps } from "./index.slint";
+
+export global DefaultSPopoverProps {
+  in-out property <Themes> theme : GlobalProps.theme;
+  in-out property <Position> position : Position.Top;
+  in-out property <bool> is-show : false;
+  in-out property <length> owner-height;
+  in-out property <length> owner-width;
+}

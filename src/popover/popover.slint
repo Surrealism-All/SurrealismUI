@@ -1,3 +1,28 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20240309
+* @version:0.4.0
+* @type:interface
+* @description:
+* # Popover
+* A customizable popover component designed to display contextual information or interactive content, attached to an element and floating above the UI. It supports various positions and can be shown or hidden programmatically.
+* ## Properties
+* - in-out property <Themes> theme : The theme of the popover, allowing customization of its appearance according to the provided theme settings.
+* - in-out property <Position> position : The position of the popover relative to its owner element, determining where the popover is displayed around the owner.
+* - in-out property <bool> is-show : A boolean value indicating whether the popover is currently shown or hidden.
+* - in-out property <length> owner-height : The height of the owner element to which the popover is attached, used in positioning calculations.
+* - in-out property <length> owner-width : The width of the owner element to which the popover is attached, used in positioning calculations.
+* ## Functions
+* - public function open() : Shows the popover by setting the is-show property to true.
+* - public function close() : Hides the popover by setting the is-show property to false.
+* - pure public function count-x(w:length) -> length : Calculates the X-coordinate for the popover's position based on the specified width and the position relative to the owner.
+* - pure public function count-y(h:length) -> length : Calculates the Y-coordinate for the popover's position based on the specified height and the position relative to the owner.
+* ## Callbacks
+* - callback clicked: Triggered when the popover is clicked. Toggles the visibility of the popover by changing the is-show property.
+* ============================================
+*/
+
 import { SCard } from "../card/index.slint";
 import { ROOT-STYLES,DefaultSTipProps } from "../../themes/index.slint";
 import { SText } from "../text/index.slint";

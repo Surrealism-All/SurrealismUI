@@ -25,6 +25,7 @@ import { DefaultSFileProps} from "./file.slint";
 import { DefaultSProgressProps} from "./progress.slint";
 import { DefaultSBadgeProps } from "./badge.slint";
 import { DefaultSMenuProps } from "./menu.slint";
+import { DefaultSPopoverProps } from "./popover.slint";
 import { DefaultSTableColumnProps,DefaultSTableProps } from "./table.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
@@ -32,7 +33,7 @@ import {
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
   SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps,STableProps,STableColumnProps,
-  SMenuProps
+  SMenuProps,SPopoverProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -52,6 +53,13 @@ export global ComponentSchema {
     shadow-type: DefaultSCardProps.shadow-type,
     border-type : DefaultSCardProps.border-type,
     clip : DefaultSCardProps.clip,
+  };
+  in-out property <SPopoverProps> popover: {
+    theme : DefaultSPopoverProps.theme,
+    position : DefaultSPopoverProps.position,
+    is-show : DefaultSPopoverProps.is-show,
+    owner-height: DefaultSPopoverProps.owner-height,
+    owner-width: DefaultSPopoverProps.owner-width
   };
   in-out property <SButtonProps> button : {
     font-weight : DefaultSButtonProps.font-weight,
