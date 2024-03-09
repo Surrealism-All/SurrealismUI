@@ -392,19 +392,24 @@ After this major update, the writing of attributes in SurrealismUI is closer to 
 
 Thank you for reading, and if you have any questions, please send an email to syf20020816@outlook.com or raise them in a discussion or issue at the SurrealismUI repository
 
+- V0.4.1
+  - 中文
+    - 增加`SStep`进度指向线颜色效果
+  - English
+    - Add progress directional line color for `SStep`
 - V0.4.0
   - 中文
     - `SCheckbox`内部选择区添加 border，优化显示
     - `SProgress`样式优化，增加圆形进度条
     - 修复`SButton`在`STableColumnFlex`中的异常
     - 增加`SPopover`组件（气泡卡片无模态效果）
-    - 增加`SSTep`组件（按步骤执行）
+    - 增加`SStep`组件（按步骤执行）
   - English
     - Add a border to the internal selection area of `SCheckbox` to optimize display
     - Style optimization for `SProgress`, adding a circular progress bar
     - Fix exceptions in `SButton` in `STableColumnFlex`
     - Add the `SPopover` component (bubble card has no modal effect)
-    - Add the `SSTep` component (do something step by step)
+    - Add the `SStep` component (do something step by step)
 - V0.3.5
   - 中文
     - 增加`SCheckbox`(当用户需要多选时)
