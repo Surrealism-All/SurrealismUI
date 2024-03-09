@@ -27,13 +27,14 @@ import { DefaultSBadgeProps } from "./badge.slint";
 import { DefaultSMenuProps } from "./menu.slint";
 import { DefaultSPopoverProps } from "./popover.slint";
 import { DefaultSTableColumnProps,DefaultSTableProps } from "./table.slint";
+import { DefaultStepProps } from "./step.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
   SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps,STableProps,STableColumnProps,
-  SMenuProps,SPopoverProps
+  SMenuProps,SPopoverProps,SStepProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
@@ -53,6 +54,19 @@ export global ComponentSchema {
     shadow-type: DefaultSCardProps.shadow-type,
     border-type : DefaultSCardProps.border-type,
     clip : DefaultSCardProps.clip,
+  };
+  in-out property <SStepProps> step:{
+    theme : DefaultStepProps.theme,
+    font-family :  DefaultStepProps.font-family,
+    font-weight :  DefaultStepProps.font-weight,
+    font-size:  DefaultStepProps.font-size,
+    font-color :  DefaultStepProps.font-color,
+    font-italic :  DefaultStepProps.font-italic,
+    active:  DefaultStepProps.active,
+    active-color:  DefaultStepProps.active-color,
+    done-color:  DefaultStepProps.done-color,
+    undone-color:  DefaultStepProps.undone-color,
+    options : DefaultStepProps.options,
   };
   in-out property <SPopoverProps> popover: {
     theme : DefaultSPopoverProps.theme,

@@ -1,0 +1,22 @@
+import { Themes } from "./theme.slint";
+
+export struct SStepOption {
+  label: string,
+  value: string,
+  info: string,
+}
+
+
+export struct SStepProps {
+  theme : Themes,
+  font-family : string,
+  font-weight : int,
+  font-size: length,
+  font-color : brush,
+  font-italic : bool,
+  active: int,
+  active-color: brush,
+  done-color: brush,
+  undone-color: brush,
+  options : [SStepOption],
+}

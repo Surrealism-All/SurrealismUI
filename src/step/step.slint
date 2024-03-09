@@ -1,19 +1,12 @@
+import { ROOT_STYLES } from "../../themes/index.slint";
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
-import {Themes,UseIcons} from "../../use/index.slint";
+import { Themes,SStepOption } from "../../use/index.slint";
 import { SDivider } from "../divider/index.slint";
-import { SButton } from "../../index.slint";
-import { ROOT_STYLES } from "../../themes/index.slint";
 
-export struct SStepOption {
-  label: string,
-  value: string,
-  info: string,
-}
-
-export component Step {
-    in property <Themes> theme : Dark;
-    in property <int> name;
+export component Step{
+    width: 100%;
+    in property <Themes> theme : Themes.Dark;
     in-out property <length> font-size;
     in-out property <int> font-weight;
     in-out property <bool> font-italic;
@@ -57,7 +50,7 @@ export component Step {
           return root.undone-color;
         }
     }
-    width: 100%;
+    
     VerticalLayout {
       z: 111;
       alignment: space-between;

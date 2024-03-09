@@ -1,0 +1,17 @@
+import { ROOT-STYLES } from "./theme.slint";
+import {Themes,SStepOption} from "../../use/index.slint";
+import { GlobalProps } from "./index.slint";
+
+export global DefaultStepProps {
+  in property <Themes> theme : Dark;
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  in-out property <int> font-weight : GlobalProps.font.font-weight;
+  in-out property <length> font-size: GlobalProps.font.font-size;
+  in-out property <brush> font-color : GlobalProps.font.color;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  in-out property <int> active: 1;
+  in property <brush> active-color: ROOT-STYLES.sur-theme-colors.primary.normal;
+  in property <brush> done-color: ROOT-STYLES.sur-theme-colors.success.normal;
+  in property <brush> undone-color: ROOT-STYLES.sur-theme-colors.dark.normal;
+  in property <[SStepOption]> options : [];
+}
