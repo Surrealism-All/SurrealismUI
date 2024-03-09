@@ -39,7 +39,7 @@ import { SText } from "../text/index.slint";
 import { Themes,PaddingType,Position } from "../../use/index.slint";
   
 
-component LeftAngle inherits Path {
+export component LeftAngle inherits Path {
   in property <Themes> theme;
   in property <length> parent-height;
   in property <length> parent-width;
@@ -87,7 +87,7 @@ component LeftAngle inherits Path {
   Close{}
 }
 
-component RightAngle inherits Path {
+export component RightAngle inherits Path {
   in property <Themes> theme;
   in property <length> parent-height;
   y: parent-height / 2 - self.height / 2;
@@ -134,7 +134,7 @@ component RightAngle inherits Path {
   Close{}
 }
 
-component TopAngle inherits Path {
+export component TopAngle inherits Path {
   in property <Themes> theme;
   in property <length> parent-height;
   in property <length> parent-width;
@@ -182,7 +182,7 @@ component TopAngle inherits Path {
   Close{}
 }
 
-component BottomAngle inherits Path {
+export component BottomAngle inherits Path {
   in property <Themes> theme;
   in property <length> parent-height;
   in property <length> parent-width;

@@ -393,6 +393,9 @@ Thank you for reading, and if you have any questions, please send an email to sy
 - V0.4.0
   - 中文
     - `SCheckbox`内部选择区添加 border，优化显示
+    - `SProgress`样式优化，增加圆形进度条
+    - 修复`SButton`在`STableColumnFlex`中的异常
+    - 增加`SPopover`组件（气泡卡片无模态效果）
 - V0.3.5
   - 中文
     - 增加`SCheckbox`(当用户需要多选时)

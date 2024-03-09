@@ -1,0 +1,67 @@
+import {SPopover,SButton,SText } from "../../index.slint";
+import {Themes} from "../../use/index.slint";
+component TestPopover {
+  height: 400px;
+  width: 400px;
+  hover-btn:=SButton { 
+    y: 100px;
+    text: "hover";
+  }
+  SPopover{
+    y: hover-btn.y;
+    x: hover-btn.x;
+    owner-width:hover-btn.width;
+    owner-height:hover-btn.height;
+     height:inner.height;
+     width: inner.width;
+     theme: Themes.Dark;
+     position: Right;
+     is-show:hover-btn.has-hover;
+     inner:= Rectangle{
+      height: 46px;
+      width: 180px;
+      VerticalLayout {
+        SText {
+          text: "this is content for hover button!";
+        }
+      }
+    }
+  }
+  click-btn:=SButton { 
+    y: 300px;
+    text: "click";
+    clicked => {
+      click-pop.clicked();
+    }
+  }
+  click-pop:= SPopover{
+    y: click-btn.y;
+    x: click-btn.x;
+    owner-width: click-btn.width;
+    owner-height: click-btn.height;
+     height:inner2.height;
+     width: inner2.width;
+     theme: Themes.Light;
+     position: Top;
+     inner2:= Rectangle{
+      height: 120px;
+      width: 300px;
+      VerticalLayout {
+        alignment: space-around;
+        SText {
+          font-weight: 700;
+          theme: Light;
+          text: "this is a content for click button";
+        }
+        Rectangle {
+          SButton {
+            text:"click here to close!";
+            clicked => {
+              click-pop.close();
+            }
+          }
+        }
+      }
+    }
+  }
+}

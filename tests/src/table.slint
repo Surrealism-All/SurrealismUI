@@ -1,9 +1,9 @@
-import {STable,STableColumn, SCard,STableColumnItem,STableColumnFlex, SButton} from "../../index.slint";
+import {STable,STableColumn, SCard,STableColumnItem,STableColumnFlex, SButton, SIcon} from "../../index.slint";
 import {Themes,PaddingType,ShadowType,BorderType,PaddingProps,BorderProps,ShadowProps,UseSurrealismFn} from "../../use/index.slint";
-import { ROOT-STYLES,DefaultSCardProps,ComponentSchema } from "../../themes/index.slint";
+import { ROOT-STYLES,DefaultSCardProps,ComponentSchema,DefaultSButtonProps } from "../../themes/index.slint";
 import { ScrollView } from "std-widgets.slint";
 import { STag } from "../../src/tag/index.slint";
-
+import { SText } from "../../src/text/index.slint";
 
 export component TestTable inherits Window {
   height: 500px;
@@ -85,9 +85,11 @@ export component TestTable inherits Window {
       for item[index] in ["1","2","3"]: STableColumnItem {
         height: parent.height / 5;
         SButton {
+          round: true;
           text: @tr("operate-{}",item);
           padding-type: PaddingType.Tag;
         }
+        
       }
       for item[index] in ["change","delete"]: STableColumnItem {
         height: parent.height / 5;

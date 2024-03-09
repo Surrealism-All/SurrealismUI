@@ -1,0 +1,124 @@
+import { SCard } from "../card/index.slint";
+import { ROOT-STYLES,DefaultSTipProps } from "../../themes/index.slint";
+import { SText } from "../text/index.slint";
+import { SButton } from "../button/index.slint";
+import { Themes,PaddingType,Position } from "../../use/index.slint";
+import { LeftAngle,RightAngle,BottomAngle,TopAngle } from "../tip/index.slint";
+  
+export component Popover {
+  //theme
+  in-out property <Themes> theme : DefaultSTipProps.theme;
+  in-out property <Position> position :DefaultSTipProps.position;
+  in-out property <bool> is-show : DefaultSTipProps.is-show;
+  in-out property <length> owner-height;
+  in-out property <length> owner-width;
+  public function open() {
+    is-show = true; 
+  }
+  public function close() {
+    is-show = false;
+  }
+  
+  pure public function count-x(w:length) ->length{
+    if((root.position==Position.Right)||(root.position==Position.RightTop)||(root.position==Position.RightBottom)){
+      return root.owner-width + ROOT-STYLES.sur-font.font-size;
+    }else if((root.position==Position.Left)||(root.position==Position.LeftTop)||(root.position==Position.LeftBottom)){
+      return 0 - w - ROOT-STYLES.sur-font.font-size;
+    }else if((root.position==Position.TopLeft)||(root.position==Position.BottomLeft)){
+      return root.owner-width - w;
+    }else if((root.position==Position.TopRight||(root.position==Position.BottomRight))){
+      return 0;
+    }else{
+      return root.owner-width / 2 - w / 2 ;
+    }
+  }
+  pure public function count-y(h:length)->length {
+      if((root.position==Position.Top)||(root.position==Position.TopLeft)||(root.position==Position.TopRight)){
+        return  - h - ROOT-STYLES.sur-font.font-size;
+      }else if(root.position==Position.Right){
+        return root.owner-height / 2 - h / 2;
+      }else if((root.position==Position.RightTop)||(root.position==Position.LeftTop)){
+        return 0;
+      }else if((root.position==Position.RightBottom)||(root.position==Position.LeftBottom)){
+        return root.owner-height - h;
+      }else if((root.position==Position.Bottom)||(root.position==Position.BottomLeft)||(root.position==Position.BottomRight)){
+        return root.owner-height + ROOT-STYLES.sur-font.font-size;
+      }else{
+        return root.owner-height / 2 - h / 2;
+      }
+  }
+  callback clicked();
+  clicked => {
+    is-show = !is-show;
+  }
+
+  tip:=SCard { 
+    y: count-y(self.height);
+    x: count-x(self.width);
+    clip: false;
+    card-width: parent.width;
+    card-height: parent.height;
+    padding-type: PaddingType.Tip;
+    visible: is-show;
+    theme: root.theme;
+    @children
+    
+    if root.position==Position.Top: TopAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width: parent.width / 2 - self.width / 2;
+    }
+    if root.position==Position.TopLeft: TopAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width:  parent.width - self.width - 6px;
+    }
+    if root.position==Position.TopRight: TopAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width:   6px;
+    }
+    if root.position==Position.Right: RightAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+    }
+    if root.position==Position.RightTop: RightAngle{
+      theme: root.theme;
+      parent-height: 6px + self.height;
+    }
+    if root.position==Position.RightBottom: RightAngle{
+      theme: root.theme;
+      parent-height: parent.height + self.height * 2;
+    }
+    if root.position==Position.Bottom: BottomAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width: parent.width / 2 - self.width / 2;
+    }
+    if root.position==Position.BottomLeft: BottomAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width:  parent.width - self.width - 6px;
+    }
+    if root.position==Position.BottomRight: BottomAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width:  6px;
+    }
+    if root.position==Position.Left: LeftAngle{
+      theme: root.theme;
+      parent-height: parent.height;
+      parent-width: parent.width;
+    }
+    if root.position==Position.LeftTop: LeftAngle{
+      theme: root.theme;
+      parent-height: 6px + self.height;
+      parent-width: parent.width;
+    }
+    if root.position==Position.LeftBottom: LeftAngle{
+      theme: root.theme;
+      parent-height: parent.height + self.height * 2;
+      parent-width: parent.width;
+    }
+  }
+}

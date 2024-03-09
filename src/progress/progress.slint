@@ -220,7 +220,7 @@ component CircularProgress inherits Rectangle{
 
 
 export component Progress {
-  in property <bool> circle: false;
+  in property <bool> circle: DefaultSProgressProps.circle;
   in property <string> text : @tr("now: {}%" , round(progress * 100));
   in property <Themes> theme :DefaultSProgressProps.theme;
   in-out property <float> progress : DefaultSProgressProps.progress;

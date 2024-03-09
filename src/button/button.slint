@@ -47,9 +47,7 @@ export component Button inherits SCard {
   font-italic: DefaultSButtonProps.font-italic;
   font-family: DefaultSButtonProps.font-family;
   font-size:DefaultSButtonProps.font-size;
-  init => {
-    self.border-radius = self.round ? self.height / 2 : self.card-border.border-radius;
-  }
+  border-radius: self.round ? self.height / 2 : self.card-border.border-radius;
   states [
     light when self.theme == Themes.Light: {
       root.background : toucharea.has-hover?UseSurrealismFn.light-deeper(ROOT-STYLES.sur-theme-colors.light.normal):ROOT-STYLES.sur-theme-colors.light.normal;
