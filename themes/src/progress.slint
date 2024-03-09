@@ -13,6 +13,6 @@ export global DefaultSProgressProps {
   //hight-width
   in-out property <length> height : 8px + font-size * 2;
   in-out property <length> width : 100%;
-  in-out property <string> text : @tr("now: {}% used 100%" , progress);
+  in-out property <string> text : @tr("now: {}%" , round(progress * 100));
   in-out property <float> progress : 0;
 }

@@ -2,45 +2,67 @@ import {SProgress,SButton} from "../../index.slint";
 import {Themes} from "../../use/index.slint";
 
 component TestDivider inherits Window {
-  height: 400px;
+  height: 680px;
   width: 400px;
-  background: #1e1f2a;
-  SProgress {
-    y: 100px;
-    progress: 10;
-  }
-  a:=SProgress {
-    y: 200px;
-    progress: 32;
-    theme:Primary;
-  }
-  SProgress {
-    y: 300px;
-    theme:Dark;
-    progress:86;
-  }
-  SButton{
-    x: 60px;
-    y: 340px;
-    text: "add";
-    clicked => {
-      a.add(5);
+
+  VerticalLayout {
+    spacing: 20px;
+    padding: 10px;
+    SProgress {
+      theme: Error;
+      height: 160px;
+      circle: true;
+      progress: 56%;
+      font-size: 32px;
+      font-weight: 700;
+      stroke-color: @linear-gradient(180deg, #ff1515 0%,  #41ff57 100%);
+      text: @tr("🚀{}%",round(self.progress * 100));
+      font-color: @linear-gradient(180deg, #ff1515 0%,  #4193ff 100%);
+    }
+    SProgress {
+      height: 100px;
+      circle: false;
+      progress: 89%;
+      font-size: 16px;
+      font-weight: 700;
+      stroke-color: @linear-gradient(90deg, #ff1515 0%,  #4741ff 100%);
+    }
+    b:= SProgress {
+      theme: Primary;
+      height: 100px;
+      circle: false;
+      progress: 10%;
+    }
+    a:= SProgress {
+      height: 120px;
+      circle: true;
+      progress: 10%;
+    }
+    HorizontalLayout {
+      padding: 16px;
+      alignment: space-around;
+      SButton{
+        text: "add";
+        clicked => {
+          a.add(0.1);
+          b.add(0.1);
+        }
+      }
+      SButton{
+        text: "full";
+        clicked => {
+          a.full();
+          b.full();
+        }
+      }
+      SButton{
+        text: "clear";
+        clicked => {
+          a.clear();
+          b.clear();
+        }
+      }
     }
   }
-  SButton{
-    x: 160px;
-    y: 340px;
-    text: "full";
-    clicked => {
-      a.full();
-    }
-  }
-  SButton{
-    x: 260px;
-    y: 340px;
-    text: "clear";
-    clicked => {
-      a.clear();
-    }
-  }
+  
 }

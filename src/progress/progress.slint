@@ -30,56 +30,51 @@ import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
 import { ROOT_STYLES,DefaultSProgressProps } from "../../themes/index.slint";
 import { Themes,BorderType } from "../../use/index.slint";
-export component Progress inherits Rectangle {
+import {  VerticalBox, Palette, Slider } from "std-widgets.slint";
+
+component LineProgress  inherits Rectangle {
   width: 100%;
   height: layout.height;
   in property <Themes> theme :DefaultSProgressProps.theme;
-  in property <string> text : @tr("now: {}% used 100%" , progress);
+  in property <string> text;
   in-out property <float> progress : DefaultSProgressProps.progress;
   in-out property <int> font-weight : DefaultSProgressProps.font-weight;
   in-out property <length> font-size: DefaultSProgressProps.font-size;
   in-out property <brush> font-color : DefaultSProgressProps.font-color;
   in-out property <bool> font-italic : DefaultSProgressProps.font-italic;
   in-out property <string> font-family : DefaultSProgressProps.font-family;
+  in-out property <length> stroke-width: 8px;
+  in-out property <brush> stroke-color;
   private property <length> unit : self.width / 100;
-  public function add(num:float) {
-      if(progress<=100 - num){
-        root.progress+=num;
-      }else{
-        progress = 100;
-      }
-  }
-  pure public function get-progress() {
-      root.progress
-  }
-  public function clear() {
-      root.progress = 0;
-  }
-  public function full() {
-      root.progress = 100;
-  }
   
   states [
-    light when theme == Themes.Light: {
-      inner.background : ROOT-STYLES.sur-theme-colors.light.deepest;
+    light when root.theme == Themes.Light: {
+      outer.background : ROOT-STYLES.sur-theme-colors.light.weaker;
+      outer.border-color: ROOT-STYLES.sur-theme-colors.light.weaker;
     }
-    primary when theme == Themes.Primary: {
-      inner.background : ROOT-STYLES.sur-theme-colors.primary.deepest;
+    primary when root.theme == Themes.Primary: {
+      outer.background : ROOT-STYLES.sur-theme-colors.primary.weaker;
+      outer.border-color: ROOT-STYLES.sur-theme-colors.primary.weaker;
     }
-    success when theme == Themes.Success: {
-      inner.background : ROOT-STYLES.sur-theme-colors.success.deepest;
+    success when root.theme == Themes.Success: {
+      outer.background : ROOT-STYLES.sur-theme-colors.success.weaker;
+      outer.border-color: ROOT-STYLES.sur-theme-colors.success.weaker;
     }
-    info when theme == Themes.Info: {
-      inner.background : ROOT-STYLES.sur-theme-colors.info.deepest;
+    info when root.theme == Themes.Info: {
+      outer.background : ROOT-STYLES.sur-theme-colors.info.weaker;
+      outer.border-color: ROOT-STYLES.sur-theme-colors.info.weaker;
     }
-    warning when theme == Themes.Warning: {
-      inner.background : ROOT-STYLES.sur-theme-colors.warning.deepest;
+    warning when root.theme == Themes.Warning: {
+      outer.background : ROOT-STYLES.sur-theme-colors.warning.weaker;
+      outer.border-color: ROOT-STYLES.sur-theme-colors.warning.weaker;
     }
-    error when theme == Themes.Error: {
-      inner.background : ROOT-STYLES.sur-theme-colors.error.deepest;
+    error when root.theme == Themes.Error: {
+      outer.background : ROOT-STYLES.sur-theme-colors.error.weaker;
+      outer.border-color: ROOT-STYLES.sur-theme-colors.error.weaker;
     }
-    dark when theme == Themes.Dark: {
-      inner.background : ROOT-STYLES.sur-theme-colors.dark.deepest;
+    dark when root.theme == Themes.Dark: {
+      outer.background : ROOT-STYLES.sur-theme-colors.dark.weaker;
+      outer.border-color: ROOT-STYLES.sur-theme-colors.dark.weaker;
     }
   ]
     layout:=VerticalLayout {
@@ -89,17 +84,22 @@ export component Progress inherits Rectangle {
       bar:=Rectangle {
         height: outer.height;
         outer:=SCard { 
-          theme: Light;
-          height: inner.height + 2px;
+          theme: root.theme;
+          height: root.stroke-width + 4px;
           width: 100%;
           border-radius: self.height / 2;
           clip: true;
           border-type: BorderType.Normal;
+          drop-shadow-blur: 0;
+          drop-shadow-offset-x: 0;
+          drop-shadow-offset-y: 0;
+          
           inner:=SCard {
             x: 0;
             theme: root.theme;
-            height: 8px;
+            height: root.stroke-width;
             width: root.progress * root.unit;
+            background: root.stroke-color;
             border-radius: self.height / 2;
             padding: 0;
             padding-left: 0;
@@ -109,6 +109,7 @@ export component Progress inherits Rectangle {
             drop-shadow-blur: 0;
             drop-shadow-offset-y: 0;
             drop-shadow-offset-x: 0;
+            border-type: None;
           }
         }
       }
@@ -127,3 +128,180 @@ export component Progress inherits Rectangle {
       }
     }
 }
+
+component CircularProgress inherits Rectangle{
+  height: 100px;
+  width: self.height;
+  in property <string> text;
+  in property <Themes> theme :DefaultSProgressProps.theme;
+  in property <float> progress: DefaultSProgressProps.progress;
+  in-out property <length> stroke-width: 8px;
+  in-out property <brush> stroke-color;
+  in-out property <int> font-weight : DefaultSProgressProps.font-weight;
+  in-out property <length> font-size: DefaultSProgressProps.font-size;
+  in-out property <brush> font-color : DefaultSProgressProps.font-color;
+  in-out property <bool> font-italic : DefaultSProgressProps.font-italic;
+  in-out property <string> font-family : DefaultSProgressProps.font-family;
+  states [
+    light when theme == Themes.Light: {
+      rect.border-color : ROOT-STYLES.sur-theme-colors.light.weaker;
+    }
+    primary when theme == Themes.Primary: {
+      rect.border-color : ROOT-STYLES.sur-theme-colors.primary.weaker;
+    }
+    success when theme == Themes.Success: {
+      rect.border-color : ROOT-STYLES.sur-theme-colors.success.weaker;
+    }
+    info when theme == Themes.Info: {
+      rect.border-color : ROOT-STYLES.sur-theme-colors.info.weaker;
+    }
+    warning when root.theme == Themes.Warning: {
+      rect.border-color : ROOT-STYLES.sur-theme-colors.warning.weaker;
+    }
+    error when theme == Themes.Error: {
+      rect.border-color : ROOT-STYLES.sur-theme-colors.error.weaker;
+    }
+    dark when root.theme == Themes.Dark: {
+      rect.border-color : ROOT-STYLES.sur-theme-colors.dark.weaker;
+    }
+  ]
+  rect := Rectangle {
+      height: parent.height * 1;
+      width: parent.width * 1;
+      border-color: root.font-color;
+      border-width: root.stroke-width + 4px;
+      border-radius: self.height * 0.5;
+  }
+ 
+  
+  path := Path {
+      in-out property <brush> color : root.stroke-color;
+      private property <float> radius: 0.5;
+      // clamp is a workaground to get filled circle by 1.0
+      private property <angle> progress: clamp(root.progress * 1turn, 0turn, 0.99999turn);
+      viewbox-width: 1;
+      viewbox-height: 1;
+      height: parent.height - 4px;
+      width: parent.width - 4px;
+      
+      //where is this 3px offset coming from? if I don't put it though
+      //the path ends up slight unaligned compared to the full circl rect
+      x: (parent.width - self.width) / 2 + 0px;
+      y: (parent.width - self.width) / 2 + 0px;
+
+      stroke-width: root.stroke-width;
+      stroke: self.color;
+      MoveTo {
+          x: 0.5;
+          y: 0;
+      }
+
+      ArcTo {
+          radius-x: path.radius;
+          radius-y: path.radius;
+          x: 0.5 - path.radius * sin(-(path.progress) );
+          y: 0.5 - path.radius * cos(-(path.progress) );
+          sweep: root.progress > 0;
+          large-arc: root.progress > 0.5;
+      }
+     
+  }
+
+  text := SText {
+    theme: root.theme;
+    font-size: root.font-size;
+    font-weight: root.font-weight;
+    font-italic: root.font-italic;
+    font-family: root.font-family;
+    color: root.font-color;
+    text: root.text;
+  }
+}
+
+
+export component Progress {
+  in property <bool> circle: false;
+  in property <string> text : @tr("now: {}%" , round(progress * 100));
+  in property <Themes> theme :DefaultSProgressProps.theme;
+  in-out property <float> progress : DefaultSProgressProps.progress;
+  in-out property <int> font-weight : DefaultSProgressProps.font-weight;
+  in-out property <length> font-size: DefaultSProgressProps.font-size;
+  in-out property <brush> font-color : DefaultSProgressProps.font-color;
+  in-out property <bool> font-italic : DefaultSProgressProps.font-italic;
+  in-out property <string> font-family : DefaultSProgressProps.font-family;
+  in-out property <length> stroke-width: 8px;
+  in-out property <brush> stroke-color;
+  public function add(num:float) {
+    if(progress <= 1 - num){
+      root.progress += num;
+    }else{
+      progress = 1;
+    }
+  }
+  pure public function get-progress() {
+      root.progress
+  }
+  public function clear() {
+      root.progress = 0;
+  }
+  public function full() {
+      root.progress = 1;
+  }
+  states [
+    light when theme == Themes.Light: {
+      stroke-color : ROOT-STYLES.sur-theme-colors.light.deepest;
+    }
+    primary when theme == Themes.Primary: {
+      stroke-color : ROOT-STYLES.sur-theme-colors.primary.deepest;
+    }
+    success when theme == Themes.Success: {
+      stroke-color : ROOT-STYLES.sur-theme-colors.success.deepest;
+    }
+    info when theme == Themes.Info: {
+      stroke-color : ROOT-STYLES.sur-theme-colors.info.deepest;
+    }
+    warning when root.theme == Themes.Warning: {
+      stroke-color : ROOT-STYLES.sur-theme-colors.warning.deepest;
+    }
+    error when theme == Themes.Error: {
+      stroke-color : ROOT-STYLES.sur-theme-colors.error.deepest;
+    }
+    dark when root.theme == Themes.Dark: {
+      stroke-color : ROOT-STYLES.sur-theme-colors.dark.deepest;
+    }
+  ]
+  if circle: CircularProgress {
+    text:root.text;
+    theme: root.theme;
+    height: root.height;
+    progress: root.progress;
+    font-weight: root.font-weight;
+    font-size: root.font-size;
+    font-family: root.font-family;
+    stroke-width: root.stroke-width;
+    font-italic: root.font-italic;
+    font-color: root.font-color;
+    stroke-color: root.stroke-color;
+    animate progress {
+       easing: ROOT-STYLES.sur-an-easing;
+       duration: ROOT-STYLES.sur-an-duration;
+    }
+  }
+
+  if !circle: LineProgress{
+    text: root.text;
+    theme: root.theme;
+    width: root.width;
+    progress: root.progress * 100;
+    font-weight: root.font-weight;
+    font-size: root.font-size;
+    font-family: root.font-family;
+    stroke-width: root.stroke-width;
+    font-italic: root.font-italic;
+    font-color: root.font-color;
+    stroke-color: root.stroke-color;
+  }
+  
+}
+
+
