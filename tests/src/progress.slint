@@ -1,7 +1,7 @@
 import {SProgress,SButton} from "../../index.slint";
 import {Themes} from "../../use/index.slint";
 
-component TestDivider inherits Window {
+component TestProgress inherits Window {
   height: 680px;
   width: 400px;
 
@@ -29,7 +29,6 @@ component TestDivider inherits Window {
     }
     b:= SProgress {
       theme: Primary;
-      height: 100px;
       circle: false;
       progress: 10%;
     }

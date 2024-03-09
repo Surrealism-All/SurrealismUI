@@ -229,7 +229,7 @@ export component Progress {
   in-out property <brush> font-color : DefaultSProgressProps.font-color;
   in-out property <bool> font-italic : DefaultSProgressProps.font-italic;
   in-out property <string> font-family : DefaultSProgressProps.font-family;
-  in-out property <length> stroke-width: 8px;
+  in-out property <length> stroke-width: DefaultSProgressProps.stroke-width;
   in-out property <brush> stroke-color;
   public function add(num:float) {
     if(progress <= 1 - num){
