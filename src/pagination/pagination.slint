@@ -1,0 +1,116 @@
+import { UseIcons, Themes, PaddingType, UseSurrealismFn, ColorLevel } from "../../use/index.slint";
+import { SIcon } from "../icon/index.slint";
+import { SCard } from "../card/index.slint";
+import { SText } from "../text/index.slint";
+import { ScrollView } from "std-widgets.slint";
+
+export component Pagination {
+    in property <Themes> theme: Themes.Dark;
+    in-out property <int> active: 0;
+    in property <int> page-size: 10;
+    in property <int> total: 50;
+    in property <image> pre-icon: UseIcons.icons.Left;
+    in property <image> next-icon: UseIcons.icons.Right;
+    in property <length> size: 18px;
+    private property <int> page-number: ceil(total / page-size);
+    pure function get-color(hover:bool, index: int, self-color: brush) -> brush {
+        if (hover) {
+            return UseSurrealismFn.deeper(root.theme, self-color);
+        }else{
+            return root.active == index ? UseSurrealismFn.deeper(root.theme, self-color): self-color;
+        }        
+    }
+    callback pre(int, int);
+    callback next(int, int);
+    HorizontalLayout {
+        spacing: root.size / 1.75;
+        pre-btn:= SCard {
+            theme: root.theme;
+            card-height: root.size;
+            card-width: root.size;
+            padding-type: PaddingType.Tip;
+            pre-inner-icon:= SIcon {
+                colorize: self.get-colorize();
+                theme: root.theme;
+                source: pre-icon;
+                height: root.size;
+                width: root.size;
+                clicked => {
+                    if root.active != 0 {
+                        root.active -= 1;
+                    }
+                    root.pre(root.active, root.page-size);
+                }
+            }
+        }
+        for item[index] in root.page-number: SCard {
+            theme: root.theme;
+            padding-type: PaddingType.Tip;
+            card-height: root.size;
+            card-width: root.size;
+            background: get-color(touch-area.has-hover, index, UseSurrealismFn.get-color(root.theme, ColorLevel.Normal));
+            touch-area:= TouchArea {
+                mouse-cursor: pointer;
+                clicked => {
+                    root.active = index;
+                }
+                inner-text:= SText {
+                    theme: root.theme;
+                    font-size: root.size;
+                    text: item + 1;
+                }
+            }
+        }
+        next-btn:= SCard{
+            theme: root.theme;
+            card-height: root.size;
+            card-width: root.size;
+            padding-type: PaddingType.Tip;
+            next-inner-icon:= SIcon {
+                colorize: self.get-colorize();
+                theme: root.theme;
+                source: next-icon;
+                height: root.size;
+                width: root.size;
+                clicked => {
+                    if root.active != page-number - 1 {
+                        root.active += 1;
+                    }
+                    root.next(root.active, root.page-size);
+                }
+            }
+        }
+    }
+}
+
+export component TestPagination inherits Window{
+    height: 400px;
+    width: 460px;
+    background: #1d2125;
+    VerticalLayout {
+        padding-top: 32px;
+        padding-bottom: 32px;
+        alignment: space-around;
+        Rectangle {
+            
+            Pagination {}
+        }
+        Rectangle {
+            ScrollView {
+                height: 200px;
+                width: root.width;
+                viewport-width: p.width + 24px;
+                p:= Pagination {
+                    theme: Themes.Primary;
+                    active: 2;
+                    page-size: 30;
+                    total: 100;
+                    pre-icon: UseIcons.icons.Left;
+                    next-icon: UseIcons.icons.Right;
+                    size: 16px;
+                }
+            }
+            
+        }
+    }
+}

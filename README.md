@@ -392,9 +392,33 @@ After this major update, the writing of attributes in SurrealismUI is closer to 
 
 Thank you for reading, and if you have any questions, please send an email to syf20020816@outlook.com or raise them in a discussion or issue at the SurrealismUI repository
 
+- V0.5.0+
+  - 中文
+    - 尝试`SCode`代码编辑器
+- V0.4.5
+  - 中文
+    - 增加`SCatalog`目录
+  - English
+- V0.4.4
+  - 中文
+    - 增加`SGroup`分组
+    - 增加`STabbar`
+  - English
+- V0.4.3
+  - 中文
+    - 增加`SNumInput`走马灯
+    - 增加`SDate`时间日期
+  - English
+- V0.4.2
+  - 中文
+    - 增加`SCarousel`走马灯
+    - 增加`STimeLine`时间轴
+  - English
 - V0.4.1
   - 中文
     - 增加`SStep`进度指向线颜色效果
+    - 增加`SPagination`分页器组件
+    - 增加`SVKeyboard`虚拟键盘
   - English
     - Add progress directional line color for `SStep`
 - V0.4.0
