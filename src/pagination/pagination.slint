@@ -12,23 +12,42 @@ export component Pagination {
     in property <image> pre-icon: UseIcons.icons.Left;
     in property <image> next-icon: UseIcons.icons.Right;
     in property <length> size: 18px;
+    in property <int> visible-range: 5;
+    private property <PaddingType> padding-type: PaddingType.Tip;
     private property <int> page-number: ceil(total / page-size);
-    pure function get-color(hover:bool, index: int, self-color: brush) -> brush {
+    // private property <int> unvisible-number: 0;
+    pure function get-color(hover: bool, index: int, self-color: brush) -> brush {
         if (hover) {
             return UseSurrealismFn.deeper(root.theme, self-color);
         }else{
             return root.active == index ? UseSurrealismFn.deeper(root.theme, self-color): self-color;
         }        
     }
+    pure function show(index: int) -> bool{
+        if (root.visible-range < root.page-number){
+            
+           return round(root.page-number / 2) - floor((root.page-number - root.visible-range) / 2)  <= index &&
+            index < round(root.page-number / 2) + ceil((root.page-number - root.visible-range) / 2);
+            
+        }
+        return false;
+    }
+    pure function left() -> int{
+        return round(root.page-number / 2) - floor((root.page-number - root.visible-range) / 2);
+    }
+    pure public function right() -> int {
+        return root.visible-range - left();
+    }
     callback pre(int, int);
     callback next(int, int);
+    callback clicked(int, int);
     HorizontalLayout {
         spacing: root.size / 1.75;
         pre-btn:= SCard {
             theme: root.theme;
             card-height: root.size;
             card-width: root.size;
-            padding-type: PaddingType.Tip;
+            padding-type: root.padding-type;
             pre-inner-icon:= SIcon {
                 colorize: self.get-colorize();
                 theme: root.theme;
@@ -43,21 +62,89 @@ export component Pagination {
                 }
             }
         }
-        for item[index] in root.page-number: SCard {
-            theme: root.theme;
-            padding-type: PaddingType.Tip;
-            card-height: root.size;
-            card-width: root.size;
-            background: get-color(touch-area.has-hover, index, UseSurrealismFn.get-color(root.theme, ColorLevel.Normal));
-            touch-area:= TouchArea {
-                mouse-cursor: pointer;
-                clicked => {
-                    root.active = index;
+        Rectangle{
+            HorizontalLayout {
+                if root.visible-range >= root.page-number: HorizontalLayout {
+                    spacing: root.size / 1.75;
+                    for item[index] in root.page-number: Rectangle{
+                        width: UseSurrealismFn.count-width(root.size, UseSurrealismFn.get-padding(root.padding-type).padding-left);
+                        SCard {
+                            theme: root.theme;
+                            padding-type: root.padding-type;
+                            card-height: root.size;
+                            card-width: root.size;
+                            background: get-color(touch-area.has-hover, index, UseSurrealismFn.get-color(root.theme, ColorLevel.Normal));
+                            touch-area:= TouchArea {
+                                mouse-cursor: pointer;
+                                clicked => {
+                                    root.active = index;
+                                    root.clicked(index, root.page-size);
+                                }
+                                inner-text:= SText {
+                                    theme: root.theme;
+                                    font-size: root.size;
+                                    text: item + 1;
+                                }
+                            }
+                        }
+                    }
                 }
-                inner-text:= SText {
-                    theme: root.theme;
-                    font-size: root.size;
-                    text: item + 1;
+            }
+            HorizontalLayout {
+                if root.visible-range < root.page-number: HorizontalLayout{
+                    spacing: root.size / 1.75;
+                    for l-item[l-index] in root.left(): Rectangle {
+                        width: UseSurrealismFn.count-width(root.size, UseSurrealismFn.get-padding(root.padding-type).padding-left);
+                        SCard {
+                            theme: root.theme;
+                            padding-type: root.padding-type;
+                            card-height: root.size;
+                            card-width: root.size;
+                            background: get-color(touch-area-l.has-hover, l-index, UseSurrealismFn.get-color(root.theme, ColorLevel.Normal));
+                            touch-area-l:= TouchArea {
+                                mouse-cursor: pointer;
+                                clicked => {
+                                    root.active = l-index;
+                                    root.clicked(l-index, root.page-size);
+                                }
+                                inner-text-l:= SText {
+                                    theme: root.theme;
+                                    font-size: root.size;
+                                    text: l-item + 1;
+                                }
+                            }
+                        }
+                    }
+                    // more icon
+                    if root.visible-range != root.page-number: Rectangle {
+                        width: UseSurrealismFn.count-width(root.size, UseSurrealismFn.get-padding(root.padding-type).padding-left);
+                        SIcon {
+                            source: UseIcons.icons.More;
+                        }
+                    }
+                    for r-item[index] in root.right(): Rectangle {
+                        width: UseSurrealismFn.count-width(root.size, UseSurrealismFn.get-padding(root.padding-type).padding-left);
+                        SCard {
+                            private property <int> r-index: root.page-number - root.right() + r-item;
+                            theme: root.theme;
+                            padding-type: root.padding-type;
+                            card-height: root.size;
+                            card-width: root.size;
+                            background: get-color(touch-area-r.has-hover, r-index, UseSurrealismFn.get-color(root.theme, ColorLevel.Normal));
+                            touch-area-r:= TouchArea {
+                                mouse-cursor: pointer;
+                                clicked => {
+                                    root.active = r-index;
+                                    root.clicked(r-index, root.page-size);
+                                }
+                                inner-text-r:= SText {
+                                    theme: root.theme;
+                                    font-size: root.size;
+                                    text: r-index + 1;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -65,7 +152,7 @@ export component Pagination {
             theme: root.theme;
             card-height: root.size;
             card-width: root.size;
-            padding-type: PaddingType.Tip;
+            padding-type: root.padding-type;
             next-inner-icon:= SIcon {
                 colorize: self.get-colorize();
                 theme: root.theme;
@@ -92,8 +179,11 @@ export component TestPagination inherits Window{
         padding-bottom: 32px;
         alignment: space-around;
         Rectangle {
-            
-            Pagination {}
+            Pagination {
+                page-size: 15;
+                total: 100;
+                visible-range: 5;
+            }
         }
         Rectangle {
             ScrollView {
