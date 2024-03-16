@@ -19,6 +19,6 @@ export global DefaultSIconProps {
   };
   in-out property <int> source-clip-x : 0;
   in-out property <int> source-clip-y : 0;
-  in-out property <int> source-clip-height : 0;
-  in-out property <int> source-clip-width : 0;
+  in-out property <int> source-clip-height: source.height - source-clip-y;
+  in-out property <int> source-clip-width: source.width - source-clip-x;
 }

@@ -40,9 +40,10 @@ export component Icon{
   in-out property <RotationProps> rotation : DefaultSIconProps.rotation;
   in property <int> source-clip-x : DefaultSIconProps.source-clip-x;
   in property <int> source-clip-y : DefaultSIconProps.source-clip-y;
-  in property <int> source-clip-height : DefaultSIconProps.source-clip-height;
-  in property <int> source-clip-width : DefaultSIconProps.source-clip-width;
+  in property <int> source-clip-height: source.height - source-clip-y;
+  in property <int> source-clip-width: source.width - source-clip-x;
   out property <bool> has-hover <=> area.has-hover;
+  
   pure public function get-colorize()->brush {
       return UseSurrealismFn.get-color(root.theme , ColorLevel.Font);
   }

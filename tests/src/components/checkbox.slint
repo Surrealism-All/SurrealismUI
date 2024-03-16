@@ -2,12 +2,7 @@ import { CheckBox } from "std-widgets.slint";
 export component TestCheckbox inherits Window {
   height: 400px;
   width: 400px;
-    Rectangle {
-      background: red;
-      height: c.height;
-      width: c.width;
-      c:=CheckBox {
-        padding: 0;
-      }
-    }
+  Image {
+    source: @image-url("../../../icons/ad.svg");
+  }
 }
