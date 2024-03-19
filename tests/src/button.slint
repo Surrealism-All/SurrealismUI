@@ -2,55 +2,75 @@ import {SButton} from "../../index.slint";
 import {Themes} from "../../use/index.slint";
 
 component TestButton inherits Window {
-  height: 400px;
-  width: 400px;
-  SButton {
-    x: 20px;
-    y: 10px;
-    show-icon:true;
-    theme:Themes.Dark;
-    icon:@image-url("../../icons/safe-retrieval.svg");
-    clicked => {
-      self.text = "clicked"
+    height: 400px;
+    width: 400px;
+    SButton {
+        x: 20px;
+        y: 10px;
+        show-icon: true;
+        theme: Themes.Dark;
+        icon: @image-url("../../icons/acceleration.svg");
+        clicked => {
+            self.text = "clicked"
+        }
     }
-  }
-  SButton {
-    x: 260px;
-    y: 10px;
-    round : true;
-    text:"Save";
-    clicked => {
-      self.text = "clicked";
+
+    SButton {
+        x: 260px;
+        y: 10px;
+        round: true;
+        text: "Save";
+        clicked => {
+            self.text = "clicked";
+        }
     }
-  }
-  SButton {
-    x: 20px;
-    y: 100px;
-    text:"Success";
-    theme:Themes.Success;
-  }
-  SButton {
-    x: 20px;
-    y: 200px;
-    text:"Primary";
-    theme:Themes.Primary;
-  }
-  SButton {
-    x: 20px;
-    y: 300px;
-    text:"Info";
-    theme:Themes.Info;
-  }
-  SButton {
-    x: 200px;
-    y: 100px;
-    text:"Error?";
-    theme:Themes.Error;
-    icon:@image-url("../../icons/magic-hat.svg");
-  }
-  SButton {
-    x: 200px;
-    y: 200px;
-    theme:Themes.Warning;
-  }
+
+    SButton {
+        x: 20px;
+        y: 100px;
+        text: "Success";
+        theme: Themes.Success;
+    }
+
+    SButton {
+        x: 20px;
+        y: 200px;
+        text: "Primary";
+        theme: Themes.Primary;
+    }
+
+    SButton {
+        x: 20px;
+        y: 300px;
+        text: "Info";
+        theme: Themes.Info;
+    }
+
+    SButton {
+        x: 200px;
+        y: 100px;
+        text: "Error?";
+        theme: Themes.Error;
+        icon: @image-url("../../icons/magic-hat.svg");
+    }
+
+    SButton {
+        x: 200px;
+        y: 200px;
+        theme: Themes.Warning;
+    }
+
+    SButton {
+        x: 200px;
+        y: 300px;
+        text: "disabled";
+        disabled: true;
+        theme: Dark;
+        clicked => {
+            debug("cannot clicked")
+        }
+        pending => {
+            debug("pending")
+        }
+    }
 }

@@ -2,21 +2,22 @@ import {Themes,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
 import {GlobalProps} from "./index.slint";
 
 export global DefaultSButtonProps {
-  //font
-  in-out property <int> font-weight : GlobalProps.font.font-weight;
-  in-out property <length> font-size: GlobalProps.font.font-size;
-  in-out property <brush> color : GlobalProps.font.color;
-  in-out property <bool> font-italic : GlobalProps.font.font-italic;
-  in-out property <string> font-family : GlobalProps.font.font-family;
-  //theme
-  in-out property <Themes> theme : GlobalProps.theme;
-  in property <PaddingType> padding-type:PaddingType.Normal;
-  in property <ShadowType> shadow-type: ShadowType.Low1;
-  in property <BorderType> border-type : BorderType.Normal;
-  in property <image> icon;
-  in property <bool> show-icon : false;
-  in-out property <string> text : "SButton";
-  in property <length> letter-spacing : GlobalProps.text-action.letter-spacing;
-  in property <bool> clip : GlobalProps.clip;
-  in property <bool> round : false;
+    //font
+  in-out property <int> font-weight: GlobalProps.font.font-weight;
+    in-out property <length> font-size: GlobalProps.font.font-size;
+    in-out property <brush> color: GlobalProps.font.color;
+    in-out property <bool> font-italic: GlobalProps.font.font-italic;
+    in-out property <string> font-family: GlobalProps.font.font-family;
+    //theme
+  in-out property <Themes> theme: GlobalProps.theme;
+    in property <PaddingType> padding-type:PaddingType.Normal;
+    in property <ShadowType> shadow-type: ShadowType.Low1;
+    in property <BorderType> border-type: BorderType.Normal;
+    in property <image> icon;
+    in property <bool> show-icon: false;
+    in-out property <string> text: "SButton";
+    in property <length> letter-spacing: GlobalProps.text-action.letter-spacing;
+    in property <bool> clip: GlobalProps.clip;
+    in property <bool> round: false;
+    in-out property <bool> disabled: false;
 }

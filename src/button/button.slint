@@ -26,136 +26,148 @@ import {SIcon} from "../icon/index.slint";
 import {SCard} from "../card/index.slint";
 import {ROOT-STYLES,DefaultSButtonProps} from "../../themes/index.slint";
 import { HorizontalBox } from "std-widgets.slint";
-import { Themes,UseSurrealismFn } from "../../use/index.slint";
+import { Themes,UseSurrealismFn,ColorLevel } from "../../use/index.slint";
 
 export component Button inherits SCard {
-  in property <image> icon : DefaultSButtonProps.icon;
-  in property <bool> show-icon : DefaultSButtonProps.show-icon;
-  out property <bool> has-hover <=>toucharea.has-hover;
-  in-out property <string> text : DefaultSButtonProps.text;
-  in property <length> letter-spacing : DefaultSButtonProps.letter-spacing;
-  in property <bool> round  : DefaultSButtonProps.round;
-  clip: DefaultSButtonProps.clip;
-  card-width: layout.width;
-  card-height: layout.height;
-  theme: DefaultSButtonProps.theme;
-  border-type: DefaultSButtonProps.border-type;
-  padding-type: DefaultSButtonProps.padding-type;
-  shadow-type: DefaultSButtonProps.shadow-type;
-  font-color<=> btn-txt.color;
-  font-weight: DefaultSButtonProps.font-weight;
-  font-italic: DefaultSButtonProps.font-italic;
-  font-family: DefaultSButtonProps.font-family;
-  font-size:DefaultSButtonProps.font-size;
-  border-radius: self.round ? self.height / 2 : self.card-border.border-radius;
-  states [
-    light when self.theme == Themes.Light: {
-      root.background : toucharea.has-hover?UseSurrealismFn.light-deeper(ROOT-STYLES.sur-theme-colors.light.normal):ROOT-STYLES.sur-theme-colors.light.normal;
-      root.border-color : ROOT-STYLES.sur-theme-colors.light.normal;
-      root.drop-shadow-color : ROOT-STYLES.sur-theme-colors.light.deepest;
-      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
-      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
-    }
-    primary when self.theme == Themes.Primary: {
-      root.background : toucharea.has-hover?UseSurrealismFn.primary-deeper(ROOT-STYLES.sur-theme-colors.primary.normal):ROOT-STYLES.sur-theme-colors.primary.normal;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
-      root.border-color : ROOT-STYLES.sur-theme-colors.primary.normal;
-      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
-      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
-    }
-    success when self.theme == Themes.Success: {
-      root.background : toucharea.has-hover?UseSurrealismFn.success-deeper(ROOT-STYLES.sur-theme-colors.success.normal):ROOT-STYLES.sur-theme-colors.success.normal;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
-      root.border-color : ROOT-STYLES.sur-theme-colors.success.normal;
-      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
-      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
-    }
-    info when self.theme == Themes.Info: {
-      root.background : toucharea.has-hover?UseSurrealismFn.info-deeper(ROOT-STYLES.sur-theme-colors.info.normal):ROOT-STYLES.sur-theme-colors.info.normal;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
-      root.border-color : ROOT-STYLES.sur-theme-colors.info.normal;
-      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
-      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
-    }
-    warning when self.theme == Themes.Warning: {
-      root.background : toucharea.has-hover?UseSurrealismFn.warning-deeper(ROOT-STYLES.sur-theme-colors.warning.normal):ROOT-STYLES.sur-theme-colors.warning.normal;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
-      root.border-color : ROOT-STYLES.sur-theme-colors.warning.normal;
-      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
-      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
-    }
-    error when self.theme == Themes.Error: {
-      root.background : toucharea.has-hover?UseSurrealismFn.error-deeper(ROOT-STYLES.sur-theme-colors.error.normal):ROOT-STYLES.sur-theme-colors.error.normal;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
-      root.border-color : ROOT-STYLES.sur-theme-colors.error.normal;
-      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
-      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
-    }
-    dark when self.theme == Themes.Dark: {
-      root.background : toucharea.has-hover?UseSurrealismFn.dark-deeper(ROOT-STYLES.sur-theme-colors.dark.normal):ROOT-STYLES.sur-theme-colors.dark.normal;
-      root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
-      root.border-color : ROOT-STYLES.sur-theme-colors.dark.normal;
-      root.drop-shadow-blur : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.blur:ROOT-STYLES.sur-shadow.low1.blur;
-      root.drop-shadow-offset-y : toucharea.has-hover?ROOT-STYLES.sur-shadow.low3.y:ROOT-STYLES.sur-shadow.low1.y;
-    }
-  ]
-  // animation
+    in property <image> icon: DefaultSButtonProps.icon;
+    in property <bool> show-icon: DefaultSButtonProps.show-icon;
+    out property <bool> has-hover <=> toucharea.has-hover;
+    in-out property <string> text: DefaultSButtonProps.text;
+    in property <length> letter-spacing: DefaultSButtonProps.letter-spacing;
+    in property <bool> round: DefaultSButtonProps.round;
+    in-out property <bool> disabled: DefaultSButtonProps.disabled;
+    clip: DefaultSButtonProps.clip;
+    card-width: layout.width;
+    card-height: layout.height;
+    theme: DefaultSButtonProps.theme;
+    border-type: DefaultSButtonProps.border-type;
+    padding-type: DefaultSButtonProps.padding-type;
+    shadow-type: DefaultSButtonProps.shadow-type;
+    font-color <=> btn-txt.color;
+    font-weight: DefaultSButtonProps.font-weight;
+    font-italic: DefaultSButtonProps.font-italic;
+    font-family: DefaultSButtonProps.font-family;
+    font-size: DefaultSButtonProps.font-size;
+    border-radius: self.round ? self.height / 2 : self.card-border.border-radius;
+    states [
+        disabled when self.disabled: {
+            root.background: UseSurrealismFn.get-color(self.theme, ColorLevel.Weaker);
+            root.drop-shadow-color: UseSurrealismFn.get-color(self.theme, ColorLevel.Weaker);
+            root.border-color: UseSurrealismFn.get-color(self.theme, ColorLevel.Weaker);
+            toucharea.mouse-cursor: MouseCursor.not-allowed;
+            btn-txt.color: UseSurrealismFn.get-color(self.theme, ColorLevel.Normal);
+        }
+        light when self.theme == Themes.Light: {
+            root.background: toucharea.has-hover ? UseSurrealismFn.light-deeper(ROOT-STYLES.sur-theme-colors.light.normal) : ROOT-STYLES.sur-theme-colors.light.normal;
+            root.border-color: ROOT-STYLES.sur-theme-colors.light.normal;
+            root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.light.deepest;
+            root.drop-shadow-blur: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.blur : ROOT-STYLES.sur-shadow.low1.blur;
+            root.drop-shadow-offset-y: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.y : ROOT-STYLES.sur-shadow.low1.y;
+        }
+        primary when self.theme == Themes.Primary: {
+            root.background: toucharea.has-hover ? UseSurrealismFn.primary-deeper(ROOT-STYLES.sur-theme-colors.primary.normal) : ROOT-STYLES.sur-theme-colors.primary.normal;
+            root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.primary.deepest;
+            root.border-color: ROOT-STYLES.sur-theme-colors.primary.normal;
+            root.drop-shadow-blur: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.blur : ROOT-STYLES.sur-shadow.low1.blur;
+            root.drop-shadow-offset-y: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.y : ROOT-STYLES.sur-shadow.low1.y;
+        }
+        success when self.theme == Themes.Success: {
+            root.background: toucharea.has-hover ? UseSurrealismFn.success-deeper(ROOT-STYLES.sur-theme-colors.success.normal) : ROOT-STYLES.sur-theme-colors.success.normal;
+            root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.success.deepest;
+            root.border-color: ROOT-STYLES.sur-theme-colors.success.normal;
+            root.drop-shadow-blur: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.blur : ROOT-STYLES.sur-shadow.low1.blur;
+            root.drop-shadow-offset-y: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.y : ROOT-STYLES.sur-shadow.low1.y;
+        }
+        info when self.theme == Themes.Info: {
+            root.background: toucharea.has-hover ? UseSurrealismFn.info-deeper(ROOT-STYLES.sur-theme-colors.info.normal) : ROOT-STYLES.sur-theme-colors.info.normal;
+            root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.info.deepest;
+            root.border-color: ROOT-STYLES.sur-theme-colors.info.normal;
+            root.drop-shadow-blur: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.blur : ROOT-STYLES.sur-shadow.low1.blur;
+            root.drop-shadow-offset-y: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.y : ROOT-STYLES.sur-shadow.low1.y;
+        }
+        warning when self.theme == Themes.Warning: {
+            root.background: toucharea.has-hover ? UseSurrealismFn.warning-deeper(ROOT-STYLES.sur-theme-colors.warning.normal) : ROOT-STYLES.sur-theme-colors.warning.normal;
+            root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.warning.deepest;
+            root.border-color: ROOT-STYLES.sur-theme-colors.warning.normal;
+            root.drop-shadow-blur: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.blur : ROOT-STYLES.sur-shadow.low1.blur;
+            root.drop-shadow-offset-y: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.y : ROOT-STYLES.sur-shadow.low1.y;
+        }
+        error when self.theme == Themes.Error: {
+            root.background: toucharea.has-hover ? UseSurrealismFn.error-deeper(ROOT-STYLES.sur-theme-colors.error.normal) : ROOT-STYLES.sur-theme-colors.error.normal;
+            root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.error.deepest;
+            root.border-color: ROOT-STYLES.sur-theme-colors.error.normal;
+            root.drop-shadow-blur: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.blur : ROOT-STYLES.sur-shadow.low1.blur;
+            root.drop-shadow-offset-y: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.y : ROOT-STYLES.sur-shadow.low1.y;
+        }
+        dark when self.theme == Themes.Dark: {
+            root.background: toucharea.has-hover ? UseSurrealismFn.dark-deeper(ROOT-STYLES.sur-theme-colors.dark.normal) : ROOT-STYLES.sur-theme-colors.dark.normal;
+            root.drop-shadow-color: ROOT-STYLES.sur-theme-colors.dark.deepest;
+            root.border-color: ROOT-STYLES.sur-theme-colors.dark.normal;
+            root.drop-shadow-blur: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.blur : ROOT-STYLES.sur-shadow.low1.blur;
+            root.drop-shadow-offset-y: toucharea.has-hover ? ROOT-STYLES.sur-shadow.low3.y : ROOT-STYLES.sur-shadow.low1.y;
+        }
+    ]// animation
   animate background {
-    duration: ROOT-STYLES.sur-an-duration;
-    easing: ROOT-STYLES.sur-an-easing;
-  }
-  animate height {
-    duration: ROOT-STYLES.sur-an-duration;
-    easing: ROOT-STYLES.sur-an-easing;
-  }
-  animate width {
-    duration: ROOT-STYLES.sur-an-duration;
-    easing: ROOT-STYLES.sur-an-easing;
-  }
-  animate drop-shadow-blur {
-    duration: ROOT-STYLES.sur-an-duration;
-    easing: ROOT-STYLES.sur-an-easing;
-  }
-  animate drop-shadow-offset-y {
-    duration: ROOT-STYLES.sur-an-duration;
-    easing: ROOT-STYLES.sur-an-easing;
-  }
-  // //callbacks
+        duration: ROOT-STYLES.sur-an-duration;
+        easing: ROOT-STYLES.sur-an-easing;
+    }
+    animate height {
+        duration: ROOT-STYLES.sur-an-duration;
+        easing: ROOT-STYLES.sur-an-easing;
+    }
+    animate width {
+        duration: ROOT-STYLES.sur-an-duration;
+        easing: ROOT-STYLES.sur-an-easing;
+    }
+    animate drop-shadow-blur {
+        duration: ROOT-STYLES.sur-an-duration;
+        easing: ROOT-STYLES.sur-an-easing;
+    }
+    animate drop-shadow-offset-y {
+        duration: ROOT-STYLES.sur-an-duration;
+        easing: ROOT-STYLES.sur-an-easing;
+    }
+    // //callbacks
   callback clicked();
-  toucharea:=TouchArea {
-    mouse-cursor: pointer;
-    clicked => {
-      root.clicked();
+    callback pending();
+    toucharea := TouchArea {
+        mouse-cursor: pointer;
+        clicked => {
+            if !root.disabled {
+                root.clicked();
+            } else {
+                root.pending();
+            }
+        }
+        z: 10;
     }
-    z: 10;
-  }
-  layout:=HorizontalLayout{
-    height: btn-txt.height;
-    width: show-icon?txt-container.width + root.font-size : txt-container.width;
-    spacing: show-icon?UseSurrealismFn.get-space(self.width):0;
-    if root.show-icon:icon-container:= Rectangle {
-      btn-icon:= SIcon {
-        colorize: self.get-colorize();
-        source:root.icon;
-        height: root.font-size;
-        width: root.font-size;
-        theme:root.theme;
-      }
+
+    layout := HorizontalLayout {
+        height: btn-txt.height;
+        width: show-icon ? txt-container.width + root.font-size : txt-container.width;
+        spacing: show-icon ? UseSurrealismFn.get-space(self.width) : 0;
+        if root.show-icon:icon-container := Rectangle {
+            btn-icon := SIcon {
+                colorize: self.get-colorize();
+                source: root.icon;
+                height: root.font-size;
+                width: root.font-size;
+                theme: root.theme;
+            }
+        }
+        txt-container := TouchArea {
+            width: btn-txt.width;
+            btn-txt := SText {
+                theme: root.theme;
+                text: root.text;
+                horizontal-alignment: center;
+                font-size: root.font-size;
+                font-family: root.font-family;
+                font-weight: root.font-weight;
+                font-italic: root.font-italic;
+                letter-spacing: root.letter-spacing;
+                wrap: no-wrap;
+            }
+        }
     }
-    
-    txt-container:=TouchArea {
-      width: btn-txt.width;
-      btn-txt:=SText{
-        theme:root.theme;
-        text: root.text;
-        horizontal-alignment: center;
-        font-size: root.font-size;
-        font-family: root.font-family;
-        font-weight: root.font-weight;
-        font-italic: root.font-italic;
-        letter-spacing: root.letter-spacing;
-        wrap: no-wrap;
-      }
-    }
-  }
 }
