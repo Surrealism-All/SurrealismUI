@@ -30,91 +30,103 @@
 */
 import { ROOT_STYLES,DefaultSCheckboxProps } from "../../themes/index.slint";
 import { SCard } from "../card/index.slint";
-import { Themes,BorderType,PaddingType,ShadowType } from "../../use/index.slint";
+import { Themes,BorderType,PaddingType,ShadowType, UseSurrealismFn, ColorLevel } from "../../use/index.slint";
 import { SText } from "../text/index.slint";
 
-export component Checkbox inherits Rectangle{
-  in property <int> font-weight : DefaultSCheckboxProps.font-weight;
-  in property <length> font-size: DefaultSCheckboxProps.font-size;
-  in property <brush> font-color <=> inner-text.color;
-  in property <bool> font-italic : DefaultSCheckboxProps.font-italic;
-  in property <string> font-family : DefaultSCheckboxProps.font-family;
-  in property <Themes> theme : DefaultSCheckboxProps.theme;
-  in property <length> card-height: DefaultSCheckboxProps.card-height;
-  in property <length> card-width: DefaultSCheckboxProps.card-width;
-  in property <string> text : DefaultSCheckboxProps.text;
-  in-out property <string> value : DefaultSCheckboxProps.value;
-  in-out property <bool> actived : DefaultSCheckboxProps.actived;
-  in-out property <brush> active-color: DefaultSCheckboxProps.active-color;
-  in property <PaddingType> padding-type : DefaultSCheckboxProps.padding-type;
-  in property <ShadowType> shadow-type : DefaultSCheckboxProps.shadow-type;
-  in property <BorderType> border-type : DefaultSCheckboxProps.border-type;
-  callback clicked(string,string,bool);
-  states [
-    light when self.theme == Themes.Light: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.light.normal;
-      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.light.normal;
-    }
-    primary when self.theme == Themes.Primary: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.primary.normal;
-      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.primary.normal;
-    }
-    success when self.theme == Themes.Success: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.success.normal;
-      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.success.normal;
-    }
-    info when self.theme == Themes.Info: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.info.normal;
-      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.info.normal;
-    }
-    warning when self.theme == Themes.Warning: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.warning.normal;
-      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.warning.normal;
-    }
-    error when self.theme == Themes.Error: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.error.normal;
-      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.error.normal;
-    }
-    dark when self.theme == Themes.Dark: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.dark.normal;
-      inner.border-color : actived?active-color.darker(0.1):ROOT-STYLES.sur-theme-colors.dark.normal;
-    }
-  ]
-  HorizontalLayout {
-    spacing: 6px;
-    SCard{
-      theme: root.theme;
-      card-height: DefaultSCheckboxProps.card-height;
-      card-width: DefaultSCheckboxProps.card-width;
-      border-radius: 2.5px;
-      border-type: DefaultSCheckboxProps.border-type;
-      padding-type: DefaultSCheckboxProps.padding-type;
-      shadow-type: DefaultSCheckboxProps.shadow-type;
-      inner:=SCard {
-        theme: root.theme;
-        card-height: root.card-height - 4px;
-        card-width: root.card-width - 4px;
-        border-radius: 2px;
-        padding-type: PaddingType.None;
-        border-type: BorderType.Small;
-        drop-shadow-blur: 0;
-        drop-shadow-offset-x: 0;
-        drop-shadow-offset-y: 0;
-        TouchArea {
-          clicked => {
-            actived = !actived;
-            root.clicked(root.text,root.value,root.actived);
-          }
+export component Checkbox inherits Rectangle {
+    in property <int> font-weight: DefaultSCheckboxProps.font-weight;
+    in property <length> font-size: DefaultSCheckboxProps.font-size;
+    in property <brush> font-color <=> inner-text.color;
+    in property <bool> font-italic: DefaultSCheckboxProps.font-italic;
+    in property <string> font-family: DefaultSCheckboxProps.font-family;
+    in property <Themes> theme: DefaultSCheckboxProps.theme;
+    in property <length> card-height: DefaultSCheckboxProps.card-height;
+    in property <length> card-width: DefaultSCheckboxProps.card-width;
+    in property <string> text: DefaultSCheckboxProps.text;
+    in-out property <string> value: DefaultSCheckboxProps.value;
+    in-out property <bool> actived: DefaultSCheckboxProps.actived;
+    in-out property <brush> active-color: DefaultSCheckboxProps.active-color;
+    in property <PaddingType> padding-type: DefaultSCheckboxProps.padding-type;
+    in property <ShadowType> shadow-type: DefaultSCheckboxProps.shadow-type;
+    in property <BorderType> border-type: DefaultSCheckboxProps.border-type;
+    in-out property <bool> disabled: DefaultSCheckboxProps.disabled;
+    callback clicked(string, string, bool);
+    callback pending();
+    states [
+        disabled when self.disabled: {
+            toucharea.mouse-cursor: MouseCursor.not-allowed;
+            inner.background: UseSurrealismFn.get-color(self.theme, ColorLevel.Normal);
+            inner.border-color: UseSurrealismFn.get-color(self.theme, ColorLevel.Normal);
+            inner-text.color: UseSurrealismFn.get-color(self.theme, ColorLevel.Weakest);
         }
-      }
+        light when self.theme == Themes.Light: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.light.normal;
+            inner.border-color: actived ? active-color.darker(0.1) : ROOT-STYLES.sur-theme-colors.light.normal;
+        }
+        primary when self.theme == Themes.Primary: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.primary.normal;
+            inner.border-color: actived ? active-color.darker(0.1) : ROOT-STYLES.sur-theme-colors.primary.normal;
+        }
+        success when self.theme == Themes.Success: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.success.normal;
+            inner.border-color: actived ? active-color.darker(0.1) : ROOT-STYLES.sur-theme-colors.success.normal;
+        }
+        info when self.theme == Themes.Info: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.info.normal;
+            inner.border-color: actived ? active-color.darker(0.1) : ROOT-STYLES.sur-theme-colors.info.normal;
+        }
+        warning when self.theme == Themes.Warning: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.warning.normal;
+            inner.border-color: actived ? active-color.darker(0.1) : ROOT-STYLES.sur-theme-colors.warning.normal;
+        }
+        error when self.theme == Themes.Error: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.error.normal;
+            inner.border-color: actived ? active-color.darker(0.1) : ROOT-STYLES.sur-theme-colors.error.normal;
+        }
+        dark when self.theme == Themes.Dark: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.dark.normal;
+            inner.border-color: actived ? active-color.darker(0.1) : ROOT-STYLES.sur-theme-colors.dark.normal;
+        }
+    ]HorizontalLayout {
+        spacing: 6px;
+        SCard {
+            theme: root.theme;
+            card-height: DefaultSCheckboxProps.card-height;
+            card-width: DefaultSCheckboxProps.card-width;
+            border-radius: 2.5px;
+            border-type: DefaultSCheckboxProps.border-type;
+            padding-type: DefaultSCheckboxProps.padding-type;
+            shadow-type: DefaultSCheckboxProps.shadow-type;
+            inner := SCard {
+                theme: root.theme;
+                card-height: root.card-height - 4px;
+                card-width: root.card-width - 4px;
+                border-radius: 2px;
+                padding-type: PaddingType.None;
+                border-type: BorderType.Small;
+                drop-shadow-blur: 0;
+                drop-shadow-offset-x: 0;
+                drop-shadow-offset-y: 0;
+                toucharea := TouchArea {
+                    clicked => {
+                        if !disabled {
+                            actived = !actived;
+                            root.clicked(root.text,root.value,root.actived);
+                        } else {
+                            root.pending();
+                        }
+                    }
+                }
+            }
+        }
+
+        inner-text := SText {
+            theme: root.theme;
+            text: root.text;
+            font-family: root.font-family;
+            font-size: root.font-size;
+            font-weight: root.font-weight;
+            font-italic: root.font-italic;
+        }
     }
-    inner-text:=SText {
-      theme: root.theme;
-      text: root.text;
-      font-family: root.font-family;
-      font-size: root.font-size;
-      font-weight: root.font-weight;
-      font-italic: root.font-italic;
-    }
-  }
 }

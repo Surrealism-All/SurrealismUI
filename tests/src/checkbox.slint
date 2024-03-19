@@ -1,14 +1,28 @@
 import { SCheckbox } from "../../index.slint";
 component TestCheckbox {
-  height: 400px;
-  width: 600px;
-  VerticalLayout {
-    spacing: 20px;
-    padding: 20px;
-    SCheckbox {}
-    SCheckbox {theme:Error;}
-    SCheckbox {theme:Success;}
-    SCheckbox {theme:Primary;}
-    SCheckbox {theme:Warning;}
-  }
+    height: 400px;
+    width: 600px;
+    VerticalLayout {
+        spacing: 20px;
+        padding: 20px;
+        SCheckbox {
+            actived: true;
+        }
+
+        SCheckbox {
+            theme: Error;
+        }
+
+        SCheckbox {
+            theme: Success;
+        }
+
+        SCheckbox {
+            theme: Primary;
+        }
+
+        SCheckbox {
+            theme: Warning;
+        }
+    }
 }

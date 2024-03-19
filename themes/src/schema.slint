@@ -28,521 +28,541 @@ import { DefaultSMenuProps } from "./menu.slint";
 import { DefaultSPopoverProps } from "./popover.slint";
 import { DefaultSTableColumnProps,DefaultSTableProps } from "./table.slint";
 import { DefaultStepProps } from "./step.slint";
+import { DefaultSCheckboxProps } from "./checkbox.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
   SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps,STableProps,STableColumnProps,
-  SMenuProps,SPopoverProps,SStepProps
+  SMenuProps,SPopoverProps,SStepProps,SCheckboxProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
-  //component props 
-  in-out property <SCardProps> card : {
-    font-weight : DefaultSCardProps.font-weight,
-    font-size: DefaultSCardProps.font-size,
-    font-color : DefaultSCardProps.font-color,
-    font-italic : DefaultSCardProps.font-italic,
-    font-family : DefaultSCardProps.font-family,
-    //theme
+    //component props 
+  in-out property <SCardProps> card: {
+        font-weight : DefaultSCardProps.font-weight,
+        font-size: DefaultSCardProps.font-size,
+        font-color : DefaultSCardProps.font-color,
+        font-italic : DefaultSCardProps.font-italic,
+        font-family : DefaultSCardProps.font-family,
+        //theme
     theme : DefaultSCardProps.theme,
-    //hight-width
+        //hight-width
     card-height : DefaultSCardProps.card-height,
-    card-width : DefaultSCardProps.card-width,
-    padding-type: DefaultSCardProps.padding-type,
-    shadow-type: DefaultSCardProps.shadow-type,
-    border-type : DefaultSCardProps.border-type,
-    clip : DefaultSCardProps.clip,
-  };
-  in-out property <SStepProps> step:{
-    theme : DefaultStepProps.theme,
-    font-family :  DefaultStepProps.font-family,
-    font-weight :  DefaultStepProps.font-weight,
-    font-size:  DefaultStepProps.font-size,
-    font-color :  DefaultStepProps.font-color,
-    font-italic :  DefaultStepProps.font-italic,
-    active:  DefaultStepProps.active,
-    active-color:  DefaultStepProps.active-color,
-    done-color:  DefaultStepProps.done-color,
-    undone-color:  DefaultStepProps.undone-color,
-    options : DefaultStepProps.options,
-  };
-  in-out property <SPopoverProps> popover: {
-    theme : DefaultSPopoverProps.theme,
-    position : DefaultSPopoverProps.position,
-    is-show : DefaultSPopoverProps.is-show,
-    owner-height: DefaultSPopoverProps.owner-height,
-    owner-width: DefaultSPopoverProps.owner-width
-  };
-  in-out property <SButtonProps> button : {
-    font-weight : DefaultSButtonProps.font-weight,
-    font-size : DefaultSButtonProps.font-size,
-    color : DefaultSButtonProps.color,
-    font-italic : DefaultSButtonProps.font-italic,
-    font-family : DefaultSButtonProps.font-family,
-    theme : DefaultSButtonProps.theme,
-    padding-type : DefaultSButtonProps.padding-type,
-    shadow-type : DefaultSButtonProps.shadow-type,
-    border-type : DefaultSButtonProps.border-type,
-    icon : DefaultSButtonProps.icon,
-    show-icon : DefaultSButtonProps.show-icon,
-    text : DefaultSButtonProps.text,
-    letter-spacing : DefaultSButtonProps.letter-spacing,
-    clip :DefaultSButtonProps.clip,
-    round : DefaultSButtonProps.round
-  };
-  in-out property <STextProps> text : {
-    font-family : DefaultSTextProps.font-family,
-    font-weight : DefaultSTextProps.font-weight,
-    font-size : DefaultSTextProps.font-size,
-    color : DefaultSTextProps.color,
-    font-italic : DefaultSTextProps.font-italic,
-    theme : DefaultSTextProps.theme,
-    wrap :DefaultSTextProps.wrap,
-    overflow : DefaultSTextProps.overflow,
-    letter-spacing :DefaultSTextProps.letter-spacing,
-    horizontal-alignment : DefaultSTextProps.horizontal-alignment,
-    vertical-alignment : DefaultSTextProps.vertical-alignment,
-  };
-  in-out property <SIconProps> icon : {
-    theme : DefaultSIconProps.theme,
-    height : DefaultSIconProps.height,
-    width : DefaultSIconProps.width,
-    padding : DefaultSIconProps.padding,
-    //image props
+        card-width : DefaultSCardProps.card-width,
+        padding-type: DefaultSCardProps.padding-type,
+        shadow-type: DefaultSCardProps.shadow-type,
+        border-type : DefaultSCardProps.border-type,
+        clip : DefaultSCardProps.clip,
+    };
+    in-out property <SCheckboxProps> checkbox: {
+        font-weight : DefaultSCheckboxProps.font-weight,
+        font-size:  DefaultSCheckboxProps.font-size,
+        color :  DefaultSCheckboxProps.color,
+        font-italic :  DefaultSCheckboxProps.font-italic,
+        font-family :  DefaultSCheckboxProps.font-family,
+        card-height :  DefaultSCheckboxProps.card-height,
+        card-width :  DefaultSCheckboxProps.card-width,
+        theme :  DefaultSCheckboxProps.theme,
+        active-color:  DefaultSCheckboxProps.active-color,
+        padding-type:  DefaultSCheckboxProps.padding-type,
+        shadow-type:  DefaultSCheckboxProps.shadow-type,
+        border-type :  DefaultSCheckboxProps.border-type,
+        text :  DefaultSCheckboxProps.text,
+        value :  DefaultSCheckboxProps.value,
+        actived :  DefaultSCheckboxProps.actived,
+        disabled :  DefaultSCheckboxProps.disabled,
+    };
+    in-out property <SStepProps> step:{
+        theme : DefaultStepProps.theme,
+        font-family :  DefaultStepProps.font-family,
+        font-weight :  DefaultStepProps.font-weight,
+        font-size:  DefaultStepProps.font-size,
+        font-color :  DefaultStepProps.font-color,
+        font-italic :  DefaultStepProps.font-italic,
+        active:  DefaultStepProps.active,
+        active-color:  DefaultStepProps.active-color,
+        done-color:  DefaultStepProps.done-color,
+        undone-color:  DefaultStepProps.undone-color,
+        options : DefaultStepProps.options,
+    };
+    in-out property <SPopoverProps> popover: {
+        theme : DefaultSPopoverProps.theme,
+        position : DefaultSPopoverProps.position,
+        is-show : DefaultSPopoverProps.is-show,
+        owner-height: DefaultSPopoverProps.owner-height,
+        owner-width: DefaultSPopoverProps.owner-width
+    };
+    in-out property <SButtonProps> button: {
+        font-weight : DefaultSButtonProps.font-weight,
+        font-size : DefaultSButtonProps.font-size,
+        color : DefaultSButtonProps.color,
+        font-italic : DefaultSButtonProps.font-italic,
+        font-family : DefaultSButtonProps.font-family,
+        theme : DefaultSButtonProps.theme,
+        padding-type : DefaultSButtonProps.padding-type,
+        shadow-type : DefaultSButtonProps.shadow-type,
+        border-type : DefaultSButtonProps.border-type,
+        icon : DefaultSButtonProps.icon,
+        show-icon : DefaultSButtonProps.show-icon,
+        text : DefaultSButtonProps.text,
+        letter-spacing : DefaultSButtonProps.letter-spacing,
+        clip :DefaultSButtonProps.clip,
+        round : DefaultSButtonProps.round,
+        disabled: DefaultSButtonProps.disabled
+    };
+    in-out property <STextProps> text: {
+        font-family : DefaultSTextProps.font-family,
+        font-weight : DefaultSTextProps.font-weight,
+        font-size : DefaultSTextProps.font-size,
+        color : DefaultSTextProps.color,
+        font-italic : DefaultSTextProps.font-italic,
+        theme : DefaultSTextProps.theme,
+        wrap :DefaultSTextProps.wrap,
+        overflow : DefaultSTextProps.overflow,
+        letter-spacing :DefaultSTextProps.letter-spacing,
+        horizontal-alignment : DefaultSTextProps.horizontal-alignment,
+        vertical-alignment : DefaultSTextProps.vertical-alignment,
+    };
+    in-out property <SIconProps> icon: {
+        theme : DefaultSIconProps.theme,
+        height : DefaultSIconProps.height,
+        width : DefaultSIconProps.width,
+        padding : DefaultSIconProps.padding,
+        //image props
     source : DefaultSIconProps.source,
-    colorize : DefaultSIconProps.colorize,
-    image-fit : DefaultSIconProps.image-fit,
-    image-rendering : DefaultSIconProps.image-rendering,
-    rotation : DefaultSIconProps.rotation,
-    source-clip-x : DefaultSIconProps.source-clip-x,
-    source-clip-y : DefaultSIconProps.source-clip-y,
-    source-clip-height : DefaultSIconProps.source-clip-height,
-    source-clip-width : DefaultSIconProps.source-clip-width
-  };
-  in-out property <SLinkProps> link : {
-    icon : DefaultSLinkProps.icon,
-    funny :  DefaultSLinkProps.funny,
-    underline : DefaultSLinkProps.underline,
-    mouse-cursor : DefaultSLinkProps.mouse-cursor,
-    theme : DefaultSLinkProps.theme,
-    font-size : DefaultSLinkProps.font-size,
-    text: DefaultSLinkProps.text,
-    font-weight : DefaultSLinkProps.font-weight,
-    font-family : DefaultSLinkProps.font-family,
-    font-italic : DefaultSLinkProps.font-italic,
-  };
-  in-out property <STagProps> tag : {
-    text : DefaultSTagProps.text,
-    font-size : DefaultSTagProps.font-size,
-    font-weight : DefaultSTagProps.font-weight,
-    font-family : DefaultSTagProps.font-family,
-    font-italic : DefaultSTagProps.font-italic,
-    theme : DefaultSTagProps.theme,
-    padding-type : DefaultSTagProps.padding-type,
-    border-type : DefaultSTagProps.border-type,
-    shadow-type : DefaultSTagProps.shadow-type
-  };
-  in-out property <SPersonaProps> persona : {
-    btn-text : DefaultSPersonaProps.btn-text,
-    btns : DefaultSPersonaProps.btns,
-    //avatar
+        colorize : DefaultSIconProps.colorize,
+        image-fit : DefaultSIconProps.image-fit,
+        image-rendering : DefaultSIconProps.image-rendering,
+        rotation : DefaultSIconProps.rotation,
+        source-clip-x : DefaultSIconProps.source-clip-x,
+        source-clip-y : DefaultSIconProps.source-clip-y,
+        source-clip-height : DefaultSIconProps.source-clip-height,
+        source-clip-width : DefaultSIconProps.source-clip-width
+    };
+    in-out property <SLinkProps> link: {
+        icon : DefaultSLinkProps.icon,
+        funny :  DefaultSLinkProps.funny,
+        underline : DefaultSLinkProps.underline,
+        mouse-cursor : DefaultSLinkProps.mouse-cursor,
+        theme : DefaultSLinkProps.theme,
+        font-size : DefaultSLinkProps.font-size,
+        text: DefaultSLinkProps.text,
+        font-weight : DefaultSLinkProps.font-weight,
+        font-family : DefaultSLinkProps.font-family,
+        font-italic : DefaultSLinkProps.font-italic,
+    };
+    in-out property <STagProps> tag: {
+        text : DefaultSTagProps.text,
+        font-size : DefaultSTagProps.font-size,
+        font-weight : DefaultSTagProps.font-weight,
+        font-family : DefaultSTagProps.font-family,
+        font-italic : DefaultSTagProps.font-italic,
+        theme : DefaultSTagProps.theme,
+        padding-type : DefaultSTagProps.padding-type,
+        border-type : DefaultSTagProps.border-type,
+        shadow-type : DefaultSTagProps.shadow-type
+    };
+    in-out property <SPersonaProps> persona: {
+        btn-text : DefaultSPersonaProps.btn-text,
+        btns : DefaultSPersonaProps.btns,
+        //avatar
     avatar : DefaultSPersonaProps.avatar,
-    avatar-height: DefaultSPersonaProps.avatar-height,
-    avatar-theme : DefaultSPersonaProps.avatar-theme,
-    card-width : DefaultSPersonaProps.card-width,
-    spacing : DefaultSPersonaProps.spacing,
-    //name
+        avatar-height: DefaultSPersonaProps.avatar-height,
+        avatar-theme : DefaultSPersonaProps.avatar-theme,
+        card-width : DefaultSPersonaProps.card-width,
+        spacing : DefaultSPersonaProps.spacing,
+        //name
     name : DefaultSPersonaProps.name,
-    name-height: DefaultSPersonaProps.name-height,
-    name-font-size: DefaultSPersonaProps.name-font-size,
-    name-font-weight : DefaultSPersonaProps.name-font-weight,
-    name-theme: DefaultSPersonaProps.name-theme,
-    name-font-family: DefaultSPersonaProps.name-font-family,
-    name-font-italic: DefaultSPersonaProps.name-font-italic,
-    //des
+        name-height: DefaultSPersonaProps.name-height,
+        name-font-size: DefaultSPersonaProps.name-font-size,
+        name-font-weight : DefaultSPersonaProps.name-font-weight,
+        name-theme: DefaultSPersonaProps.name-theme,
+        name-font-family: DefaultSPersonaProps.name-font-family,
+        name-font-italic: DefaultSPersonaProps.name-font-italic,
+        //des
     des : DefaultSPersonaProps.des,
-    des-height: DefaultSPersonaProps.des-height,
-    des-font-size: DefaultSPersonaProps.des-font-size,
-    des-font-weight : DefaultSPersonaProps.des-font-weight,
-    des-theme: DefaultSPersonaProps.des-theme,
-    des-font-family: DefaultSPersonaProps.des-font-family,
-    des-font-italic: DefaultSPersonaProps.des-font-italic,
-  };
-  in-out property <SResultProps> result : {
-    card-height : DefaultSResultProps.card-height,
-    card-width : DefaultSResultProps.card-width,
-    icon-size : DefaultSResultProps.icon-size,
-    btns :DefaultSResultProps.btns,
-    btn-text : DefaultSResultProps.btn-text,
-    result-type: DefaultSResultProps.result-type,
-    text : DefaultSResultProps.text,
-    padding-type: DefaultSResultProps.padding-type,
-    shadow-type: DefaultSResultProps.shadow-type,
-    border-type : DefaultSResultProps.border-type,
-    icon : DefaultSResultProps.icon,
-    theme : DefaultSResultProps.theme,
-  };
-  in-out property <SAlertProps> alert : {
-    font-weight : DefaultSAlertProps.font-weight,
-    font-size:  DefaultSAlertProps.font-size,
-    color : DefaultSAlertProps.color,
-    font-italic : DefaultSAlertProps.font-italic,
-    font-family : DefaultSAlertProps.font-family,
-    overflow : DefaultSAlertProps.overflow,
-    spacing : DefaultSAlertProps.spacing,
-    text : DefaultSAlertProps.text,
-    is-show : DefaultSAlertProps.is-show,
-    alert-height : DefaultSAlertProps.alert-height,
-    result-type: DefaultSAlertProps.result-type,
-    close-icon : DefaultSAlertProps.close-icon,
-    icon-size : DefaultSAlertProps.icon-size,
-  };
-  in-out property <SSwitchProps> switch : {
-    card-height : DefaultSSwitchProps.card-height,
-    card-width : DefaultSSwitchProps.card-width,
-    padding-type: DefaultSSwitchProps.padding-type,
-    shadow-type: DefaultSSwitchProps.shadow-type,
-    border-type : DefaultSSwitchProps.border-type,
-    active : DefaultSSwitchProps.active,
-    theme: DefaultSSwitchProps.theme,
-    //switch-circle
+        des-height: DefaultSPersonaProps.des-height,
+        des-font-size: DefaultSPersonaProps.des-font-size,
+        des-font-weight : DefaultSPersonaProps.des-font-weight,
+        des-theme: DefaultSPersonaProps.des-theme,
+        des-font-family: DefaultSPersonaProps.des-font-family,
+        des-font-italic: DefaultSPersonaProps.des-font-italic,
+    };
+    in-out property <SResultProps> result: {
+        card-height : DefaultSResultProps.card-height,
+        card-width : DefaultSResultProps.card-width,
+        icon-size : DefaultSResultProps.icon-size,
+        btns :DefaultSResultProps.btns,
+        btn-text : DefaultSResultProps.btn-text,
+        result-type: DefaultSResultProps.result-type,
+        text : DefaultSResultProps.text,
+        padding-type: DefaultSResultProps.padding-type,
+        shadow-type: DefaultSResultProps.shadow-type,
+        border-type : DefaultSResultProps.border-type,
+        icon : DefaultSResultProps.icon,
+        theme : DefaultSResultProps.theme,
+    };
+    in-out property <SAlertProps> alert: {
+        font-weight : DefaultSAlertProps.font-weight,
+        font-size:  DefaultSAlertProps.font-size,
+        color : DefaultSAlertProps.color,
+        font-italic : DefaultSAlertProps.font-italic,
+        font-family : DefaultSAlertProps.font-family,
+        overflow : DefaultSAlertProps.overflow,
+        spacing : DefaultSAlertProps.spacing,
+        text : DefaultSAlertProps.text,
+        is-show : DefaultSAlertProps.is-show,
+        alert-height : DefaultSAlertProps.alert-height,
+        result-type: DefaultSAlertProps.result-type,
+        close-icon : DefaultSAlertProps.close-icon,
+        icon-size : DefaultSAlertProps.icon-size,
+    };
+    in-out property <SSwitchProps> switch: {
+        card-height : DefaultSSwitchProps.card-height,
+        card-width : DefaultSSwitchProps.card-width,
+        padding-type: DefaultSSwitchProps.padding-type,
+        shadow-type: DefaultSSwitchProps.shadow-type,
+        border-type : DefaultSSwitchProps.border-type,
+        active : DefaultSSwitchProps.active,
+        theme: DefaultSSwitchProps.theme,
+        //switch-circle
     switch-height : DefaultSSwitchProps.switch-height,
-    switch-width : DefaultSSwitchProps.switch-width,
-    switch-padding-type: DefaultSSwitchProps.switch-padding-type,
-    switch-shadow-type: DefaultSSwitchProps.switch-shadow-type,
-    switch-border-type : DefaultSSwitchProps.switch-border-type,
-    switch-background-color : DefaultSSwitchProps.switch-background-color,
-    switch-border-color : DefaultSSwitchProps.switch-border-color,
-    switch-drop-shadow-color : DefaultSSwitchProps.switch-drop-shadow-color,
-  };
-  in-out property <SRadioProps> radio : {
-    font-weight : DefaultSRadioProps.font-weight,
-    font-size: DefaultSRadioProps.font-size,
-    color : DefaultSRadioProps.color,
-    font-italic : DefaultSRadioProps.font-italic,
-    font-family : DefaultSRadioProps.font-family,
-    card-height : DefaultSRadioProps.card-height,
-    card-width : DefaultSRadioProps.card-width,
-    theme : DefaultSRadioProps.theme,
-    active-color: DefaultSRadioProps.active-color,
-    padding-type: DefaultSRadioProps.padding-type,
-    shadow-type: DefaultSRadioProps.shadow-type,
-    border-type : DefaultSRadioProps.border-type,
-    text : DefaultSRadioProps.text,
-    value : DefaultSRadioProps.value,
-    actived : DefaultSRadioProps.actived,
-  };
-  in-out property <SAvatarProps> avatar : {
-    card-height : DefaultSAvatarProps.card-height,
-    card-width : DefaultSAvatarProps.card-width,
-    padding-type: DefaultSAvatarProps.padding-type,
-    shadow-type: DefaultSAvatarProps.shadow-type,
-    border-type : DefaultSAvatarProps.border-type,
-    avatar-size : DefaultSAvatarProps.avatar-size,
-    avatar : DefaultSAvatarProps.avatar,
-    alt : DefaultSAvatarProps.alt,
-    image-fit : DefaultSAvatarProps.image-fit,
-  };
-  in-out property <SDividerProps> divider : {
-    theme : DefaultSDividerProps.theme,
-    height : DefaultSDividerProps.height,
-    width : DefaultSDividerProps.width,
-    padding-type: DefaultSDividerProps.padding-type,
-    shadow-type: DefaultSDividerProps.shadow-type,
-    border-type : DefaultSDividerProps.border-type,
-  };
-  in-out property <SPopupProps> popup : {
-    is-show : DefaultSPopupProps.is-show,
-    theme : DefaultSPopupProps.theme,
-    mask-opacity : DefaultSPopupProps.mask-opacity, 
-  };
-  in-out property <SDrawerProps> drawer : {
-    theme : DefaultSDrawerProps.theme,
-    is-show : DefaultSDrawerProps.is-show,
-    mask-opacity : DefaultSDrawerProps.mask-opacity,
-    padding-type: DefaultSDrawerProps.padding-type,
-    drawer-theme : DefaultSDrawerProps.drawer-theme,
-    position : DefaultSDrawerProps.position,
-    proportion : DefaultSDrawerProps.proportion,
-  };
-  in-out property <SDialogProps> dialog : {
-    theme : DefaultSDialogProps.theme,
-    cancel-btn-theme : DefaultSDialogProps.cancel-btn-theme,
-    confirm-btn-theme : DefaultSDialogProps.confirm-btn-theme,
-    cancel-btn-text : DefaultSDialogProps.cancel-btn-text,
-    confirm-btn-text : DefaultSDialogProps.confirm-btn-text,
-    is-show: DefaultSDialogProps.is-show,
-    mask-opacity : DefaultSDialogProps.mask-opacity,
-    spacing : DefaultSDialogProps.spacing,
-    //font
+        switch-width : DefaultSSwitchProps.switch-width,
+        switch-padding-type: DefaultSSwitchProps.switch-padding-type,
+        switch-shadow-type: DefaultSSwitchProps.switch-shadow-type,
+        switch-border-type : DefaultSSwitchProps.switch-border-type,
+        switch-background-color : DefaultSSwitchProps.switch-background-color,
+        switch-border-color : DefaultSSwitchProps.switch-border-color,
+        switch-drop-shadow-color : DefaultSSwitchProps.switch-drop-shadow-color,
+    };
+    in-out property <SRadioProps> radio: {
+        font-weight : DefaultSRadioProps.font-weight,
+        font-size: DefaultSRadioProps.font-size,
+        color : DefaultSRadioProps.color,
+        font-italic : DefaultSRadioProps.font-italic,
+        font-family : DefaultSRadioProps.font-family,
+        card-height : DefaultSRadioProps.card-height,
+        card-width : DefaultSRadioProps.card-width,
+        theme : DefaultSRadioProps.theme,
+        active-color: DefaultSRadioProps.active-color,
+        padding-type: DefaultSRadioProps.padding-type,
+        shadow-type: DefaultSRadioProps.shadow-type,
+        border-type : DefaultSRadioProps.border-type,
+        text : DefaultSRadioProps.text,
+        value : DefaultSRadioProps.value,
+        actived : DefaultSRadioProps.actived,
+    };
+    in-out property <SAvatarProps> avatar: {
+        card-height : DefaultSAvatarProps.card-height,
+        card-width : DefaultSAvatarProps.card-width,
+        padding-type: DefaultSAvatarProps.padding-type,
+        shadow-type: DefaultSAvatarProps.shadow-type,
+        border-type : DefaultSAvatarProps.border-type,
+        avatar-size : DefaultSAvatarProps.avatar-size,
+        avatar : DefaultSAvatarProps.avatar,
+        alt : DefaultSAvatarProps.alt,
+        image-fit : DefaultSAvatarProps.image-fit,
+    };
+    in-out property <SDividerProps> divider: {
+        theme : DefaultSDividerProps.theme,
+        height : DefaultSDividerProps.height,
+        width : DefaultSDividerProps.width,
+        padding-type: DefaultSDividerProps.padding-type,
+        shadow-type: DefaultSDividerProps.shadow-type,
+        border-type : DefaultSDividerProps.border-type,
+    };
+    in-out property <SPopupProps> popup: {
+        is-show : DefaultSPopupProps.is-show,
+        theme : DefaultSPopupProps.theme,
+        mask-opacity : DefaultSPopupProps.mask-opacity,
+    };
+    in-out property <SDrawerProps> drawer: {
+        theme : DefaultSDrawerProps.theme,
+        is-show : DefaultSDrawerProps.is-show,
+        mask-opacity : DefaultSDrawerProps.mask-opacity,
+        padding-type: DefaultSDrawerProps.padding-type,
+        drawer-theme : DefaultSDrawerProps.drawer-theme,
+        position : DefaultSDrawerProps.position,
+        proportion : DefaultSDrawerProps.proportion,
+    };
+    in-out property <SDialogProps> dialog: {
+        theme : DefaultSDialogProps.theme,
+        cancel-btn-theme : DefaultSDialogProps.cancel-btn-theme,
+        confirm-btn-theme : DefaultSDialogProps.confirm-btn-theme,
+        cancel-btn-text : DefaultSDialogProps.cancel-btn-text,
+        confirm-btn-text : DefaultSDialogProps.confirm-btn-text,
+        is-show: DefaultSDialogProps.is-show,
+        mask-opacity : DefaultSDialogProps.mask-opacity,
+        spacing : DefaultSDialogProps.spacing,
+        //font
     font-weight : DefaultSDialogProps.font-weight,
-    font-size: DefaultSDialogProps.font-size,
-    font-color : DefaultSDialogProps.font-color,
-    font-italic : DefaultSDialogProps.font-italic,
-    font-family : DefaultSDialogProps.font-family,
-    //dialog
+        font-size: DefaultSDialogProps.font-size,
+        font-color : DefaultSDialogProps.font-color,
+        font-italic : DefaultSDialogProps.font-italic,
+        font-family : DefaultSDialogProps.font-family,
+        //dialog
     dialog-theme : DefaultSDialogProps.dialog-theme,
-    dialog-title : DefaultSDialogProps.dialog-title,
-    dialog-title-size : DefaultSDialogProps.dialog-title-size,
-    dialog-details : DefaultSDialogProps.dialog-details,
-    dialog-height : DefaultSDialogProps.dialog-height,
-    dialog-title-height : DefaultSDialogProps.dialog-title-height,
-    dialog-view-height : DefaultSDialogProps.dialog-view-height,
-    btn-view-height : DefaultSDialogProps.btn-view-height,
-    dialog-width : DefaultSDialogProps.dialog-width,
-    dialog-details-padding-top : DefaultSDialogProps.dialog-details-padding-top,
-    dialog-details-padding-bottom : DefaultSDialogProps.dialog-details-padding-bottom,
-    dialog-details-padding-left : DefaultSDialogProps.dialog-details-padding-left,
-    dialog-details-padding-right : DefaultSDialogProps.dialog-details-padding-right,
-    dialog-details-alignment : DefaultSDialogProps.dialog-details-alignment,
-    padding-type: DefaultSDialogProps.padding-type,
-    shadow-type: DefaultSDialogProps.shadow-type,
-    border-type : DefaultSDialogProps.border-type,
-  };
-  in-out property <SCollapseProps> collapse : {
-    //font
+        dialog-title : DefaultSDialogProps.dialog-title,
+        dialog-title-size : DefaultSDialogProps.dialog-title-size,
+        dialog-details : DefaultSDialogProps.dialog-details,
+        dialog-height : DefaultSDialogProps.dialog-height,
+        dialog-title-height : DefaultSDialogProps.dialog-title-height,
+        dialog-view-height : DefaultSDialogProps.dialog-view-height,
+        btn-view-height : DefaultSDialogProps.btn-view-height,
+        dialog-width : DefaultSDialogProps.dialog-width,
+        dialog-details-padding-top : DefaultSDialogProps.dialog-details-padding-top,
+        dialog-details-padding-bottom : DefaultSDialogProps.dialog-details-padding-bottom,
+        dialog-details-padding-left : DefaultSDialogProps.dialog-details-padding-left,
+        dialog-details-padding-right : DefaultSDialogProps.dialog-details-padding-right,
+        dialog-details-alignment : DefaultSDialogProps.dialog-details-alignment,
+        padding-type: DefaultSDialogProps.padding-type,
+        shadow-type: DefaultSDialogProps.shadow-type,
+        border-type : DefaultSDialogProps.border-type,
+    };
+    in-out property <SCollapseProps> collapse: {
+        //font
     font-weight : DefaultSCollapseProps.font-weight,
-    font-size: DefaultSCollapseProps.font-size,
-    font-color : DefaultSCollapseProps.font-color,
-    font-italic : DefaultSCollapseProps.font-italic,
-    font-family : DefaultSCollapseProps.font-family,
-    //theme
+        font-size: DefaultSCollapseProps.font-size,
+        font-color : DefaultSCollapseProps.font-color,
+        font-italic : DefaultSCollapseProps.font-italic,
+        font-family : DefaultSCollapseProps.font-family,
+        //theme
     theme : DefaultSCollapseProps.theme,
-    //header
+        //header
     header-height : DefaultSCollapseProps.header-height,
-    header-title : DefaultSCollapseProps.header-title,
-    header-padding-type: DefaultSCollapseProps.header-padding-type,
-    header-shadow-type: DefaultSCollapseProps.header-shadow-type,
-    header-border-type : DefaultSCollapseProps.header-border-type,
-    //details
+        header-title : DefaultSCollapseProps.header-title,
+        header-padding-type: DefaultSCollapseProps.header-padding-type,
+        header-shadow-type: DefaultSCollapseProps.header-shadow-type,
+        header-border-type : DefaultSCollapseProps.header-border-type,
+        //details
     details-height : DefaultSCollapseProps.details-height,
-    details-padding-type: DefaultSCollapseProps.details-padding-type,
-    details-shadow-type: DefaultSCollapseProps.details-shadow-type,
-    details-border-type : DefaultSCollapseProps.details-border-type,
-    is-show :DefaultSCollapseProps.is-show,
-    collapse-icon : DefaultSCollapseProps.collapse-icon
-  };
-  in-out property <STipProps> tip : {
-    font-family : DefaultSTipProps.font-family,
-    font-weight : DefaultSTipProps.font-weight,
-    font-size: DefaultSTipProps.font-size,
-    font-color : DefaultSTipProps.font-color,
-    font-italic : DefaultSTipProps.font-italic,
-    //theme
+        details-padding-type: DefaultSCollapseProps.details-padding-type,
+        details-shadow-type: DefaultSCollapseProps.details-shadow-type,
+        details-border-type : DefaultSCollapseProps.details-border-type,
+        is-show :DefaultSCollapseProps.is-show,
+        collapse-icon : DefaultSCollapseProps.collapse-icon
+    };
+    in-out property <STipProps> tip: {
+        font-family : DefaultSTipProps.font-family,
+        font-weight : DefaultSTipProps.font-weight,
+        font-size: DefaultSTipProps.font-size,
+        font-color : DefaultSTipProps.font-color,
+        font-italic : DefaultSTipProps.font-italic,
+        //theme
     theme : DefaultSTipProps.theme,
-    wrap : DefaultSTipProps.wrap,
-    overflow : DefaultSTipProps.overflow,
-    letter-spacing : DefaultSTipProps.letter-spacing,
-    horizontal-alignment : DefaultSTipProps.horizontal-alignment,
-    vertical-alignment : DefaultSTipProps.vertical-alignment,
-    position : DefaultSTipProps.position,
-    is-show : DefaultSTipProps.is-show,
-    text : DefaultSTipProps.text,
-    tip-width : DefaultSTipProps.tip-width
-  };
-  in-out property <SSelectProps> select : {
-    //font
+        wrap : DefaultSTipProps.wrap,
+        overflow : DefaultSTipProps.overflow,
+        letter-spacing : DefaultSTipProps.letter-spacing,
+        horizontal-alignment : DefaultSTipProps.horizontal-alignment,
+        vertical-alignment : DefaultSTipProps.vertical-alignment,
+        position : DefaultSTipProps.position,
+        is-show : DefaultSTipProps.is-show,
+        text : DefaultSTipProps.text,
+        tip-width : DefaultSTipProps.tip-width
+    };
+    in-out property <SSelectProps> select: {
+        //font
     font-weight : DefaultSSelectProps.font-weight,
-    font-size: DefaultSSelectProps.font-size,
-    font-italic : DefaultSSelectProps.font-italic,
-    font-family : DefaultSSelectProps.font-family,
-    item-font-weight :DefaultSSelectProps.item-font-weight,
-    item-font-size: DefaultSSelectProps.item-font-size,
-    item-font-italic : DefaultSSelectProps.item-font-italic,
-    item-font-family : DefaultSSelectProps.item-font-family,
-    //theme
+        font-size: DefaultSSelectProps.font-size,
+        font-italic : DefaultSSelectProps.font-italic,
+        font-family : DefaultSSelectProps.font-family,
+        item-font-weight :DefaultSSelectProps.item-font-weight,
+        item-font-size: DefaultSSelectProps.item-font-size,
+        item-font-italic : DefaultSSelectProps.item-font-italic,
+        item-font-family : DefaultSSelectProps.item-font-family,
+        //theme
     theme : DefaultSSelectProps.theme,
-    //hight-width
+        //hight-width
     card-height : DefaultSSelectProps.card-height,
-    card-width : DefaultSSelectProps.card-width,
-    padding-type:DefaultSSelectProps.padding-type,
-    shadow-type: DefaultSSelectProps.shadow-type,
-    border-type : DefaultSSelectProps.border-type,
-    options : DefaultSSelectProps.options,
-    placeholder : DefaultSSelectProps.placeholder,
-    is-show : DefaultSSelectProps.is-show,
-  };
-  in-out property <SInputProps> input : {
-    font-weight : DefaultSInputProps.font-weight,
-    font-size: DefaultSInputProps.font-size,
-    font-color : DefaultSInputProps.font-color,
-    font-italic : DefaultSInputProps.font-italic,
-    font-family : DefaultSInputProps.font-family,
-    //theme
+        card-width : DefaultSSelectProps.card-width,
+        padding-type:DefaultSSelectProps.padding-type,
+        shadow-type: DefaultSSelectProps.shadow-type,
+        border-type : DefaultSSelectProps.border-type,
+        options : DefaultSSelectProps.options,
+        placeholder : DefaultSSelectProps.placeholder,
+        is-show : DefaultSSelectProps.is-show,
+    };
+    in-out property <SInputProps> input: {
+        font-weight : DefaultSInputProps.font-weight,
+        font-size: DefaultSInputProps.font-size,
+        font-color : DefaultSInputProps.font-color,
+        font-italic : DefaultSInputProps.font-italic,
+        font-family : DefaultSInputProps.font-family,
+        //theme
     theme : DefaultSInputProps.theme,
-    //hight-width
+        //hight-width
     card-height : DefaultSInputProps.card-height,
-    card-width : DefaultSInputProps.card-width,
-    padding-type:DefaultSInputProps.padding-type,
-    shadow-type: DefaultSInputProps.shadow-type,
-    border-type : DefaultSInputProps.border-type,
-    placeholder : DefaultSInputProps.placeholder,
-    disabled:DefaultSInputProps.disabled,
-    clearable:DefaultSInputProps.clearable,
-    //use eye-icon
+        card-width : DefaultSInputProps.card-width,
+        padding-type:DefaultSInputProps.padding-type,
+        shadow-type: DefaultSInputProps.shadow-type,
+        border-type : DefaultSInputProps.border-type,
+        placeholder : DefaultSInputProps.placeholder,
+        disabled:DefaultSInputProps.disabled,
+        clearable:DefaultSInputProps.clearable,
+        //use eye-icon
     password:DefaultSInputProps.password,
-    has-focus:DefaultSInputProps.has-focus,
-    type : DefaultSInputProps.type,
-    icon-color : DefaultSInputProps.icon-color,
-    text : DefaultSInputProps.text,
-  };
-  in-out property <SHeaderProps> header : {
-    spacing: DefaultSHeaderProps.spacing,
-    source : DefaultSHeaderProps.source,
-    options : DefaultSHeaderProps.options,
-    font-weight : DefaultSHeaderProps.font-weight,
-    font-size:DefaultSHeaderProps.font-size,
-    font-color : DefaultSHeaderProps.font-color,
-    font-italic : DefaultSHeaderProps.font-italic,
-    font-family : DefaultSHeaderProps.font-family,
-    //theme
+        has-focus:DefaultSInputProps.has-focus,
+        type : DefaultSInputProps.type,
+        icon-color : DefaultSInputProps.icon-color,
+        text : DefaultSInputProps.text,
+    };
+    in-out property <SHeaderProps> header: {
+        spacing: DefaultSHeaderProps.spacing,
+        source : DefaultSHeaderProps.source,
+        options : DefaultSHeaderProps.options,
+        font-weight : DefaultSHeaderProps.font-weight,
+        font-size:DefaultSHeaderProps.font-size,
+        font-color : DefaultSHeaderProps.font-color,
+        font-italic : DefaultSHeaderProps.font-italic,
+        font-family : DefaultSHeaderProps.font-family,
+        //theme
     theme : DefaultSHeaderProps.theme,
-    //hight-width
+        //hight-width
     card-height : DefaultSHeaderProps.card-height,
-    card-width : DefaultSHeaderProps.card-width,
-    padding-type: DefaultSHeaderProps.padding-type,
-    shadow-type: DefaultSHeaderProps.shadow-type,
-    border-type : DefaultSHeaderProps.border-type,
-  };
-  in-out property <SLoadingProps> loading : {
-    font-weight : DefaultSLoadingProps.font-weight,
-    font-size:  DefaultSLoadingProps.font-size,
-    font-color :  DefaultSLoadingProps.font-color,
-    font-italic :  DefaultSLoadingProps.font-italic,
-    font-family :  DefaultSLoadingProps.font-family,
-    opacity : DefaultSLoadingProps.opacity,
-    is-show :  DefaultSLoadingProps.is-show,
-    theme :  DefaultSLoadingProps.theme,
-    loading-icon :  DefaultSLoadingProps.loading-icon,
-    duration :  DefaultSLoadingProps.duration,
-    text :  DefaultSLoadingProps.text,
-    easing :  DefaultSLoadingProps.easing,
-    iteration-count :  DefaultSLoadingProps.iteration-count,
-  };
-  in-out property <SCollectionProps> collection : {
-    scale : DefaultSCollectionProps.scale,
-    is-scale : DefaultSCollectionProps.is-scale,
-    easing : DefaultSCollectionProps.easing,
-    duration : DefaultSCollectionProps.duration,
-  };
-  in-out property <SFileProps> file : {
-    theme : DefaultSFileProps.theme,
-    tabs : DefaultSFileProps.tabs,
-    column-width :DefaultSFileProps.column-width,
-    //tab
+        card-width : DefaultSHeaderProps.card-width,
+        padding-type: DefaultSHeaderProps.padding-type,
+        shadow-type: DefaultSHeaderProps.shadow-type,
+        border-type : DefaultSHeaderProps.border-type,
+    };
+    in-out property <SLoadingProps> loading: {
+        font-weight : DefaultSLoadingProps.font-weight,
+        font-size:  DefaultSLoadingProps.font-size,
+        font-color :  DefaultSLoadingProps.font-color,
+        font-italic :  DefaultSLoadingProps.font-italic,
+        font-family :  DefaultSLoadingProps.font-family,
+        opacity : DefaultSLoadingProps.opacity,
+        is-show :  DefaultSLoadingProps.is-show,
+        theme :  DefaultSLoadingProps.theme,
+        loading-icon :  DefaultSLoadingProps.loading-icon,
+        duration :  DefaultSLoadingProps.duration,
+        text :  DefaultSLoadingProps.text,
+        easing :  DefaultSLoadingProps.easing,
+        iteration-count :  DefaultSLoadingProps.iteration-count,
+    };
+    in-out property <SCollectionProps> collection: {
+        scale : DefaultSCollectionProps.scale,
+        is-scale : DefaultSCollectionProps.is-scale,
+        easing : DefaultSCollectionProps.easing,
+        duration : DefaultSCollectionProps.duration,
+    };
+    in-out property <SFileProps> file: {
+        theme : DefaultSFileProps.theme,
+        tabs : DefaultSFileProps.tabs,
+        column-width :DefaultSFileProps.column-width,
+        //tab
     font-family : DefaultSFileProps.font-family,
-    font-weight : DefaultSFileProps.font-weight,
-    font-size: DefaultSFileProps.font-size,
-    font-color : DefaultSFileProps.font-color,
-    font-italic : DefaultSFileProps.font-italic,
-    padding-type:DefaultSFileProps.padding-type,
-    shadow-type: DefaultSFileProps.shadow-type,
-    border-type : DefaultSFileProps.border-type,
-    text-alignment: DefaultSFileProps.text-alignment,
-    // item
+        font-weight : DefaultSFileProps.font-weight,
+        font-size: DefaultSFileProps.font-size,
+        font-color : DefaultSFileProps.font-color,
+        font-italic : DefaultSFileProps.font-italic,
+        padding-type:DefaultSFileProps.padding-type,
+        shadow-type: DefaultSFileProps.shadow-type,
+        border-type : DefaultSFileProps.border-type,
+        text-alignment: DefaultSFileProps.text-alignment,
+        // item
     files : DefaultSFileProps.files,
-    item-font-family : DefaultSFileProps.item-font-family,
-    item-font-weight : DefaultSFileProps.item-font-weight,
-    item-font-size: DefaultSFileProps.item-font-size,
-    item-font-italic : DefaultSFileProps.item-font-italic,
-    item-padding-type:DefaultSFileProps.item-padding-type,
-  };
-  in-out property <SSwitchGroupProps> switch-group:{
-    card-height : DefaultSSwitchGroupProps.card-height,
-    card-width : DefaultSSwitchGroupProps.card-width,
-    padding-type: DefaultSSwitchGroupProps.padding-type,
-    shadow-type: DefaultSSwitchGroupProps.shadow-type,
-    border-type : DefaultSSwitchGroupProps.border-type,
-    active : DefaultSSwitchGroupProps.active,
-    theme: DefaultSSwitchGroupProps.theme,
-    switchs : DefaultSSwitchGroupProps.switchs,
-    font-family : DefaultSSwitchGroupProps.font-family,
-    font-weight : DefaultSSwitchGroupProps.font-weight,
-    font-size: DefaultSSwitchGroupProps.font-size,
-    font-italic : DefaultSSwitchGroupProps.font-italic,
-  };
-  in-out property <SProgressProps> progress:{
-    font-weight : DefaultSProgressProps.font-weight,
-    font-size: DefaultSProgressProps.font-size,
-    font-color : DefaultSProgressProps.font-color,
-    font-italic : DefaultSProgressProps.font-italic,
-    font-family : DefaultSProgressProps.font-family,
-    //theme
+        item-font-family : DefaultSFileProps.item-font-family,
+        item-font-weight : DefaultSFileProps.item-font-weight,
+        item-font-size: DefaultSFileProps.item-font-size,
+        item-font-italic : DefaultSFileProps.item-font-italic,
+        item-padding-type:DefaultSFileProps.item-padding-type,
+    };
+    in-out property <SSwitchGroupProps> switch-group:{
+        card-height : DefaultSSwitchGroupProps.card-height,
+        card-width : DefaultSSwitchGroupProps.card-width,
+        padding-type: DefaultSSwitchGroupProps.padding-type,
+        shadow-type: DefaultSSwitchGroupProps.shadow-type,
+        border-type : DefaultSSwitchGroupProps.border-type,
+        active : DefaultSSwitchGroupProps.active,
+        theme: DefaultSSwitchGroupProps.theme,
+        switchs : DefaultSSwitchGroupProps.switchs,
+        font-family : DefaultSSwitchGroupProps.font-family,
+        font-weight : DefaultSSwitchGroupProps.font-weight,
+        font-size: DefaultSSwitchGroupProps.font-size,
+        font-italic : DefaultSSwitchGroupProps.font-italic,
+    };
+    in-out property <SProgressProps> progress:{
+        font-weight : DefaultSProgressProps.font-weight,
+        font-size: DefaultSProgressProps.font-size,
+        font-color : DefaultSProgressProps.font-color,
+        font-italic : DefaultSProgressProps.font-italic,
+        font-family : DefaultSProgressProps.font-family,
+        //theme
     theme : DefaultSProgressProps.theme,
-    //hight-width
+        //hight-width
     height : DefaultSProgressProps.height,
-    width : DefaultSProgressProps.width,
-    text : DefaultSProgressProps.text,
-    progress : DefaultSProgressProps.progress,
-    stroke-width: DefaultSProgressProps.stroke-width,
-    stroke-color: DefaultSProgressProps.stroke-color,
-    circle: DefaultSProgressProps.circle,
-  };
-  in-out property <SBadgeProps> badge : {
-    font-weight : DefaultSBadgeProps.font-weight,
-    font-size: DefaultSBadgeProps.font-size,
-    font-color : DefaultSBadgeProps.font-color,
-    font-italic : DefaultSBadgeProps.font-italic,
-    font-family : DefaultSBadgeProps.font-family,
-    //theme
+        width : DefaultSProgressProps.width,
+        text : DefaultSProgressProps.text,
+        progress : DefaultSProgressProps.progress,
+        stroke-width: DefaultSProgressProps.stroke-width,
+        stroke-color: DefaultSProgressProps.stroke-color,
+        circle: DefaultSProgressProps.circle,
+    };
+    in-out property <SBadgeProps> badge: {
+        font-weight : DefaultSBadgeProps.font-weight,
+        font-size: DefaultSBadgeProps.font-size,
+        font-color : DefaultSBadgeProps.font-color,
+        font-italic : DefaultSBadgeProps.font-italic,
+        font-family : DefaultSBadgeProps.font-family,
+        //theme
     theme : DefaultSBadgeProps.theme,
-    //hight-width
+        //hight-width
     card-height : DefaultSBadgeProps.card-height,
-    card-width : DefaultSBadgeProps.card-width,
-    text : DefaultSBadgeProps.text,
-    icon : DefaultSBadgeProps.icon,
-    position :DefaultSBadgeProps.position,
-    icon-color : DefaultSBadgeProps.icon-color,
-  };
-  in-out property <STableProps> table : {
-    columns : DefaultSTableProps.columns,
-    column-width : DefaultSTableProps.column-width,
-    column-themes:DefaultSTableProps.column-themes,
-    viewport-height:DefaultSTableProps.viewport-height,
-    //tab
+        card-width : DefaultSBadgeProps.card-width,
+        text : DefaultSBadgeProps.text,
+        icon : DefaultSBadgeProps.icon,
+        position :DefaultSBadgeProps.position,
+        icon-color : DefaultSBadgeProps.icon-color,
+    };
+    in-out property <STableProps> table: {
+        columns : DefaultSTableProps.columns,
+        column-width : DefaultSTableProps.column-width,
+        column-themes:DefaultSTableProps.column-themes,
+        viewport-height:DefaultSTableProps.viewport-height,
+        //tab
     font-weight : DefaultSTableProps.font-weight,
-    font-size: DefaultSTableProps.font-size,
-    font-color : DefaultSTableProps.font-color,
-    font-italic : DefaultSTableProps.font-italic,
-    font-family : DefaultSTableProps.font-family,
-    //theme
+        font-size: DefaultSTableProps.font-size,
+        font-color : DefaultSTableProps.font-color,
+        font-italic : DefaultSTableProps.font-italic,
+        font-family : DefaultSTableProps.font-family,
+        //theme
     theme : DefaultSTableProps.theme,
-    padding-type: DefaultSTableProps.padding-type,
-    shadow-type: DefaultSTableProps.shadow-type,
-    border-type : DefaultSTableProps.border-type,
-    alignment: DefaultSTableProps.alignment,
-  };
-  in-out property <STableColumnProps> table-column:{
-    index : DefaultSTableColumnProps.index,
-    datas : DefaultSTableColumnProps.datas,
-    height : DefaultSTableColumnProps.height,
-    width : DefaultSTableColumnProps.width,
-    //tab
+        padding-type: DefaultSTableProps.padding-type,
+        shadow-type: DefaultSTableProps.shadow-type,
+        border-type : DefaultSTableProps.border-type,
+        alignment: DefaultSTableProps.alignment,
+    };
+    in-out property <STableColumnProps> table-column:{
+        index : DefaultSTableColumnProps.index,
+        datas : DefaultSTableColumnProps.datas,
+        height : DefaultSTableColumnProps.height,
+        width : DefaultSTableColumnProps.width,
+        //tab
     font-weight : DefaultSTableColumnProps.font-weight,
-    font-size: DefaultSTableColumnProps.font-size,
-    font-color : DefaultSTableColumnProps.font-color,
-    font-italic : DefaultSTableColumnProps.font-italic,
-    font-family : DefaultSTableColumnProps.font-family,
-    theme : DefaultSTableColumnProps.theme,
-    padding-type: DefaultSTableColumnProps.padding-type,
-    shadow-type: DefaultSTableColumnProps.shadow-type,
-    border-type : DefaultSTableColumnProps.border-type,
-    alignment: DefaultSTableColumnProps.alignment,
-  };
-  in-out property <SMenuProps> menu:{
-    theme : DefaultSMenuProps.theme,
-    height : DefaultSMenuProps.height,
-    width :DefaultSMenuProps.width,
-    tip-width: DefaultSMenuProps.tip-width,
-    icon-box-size : DefaultSMenuProps.icon-box-size,
-    icon-size : DefaultSMenuProps.icon-size,
-    active : DefaultSMenuProps.active,
-    active-color :DefaultSMenuProps.active-color,
-    menu-data : DefaultSMenuProps.menu-data,
-    sub-menu-data : DefaultSMenuProps.sub-menu-data,
-    more-height : DefaultSMenuProps.more-height, 
-    more-width : DefaultSMenuProps.more-width,
-  };
+        font-size: DefaultSTableColumnProps.font-size,
+        font-color : DefaultSTableColumnProps.font-color,
+        font-italic : DefaultSTableColumnProps.font-italic,
+        font-family : DefaultSTableColumnProps.font-family,
+        theme : DefaultSTableColumnProps.theme,
+        padding-type: DefaultSTableColumnProps.padding-type,
+        shadow-type: DefaultSTableColumnProps.shadow-type,
+        border-type : DefaultSTableColumnProps.border-type,
+        alignment: DefaultSTableColumnProps.alignment,
+    };
+    in-out property <SMenuProps> menu:{
+        theme : DefaultSMenuProps.theme,
+        height : DefaultSMenuProps.height,
+        width :DefaultSMenuProps.width,
+        tip-width: DefaultSMenuProps.tip-width,
+        icon-box-size : DefaultSMenuProps.icon-box-size,
+        icon-size : DefaultSMenuProps.icon-size,
+        active : DefaultSMenuProps.active,
+        active-color :DefaultSMenuProps.active-color,
+        menu-data : DefaultSMenuProps.menu-data,
+        sub-menu-data : DefaultSMenuProps.sub-menu-data,
+        more-height : DefaultSMenuProps.more-height,
+        more-width : DefaultSMenuProps.more-width,
+    };
 }

@@ -3,19 +3,20 @@ import {GlobalProps} from "./index.slint";
 import { ROOT-STYLES } from "./theme.slint";
 
 export global DefaultSCheckboxProps {
-  in-out property <int> font-weight : GlobalProps.font.font-weight;
-  in-out property <length> font-size: GlobalProps.font.font-size;
-  in-out property <brush> color : GlobalProps.font.color;
-  in-out property <bool> font-italic : GlobalProps.font.font-italic;
-  in-out property <string> font-family : GlobalProps.font.font-family;
-  in-out property <length> card-height : GlobalProps.font.font-size;
-  in-out property <length> card-width : GlobalProps.font.font-size;
-  in-out property <Themes> theme : GlobalProps.theme;
-  in-out property <brush> active-color: GlobalProps.active-color;
-  in-out property <PaddingType> padding-type: PaddingType.Icon;
-  in-out property <ShadowType> shadow-type: ShadowType.Low1;
-  in-out property <BorderType> border-type : BorderType.Small;
-  in-out property <string> text : "SCheckbox";
-  in-out property <string> value : "checkbox";
-  in-out property <bool> actived : false;
+    in-out property <int> font-weight: GlobalProps.font.font-weight;
+    in-out property <length> font-size: GlobalProps.font.font-size;
+    in-out property <brush> color: GlobalProps.font.color;
+    in-out property <bool> font-italic: GlobalProps.font.font-italic;
+    in-out property <string> font-family: GlobalProps.font.font-family;
+    in-out property <length> card-height: GlobalProps.font.font-size;
+    in-out property <length> card-width: GlobalProps.font.font-size;
+    in-out property <Themes> theme: GlobalProps.theme;
+    in-out property <brush> active-color: GlobalProps.active-color;
+    in-out property <PaddingType> padding-type: PaddingType.Icon;
+    in-out property <ShadowType> shadow-type: ShadowType.Low1;
+    in-out property <BorderType> border-type: BorderType.Small;
+    in-out property <string> text: "SCheckbox";
+    in-out property <string> value: "checkbox";
+    in-out property <bool> actived: false;
+    in-out property <bool> disabled: false;
 }
