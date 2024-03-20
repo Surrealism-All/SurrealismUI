@@ -57,158 +57,163 @@ import { ScrollView } from "std-widgets.slint";
 import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,BorderProps,UseSurrealismFn } from "../../use/index.slint";
 
 export component Dialog inherits Window {
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  always-on-top:true;
-  opacity: 1;
-  visible: is-show;
-  z: 1000;
-    //theme
-    in property <Themes> theme : DefaultSDialogProps.theme;
-    in property <Themes> cancel-btn-theme : DefaultSDialogProps.cancel-btn-theme;
-    in property <Themes> confirm-btn-theme : DefaultSDialogProps.confirm-btn-theme;
-    in property <string> cancel-btn-text : DefaultSDialogProps.cancel-btn-text;
-    in property <string> confirm-btn-text : DefaultSDialogProps.confirm-btn-text;
-    in-out property <bool> is-show: DefaultSDialogProps.is-show;
-    in property <percent> mask-opacity : DefaultSDialogProps.mask-opacity;
-    in property <length> spacing : DefaultSDialogProps.spacing;
-    //font
-    in property <int> font-weight : DefaultSDialogProps.font-weight;
-    in property <length> font-size: DefaultSDialogProps.font-size;
-    in property <brush> font-color : DefaultSDialogProps.font-color;
-    in property <bool> font-italic : DefaultSDialogProps.font-italic;
-    in property <string> font-family : DefaultSDialogProps.font-family;
-    //dialog
-    in property <Themes> dialog-theme : DefaultSDialogProps.dialog-theme;
-    in property <string> dialog-title : DefaultSDialogProps.dialog-title;
-    in property <length> dialog-title-size : DefaultSDialogProps.dialog-title-size;
-    in property <string> dialog-details : DefaultSDialogProps.dialog-details;
-    in property <float> dialog-height : DefaultSDialogProps.dialog-height;
-    in property <float> dialog-title-height : DefaultSDialogProps.dialog-title-height;
-    in property <float> dialog-view-height : DefaultSDialogProps.dialog-view-height;
-    in property <float> btn-view-height : DefaultSDialogProps.btn-view-height;
-    in property <float> dialog-width : DefaultSDialogProps.dialog-width;
-  in property <length> dialog-details-padding-top:DefaultSDialogProps.dialog-details-padding-top;
-  in property <length> dialog-details-padding-bottom:DefaultSDialogProps.dialog-details-padding-bottom;
-  in property <length> dialog-details-padding-left:DefaultSDialogProps.dialog-details-padding-left;
-  in property <length> dialog-details-padding-right:DefaultSDialogProps.dialog-details-padding-right;
-  in property <PaddingType> padding-type:PaddingType.Normal;
-  in property <ShadowType> shadow-type: ShadowType.Low1;
-  in property <BorderType> border-type : BorderType.Normal;
-  in property <length> viewport-height <=> detail-scroll-view.viewport-height;
-  in property <length> viewport-width <=> detail-scroll-view.viewport-width;
-  in property <LayoutAlignment> dialog-details-alignment:DefaultSDialogProps.dialog-details-alignment;
-  public function open() {
-      self.is-show = true;
-  }
-  public function close() {
-      self.is-show = false;
-  }
-  callback confirm();
-  callback cancel();
-  mask:=SCard {
-    z: 100;
     height: 100%;
     width: 100%;
-    theme: root.theme;
-    drop-shadow-blur: 0;
-    drop-shadow-offset-x: 0;
-    drop-shadow-offset-y: 0;
-    opacity: root.mask-opacity;
-  }
-  area:=TouchArea {
-    z: 110;
-    clicked => {
-      root.close()
+    padding: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    always-on-top: true;
+    opacity: 1;
+    visible: is-show;
+    z: 1000;
+    //theme
+    in property <Themes> theme: DefaultSDialogProps.theme;
+    in property <Themes> cancel-btn-theme: DefaultSDialogProps.cancel-btn-theme;
+    in property <Themes> confirm-btn-theme: DefaultSDialogProps.confirm-btn-theme;
+    in property <string> cancel-btn-text: DefaultSDialogProps.cancel-btn-text;
+    in property <string> confirm-btn-text: DefaultSDialogProps.confirm-btn-text;
+    in-out property <bool> is-show: DefaultSDialogProps.is-show;
+    in property <percent> mask-opacity: DefaultSDialogProps.mask-opacity;
+    in property <length> spacing: DefaultSDialogProps.spacing;
+    //font
+    in property <int> font-weight: DefaultSDialogProps.font-weight;
+    in property <length> font-size: DefaultSDialogProps.font-size;
+    in property <brush> font-color: DefaultSDialogProps.font-color;
+    in property <bool> font-italic: DefaultSDialogProps.font-italic;
+    in property <string> font-family: DefaultSDialogProps.font-family;
+    //dialog
+    in property <Themes> dialog-theme: DefaultSDialogProps.dialog-theme;
+    in property <string> dialog-title: DefaultSDialogProps.dialog-title;
+    in property <length> dialog-title-size: DefaultSDialogProps.dialog-title-size;
+    in property <string> dialog-details: DefaultSDialogProps.dialog-details;
+    in property <float> dialog-height: DefaultSDialogProps.dialog-height;
+    in property <float> dialog-title-height: DefaultSDialogProps.dialog-title-height;
+    in property <float> dialog-view-height: DefaultSDialogProps.dialog-view-height;
+    in property <float> btn-view-height: DefaultSDialogProps.btn-view-height;
+    in property <float> dialog-width: DefaultSDialogProps.dialog-width;
+    in property <length> dialog-details-padding-top:DefaultSDialogProps.dialog-details-padding-top;
+    in property <length> dialog-details-padding-bottom:DefaultSDialogProps.dialog-details-padding-bottom;
+    in property <length> dialog-details-padding-left:DefaultSDialogProps.dialog-details-padding-left;
+    in property <length> dialog-details-padding-right:DefaultSDialogProps.dialog-details-padding-right;
+    in property <PaddingType> padding-type:PaddingType.Normal;
+    in property <ShadowType> shadow-type: ShadowType.Low1;
+    in property <BorderType> border-type: BorderType.Normal;
+    in property <length> viewport-height <=> detail-scroll-view.viewport-height;
+    in property <length> viewport-width <=> detail-scroll-view.viewport-width;
+    in-out property <bool> mask-close: false;
+    in property <LayoutAlignment> dialog-details-alignment:DefaultSDialogProps.dialog-details-alignment;
+    public function open() {
+        self.is-show = true;
+    }public function close() {
+        self.is-show = false;
+    }callback confirm();
+    callback cancel();
+    mask := SCard {
+        z: 100;
+        height: 100%;
+        width: 100%;
+        theme: root.theme;
+        drop-shadow-blur: 0;
+        drop-shadow-offset-x: 0;
+        drop-shadow-offset-y: 0;
+        opacity: root.mask-opacity;
     }
-    TouchArea {
-      height: dialog.height;
-      width: dialog.width;
-      dialog:=SCard{
-        z: 111;
-        card-height: area.height * root.dialog-height;
-        card-width: area.width * root.dialog-width;
-        padding-type: root.padding-type;
-        shadow-type: root.shadow-type;
-        border-type: root.border-type;
-        VerticalLayout {
-          alignment: space-between;
-          title-view:=Rectangle {
-            height: parent.height * root.dialog-title-height;
-            width: 100%;
-            title:=SText { 
-              font-size: root.dialog-title-size;
-              font-weight: 700;
-              text: root.dialog-title;
-              font-italic: root.font-italic;
-              font-family: root.font-family;
-              theme: root.dialog-theme;
+
+    area := TouchArea {
+        z: 110;
+        clicked => {
+            if mask-close {
+                root.close()
             }
-          }
-          details-view:=Rectangle{
-            height: parent.height * root.dialog-view-height;
-            detail-scroll-view:=ScrollView { 
-              height: parent.height;
-              width: parent.width;
-              padding-top: root.dialog-details-padding-top;
-              padding-bottom: root.dialog-details-padding-bottom;
-              padding-left: root.dialog-details-padding-left;
-              padding-right: root.dialog-details-padding-right;
-              if root.dialog-details!="": details:=SText{
-                text: root.dialog-details;
-                font-family: root.font-family;
-                font-weight: root.font-weight;
-                font-size: root.font-size;
-                font-italic: root.font-italic;
-                wrap: word-wrap;
-              }
-              @children
-            }
-          }
-          btn-view:=HorizontalLayout {
-            spacing: UseSurrealismFn.get-space(parent.width);
-            height: parent.height * root.btn-view-height;
-            padding-left: dialog.padding-left;
-            padding-right: dialog.padding-right;
-            padding-top: dialog.padding-top;
-            padding-bottom: dialog.padding-bottom;
-            alignment: root.dialog-details-alignment;
-            Rectangle {
-              width: cancel-btn.width;
-              cancel-btn:=SButton { 
-                theme: root.cancel-btn-theme;
-                drop-shadow-blur: 0;
-                drop-shadow-offset-x: 0;
-                drop-shadow-offset-y: 0;
-                text: root.cancel-btn-text;
-                clicked => {
-                  root.cancel();
-                  root.close();
-                }
-              }
-            }
-            Rectangle {
-              width: confirm-btn.width;
-              confirm-btn:=SButton {
-                theme: root.confirm-btn-theme;
-                drop-shadow-blur: 0;
-                drop-shadow-offset-x: 0;
-                drop-shadow-offset-y: 0;
-                text: root.confirm-btn-text;
-                clicked => {
-                  root.confirm();
-                  root.close();
-                }
-              }
-            }
-          }
         }
-      }
+        TouchArea {
+            height: dialog.height;
+            width: dialog.width;
+            dialog := SCard {
+                z: 111;
+                card-height: area.height * root.dialog-height;
+                card-width: area.width * root.dialog-width;
+                padding-type: root.padding-type;
+                shadow-type: root.shadow-type;
+                border-type: root.border-type;
+                VerticalLayout {
+                    alignment: space-between;
+                    title-view := Rectangle {
+                        height: parent.height * root.dialog-title-height;
+                        width: 100%;
+                        title := SText {
+                            font-size: root.dialog-title-size;
+                            font-weight: 700;
+                            text: root.dialog-title;
+                            font-italic: root.font-italic;
+                            font-family: root.font-family;
+                            theme: root.dialog-theme;
+                        }
+                    }
+
+                    details-view := Rectangle {
+                        height: parent.height * root.dialog-view-height;
+                        detail-scroll-view := ScrollView {
+                            height: parent.height;
+                            width: parent.width;
+                            padding-top: root.dialog-details-padding-top;
+                            padding-bottom: root.dialog-details-padding-bottom;
+                            padding-left: root.dialog-details-padding-left;
+                            padding-right: root.dialog-details-padding-right;
+                            if root.dialog-details != "": details := SText {
+                                text: root.dialog-details;
+                                font-family: root.font-family;
+                                font-weight: root.font-weight;
+                                font-size: root.font-size;
+                                font-italic: root.font-italic;
+                                wrap: word-wrap;
+                            }
+                            @children
+                        }
+                    }
+
+                    btn-view := HorizontalLayout {
+                        spacing: UseSurrealismFn.get-space(parent.width);
+                        height: parent.height * root.btn-view-height;
+                        padding-left: dialog.padding-left;
+                        padding-right: dialog.padding-right;
+                        padding-top: dialog.padding-top;
+                        padding-bottom: dialog.padding-bottom;
+                        alignment: root.dialog-details-alignment;
+                        Rectangle {
+                            width: cancel-btn.width;
+                            cancel-btn := SButton {
+                                theme: root.cancel-btn-theme;
+                                drop-shadow-blur: 0;
+                                drop-shadow-offset-x: 0;
+                                drop-shadow-offset-y: 0;
+                                text: root.cancel-btn-text;
+                                clicked => {
+                                    root.cancel();
+                                    root.close();
+                                }
+                            }
+                        }
+
+                        Rectangle {
+                            width: confirm-btn.width;
+                            confirm-btn := SButton {
+                                theme: root.confirm-btn-theme;
+                                drop-shadow-blur: 0;
+                                drop-shadow-offset-x: 0;
+                                drop-shadow-offset-y: 0;
+                                text: root.confirm-btn-text;
+                                clicked => {
+                                    root.confirm();
+                                    root.close();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-  }
 }

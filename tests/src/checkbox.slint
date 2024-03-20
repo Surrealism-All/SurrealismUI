@@ -7,10 +7,20 @@ component TestCheckbox {
         padding: 20px;
         SCheckbox {
             actived: true;
+            clicked(text, value, actived) => {
+                debug(text,value,actived)
+            }
         }
 
         SCheckbox {
+            disabled: true;
             theme: Error;
+            clicked(text, value, actived) => {
+                debug(text,value,actived)
+            }
+            pending => {
+                debug("pending")
+            }
         }
 
         SCheckbox {

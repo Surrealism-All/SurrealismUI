@@ -419,6 +419,7 @@ Thank you for reading, and if you have any questions, please send an email to sy
     - 增加`SStep`进度指向线颜色效果
     - 增加`SPagination`分页器组件
     - 增加`SVKeyboard`虚拟键盘
+    - 增加`SButton`,`SCheckbox`禁用选项
   - English
     - Add progress directional line color for `SStep`
 - V0.4.0

@@ -3,39 +3,37 @@ import {Themes} from "../../use/index.slint";
 import { SText } from "../../src/text/index.slint";
 
 component TestDialog inherits Window {
-  height: 600px;
-  width: 600px;
-  background: #535353;
- 
-  SButton {
-    
-    text: "show";
-    clicked => {
-      p.open();
+    height: 600px;
+    width: 600px;
+    background: #535353;
+    SButton {
+        text: "show";
+        clicked => {
+            p.open();
+        }
     }
-  }
- 
 
-  p:=SDialog {
-    dialog-details : "";
-    confirm-btn-theme: Success;
-    dialog-width:80%;
-    dialog-height:52%;
-    dialog-title: "Surrealism Dialog Title";
-    dialog-title-size: 20px;
-    dialog-details-padding-top : 16px;
-    // do after confirm btn clicked
-    viewport-height : dialog-detail.height;
-    // viewport-width : dialog-detail.width;
-    confirm=>{
-      debug("confirm btn clicked~!")
+    p := SDialog {
+        // true: you can close dialog when click mask
+        mask-close: true;
+        dialog-details: "";
+        confirm-btn-theme: Success;
+        dialog-width: 80%;
+        dialog-height: 52%;
+        dialog-title: "Surrealism Dialog Title";
+        dialog-title-size: 20px;
+        dialog-details-padding-top: 16px;
+        // do after confirm btn clicked
+        viewport-height: dialog-detail.height;
+        // viewport-width : dialog-detail.width;
+        confirm => {
+            debug("confirm btn clicked~!")
+        }
+        dialog-detail := Rectangle {
+            height: 200px;
+            SText {
+                text: "This is a dialog";
+            }
+        }
     }
-    dialog-detail:=Rectangle {
-      height: 200px;
-      SText {
-        text:"This is a dialog";
-      }
-    }
-  }
 }
-
