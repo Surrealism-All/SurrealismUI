@@ -34,104 +34,105 @@ import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,BorderProps,UseIc
 import {ROOT_STYLES,DefaultSLoadingProps} from "../../themes/index.slint";
 
 export component Loading inherits Window {
-  height: 100%;
-  width: 100%;
-  padding: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
-  always-on-top:true;
-  opacity: DefaultSLoadingProps.opacity;
-  visible: is-show;
-  z: 1000;
-  in property <int> font-weight : DefaultSLoadingProps.font-weight;
-  in property <length> font-size: DefaultSLoadingProps.font-size;
-  in property <brush> font-color : DefaultSLoadingProps.font-color;
-  in property <bool> font-italic : DefaultSLoadingProps.font-italic;
-  in property <string> font-family : DefaultSLoadingProps.font-family;
-  in property <image> loading-icon : DefaultSLoadingProps.loading-icon;
-  in-out property <duration> duration : DefaultSLoadingProps.duration;
-  in property <string> text : DefaultSLoadingProps.text;
-  in-out property <bool> is-show : DefaultSLoadingProps.is-show;
-  in property <Themes> theme : DefaultSLoadingProps.theme;
-  in property <easing> easing : DefaultSLoadingProps.easing;
-  in-out property <int> iteration-count : DefaultSLoadingProps.iteration-count;
-  init => {self.is-show = true;}
-  public function close() {
-    self.is-show = false;
-  }
-  public function open() {
-    self.is-show = true;
-  }
-  states [
-    light when theme == Themes.Light: {
-      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.light.font;
-    }
-    primary when theme == Themes.Primary: {
-      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.primary.font;
-    }
-    success when theme == Themes.Success: {
-      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.success.font;
-    }
-    info when theme == Themes.Info: {
-      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.info.font;
-    }
-    warning when theme == Themes.Warning: {
-      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.warning.font;
-    }
-    error when theme == Themes.Error: {
-      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.error.font;
-    }
-    dark when theme == Themes.Dark: {
-      loading-icon.colorize : ROOT-STYLES.sur-theme-colors.dark.font;
-    }
-  ]
-  mask:=SCard {
-    z: 100;
     height: 100%;
     width: 100%;
-    theme: root.theme;
-    drop-shadow-blur: 0;
-    drop-shadow-offset-x: 0;
-    drop-shadow-offset-y: 0;
-    opacity: 100%;
-    border-type: BorderType.None;
-    clip: true;
-    VerticalLayout {
-      alignment: center;
-      width: 50%;
-      spacing: ROOT-STYLES.sur-font.font-size;
-      Rectangle {
-        height: loading-icon.height;
-        width: parent.width;
-        loading-icon:=Image {
-          height: ROOT-STYLES.sur-font.font-size * 2;
-          width:  ROOT-STYLES.sur-font.font-size * 2;
-          source: root.loading-icon;
-          rotation-angle: !root.is-show?0deg: 240deg  * animation-tick() / root.duration;
-          animate rotation-angle {
-            easing: ease-in-out;
-            iteration-count: -1;
-          }
-        }
-      }
-      Rectangle {
-        height: loading-txt.height;
-        width: parent.width;
-        loading-txt:=SText {
-          theme: root.theme;
-          text: root.text;
-          font-family: root.font-family;
-          font-weight: root.font-weight;
-          font-size: root.font-size;
-          font-italic: root.font-italic;
-          color: root.font-color;
-        }
-      }
+    padding: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    always-on-top: true;
+    opacity: DefaultSLoadingProps.opacity;
+    visible: is-show;
+    z: 1000;
+    in property <int> font-weight: DefaultSLoadingProps.font-weight;
+    in property <length> font-size: DefaultSLoadingProps.font-size;
+    in property <brush> font-color: DefaultSLoadingProps.font-color;
+    in property <bool> font-italic: DefaultSLoadingProps.font-italic;
+    in property <string> font-family: DefaultSLoadingProps.font-family;
+    in property <image> loading-icon: DefaultSLoadingProps.loading-icon;
+    in-out property <duration> duration: DefaultSLoadingProps.duration;
+    in property <string> text: DefaultSLoadingProps.text;
+    in-out property <bool> is-show: DefaultSLoadingProps.is-show;
+    in property <Themes> theme: DefaultSLoadingProps.theme;
+    in property <easing> easing: DefaultSLoadingProps.easing;
+    in-out property <int> iteration-count: DefaultSLoadingProps.iteration-count;
+    init => {
+        self.is-show = true;
     }
-  }
-  TouchArea {
-    z: 110;
-  }
+    public function close() {
+        self.is-show = false;
+    }public function open() {
+        self.is-show = true;
+    }states [
+    light when theme == Themes.Light: {
+            loading-icon.colorize: ROOT-STYLES.sur-theme-colors.light.font;
+        }
+        primary when theme == Themes.Primary: {
+            loading-icon.colorize: ROOT-STYLES.sur-theme-colors.primary.font;
+        }
+        success when theme == Themes.Success: {
+            loading-icon.colorize: ROOT-STYLES.sur-theme-colors.success.font;
+        }
+        info when theme == Themes.Info: {
+            loading-icon.colorize: ROOT-STYLES.sur-theme-colors.info.font;
+        }
+        warning when theme == Themes.Warning: {
+            loading-icon.colorize: ROOT-STYLES.sur-theme-colors.warning.font;
+        }
+        error when theme == Themes.Error: {
+            loading-icon.colorize: ROOT-STYLES.sur-theme-colors.error.font;
+        }
+        dark when theme == Themes.Dark: {
+            loading-icon.colorize: ROOT-STYLES.sur-theme-colors.dark.font;
+        }
+    ]mask := SCard {
+        z: 100;
+        height: 100%;
+        width: 100%;
+        theme: root.theme;
+        drop-shadow-blur: 0;
+        drop-shadow-offset-x: 0;
+        drop-shadow-offset-y: 0;
+        opacity: 100%;
+        border-type: BorderType.None;
+        clip: true;
+        VerticalLayout {
+            alignment: center;
+            width: 50%;
+            spacing: ROOT-STYLES.sur-font.font-size;
+            Rectangle {
+                height: loading-icon.height;
+                width: parent.width;
+                loading-icon := Image {
+                    height: ROOT-STYLES.sur-font.font-size * 2;
+                    width: ROOT-STYLES.sur-font.font-size * 2;
+                    source: root.loading-icon;
+                    rotation-angle: !root.is-show ? 0deg : 240deg * animation-tick() / root.duration;
+                    animate rotation-angle {
+                        easing: ease-in-out;
+                        iteration-count: -1;
+                    }
+                }
+            }
+
+            Rectangle {
+                height: loading-txt.height;
+                width: parent.width;
+                loading-txt := SText {
+                    theme: root.theme;
+                    text: root.text;
+                    font-family: root.font-family;
+                    font-weight: root.font-weight;
+                    font-size: root.font-size;
+                    font-italic: root.font-italic;
+                    color: root.font-color;
+                }
+            }
+        }
+    }
+
+    TouchArea {
+        z: 110;
+    }
 }

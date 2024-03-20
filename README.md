@@ -420,6 +420,7 @@ Thank you for reading, and if you have any questions, please send an email to sy
     - 增加`SPagination`分页器组件
     - 增加`SVKeyboard`虚拟键盘
     - 增加`SButton`,`SCheckbox`禁用选项
+    - 增加`SDialog`非触摸位置关闭控制选项:`mask-close`
   - English
     - Add progress directional line color for `SStep`
 - V0.4.0

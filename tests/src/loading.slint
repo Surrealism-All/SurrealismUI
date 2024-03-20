@@ -4,27 +4,32 @@ export component TestLoading inherits Window {
     height: 600px;
     width: 400px;
     SButton {
-      y: 100px;
-      text: "show";
-      clicked => {
-        p.open();
-      }
+        y: 100px;
+        text: "show";
+        clicked => {
+            p.open();
+        }
     }
+
     SButton {
-      y: 160px;
-      text: "close";
-      clicked => {
-        p.close();
-      }
+        y: 160px;
+        text: "close";
+        clicked => {
+            p.close();
+        }
     }
-    SCard{
-      y: 260px;
-      clip: true;
-      card-height: 260px;
-      card-width: 180px;
-      p:=SLoading {
-        text : "SurrealismUI";
-        font-weight:700;
-      }
+
+    SCard {
+        y: 260px;
+        clip: true;
+        card-height: 260px;
+        card-width: 180px;
+        p := SLoading {
+            text: "SurrealismUI";
+            font-weight: 700;
+            init => {
+                self.is-show = false;
+            }
+        }
     }
 }

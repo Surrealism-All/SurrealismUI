@@ -4,6 +4,28 @@ import { SCard } from "../card/index.slint";
 import { SText } from "../text/index.slint";
 import { ScrollView } from "std-widgets.slint";
 
+component PaginationItem {
+    in property <Themes> theme: Themes.Dark;
+    in property <PaddingType> padding-type;
+    in property <length> size;
+    in property <brush> background;
+    in property <string> text;
+    height: item.height;
+    width: item.width;
+    item := SCard {
+        theme: root.theme;
+        padding-type: root.padding-type;
+        card-height: root.size;
+        card-width: root.size;
+        background: root.background;
+        inner-text-l := SText {
+            theme: root.theme;
+            font-size: root.size;
+            text: root.text;
+        }
+    }
+}
+
 export component Pagination {
     in property <Themes> theme: Themes.Dark;
     in-out property <int> active: 0;
@@ -15,40 +37,28 @@ export component Pagination {
     in property <int> visible-range: 5;
     private property <PaddingType> padding-type: PaddingType.Tip;
     private property <int> page-number: ceil(total / page-size);
-    // private property <int> unvisible-number: 0;
+    private property <int> pre-active: root.active;
     pure function get-color(hover: bool, index: int, self-color: brush) -> brush {
         if (hover) {
             return UseSurrealismFn.deeper(root.theme, self-color);
-        }else{
-            return root.active == index ? UseSurrealismFn.deeper(root.theme, self-color): self-color;
-        }        
-    }
-    pure function show(index: int) -> bool{
-        if (root.visible-range < root.page-number){
-            
-           return round(root.page-number / 2) - floor((root.page-number - root.visible-range) / 2)  <= index &&
-            index < round(root.page-number / 2) + ceil((root.page-number - root.visible-range) / 2);
-            
+        } else {
+            return root.active == index ? UseSurrealismFn.deeper(root.theme, self-color) : self-color;
         }
-        return false;
-    }
-    pure function left() -> int{
-        return round(root.page-number / 2) - floor((root.page-number - root.visible-range) / 2);
-    }
-    pure public function right() -> int {
-        return root.visible-range - left();
-    }
-    callback pre(int, int);
+    }pure function to-left()->bool {
+        return (root.active >= root.visible-range - 2) && (root.active < root.page-number - 2);
+    }pure function to-right()->bool {
+        return (root.active >= root.visible-range - 1) && (root.active < root.page-number - 1);
+    }callback pre(int, int);
     callback next(int, int);
     callback clicked(int, int);
     HorizontalLayout {
         spacing: root.size / 1.75;
-        pre-btn:= SCard {
+        pre-btn := SCard {
             theme: root.theme;
             card-height: root.size;
             card-width: root.size;
             padding-type: root.padding-type;
-            pre-inner-icon:= SIcon {
+            pre-inner-icon := SIcon {
                 colorize: self.get-colorize();
                 theme: root.theme;
                 source: pre-icon;
@@ -57,16 +67,22 @@ export component Pagination {
                 clicked => {
                     if root.active != 0 {
                         root.active -= 1;
+                        // debug((root.active >= root.visible-range - 2), (root.active < root.page-number - (root.visible-range - 2)));
+                        if root.to-left() {
+                            pages-layout.scroll-x += pages-layout.item-width;
+                        }
+                        root.pre-active = root.active;
                     }
                     root.pre(root.active, root.page-size);
                 }
             }
         }
-        Rectangle{
+
+        Rectangle {
             HorizontalLayout {
                 if root.visible-range >= root.page-number: HorizontalLayout {
                     spacing: root.size / 1.75;
-                    for item[index] in root.page-number: Rectangle{
+                    for item[index] in root.page-number: Rectangle {
                         width: UseSurrealismFn.count-width(root.size, UseSurrealismFn.get-padding(root.padding-type).padding-left);
                         SCard {
                             theme: root.theme;
@@ -74,13 +90,13 @@ export component Pagination {
                             card-height: root.size;
                             card-width: root.size;
                             background: get-color(touch-area.has-hover, index, UseSurrealismFn.get-color(root.theme, ColorLevel.Normal));
-                            touch-area:= TouchArea {
+                            touch-area := TouchArea {
                                 mouse-cursor: pointer;
                                 clicked => {
                                     root.active = index;
                                     root.clicked(index, root.page-size);
                                 }
-                                inner-text:= SText {
+                                inner-text := SText {
                                     theme: root.theme;
                                     font-size: root.size;
                                     text: item + 1;
@@ -90,70 +106,131 @@ export component Pagination {
                     }
                 }
             }
-            HorizontalLayout {
-                if root.visible-range < root.page-number: HorizontalLayout{
+
+            pages-layout := HorizontalLayout {
+                in-out property <length> scroll-x: 0;
+                in-out property <length> item-width: UseSurrealismFn.count-width(root.size, UseSurrealismFn.get-padding(root.padding-type).padding-left) + root.size / 1.75;
+                if root.visible-range < root.page-number: HorizontalLayout {
                     spacing: root.size / 1.75;
-                    for l-item[l-index] in root.left(): Rectangle {
-                        width: UseSurrealismFn.count-width(root.size, UseSurrealismFn.get-padding(root.padding-type).padding-left);
-                        SCard {
-                            theme: root.theme;
-                            padding-type: root.padding-type;
-                            card-height: root.size;
-                            card-width: root.size;
-                            background: get-color(touch-area-l.has-hover, l-index, UseSurrealismFn.get-color(root.theme, ColorLevel.Normal));
-                            touch-area-l:= TouchArea {
-                                mouse-cursor: pointer;
-                                clicked => {
-                                    root.active = l-index;
-                                    root.clicked(l-index, root.page-size);
+                    l-page-item := Rectangle {
+                        height: touch-area-l.height;
+                        width: touch-area-l.width;
+                        touch-area-l := TouchArea {
+                            mouse-cursor: pointer;
+                            height: l-item.height;
+                            width: l-item.width;
+                            l-item := PaginationItem {
+                                text: 1;
+                                theme: root.theme;
+                                padding-type: root.padding-type;
+                                size: root.size;
+                                background: get-color(touch-area-l.has-hover, 0, UseSurrealismFn.get-color(root.theme, ColorLevel.Normal));
+                            }
+
+                            clicked => {
+                                root.active = 0;
+                                root.clicked(0, root.page-size);
+                                if pages-layout.scroll-x != 0 {
+                                    pages-layout.scroll-x = 0;
                                 }
-                                inner-text-l:= SText {
-                                    theme: root.theme;
-                                    font-size: root.size;
-                                    text: l-item + 1;
-                                }
+                                root.pre-active = root.active;
                             }
                         }
                     }
-                    // more icon
-                    if root.visible-range != root.page-number: Rectangle {
+
+                    if (root.active > root.visible-range - 2):l-icon-wrap := Rectangle {
                         width: UseSurrealismFn.count-width(root.size, UseSurrealismFn.get-padding(root.padding-type).padding-left);
                         SIcon {
                             source: UseIcons.icons.More;
                         }
                     }
-                    for r-item[index] in root.right(): Rectangle {
+
+                    Rectangle {
+                        // background: red;
+                        clip: true;
+                        width: (root.visible-range - 2) * l-page-item.width + (root.visible-range - 3) * layout.spacing;
+                        Flickable {
+                            interactive: false;
+                            width: parent.width;
+                            height: parent.height;
+                            viewport-height: parent.height;
+                            viewport-width: layout.width;
+                            viewport-x: pages-layout.scroll-x;
+                            layout := HorizontalLayout {
+                                spacing: root.size / 1.75;
+                                width: root.page-number * l-page-item.width + (root.page-number - 1) * layout.spacing;
+                                for item[i-index] in root.page-number - 2: i-page-item := Rectangle {
+                                    private property <int> real-index: item + 1;
+                                    height: touch-area-i.height;
+                                    width: touch-area-i.width;
+                                    touch-area-i := TouchArea {
+                                        mouse-cursor: pointer;
+                                        height: i-item.height;
+                                        width: i-item.width;
+                                        i-item := PaginationItem {
+                                            text: real-index + 1;
+                                            theme: root.theme;
+                                            padding-type: root.padding-type;
+                                            size: root.size;
+                                            background: get-color(touch-area-i.has-hover, i-page-item.real-index, UseSurrealismFn.get-color(root.theme, ColorLevel.Normal));
+                                        }
+
+                                        clicked => {
+                                            root.active = i-page-item.real-index;
+                                            root.clicked( i-page-item.real-index, root.page-size);
+                                            debug(pages-layout.scroll-x);
+                                            if pages-layout.scroll-x != 0 {
+                                                debug("handle");
+                                                pages-layout.scroll-x -= (root.active - root.pre-active) * pages-layout.item-width;
+                                            }
+                                            root.pre-active = i-page-item.real-index;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (root.active < root.page-number - 2):r-icon-wrap := Rectangle {
                         width: UseSurrealismFn.count-width(root.size, UseSurrealismFn.get-padding(root.padding-type).padding-left);
-                        SCard {
-                            private property <int> r-index: root.page-number - root.right() + r-item;
-                            theme: root.theme;
-                            padding-type: root.padding-type;
-                            card-height: root.size;
-                            card-width: root.size;
-                            background: get-color(touch-area-r.has-hover, r-index, UseSurrealismFn.get-color(root.theme, ColorLevel.Normal));
-                            touch-area-r:= TouchArea {
-                                mouse-cursor: pointer;
-                                clicked => {
-                                    root.active = r-index;
-                                    root.clicked(r-index, root.page-size);
-                                }
-                                inner-text-r:= SText {
-                                    theme: root.theme;
-                                    font-size: root.size;
-                                    text: r-index + 1;
-                                }
+                        SIcon {
+                            source: UseIcons.icons.More;
+                        }
+                    }
+
+                    r-page-item := Rectangle {
+                        height: touch-area-r.height;
+                        width: touch-area-r.width;
+                        touch-area-r := TouchArea {
+                            mouse-cursor: pointer;
+                            height: r-item.height;
+                            width: r-item.width;
+                            r-item := PaginationItem {
+                                text: root.page-number;
+                                theme: root.theme;
+                                padding-type: root.padding-type;
+                                size: root.size;
+                                background: get-color(touch-area-r.has-hover, root.page-number - 1, UseSurrealismFn.get-color(root.theme, ColorLevel.Normal));
+                            }
+
+                            clicked => {
+                                root.active = root.page-number - 1;
+                                root.clicked(root.page-number - 1, root.page-size);
+                                pages-layout.scroll-x -= (root.page-number - root.visible-range) * pages-layout.item-width;
+                                root.pre-active = root.active;
                             }
                         }
                     }
                 }
             }
         }
-        next-btn:= SCard{
+
+        next-btn := SCard {
             theme: root.theme;
             card-height: root.size;
             card-width: root.size;
             padding-type: root.padding-type;
-            next-inner-icon:= SIcon {
+            next-inner-icon := SIcon {
                 colorize: self.get-colorize();
                 theme: root.theme;
                 source: next-icon;
@@ -162,6 +239,11 @@ export component Pagination {
                 clicked => {
                     if root.active != page-number - 1 {
                         root.active += 1;
+                        // debug((root.active >= root.visible-range - 1) && (root.active < root.page-number - 1));
+                        if root.to-right() {
+                            pages-layout.scroll-x -= pages-layout.item-width;
+                        }
+                        root.pre-active = root.active;
                     }
                     root.next(root.active, root.page-size);
                 }
@@ -170,7 +252,7 @@ export component Pagination {
     }
 }
 
-export component TestPagination inherits Window{
+export component TestPagination inherits Window {
     height: 400px;
     width: 460px;
     background: #1d2125;
@@ -179,18 +261,25 @@ export component TestPagination inherits Window{
         padding-bottom: 32px;
         alignment: space-around;
         Rectangle {
-            Pagination {
-                page-size: 15;
+            a := Pagination {
+                page-size: 10;
                 total: 100;
                 visible-range: 5;
             }
         }
+
+        Text {
+            text: a.active;
+            font-size: 16px;
+            color: #fff;
+        }
+
         Rectangle {
             ScrollView {
                 height: 200px;
                 width: root.width;
                 viewport-width: p.width + 24px;
-                p:= Pagination {
+                p := Pagination {
                     theme: Themes.Primary;
                     active: 2;
                     page-size: 30;
@@ -200,7 +289,6 @@ export component TestPagination inherits Window{
                     size: 16px;
                 }
             }
-            
         }
     }
 }
