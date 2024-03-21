@@ -1,0 +1,190 @@
+import { SCard } from "../card/index.slint";
+import { SText } from "../text/index.slint";
+import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,SKeyItem,BorderProps,UseIcons,UseSurrealismFn, ColorLevel,KeyItems,KeyBoardType } from "../../use/index.slint";
+import { DefaultKeyBoardKeys } from "../../themes/index.slint";
+import { ScrollView, ListView } from "std-widgets.slint";
+
+
+component KeyBoardItem {
+
+}
+
+component PhoneAlpha {
+    private property <[[SKeyItem]]> keys: DefaultKeyBoardKeys.alpha-keys;
+    VerticalLayout {
+        HorizontalLayout {
+
+        }
+        HorizontalLayout {}
+        HorizontalLayout {}
+        HorizontalLayout {}
+    }
+}
+
+component PhoneNumber inherits Rectangle {
+    in property <Themes> theme: Themes.Dark;
+    in property <length> font-size: 16px;
+    private property <length> item-height: root.height / 4;
+    private property <length> item-width: root.width / 5;
+    in-out property <[SKeyItem]> signs: DefaultKeyBoardKeys.number-signs;
+    private property <[[SKeyItem]]> keys: DefaultKeyBoardKeys.number-keys;
+    private property <[SKeyItem]> tools: DefaultKeyBoardKeys.number-tools ;
+    callback clicked(SKeyItem);
+    height: 100%;
+    width: 100%;
+    layout := HorizontalLayout {
+        alignment: space-between;
+        left := Rectangle {
+            width: root.width / 5 ;
+            height: 100%;
+            clip: true;
+            ListView {
+                for s-item in root.signs: Rectangle {
+                    height: item-height;
+                    width: parent.width - self.padding-right;
+                    padding-right: 6px;
+                    background: sign-area.has-hover ? UseSurrealismFn.get-color(root.theme, ColorLevel.Deepest) : UseSurrealismFn.get-color(root.theme, ColorLevel.Deeper);
+                    sign-area := TouchArea {
+                        mouse-cursor: pointer;
+                        clicked => {
+                            root.clicked(s-item);
+                        }
+                        sign-item := SText {
+                            theme: root.theme;
+                            text: s-item.label;
+                            font-size: root.font-size;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+
+        center := Rectangle {
+            width: 60%;
+            height: 100%;
+            clip: true;
+            VerticalLayout {
+                alignment: space-between;
+                for key-line in root.keys: HorizontalLayout {
+                    alignment: space-between;
+                    padding-top: 2px;
+                    padding-bottom: 2px;
+                    spacing: 4px;
+                    height: parent.height / 4;
+                    for key in key-line: Rectangle {
+                        height: item-height - parent.padding-top * 2;
+                        width: item-width - parent.spacing;
+                        background: key-area.has-hover ? UseSurrealismFn.get-color(root.theme, ColorLevel.Deepest) : UseSurrealismFn.get-color(root.theme, ColorLevel.Deeper);
+                        key-area := TouchArea {
+                            mouse-cursor: pointer;
+                            clicked => {
+                                root.clicked(key);
+                            }
+                            key-item := SText {
+                                theme: root.theme;
+                                text: key.label;
+                                font-size: root.font-size;
+                                font-weight: 700;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        right := Rectangle {
+            width: 20%;
+            height: 100%;
+            VerticalLayout {
+                padding-top: 2px;
+                padding-bottom: 2px;
+                padding-left: 4px;
+                spacing: 4px;
+                for t-item in root.tools: Rectangle {
+                    height: item-height - parent.spacing;
+                    padding-right: 6px;
+                    background: tool-area.has-hover ? UseSurrealismFn.get-color(root.theme, ColorLevel.Deepest) : UseSurrealismFn.get-color(root.theme, ColorLevel.Deeper);
+                    tool-area := TouchArea {
+                        mouse-cursor: pointer;
+                        clicked => {
+                            root.clicked(t-item);
+                        }
+                        tool-item := SText {
+                            theme: root.theme;
+                            text: t-item.label;
+                            font-size: root.font-size;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+component Computer { }
+
+export component KeyBoard {
+    height: 100%;
+    width: 100%;
+    in property <Themes> theme: Themes.Dark;
+    in property <length> font-size: 16px;
+    in-out property <KeyBoardType> keyboard-type: KeyBoardType.PhoneNumber;
+    callback clicked(SKeyItem);
+    if keyboard-type == KeyBoardType.PhoneAlpha: PhoneAlpha { }
+    if keyboard-type == KeyBoardType.PhoneNumber:PhoneNumber {
+        theme: root.theme;
+        clicked(key) => {
+            root.clicked(key);
+        }
+    }
+    if keyboard-type == KeyBoardType.Computer:Computer { }
+}
+
+component TestKeyBoardAlpha {
+    height: 400px;
+    width: 600px;
+    SCard {
+        y: root.height - self.height;
+        card-height: 200px;
+        width: 100%;
+        theme: Info;
+        KeyBoard { 
+            keyboard-type: KeyBoardType.PhoneAlpha;
+        }
+    }
+    
+}
+
+component TestKeyBoardNumber {
+    height: 460px;
+    width: 300px;
+    t:= SText {
+        y: 100px;
+        theme: kb.theme;
+        font-weight: 700;
+        text: "Click Keyboard !";
+    }
+    SCard {
+        y: root.height - self.height;
+        card-height: 200px;
+        width: 100%;
+        theme: Info;
+        kb:= KeyBoard {
+            theme: parent.theme;
+            keyboard-type: KeyBoardType.PhoneNumber;
+            clicked(key) =>{
+                t.text = @tr("You Clicked=> \nlabel: {}\n",key.label);
+                // See enum KeyItems
+                debug(key.value);
+            }
+        }
+    }
+}
+
+component TestKeyBoardAll {
+    height: 400px;
+    width: 600px;
+    KeyBoard { }
+}

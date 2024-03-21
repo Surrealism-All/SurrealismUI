@@ -1,0 +1,137 @@
+import { SOption, KeyItems,SKeyItem } from "../../use/index.slint";
+
+export global DefaultKeyBoardProps {
+    
+}
+
+export global DefaultKeyBoardKeys {
+    in-out property <[SKeyItem]> number-signs: [
+        {
+            label: ".",
+            value: KeyItems.Point
+        },
+        {
+            label: "/",
+            value: KeyItems.Div
+        },
+        {
+            label: "+",
+            value: KeyItems.Add
+        },
+        {
+            label: "-",
+            value: KeyItems.Sub
+        },
+        {
+            label: "*",
+            value: KeyItems.Mul
+        },
+        {
+            label: "@",
+            value: KeyItems.At
+        },
+        {
+            label: "&",
+            value: KeyItems.And
+        },
+        {
+            label: "%",
+            value: KeyItems.Percent
+        },
+        {
+            label: "$",
+            value: KeyItems.Dollar
+        },
+        {
+            label: "!",
+            value: KeyItems.Exclamation
+        },
+    ];
+    in-out property <[SKeyItem]> number-tools: [
+        {
+            label: "⌫",
+            value: KeyItems.Back
+        },
+        {
+            label: "⏎",
+            value: KeyItems.Enter
+        },
+        {
+            label: "=",
+            value: KeyItems.Equal
+        },
+        {
+            label: "?",
+            value: KeyItems.Question
+        },
+    ];
+    in-out property <[[SKeyItem]]> number-keys:[
+        [
+            {
+                label: "1",
+                value: KeyItems.One
+            },
+            {
+                label: "2",
+                value: KeyItems.Two
+            },
+            {
+                label: "3",
+                value: KeyItems.Three
+            }
+        ],
+        [
+            {
+                label: "4",
+                value: KeyItems.Four
+            },
+            {
+                label: "5",
+                value: KeyItems.Five
+            },
+            {
+                label: "6",
+                value: KeyItems.Six
+            }
+        ],
+        [
+            {
+                label: "7",
+                value: KeyItems.Seven
+            },
+            {
+                label: "8",
+                value: KeyItems.Eight
+            },
+            {
+                label: "9",
+                value: KeyItems.Nine
+            }
+        ],
+        [
+            {
+                label: "⎵",
+                value: KeyItems.Space
+            },
+            {
+                label: "0",
+                value: KeyItems.Zero
+            },
+            {
+                label: ",",
+                value: KeyItems.Comma
+            }
+        ]
+    ];
+    in-out property <[[SKeyItem]]> alpha-keys:[
+        [
+            {
+                label: "Q",
+                value: KeyItems.Q,
+            }
+        ],
+        [],
+        [],
+        []
+    ];
+}
