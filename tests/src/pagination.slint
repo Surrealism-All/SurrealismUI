@@ -1,0 +1,40 @@
+import { SPagination } from "../../index.slint";
+import {Themes,UseIcons} from "../../use/index.slint";
+export component TestPagination inherits Window {
+    height: 400px;
+    width: 560px;
+    background: #1d2125;
+    VerticalLayout {
+        padding-top: 32px;
+        padding-bottom: 32px;
+        alignment: space-around;
+        Rectangle {
+            a := SPagination {
+                page-size: 10;
+                total: 100;
+                visible-range: 6;
+            }
+        }
+
+        Rectangle {
+            Text {
+                // current-page is index
+                text: @tr("current-page: {}",a.active);
+                font-size: 16px;
+                color: #fff;
+            }
+        }
+
+        Rectangle {
+            p := SPagination {
+                theme: Themes.Primary;
+                active: 2;
+                page-size: 30;
+                total: 100;
+                pre-icon: UseIcons.icons.Left;
+                next-icon: UseIcons.icons.Right;
+                size: 16px;
+            }
+        }
+    }
+}

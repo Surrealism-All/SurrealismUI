@@ -57,15 +57,14 @@ export component Loading inherits Window {
     in property <Themes> theme: DefaultSLoadingProps.theme;
     in property <easing> easing: DefaultSLoadingProps.easing;
     in-out property <int> iteration-count: DefaultSLoadingProps.iteration-count;
-    init => {
+    public function close(){
+        self.is-show = false;
+    }
+    public function open(){
         self.is-show = true;
     }
-    public function close() {
-        self.is-show = false;
-    }public function open() {
-        self.is-show = true;
-    }states [
-    light when theme == Themes.Light: {
+    states [
+        light when theme == Themes.Light: {
             loading-icon.colorize: ROOT-STYLES.sur-theme-colors.light.font;
         }
         primary when theme == Themes.Primary: {
@@ -86,7 +85,8 @@ export component Loading inherits Window {
         dark when theme == Themes.Dark: {
             loading-icon.colorize: ROOT-STYLES.sur-theme-colors.dark.font;
         }
-    ]mask := SCard {
+    ]
+    mask := SCard {
         z: 100;
         height: 100%;
         width: 100%;

@@ -38,17 +38,20 @@ export component Pagination {
     private property <PaddingType> padding-type: PaddingType.Tip;
     private property <int> page-number: ceil(total / page-size);
     private property <int> pre-active: root.active;
-    pure function get-color(hover: bool, index: int, self-color: brush) -> brush {
+    pure function get-color(hover: bool,index: int,self-color: brush) -> brush {
         if (hover) {
             return UseSurrealismFn.deeper(root.theme, self-color);
         } else {
             return root.active == index ? UseSurrealismFn.deeper(root.theme, self-color) : self-color;
         }
-    }pure function to-left()->bool {
+    }
+    pure function to-left() -> bool {
         return (root.active >= root.visible-range - 2) && (root.active < root.page-number - 2);
-    }pure function to-right()->bool {
+    }
+    pure function to-right() -> bool {
         return (root.active >= root.visible-range - 1) && (root.active < root.page-number - 1);
-    }callback pre(int, int);
+    }
+    callback pre(int, int);
     callback next(int, int);
     callback clicked(int, int);
     HorizontalLayout {
@@ -178,10 +181,17 @@ export component Pagination {
                                         clicked => {
                                             root.active = i-page-item.real-index;
                                             root.clicked( i-page-item.real-index, root.page-size);
-                                            debug(pages-layout.scroll-x);
                                             if pages-layout.scroll-x != 0 {
-                                                debug("handle");
-                                                pages-layout.scroll-x -= (root.active - root.pre-active) * pages-layout.item-width;
+                                                if root.active < root.visible-range - 1 {
+                                                    pages-layout.scroll-x = 0;
+                                                } else if root.active >= root.page-number - 2 {
+                                                    pages-layout.scroll-x = - ((root.page-number - root.visible-range) * pages-layout.item-width);
+                                                } else {
+                                                    if (root.pre-active == root.page-number - 1) {
+                                                        root.pre-active -= 1;
+                                                    }
+                                                    pages-layout.scroll-x -= (root.active - root.pre-active) * pages-layout.item-width;
+                                                }
                                             }
                                             root.pre-active = i-page-item.real-index;
                                         }
@@ -216,7 +226,7 @@ export component Pagination {
                             clicked => {
                                 root.active = root.page-number - 1;
                                 root.clicked(root.page-number - 1, root.page-size);
-                                pages-layout.scroll-x -= (root.page-number - root.visible-range) * pages-layout.item-width;
+                                pages-layout.scroll-x = - ((root.page-number - root.visible-range) * pages-layout.item-width);
                                 root.pre-active = root.active;
                             }
                         }
@@ -246,47 +256,6 @@ export component Pagination {
                         root.pre-active = root.active;
                     }
                     root.next(root.active, root.page-size);
-                }
-            }
-        }
-    }
-}
-
-export component TestPagination inherits Window {
-    height: 400px;
-    width: 460px;
-    background: #1d2125;
-    VerticalLayout {
-        padding-top: 32px;
-        padding-bottom: 32px;
-        alignment: space-around;
-        Rectangle {
-            a := Pagination {
-                page-size: 10;
-                total: 100;
-                visible-range: 5;
-            }
-        }
-
-        Text {
-            text: a.active;
-            font-size: 16px;
-            color: #fff;
-        }
-
-        Rectangle {
-            ScrollView {
-                height: 200px;
-                width: root.width;
-                viewport-width: p.width + 24px;
-                p := Pagination {
-                    theme: Themes.Primary;
-                    active: 2;
-                    page-size: 30;
-                    total: 100;
-                    pre-icon: UseIcons.icons.Left;
-                    next-icon: UseIcons.icons.Right;
-                    size: 16px;
                 }
             }
         }
