@@ -3,38 +3,51 @@ import {Themes} from "../../use/index.slint";
 import { SText } from "../../src/text/index.slint";
 
 component TestCollection inherits Window {
-  height: 560px;
-  width: 600px;
-  background: #515c74;
-  VerticalLayout {
-    spacing: 20px;
-    padding: 20px;
-    SRadio{
-      actived: true;
+    height: 560px;
+    width: 600px;
+    background: #515c74;
+    VerticalLayout {
+        spacing: 20px;
+        padding: 20px;
+        SRadio {
+            actived: true;
+        }
+
+        SRadio {
+            theme: Light;
+        }
+
+        SRadio {
+            theme: Primary;
+            disabled: true;
+        }
+
+        SRadio {
+            theme: Error;
+        }
+
+        SRadio {
+            theme: Warning;
+            font-weight: 700;
+            text: "Chinese";
+            font-color: #ff5e00;
+            font-italic: true;
+            font-family: "Verdana";
+        }
+
+        SRadio {
+            theme: Info;
+            clicked(text, value, actived) => {
+                debug(text);
+                debug(value);
+                debug(actived);
+            }
+        }
+
+        SRadio {
+            active-color: #4affae;
+            theme: Primary;
+            actived: true;
+        }
     }
-    SRadio{theme: Light;}
-    SRadio{theme: Primary;}
-    SRadio {theme: Error;}
-    SRadio {
-      theme: Warning;
-      font-weight: 700;
-      text : "Chinese";
-      font-color: #ff5e00;
-      font-italic: true;
-      font-family: "Verdana";
-    }
-    SRadio {
-      theme: Info;
-      clicked(text,value,actived) => {
-        debug(text);
-        debug(value);
-        debug(actived);
-      }
-    }
-    SRadio{
-      active-color : #4affae;
-      theme:Primary;
-      actived : true;
-    }
-  }
 }

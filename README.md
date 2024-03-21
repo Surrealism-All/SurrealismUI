@@ -406,7 +406,7 @@ Thank you for reading, and if you have any questions, please send an email to sy
   - English
 - V0.4.3
   - 中文
-    - 增加`SNumInput`走马灯
+    - 增加`SNumInput`数字输入
     - 增加`SDate`时间日期
   - English
 - V0.4.2
@@ -419,7 +419,7 @@ Thank you for reading, and if you have any questions, please send an email to sy
     - 增加`SStep`进度指向线颜色效果
     - 增加`SPagination`分页器组件
     - 增加`SVKeyboard`虚拟键盘
-    - 增加`SButton`,`SCheckbox`禁用选项
+    - 增加`SButton`,`SCheckbox`,`SRadio`禁用选项
     - 增加`SDialog`非触摸位置关闭控制选项:`mask-close`
     - 去除`SLoading`的默认初始化回调
   - English

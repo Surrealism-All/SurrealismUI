@@ -29,18 +29,29 @@ import { DefaultSPopoverProps } from "./popover.slint";
 import { DefaultSTableColumnProps,DefaultSTableProps } from "./table.slint";
 import { DefaultStepProps } from "./step.slint";
 import { DefaultSCheckboxProps } from "./checkbox.slint";
+import { DefaultSPaginationProps } from "./pagination.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
   SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps,STableProps,STableColumnProps,
-  SMenuProps,SPopoverProps,SStepProps,SCheckboxProps
+  SMenuProps,SPopoverProps,SStepProps,SCheckboxProps,SPaginationProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
     //component props 
-  in-out property <SCardProps> card: {
+    in-out property <SPaginationProps> pagination: {
+        theme: DefaultSPaginationProps.theme,
+        active: DefaultSPaginationProps.active,
+        page-size: DefaultSPaginationProps.page-size,
+        total: DefaultSPaginationProps.total,
+        pre-icon: DefaultSPaginationProps.pre-icon,
+        next-icon: DefaultSPaginationProps.next-icon,
+        size: DefaultSPaginationProps.size,
+        visible-range: DefaultSPaginationProps.visible-range,
+    };
+    in-out property <SCardProps> card: {
         font-weight : DefaultSCardProps.font-weight,
         font-size: DefaultSCardProps.font-size,
         font-color : DefaultSCardProps.font-color,
@@ -253,6 +264,7 @@ export global ComponentSchema {
         text : DefaultSRadioProps.text,
         value : DefaultSRadioProps.value,
         actived : DefaultSRadioProps.actived,
+        disabled: DefaultSRadioProps.disabled,
     };
     in-out property <SAvatarProps> avatar: {
         card-height : DefaultSAvatarProps.card-height,

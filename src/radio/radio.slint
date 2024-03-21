@@ -30,84 +30,90 @@
 */
 import { ROOT_STYLES,DefaultSRadioProps } from "../../themes/index.slint";
 import { SCard } from "../card/index.slint";
-import { Themes,BorderType,PaddingType,ShadowType } from "../../use/index.slint";
+import { Themes,BorderType,PaddingType,ShadowType,ColorLevel, UseSurrealismFn } from "../../use/index.slint";
 import { SText } from "../text/index.slint";
 
-export component Radio inherits Rectangle{
-  in property <int> font-weight : DefaultSRadioProps.font-weight;
-  in property <length> font-size: DefaultSRadioProps.font-size;
-  in property <brush> font-color <=> inner-text.color;
-  in property <bool> font-italic : DefaultSRadioProps.font-italic;
-  in property <string> font-family : DefaultSRadioProps.font-family;
-  in property <Themes> theme : DefaultSRadioProps.theme;
-  in property <length> card-height: DefaultSRadioProps.card-height;
-  in property <length> card-width: DefaultSRadioProps.card-width;
-  in property <string> text : DefaultSRadioProps.text;
-  in-out property <string> value : DefaultSRadioProps.value;
-  in-out property <bool> actived : DefaultSRadioProps.actived;
-  in-out property <brush> active-color: DefaultSRadioProps.active-color;
-  in property <PaddingType> padding-type : DefaultSRadioProps.padding-type;
-  in property <ShadowType> shadow-type : DefaultSRadioProps.shadow-type;
-  in property <BorderType> border-type : DefaultSRadioProps.border-type;
-  callback clicked(string,string,bool);
-  states [
-    light when self.theme == Themes.Light: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.light.normal;
-    }
-    primary when self.theme == Themes.Primary: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.primary.normal;
-    }
-    success when self.theme == Themes.Success: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.success.normal;
-    }
-    info when self.theme == Themes.Info: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.info.normal;
-    }
-    warning when self.theme == Themes.Warning: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.warning.normal;
-    }
-    error when self.theme == Themes.Error: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.error.normal;
-    }
-    dark when self.theme == Themes.Dark: {
-      inner.background : actived?active-color:ROOT-STYLES.sur-theme-colors.dark.normal;
-    }
-  ]
-  HorizontalLayout {
-    spacing: 6px;
-    SCard{
-      theme: root.theme;
-      card-height: DefaultSRadioProps.card-height;
-      card-width: DefaultSRadioProps.card-width;
-      border-radius: self.height / 2;
-      border-type: DefaultSRadioProps.border-type;
-      padding-type: DefaultSRadioProps.padding-type;
-      shadow-type: DefaultSRadioProps.shadow-type;
-      inner:=SCard {
-        theme: root.theme;
-        card-height: root.card-height - 4px;
-        card-width: root.card-width - 4px;
-        border-radius: inner.height / 2;
-        padding-type: PaddingType.None;
-        border-type: BorderType.None;
-        drop-shadow-blur: 0;
-        drop-shadow-offset-x: 0;
-        drop-shadow-offset-y: 0;
-        TouchArea {
-          clicked => {
-            actived = !actived;
-            root.clicked(root.text,root.value,root.actived);
-          }
+export component Radio inherits Rectangle {
+    in property <int> font-weight: DefaultSRadioProps.font-weight;
+    in property <length> font-size: DefaultSRadioProps.font-size;
+    in property <brush> font-color <=> inner-text.color;
+    in property <bool> font-italic: DefaultSRadioProps.font-italic;
+    in property <string> font-family: DefaultSRadioProps.font-family;
+    in property <Themes> theme: DefaultSRadioProps.theme;
+    in property <length> card-height: DefaultSRadioProps.card-height;
+    in property <length> card-width: DefaultSRadioProps.card-width;
+    in property <string> text: DefaultSRadioProps.text;
+    in-out property <string> value: DefaultSRadioProps.value;
+    in-out property <bool> actived: DefaultSRadioProps.actived;
+    in-out property <brush> active-color: DefaultSRadioProps.active-color;
+    in property <PaddingType> padding-type: DefaultSRadioProps.padding-type;
+    in property <ShadowType> shadow-type: DefaultSRadioProps.shadow-type;
+    in property <BorderType> border-type: DefaultSRadioProps.border-type;
+    in-out property <bool> disabled: DefaultSRadioProps.disabled;
+    callback clicked(string, string, bool);
+    states [
+        disabled when root.disabled: {
+            inner.background: UseSurrealismFn.get-color(self.theme, ColorLevel.Normal);
+            touch-area.mouse-cursor: MouseCursor.not-allowed;
         }
-      }
+        light when self.theme == Themes.Light: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.light.normal;
+        }
+        primary when self.theme == Themes.Primary: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.primary.normal;
+        }
+        success when self.theme == Themes.Success: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.success.normal;
+        }
+        info when self.theme == Themes.Info: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.info.normal;
+        }
+        warning when self.theme == Themes.Warning: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.warning.normal;
+        }
+        error when self.theme == Themes.Error: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.error.normal;
+        }
+        dark when self.theme == Themes.Dark: {
+            inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.dark.normal;
+        }
+    ]
+    HorizontalLayout {
+        spacing: 6px;
+        SCard {
+            theme: root.theme;
+            card-height: DefaultSRadioProps.card-height;
+            card-width: DefaultSRadioProps.card-width;
+            border-radius: self.height / 2;
+            border-type: DefaultSRadioProps.border-type;
+            padding-type: DefaultSRadioProps.padding-type;
+            shadow-type: DefaultSRadioProps.shadow-type;
+            inner := SCard {
+                theme: root.theme;
+                card-height: root.card-height - 4px;
+                card-width: root.card-width - 4px;
+                border-radius: inner.height / 2;
+                padding-type: PaddingType.None;
+                border-type: BorderType.None;
+                drop-shadow-blur: 0;
+                drop-shadow-offset-x: 0;
+                drop-shadow-offset-y: 0;
+                touch-area := TouchArea {
+                    clicked => {
+                        actived = !actived;
+                        root.clicked(root.text,root.value,root.actived);
+                    }
+                }
+            }
+        }
+
+        inner-text := SText {
+            theme: root.theme;
+            text: root.text;
+            font-family: root.font-family;
+            font-size: root.font-size;
+            font-weight: root.font-weight;
+            font-italic: root.font-italic;
+        }
     }
-    inner-text:=SText {
-      theme: root.theme;
-      text: root.text;
-      font-family: root.font-family;
-      font-size: root.font-size;
-      font-weight: root.font-weight;
-      font-italic: root.font-italic;
-    }
-  }
 }

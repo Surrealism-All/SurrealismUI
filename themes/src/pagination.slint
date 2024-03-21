@@ -1,0 +1,11 @@
+import {Themes,UseIcons} from "../../use/index.slint";
+export global DefaultSPaginationProps {
+    in property <Themes> theme: Themes.Dark;
+    in-out property <int> active: 0;
+    in property <int> page-size: 10;
+    in property <int> total: 50;
+    in property <image> pre-icon: UseIcons.icons.Left;
+    in property <image> next-icon: UseIcons.icons.Right;
+    in property <length> size: 18px;
+    in property <int> visible-range: 5;
+}
