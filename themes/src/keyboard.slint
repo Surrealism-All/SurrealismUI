@@ -1,7 +1,9 @@
-import { SOption, KeyItems,SKeyItem } from "../../use/index.slint";
+import { SOption, KeyItems,SKeyItem,KeyBoardType,Themes } from "../../use/index.slint";
 
 export global DefaultKeyBoardProps {
-    
+    in property <Themes> theme: Themes.Dark;
+    in property <length> font-size: 16px;
+    in-out property <KeyBoardType> keyboard-type: KeyBoardType.PhoneNumber;
 }
 
 export global DefaultKeyBoardKeys {

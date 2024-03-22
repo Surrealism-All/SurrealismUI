@@ -158,7 +158,7 @@ export component Computer {
     width: 100%;
     in property <Themes> theme: Themes.Dark;
     in property <length> font-size: 16px;
-    private property <[SKeyItem]> signs: DefaultKeyBoardKeys.alpha-signs;
+    in-out property <[SKeyItem]> signs: DefaultKeyBoardKeys.alpha-signs;
     private property <[[SKeyItem]]> keys: DefaultKeyBoardKeys.alpha-keys;
     callback clicked(SKeyItem);
     VerticalLayout {

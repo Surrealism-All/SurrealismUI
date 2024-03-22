@@ -1,3 +1,5 @@
+import { Themes } from "./theme.slint";
+
 export enum KeyBoardType {
     PhoneAlpha,
     PhoneNumber,
@@ -155,4 +157,10 @@ export enum KeyItems{
  export struct SKeyItem {
     label: string,
     value: KeyItems
+}
+
+export struct SKeyBoardProps {
+    theme: Themes,
+    font-size:length,
+    keyboard-type: KeyBoardType,
 }
