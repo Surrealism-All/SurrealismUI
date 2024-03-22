@@ -5,23 +5,53 @@ import { DefaultKeyBoardKeys } from "../../themes/index.slint";
 import { ScrollView, ListView } from "std-widgets.slint";
 
 
-component KeyBoardItem {
-
-}
-
-component PhoneAlpha {
-    private property <[[SKeyItem]]> keys: DefaultKeyBoardKeys.alpha-keys;
-    VerticalLayout {
-        HorizontalLayout {
-
+export component KeyBoardItem inherits Rectangle{
+    in property <length> font-size : 16px;
+    in property <Themes> theme;
+    in property <SKeyItem> key;
+    callback clicked(SKeyItem);
+    background: area.has-hover ? UseSurrealismFn.get-color(root.theme, ColorLevel.Deepest) : UseSurrealismFn.get-color(root.theme, ColorLevel.Deeper);
+    area:= TouchArea {
+        mouse-cursor: pointer;
+        clicked => {
+            root.clicked(key);
         }
-        HorizontalLayout {}
-        HorizontalLayout {}
-        HorizontalLayout {}
+        SText {
+            font-size: root.font-size;
+            theme: root.theme;
+            text: key.label;
+            wrap: no-wrap;
+            font-weight: 700;
+        }
     }
 }
 
-component PhoneNumber inherits Rectangle {
+export component PhoneAlpha{
+    height: 100%;
+    width: 100%;
+    in property <Themes> theme;
+    in property <length> font-size: 16px;
+    private property <[[SKeyItem]]> keys: DefaultKeyBoardKeys.alpha-keys;
+    callback clicked(SKeyItem);
+    VerticalLayout {
+        alignment: space-between;
+        for items in keys:HorizontalLayout {
+            height: parent.height / keys.length;
+            spacing: 2px;
+            for item in items: KeyBoardItem{
+                height: parent.height - 2px;
+                width: (parent.width - ((items.length - 1) * 2px)) / items.length ;
+                theme: root.theme;
+                key:item;
+                clicked(key) => {
+                    root.clicked(key);
+                }
+            }
+        }
+    }
+}
+
+export component PhoneNumber inherits Rectangle {
     in property <Themes> theme: Themes.Dark;
     in property <length> font-size: 16px;
     private property <length> item-height: root.height / 4;
@@ -123,7 +153,52 @@ component PhoneNumber inherits Rectangle {
     }
 }
 
-component Computer { }
+export component Computer {
+    height: 100%;
+    width: 100%;
+    in property <Themes> theme: Themes.Dark;
+    in property <length> font-size: 16px;
+    private property <[SKeyItem]> signs: DefaultKeyBoardKeys.alpha-signs;
+    private property <[[SKeyItem]]> keys: DefaultKeyBoardKeys.alpha-keys;
+    callback clicked(SKeyItem);
+    VerticalLayout {
+        alignment: space-between;
+        Rectangle {
+            height: parent.height / (keys.length + 1) - 2px;
+            scroll:= ScrollView {
+                height: parent.height;
+                width: parent.width;
+                viewport-height: parent.height;
+                viewport-width: signs.length * (root.width / 10);
+                HorizontalLayout {
+                    padding-bottom: 2px;
+                    for item in signs: KeyBoardItem{
+                        height: scroll.height - 2px - parent.padding-bottom;
+                        width: root.width / 10;
+                        theme: root.theme;
+                        key:item;
+                        clicked(key) => {
+                            root.clicked(key);
+                        }
+                    }
+                }
+            }
+        }
+        for items in keys:HorizontalLayout {
+            height: parent.height / (keys.length + 1);
+            spacing: 2px;
+            for item in items: KeyBoardItem{
+                height: parent.height - 2px;
+                width: (parent.width - ((items.length - 1) * 2px)) / items.length ;
+                theme: root.theme;
+                key:item;
+                clicked(key) => {
+                    root.clicked(key);
+                }
+            }
+        }
+    }
+}
 
 export component KeyBoard {
     height: 100%;
@@ -132,59 +207,25 @@ export component KeyBoard {
     in property <length> font-size: 16px;
     in-out property <KeyBoardType> keyboard-type: KeyBoardType.PhoneNumber;
     callback clicked(SKeyItem);
-    if keyboard-type == KeyBoardType.PhoneAlpha: PhoneAlpha { }
+    if keyboard-type == KeyBoardType.PhoneAlpha: PhoneAlpha {
+        height: 100%;
+        width: 100%;
+        theme: root.theme;
+        clicked(key) => {
+            root.clicked(key);
+        }
+    }
     if keyboard-type == KeyBoardType.PhoneNumber:PhoneNumber {
         theme: root.theme;
         clicked(key) => {
             root.clicked(key);
         }
     }
-    if keyboard-type == KeyBoardType.Computer:Computer { }
-}
-
-component TestKeyBoardAlpha {
-    height: 400px;
-    width: 600px;
-    SCard {
-        y: root.height - self.height;
-        card-height: 200px;
-        width: 100%;
-        theme: Info;
-        KeyBoard { 
-            keyboard-type: KeyBoardType.PhoneAlpha;
-        }
-    }
-    
-}
-
-component TestKeyBoardNumber {
-    height: 460px;
-    width: 300px;
-    t:= SText {
-        y: 100px;
-        theme: kb.theme;
-        font-weight: 700;
-        text: "Click Keyboard !";
-    }
-    SCard {
-        y: root.height - self.height;
-        card-height: 200px;
-        width: 100%;
-        theme: Info;
-        kb:= KeyBoard {
-            theme: parent.theme;
-            keyboard-type: KeyBoardType.PhoneNumber;
-            clicked(key) =>{
-                t.text = @tr("You Clicked=> \nlabel: {}\n",key.label);
-                // See enum KeyItems
-                debug(key.value);
-            }
+    if keyboard-type == KeyBoardType.Computer:Computer {
+        theme: root.theme;
+        clicked(key) => {
+            root.clicked(key);
         }
     }
 }
 
-component TestKeyBoardAll {
-    height: 400px;
-    width: 600px;
-    KeyBoard { }
-}

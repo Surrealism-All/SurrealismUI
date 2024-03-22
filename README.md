@@ -371,6 +371,8 @@ https://github.com/Surrealism-All/SurrealismUI/wiki
 - `SCheckbox` ：`SCheckbox` let people select multi items
 - `SPopover` ：A customizable popover component designed to display contextual information or interactive content, attached to an element and floating above the UI. It supports various positions and can be shown or hidden programmatically.
 - `SStep` ：The Step component visualizes the progress of a sequence by breaking it down into individual steps. It allows for custom theming and supports indicating the current, completed, and pending steps through visual cues.
+- `SKeyBoard` ：
+- `SPagination` ：
 
 ## Updates
 
@@ -418,12 +420,17 @@ Thank you for reading, and if you have any questions, please send an email to sy
   - 中文
     - 增加`SStep`进度指向线颜色效果
     - 增加`SPagination`分页器组件
-    - 增加`SVKeyboard`虚拟键盘
+    - 增加`SKeyboard`虚拟键盘 (可使用子组件任意扩展)
     - 增加`SButton`,`SCheckbox`,`SRadio`禁用选项
     - 增加`SDialog`非触摸位置关闭控制选项:`mask-close`
     - 去除`SLoading`的默认初始化回调
   - English
-    - Add progress directional line color for `SStep`
+    - Increase the color effect of the progress pointing line in `SStep`
+    - Add the `SPagination` paginator component
+    - Add `SKeyboard` virtual keyboard (it can be expanded with any sub components)
+    - Add disable options for `SButton`, `SCheckbox`, and `SRadio`
+    - Add `SDialog` non touch position close control option: `mask close`
+    - Remove the default initialization callback for `SLoading`
 - V0.4.0
   - 中文
     - `SCheckbox`内部选择区添加 border，优化显示

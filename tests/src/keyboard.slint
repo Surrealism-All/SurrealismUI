@@ -1,0 +1,84 @@
+import {SText,SCard, SKeyBoard} from "../../index.slint";
+import { KeyBoardType } from "../../use/index.slint";
+component TestKeyBoardAlpha {
+    height: 460px;
+    width: 300px;
+    t:= SText {
+        y: 100px;
+        theme: kb.theme;
+        font-weight: 700;
+        wrap: word-wrap;
+        text: "Click Keyboard !";
+    }
+    
+    SCard {
+        y: root.height - self.height;
+        card-height: 200px;
+        width: 100%;
+        theme: Dark;
+        kb:= SKeyBoard { 
+            theme: parent.theme;
+            keyboard-type: KeyBoardType.PhoneAlpha;
+            clicked(key) =>{
+                t.text = @tr("You Clicked=> \nlabel: {}\n",key.label);
+                // See enum KeyItems
+                debug(key.value);
+            }
+        }
+    }
+    
+}
+
+component TestKeyBoardNumber {
+    height: 460px;
+    width: 300px;
+    t:= SText {
+        y: 100px;
+        theme: kb.theme;
+        font-weight: 700;
+        text: "Click Keyboard !";
+    }
+    SCard {
+        y: root.height - self.height;
+        card-height: 200px;
+        width: 100%;
+        theme: Info;
+        kb:= SKeyBoard {
+            theme: parent.theme;
+            keyboard-type: KeyBoardType.PhoneNumber;
+            clicked(key) =>{
+                t.text = @tr("You Clicked=> \nlabel: {}\n",key.label);
+                // See enum KeyItems
+                debug(key.value);
+            }
+        }
+    }
+}
+
+component TestKeyBoardAll {
+    height: 400px;
+    width: 720px;
+    t:= SText {
+        y: 30px;
+        theme: kb.theme;
+        font-weight: 700;
+        wrap: word-wrap;
+        text: "Click Keyboard !";
+    }
+    
+    SCard {
+        y: root.height - self.height;
+        card-height: 300px;
+        width: 100%;
+        theme: Dark;
+        kb:= SKeyBoard { 
+            theme: Light;
+            keyboard-type: KeyBoardType.Computer;
+            clicked(key) =>{
+                t.text = @tr("You Clicked=> \nlabel: {}\n",key.label);
+                // See enum KeyItems
+                debug(key.value);
+            }
+        }
+    }
+}
