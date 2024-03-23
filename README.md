@@ -371,8 +371,8 @@ https://github.com/Surrealism-All/SurrealismUI/wiki
 - `SCheckbox` ：`SCheckbox` let people select multi items
 - `SPopover` ：A customizable popover component designed to display contextual information or interactive content, attached to an element and floating above the UI. It supports various positions and can be shown or hidden programmatically.
 - `SStep` ：The Step component visualizes the progress of a sequence by breaking it down into individual steps. It allows for custom theming and supports indicating the current, completed, and pending steps through visual cues.
-- `SKeyBoard` ：
-- `SPagination` ：
+- `SKeyBoard` ：A customizable keyboard component for various input types including numbers, alphabets, and computer keyboard layouts.
+- `SPagination` ：A component designed for navigating through pages, providing options for customization and various interactions.
 
 ## Updates
 

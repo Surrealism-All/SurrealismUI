@@ -1,3 +1,22 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20240321
+* @version:0.4.1
+* @type:interface
+* @description:
+* # KeyBoard
+* A customizable keyboard component for various input types including numbers, alphabets, and computer keyboard layouts.
+* ## Properties
+* - in property <Themes> theme: Themes.Dark; The theme of the keyboard, defaulting to dark mode.
+* - in property <length> font-size: 16px; The font size used in the keyboard.
+* - in-out property <KeyBoardType> keyboard-type: KeyBoardType.PhoneNumber; The type of keyboard layout (e.g., phone number, phone alphabet, computer).
+* ## Callbacks
+* - callback clicked(SKeyItem): Triggered when a key is clicked, returning the key item clicked.
+* ============================================
+*/
+
+
 import { SCard } from "../card/index.slint";
 import { SText } from "../text/index.slint";
 import { Themes,PaddingType,PaddingProps,ShadowType,BorderType,SKeyItem,BorderProps,UseIcons,UseSurrealismFn, ColorLevel,KeyItems,KeyBoardType } from "../../use/index.slint";
@@ -84,6 +103,7 @@ export component PhoneNumber inherits Rectangle {
                             text: s-item.label;
                             font-size: root.font-size;
                             font-weight: 700;
+                            wrap: no-wrap;
                         }
                     }
                 }
@@ -116,6 +136,7 @@ export component PhoneNumber inherits Rectangle {
                                 text: key.label;
                                 font-size: root.font-size;
                                 font-weight: 700;
+                                wrap: no-wrap;
                             }
                         }
                     }
@@ -145,6 +166,7 @@ export component PhoneNumber inherits Rectangle {
                             text: t-item.label;
                             font-size: root.font-size;
                             font-weight: 700;
+                            wrap: no-wrap;
                         }
                     }
                 }
