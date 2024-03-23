@@ -1,12 +1,13 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.4.0-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584"> <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.4.1-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584"> <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
 - updateDate：20240309
-- version：0.4.0
+- version：0.4.1
 - email：syf20020816@outlook.com
+- discord：[Surrealism-UI](https://discord.gg/KSQqrSMCnU)
 
 <img src="./README/imgs/logo.png">
 
@@ -420,14 +421,14 @@ Thank you for reading, and if you have any questions, please send an email to sy
   - 中文
     - 增加`SStep`进度指向线颜色效果
     - 增加`SPagination`分页器组件
-    - 增加`SKeyboard`虚拟键盘 (可使用子组件任意扩展)
+    - 增加`SKeyBoard`虚拟键盘 (可使用子组件任意扩展)
     - 增加`SButton`,`SCheckbox`,`SRadio`禁用选项
     - 增加`SDialog`非触摸位置关闭控制选项:`mask-close`
     - 去除`SLoading`的默认初始化回调
   - English
     - Increase the color effect of the progress pointing line in `SStep`
     - Add the `SPagination` paginator component
-    - Add `SKeyboard` virtual keyboard (it can be expanded with any sub components)
+    - Add `SKeyBoard` virtual keyboard (it can be expanded with any sub components)
     - Add disable options for `SButton`, `SCheckbox`, and `SRadio`
     - Add `SDialog` non touch position close control option: `mask close`
     - Remove the default initialization callback for `SLoading`
