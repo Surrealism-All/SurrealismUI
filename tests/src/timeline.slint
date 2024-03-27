@@ -1,0 +1,52 @@
+import {SCard,STimeLine,STimeLineItem} from "../../index.slint";
+
+
+component TestTimeLine {
+    height: 600px;
+    width: 460px;
+    STimeLine {
+        width: 100%;
+        STimeLineItem {
+            id: "001";
+            width: parent.width;
+            height: root.height / 3;
+            theme: Dark;
+            date: "2024-01-01";
+            SCard {
+                height: parent.center-height();
+                width: parent.center-width();
+            }
+        }
+        STimeLineItem {
+            width: parent.width;
+            height: root.height / 5;
+            theme: Dark;
+            date: "2024-02-01";
+            SCard {
+                height: parent.center-height();
+                width: parent.center-width();
+                Text {
+                    text: "Hello World";
+                }
+            }
+            clicked => {
+                self.active = !self.active;
+            }
+        }
+        STimeLineItem {
+            width: parent.width;
+            height: root.height / 4;
+            theme: Dark;
+            date: "2024-03-01";
+            SCard {
+                theme: Light;
+                height: parent.center-height();
+                width: parent.center-width();
+            }
+            clicked(is_active) => {
+                debug(is-active);
+                self.active = !self.active;
+            }
+        }
+    }
+}

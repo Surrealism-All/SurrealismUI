@@ -1,0 +1,106 @@
+import { SText } from "../text/index.slint";
+import { Themes,BorderType,PaddingType,ShadowType,ColorLevel, UseSurrealismFn } from "../../use/index.slint";
+import { SCard } from "../card/index.slint";
+
+
+export component TimeLineItem {
+    height: 100%;
+    width: 100%;
+    in property <string> id;
+    in property <Themes> theme: Themes.Dark;
+    in property <string> date;
+    in property <TextHorizontalAlignment> header-alignment: TextHorizontalAlignment.center;
+    in property <length> font-size: 14px;
+    in-out property <bool> active;
+    pure public function center-height() -> length{
+        return center.height;
+    }
+    pure public function center-width() -> length{
+        return center.width;
+    }
+    callback clicked(bool);
+    HorizontalLayout {
+        width: 100%;
+        height: 100%;
+        left:= Rectangle {
+            width: 36px;
+            left-layout:= VerticalLayout {
+                alignment: LayoutAlignment.center;
+                Rectangle {
+                    height: (left.height - 18px) / 2;
+                    Path {
+                        height: parent.height;
+                        stroke: UseSurrealismFn.get-color(root.theme,ColorLevel.Normal);
+                        commands: "M 0 0 L 0 100";
+                        stroke-width: 2px;
+                    }
+                }
+                Rectangle {
+                    height: 18px;
+                    TouchArea {
+                        mouse-cursor: pointer;
+                        SCard {
+                            theme: root.theme;
+                            height: 18px;
+                            width: 18px;
+                            border-radius: self.height / 2;
+                            if root.active : Rectangle {
+                                height: 9px;
+                                width: 9px;
+                                border-radius: self.height / 2;
+                                background: UseSurrealismFn.active-color();
+                            }
+                        }
+                        clicked => {
+                            root.clicked(root.active);
+                        }
+                    }
+                }
+                Rectangle {
+                    height: (left.height - 18px) / 2;
+                    Path {
+                        height: parent.height;
+                        stroke: UseSurrealismFn.get-color(root.theme,ColorLevel.Normal);
+                        commands: "M 0 0 L 0 100";
+                        stroke-width: 2px;
+                    }
+                }
+            }
+        }
+        right:= Rectangle {
+            width: root.width - left.width;
+            right-layout:= VerticalLayout {
+                alignment: space-between;
+                spacing: 6px;
+                padding: 6px;
+                header:= Rectangle {
+                    height: date-text.height;
+                    width: 100%;
+                    date-text:=SText{
+                        horizontal-alignment: root.header-alignment;
+                        width: parent.width;
+                        font-size: root.font-size;
+                        wrap: word-wrap;
+                        font-weight: 700;
+                        theme: root.theme;
+                        text: root.date;
+                        
+                    }
+                }
+                center:= Rectangle {
+                    width: 100%;
+                    height: right.height - header.height - right-layout.spacing - right-layout.padding * 2;
+                    @children
+                }
+            }
+        }
+    }
+}
+
+export component TimeLine {
+    VerticalLayout {
+        spacing: 8px;
+        @children
+    }
+}
+
