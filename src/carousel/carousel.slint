@@ -1,6 +1,9 @@
 import { SIcon } from "../icon/index.slint";
 export component Carousel{
-    in property <[image]> sources;
+    in-out property <[image]> sources;
+    private property <[image]> phantoms: self.sources;
+    private property <int> center-index: Math.round(sources.length / 2) - 1;
+    private property <image> tmp;
     in property <float> fold-strench: 1.1;
     in property <length> fold-width: 42px;
     in property <length> fold-height: root.height;
@@ -8,7 +11,55 @@ export component Carousel{
     in property <bool> focus-main: false;
     in-out property <int> active: 0;
     callback clicked(int);
-    layout:= HorizontalLayout {
+    if focus-main: main-layout:=  HorizontalLayout {
+        alignment: LayoutAlignment.center;
+        spacing: 16px;
+        for source[index] in root.phantoms: fold-heightsource-wrap := Rectangle {
+            width: index == center-index ? root.width - (sources.length * fold-width) - (main-layout.spacing * 2) : fold-width;
+            clip: true;
+            animate width {
+                duration: 800ms;
+                easing: ease-in-out-quint;
+            }
+            icon-wrap:= Rectangle {
+                // private property <length> origin-x : self.x;
+                private property <bool> move: false;
+                height: index == center-index ? root.fold-height :  root.fold-height / ( Math.abs(index - sources.length / 2) / 10 + fold-strench);
+                border-radius: index == center-index ? 0 : fold-width / 2;
+                clip: true;
+                x: icon.pressed ? self.width + main-layout.spacing : 0;
+                animate border-radius, height {
+                    duration: 800ms;
+                    easing: ease-in-out-quint;
+                }
+                animate x {
+                    duration: 800ms;
+                    easing: ease-in-out-quart;
+                }
+                icon:= SIcon {
+                    height: root.height;
+                    width: 100%;
+                    source: source;
+                    image-fit: root.fit;
+                    clicked => {
+                        debug("call1");
+                        if index != root.center-index{
+                            root.active = index;
+                            
+                            tmp = root.phantoms[center-index];
+                            root.phantoms[center-index] = root.phantoms[root.active];
+                            root.phantoms[root.active] = tmp;
+                            
+                        }
+                        root.clicked(root.active);
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    if !focus-main: layout:= HorizontalLayout {
         alignment: LayoutAlignment.center;
         spacing: 16px;
         for source[index] in root.sources: source-wrap := Rectangle {
@@ -42,21 +93,3 @@ export component Carousel{
     }
 }
 
-component TestCarousel {
-    height: 400px;
-    width: 600px;
-    Rectangle {
-        Carousel {
-            height: 300px;
-            width: 100%;
-            active: 2;
-            sources: [
-                @image-url("../../README/imgs/sed1.jpeg"),
-                @image-url("../../README/imgs/sed2.jpeg"),
-                @image-url("../../README/imgs/sed3.png"),
-                @image-url("../../README/imgs/sed4.png"),
-                @image-url("../../README/imgs/sed5.png")
-            ];
-        }
-    }
-}

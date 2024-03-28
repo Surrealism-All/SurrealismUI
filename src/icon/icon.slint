@@ -43,12 +43,13 @@ export component Icon{
   in property <int> source-clip-height: source.height - source-clip-y;
   in property <int> source-clip-width: source.width - source-clip-x;
   out property <bool> has-hover <=> area.has-hover;
-  
+  out property <bool> pressed <=> area.pressed;
   pure public function get-colorize()->brush {
       return UseSurrealismFn.get-color(root.theme , ColorLevel.Font);
   }
   // get icon src from for iter item
   callback clicked;
+  callback moved;
   //default icon size
   padding: DefaultSIconProps.padding;
   height: DefaultSIconProps.height;
@@ -77,6 +78,9 @@ export component Icon{
     }
     clicked => {
       root.clicked();
+    }
+    moved => {
+      root.moved();
     }
   }
 }

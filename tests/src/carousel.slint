@@ -1,0 +1,39 @@
+import {SCarousel} from "../../index.slint";
+component TestCarousel {
+    height: 400px;
+    width: 600px;
+    Rectangle {
+        SCarousel {
+            height: 300px;
+            width: 100%;
+            active: 3;
+            focus-main: true;
+            sources: [
+                @image-url("../../README/imgs/sed1.jpeg"),
+                @image-url("../../README/imgs/sed2.jpeg"),
+                @image-url("../../README/imgs/sed3.png"),
+                @image-url("../../README/imgs/sed4.png"),
+                @image-url("../../README/imgs/sed5.png")
+            ];
+        }
+    }
+}
+
+component TestCarousel2 {
+    height: 400px;
+    width: 600px;
+    Rectangle {
+        SCarousel {
+            height: 300px;
+            width: 100%;
+            active: 1;
+            sources: [
+                @image-url("../../README/imgs/sed1.jpeg"),
+                @image-url("../../README/imgs/sed2.jpeg"),
+                @image-url("../../README/imgs/sed3.png"),
+                @image-url("../../README/imgs/sed4.png"),
+                @image-url("../../README/imgs/sed5.png")
+            ];
+        }
+    }
+}
