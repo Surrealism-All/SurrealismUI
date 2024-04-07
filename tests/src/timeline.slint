@@ -4,6 +4,7 @@ import {SCard,STimeLine,STimeLineItem} from "../../index.slint";
 component TestTimeLine {
     height: 600px;
     width: 460px;
+    Text {}
     STimeLine {
         width: 100%;
         STimeLineItem {
@@ -26,6 +27,7 @@ component TestTimeLine {
                 height: parent.center-height();
                 width: parent.center-width();
                 Text {
+                    color: #fff;
                     text: "Hello World";
                 }
             }

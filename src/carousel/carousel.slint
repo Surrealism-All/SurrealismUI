@@ -1,15 +1,39 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20240401
+* @version:0.4.2
+* @type:interface
+* @description:
+* # SCarousel
+* The Carousel component is designed to display a sequence of images (or slides) that users can navigate through. It provides a dynamic and visually engaging way to showcase multiple images without occupying too much space on the screen.
+* ## Properties
+* - `in-out property <[image]> sources` : An array of images that the carousel will display. This property can be both read and set, allowing dynamic update of the carousel's content.
+* - `in property <float> fold-strench` : A float value that determines the stretching effect of non-central folds/slides. It defaults to `DefaultSCarouselProps.fold-stretch`, which should be a predefined value in your system.
+* - `in property <length> fold-width` : Specifies the width of each fold/slide in the carousel. It uses a length value and defaults to `DefaultSCarouselProps.fold-width`.
+* - `in property <length> fold-height` : Determines the height of the folds/slides. By default, it matches the height of the root component (`root.height`).
+* - `in property <ImageFit> fit` : Defines how images should be fitted within their frames, utilizing predefined `ImageFit` options. It defaults to `DefaultSCarouselProps.fit`.
+* - `in property <bool> focus-main` : A boolean indicating whether the main (center) image should be focused. Defaults to `DefaultSCarouselProps.focus-main`.
+* - `in-out property <int> active` : An integer representing the currently active slide. It starts from `0` and can be read or set to change the active slide.
+## Callbacks
+* - `callback clicked(int)` : This callback is triggered when a slide is clicked. It passes the index of the clicked slide as an argument, allowing for custom interaction handling, such as navigating to a specific slide or performing an action related to the clicked slide's content.
+* ============================================
+*/
+
 import { SIcon } from "../icon/index.slint";
+import {DefaultSCarouselProps} from "../../themes/index.slint";
+
 export component Carousel{
     in-out property <[image]> sources;
+    in property <float> fold-strench: DefaultSCarouselProps.fold-strench;
+    in property <length> fold-width: DefaultSCarouselProps.fold-width;
+    in property <length> fold-height: root.height;
+    in property <ImageFit> fit: DefaultSCarouselProps.fit;
+    in property <bool> focus-main: DefaultSCarouselProps.focus-main;
+    in-out property <int> active: 0;
     private property <[image]> phantoms: self.sources;
     private property <int> center-index: Math.round(sources.length / 2) - 1;
     private property <image> tmp;
-    in property <float> fold-strench: 1.1;
-    in property <length> fold-width: 42px;
-    in property <length> fold-height: root.height;
-    in property <ImageFit> fit: ImageFit.preserve;
-    in property <bool> focus-main: false;
-    in-out property <int> active: 0;
     callback clicked(int);
     if focus-main: main-layout:=  HorizontalLayout {
         alignment: LayoutAlignment.center;

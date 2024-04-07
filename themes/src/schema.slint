@@ -31,17 +31,37 @@ import { DefaultStepProps } from "./step.slint";
 import { DefaultSCheckboxProps } from "./checkbox.slint";
 import { DefaultSPaginationProps } from "./pagination.slint";
 import { DefaultKeyBoardProps } from "./keyboard.slint";
+import { DefaultSTimeLineProps } from "./timeline.slint";
+import { DefaultSCarouselProps } from "./carousel.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
   SDividerProps,SPopupProps,SDrawerProps,SDialogProps,SCollapseProps,
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
   SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps,STableProps,STableColumnProps,
-  SMenuProps,SPopoverProps,SStepProps,SCheckboxProps,SPaginationProps,SKeyBoardProps
+  SMenuProps,SPopoverProps,SStepProps,SCheckboxProps,SPaginationProps,SKeyBoardProps,
+  STimeLineProps,SCarouselProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
     //component props 
+    in-out property <SCarouselProps> carousel:{
+        sources: DefaultSCarouselProps.sources,
+        fold-strench: DefaultSCarouselProps.fold-strench,
+        fold-width: DefaultSCarouselProps.fold-width,
+        fold-height: DefaultSCarouselProps.fold-height,
+        fit: DefaultSCarouselProps.fit,
+        focus-main: DefaultSCarouselProps.focus-main,
+        active: DefaultSCarouselProps.active,
+    };
+    in-out property <STimeLineProps> timeline:{
+        id: DefaultSTimeLineProps.id,
+        theme: DefaultSTimeLineProps.theme,
+        date: DefaultSTimeLineProps.date,
+        header-alignment: DefaultSTimeLineProps.header-alignment,
+        font-size: DefaultSTimeLineProps.font-size,
+        active:DefaultSTimeLineProps.active,
+    };
     in-out property <SKeyBoardProps> keyboard: {
         theme: DefaultKeyBoardProps.theme,
         font-size: DefaultKeyBoardProps.font-size,

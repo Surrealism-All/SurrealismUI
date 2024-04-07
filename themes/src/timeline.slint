@@ -1,0 +1,11 @@
+import { GlobalProps } from "./index.slint";
+import {Themes} from "../../use/index.slint";
+
+export global DefaultSTimeLineProps {
+    in property <string> id;
+    in property <Themes> theme: GlobalProps.theme;
+    in property <string> date;
+    in property <TextHorizontalAlignment> header-alignment: TextHorizontalAlignment.center;
+    in property <length> font-size: 14px;
+    in-out property <bool> active;
+}
