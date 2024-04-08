@@ -375,6 +375,8 @@ https://github.com/Surrealism-All/SurrealismUI/wiki
 - `SStep` ：The Step component visualizes the progress of a sequence by breaking it down into individual steps. It allows for custom theming and supports indicating the current, completed, and pending steps through visual cues.
 - `SKeyBoard` ：A customizable keyboard component for various input types including numbers, alphabets, and computer keyboard layouts.
 - `SPagination` ：A component designed for navigating through pages, providing options for customization and various interactions.
+- `SCarousel`：The Carousel component is designed to display a sequence of images (or slides) that users can navigate through. It provides a dynamic and visually engaging way to showcase multiple images without occupying too much space on the screen.
+- `STimeLine`：The timeline component is mainly used to display the changes of data over time, and it is usually used in data visualization to visually represent time series data
 
 ## Updates
 
