@@ -52,6 +52,7 @@ export component Checkbox inherits Rectangle {
     in-out property <bool> disabled: DefaultSCheckboxProps.disabled;
     callback clicked(string, string, bool);
     callback pending();
+    // height: checkbox.height;
     states [
         disabled when self.disabled: {
             toucharea.mouse-cursor: MouseCursor.not-allowed;
@@ -87,46 +88,49 @@ export component Checkbox inherits Rectangle {
             inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.dark.normal;
             inner.border-color: actived ? active-color.darker(0.1) : ROOT-STYLES.sur-theme-colors.dark.normal;
         }
-    ]HorizontalLayout {
-        spacing: 6px;
-        SCard {
-            theme: root.theme;
-            card-height: DefaultSCheckboxProps.card-height;
-            card-width: DefaultSCheckboxProps.card-width;
-            border-radius: 2.5px;
-            border-type: DefaultSCheckboxProps.border-type;
-            padding-type: DefaultSCheckboxProps.padding-type;
-            shadow-type: DefaultSCheckboxProps.shadow-type;
-            inner := SCard {
+    ]
+    VerticalLayout {
+        HorizontalLayout {
+            spacing: 6px;
+            checkbox:= SCard {
                 theme: root.theme;
-                card-height: root.card-height - 4px;
-                card-width: root.card-width - 4px;
-                border-radius: 2px;
-                padding-type: PaddingType.None;
-                border-type: BorderType.Small;
-                drop-shadow-blur: 0;
-                drop-shadow-offset-x: 0;
-                drop-shadow-offset-y: 0;
-                toucharea := TouchArea {
-                    clicked => {
-                        if !disabled {
-                            actived = !actived;
-                            root.clicked(root.text,root.value,root.actived);
-                        } else {
-                            root.pending();
+                card-height: DefaultSCheckboxProps.card-height;
+                card-width: DefaultSCheckboxProps.card-width;
+                border-radius: 2.5px;
+                border-type: DefaultSCheckboxProps.border-type;
+                padding-type: DefaultSCheckboxProps.padding-type;
+                shadow-type: DefaultSCheckboxProps.shadow-type;
+                inner := SCard {
+                    theme: root.theme;
+                    card-height: root.card-height - 4px;
+                    card-width: root.card-width - 4px;
+                    border-radius: 2px;
+                    padding-type: PaddingType.None;
+                    border-type: BorderType.Small;
+                    drop-shadow-blur: 0;
+                    drop-shadow-offset-x: 0;
+                    drop-shadow-offset-y: 0;
+                    toucharea := TouchArea {
+                        clicked => {
+                            if !disabled {
+                                actived = !actived;
+                                root.clicked(root.text,root.value,root.actived);
+                            } else {
+                                root.pending();
+                            }
                         }
                     }
                 }
             }
+            inner-text := SText {
+                theme: root.theme;
+                text: root.text;
+                font-family: root.font-family;
+                font-size: root.font-size;
+                font-weight: root.font-weight;
+                font-italic: root.font-italic;
+            }
         }
-
-        inner-text := SText {
-            theme: root.theme;
-            text: root.text;
-            font-family: root.font-family;
-            font-size: root.font-size;
-            font-weight: root.font-weight;
-            font-italic: root.font-italic;
-        }
+        
     }
 }

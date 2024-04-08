@@ -78,42 +78,44 @@ export component Radio inherits Rectangle {
             inner.background: actived ? active-color : ROOT-STYLES.sur-theme-colors.dark.normal;
         }
     ]
-    HorizontalLayout {
-        spacing: 6px;
-        SCard {
-            theme: root.theme;
-            card-height: DefaultSRadioProps.card-height;
-            card-width: DefaultSRadioProps.card-width;
-            border-radius: self.height / 2;
-            border-type: DefaultSRadioProps.border-type;
-            padding-type: DefaultSRadioProps.padding-type;
-            shadow-type: DefaultSRadioProps.shadow-type;
-            inner := SCard {
+    VerticalLayout {
+        HorizontalLayout {
+            spacing: 6px;
+            SCard {
                 theme: root.theme;
-                card-height: root.card-height - 4px;
-                card-width: root.card-width - 4px;
-                border-radius: inner.height / 2;
-                padding-type: PaddingType.None;
-                border-type: BorderType.None;
-                drop-shadow-blur: 0;
-                drop-shadow-offset-x: 0;
-                drop-shadow-offset-y: 0;
-                touch-area := TouchArea {
-                    clicked => {
-                        actived = !actived;
-                        root.clicked(root.text,root.value,root.actived);
+                card-height: DefaultSRadioProps.card-height;
+                card-width: DefaultSRadioProps.card-width;
+                border-radius: self.height / 2;
+                border-type: DefaultSRadioProps.border-type;
+                padding-type: DefaultSRadioProps.padding-type;
+                shadow-type: DefaultSRadioProps.shadow-type;
+                inner := SCard {
+                    theme: root.theme;
+                    card-height: root.card-height - 4px;
+                    card-width: root.card-width - 4px;
+                    border-radius: inner.height / 2;
+                    padding-type: PaddingType.None;
+                    border-type: BorderType.None;
+                    drop-shadow-blur: 0;
+                    drop-shadow-offset-x: 0;
+                    drop-shadow-offset-y: 0;
+                    touch-area := TouchArea {
+                        clicked => {
+                            actived = !actived;
+                            root.clicked(root.text,root.value,root.actived);
+                        }
                     }
                 }
             }
-        }
-
-        inner-text := SText {
-            theme: root.theme;
-            text: root.text;
-            font-family: root.font-family;
-            font-size: root.font-size;
-            font-weight: root.font-weight;
-            font-italic: root.font-italic;
+    
+            inner-text := SText {
+                theme: root.theme;
+                text: root.text;
+                font-family: root.font-family;
+                font-size: root.font-size;
+                font-weight: root.font-weight;
+                font-italic: root.font-italic;
+            }
         }
     }
 }
