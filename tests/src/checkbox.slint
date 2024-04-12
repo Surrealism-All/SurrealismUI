@@ -5,6 +5,13 @@ component TestCheckbox {
     VerticalLayout {
         spacing: 20px;
         padding: 20px;
+        HorizontalLayout {
+            height: 80px;
+            SCheckbox {
+                height: 40px;
+            }
+            SCheckbox {}
+        }
         SCheckbox {
             actived: true;
             clicked(text, value, actived) => {
