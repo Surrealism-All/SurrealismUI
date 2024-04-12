@@ -414,6 +414,7 @@ Thank you for reading, and if you have any questions, please send an email to sy
   - 中文
     - 增加`SNumInput`数字输入
     - 增加`SDate`时间日期
+    - 修复`SAvatar`None异常
   - English
 - V0.4.2
   - 中文

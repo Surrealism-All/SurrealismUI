@@ -30,12 +30,10 @@ export component Avatar inherits SCard {
   shadow-type: DefaultSAvatarProps.shadow-type;
   border-type:DefaultSAvatarProps.border-type;
   clip: true;
-  init => {
-    self.padding-top = self.card-padding.padding-same;
-    self.padding-bottom = self.card-padding.padding-same;
-    self.padding-left = self.card-padding.padding-same;
-    self.padding-right = self.card-padding.padding-same;
-  }
+  padding-left: self.card-padding.padding-same;
+  padding-right: self.card-padding.padding-same;
+  padding-top: self.card-padding.padding-same;
+  padding-bottom: self.card-padding.padding-same;
   SIcon {
     z: 13;
     height: root.avatar-size;
