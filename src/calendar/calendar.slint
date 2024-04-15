@@ -1,0 +1,123 @@
+import { SText } from "../text/index.slint";
+import { SCard } from "../card/index.slint";
+import { UseSurrealismFn, UseIcons, ColorLevel } from "../../use/index.slint";
+import {ROOT-STYLES} from "../../themes/index.slint";
+import { SIcon } from "../icon/index.slint";
+export struct SDate{
+    year: int,
+    month: int,
+    day: int,
+    hour: int,
+    minute: int,
+    second: int,
+}
+
+export component Calendar inherits SCard {
+    width: 300px;
+    height: 320px;
+    in-out property <SDate> current : {
+        year: 2024,
+        month: 4,
+        day: 15,
+    };
+    // zeller algorithm
+    // https://en.wikipedia.org/wiki/Zeller%27s_congruence
+    private property <[string]> weekdays : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    private property <int> current-weekday : UseSurrealismFn.get-weekday(self.current.year, self.current.month, self.current.day);
+    private property <int> start-day :UseSurrealismFn.get-weekday(self.current.year, self.current.month, 1);
+    pure function fmt(v: int)-> string {
+        if v < 10 {
+            return "0" + v;
+        }
+        return v;
+    }
+    VerticalLayout {
+        padding: 12px;
+        header:= HorizontalLayout{
+
+            alignment: space-between;
+            height: 46px;
+            Rectangle {
+                SText {
+                    theme: root.theme;
+                    font-weight: 700;
+                    font-size: 18px;
+                    color: UseSurrealismFn.active-color();
+                    text: @tr("Year: {}", root.current.year);
+                }
+            }
+            Rectangle {
+                SText {
+                    font-size: 14px;
+                    theme: root.theme;
+                    text: @tr("{}\n{}", fmt(root.current.month), fmt(root.current.day));
+                }
+            }
+        }
+        body:= VerticalLayout{
+            up-wrap:= Rectangle {
+                height: 30px;
+                background: up-area.has-hover ? UseSurrealismFn.active-color() : UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
+                animate background {
+                    duration:ROOT-STYLES.sur-an-duration;
+                    easing: ROOT-STYLES.sur-an-easing;
+                }
+                up-area:= TouchArea {
+                    mouse-cursor: pointer;
+                    SIcon {
+                        source: UseIcons.icons.Up;
+                    }
+                }
+            }
+            week-layout:=HorizontalLayout {
+                for weakItem in root.weekdays : Rectangle {
+                    SText {
+                        theme: root.theme;
+                        text: weakItem;
+                        font-size: 16px;
+                        font-weight: 700;
+                    }
+                }
+            }
+            for item in 5 : HorizontalLayout{
+                for wItem in 7 : Rectangle{
+                    SCard {
+                        width: inner-text.font-size * 2;
+                        height: inner-text.font-size * 2;
+                        border-radius: self.height / 2;
+                        inner-text:= SText {
+                            text: wItem + 1;
+                        }
+                    }
+                }
+            }
+            down-wrap:= Rectangle {
+                height: 30px;
+                background: down-area.has-hover ? UseSurrealismFn.active-color() : UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
+                animate background {
+                    duration:ROOT-STYLES.sur-an-duration;
+                    easing: ROOT-STYLES.sur-an-easing;
+                }
+                down-area:= TouchArea {
+                    mouse-cursor: pointer;
+                    SIcon {
+                        source: UseIcons.icons.Down;
+                    }
+                }
+            }    
+        }
+        
+    }
+}
+
+component TestCalendar {
+    height: 500px;
+    width: 400px;
+    VerticalLayout {
+        padding: 16px;
+        Calendar {
+            height: 464px;
+            width: 364px;
+        }
+    }
+}

@@ -11,6 +11,17 @@ import {ROOT-STYLES} from "../../themes/src/theme.slint";
 
 
 export global UseSurrealismFn {
+  // zeller algorithm to get days
+  pure public function get-days(year: int, month: int, day: int) -> int {
+    if month < 3 {
+        return 365 * (year - 1) + (year - 1) / 4 - (year - 1) / 100 + (year - 1) / 400 + (153 * (month + 12) - 457) / 5 + day - 306;
+    }
+    return 365 * year + year / 4 - year / 100 + year / 400 + (153 * month - 457) / 5 + day - 306;
+  }
+  // get the day of the week
+  pure public function get-weekday(year: int, month: int, day: int) -> int {
+    return Math.mod(get-days(year, month, day), 7);
+  }
   // 计算组件高度
   pure public function count-height(h:length,padding:length)->length {
     return h + padding * 2;
