@@ -7,7 +7,9 @@ export component NumberInput inherits SCard{
     width: 160px;
     clip: true;
     font-color: UseSurrealismFn.get-color(root.theme, ColorLevel.Font);
-    in-out property <float> value;
+    in-out property <float> minimum: 0;
+    in-out property <float> maximum: 100;
+    in-out property <float> value: 0;
     in-out property <bool> disabled : false;
     in property <float> step : 1.0;
     in property <bool> strict : false;
@@ -19,14 +21,22 @@ export component NumberInput inherits SCard{
         if disabled{
             return;
         }else{
-            input.text = input.text.to-float() + self.step;
+            if input.text.to-float() + self.step > self.maximum{
+                input.text = self.maximum;
+            }else{
+                input.text = input.text.to-float() + self.step;
+            }
         }
     }
     public function down() {
         if disabled{
             return;
         }else{
-            input.text = input.text.to-float() - self.step;
+            if input.text.to-float() - self.step < self.minimum{
+                input.text = self.minimum;
+            }else{
+                input.text = input.text.to-float() - self.step;
+            }
         }
     }
     Rectangle {
@@ -65,10 +75,14 @@ export component NumberInput inherits SCard{
                   root.accepted(self.text.to-float())
                 }
                 edited => {
-                    if (root.strict) {
-                        if Math.mod(self.text.to-float(), root.step) != 0{
-                            root.unexpect(self.text.to-float());
-                            self.text = self.text.to-float() - Math.mod(self.text.to-float(), root.step);
+                    if self.text > root.maximum || self.text < root.minimum{
+                        return;
+                    }else{
+                        if (root.strict) {
+                            if Math.mod(self.text.to-float(), root.step) != 0{
+                                root.unexpect(self.text.to-float());
+                                self.text = self.text.to-float() - Math.mod(self.text.to-float(), root.step);
+                            }
                         }
                     }
                     root.changed(self.text.to-float())
