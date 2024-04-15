@@ -1,0 +1,34 @@
+import { SNumberInput } from "../../index.slint";
+
+component TestNumberInput {
+    height: 400px;
+    width: 400px;
+    HorizontalLayout {
+        alignment: center;
+        VerticalLayout {
+            spacing: 8px;
+            alignment: center;
+            Text {text:"easy";font-size: 16px;}
+            SNumberInput {}
+            Text {text:"set step but not strict";font-size: 16px;}
+            SNumberInput {
+                theme: Primary;
+                step: 0.5;
+            }
+            Text {text:"set step and strict\nvalue can only be mod = 0";font-size: 16px;}
+            SNumberInput {
+                value: 1.5;
+                theme: Light;
+                strict: true;
+                step: 0.5;
+                unexpect(num) => {
+                    debug("unexpected number:" + num);
+                }
+            }
+            Text {text:"disabled";font-size: 16px;}
+            SNumberInput {
+                disabled: true;
+            }
+        }
+    }
+}

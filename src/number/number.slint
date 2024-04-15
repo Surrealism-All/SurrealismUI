@@ -1,0 +1,120 @@
+import { SIcon } from "../icon/index.slint";
+import {UseIcons,UseSurrealismFn,ColorLevel} from "../../use/index.slint";
+import { GlobalProps,ROOT-STYLES } from "../../themes/index.slint";
+import { SCard } from "../card/index.slint";
+export component NumberInput inherits SCard{
+    card-height: self.font-size;
+    width: 160px;
+    clip: true;
+    font-color: UseSurrealismFn.get-color(root.theme, ColorLevel.Font);
+    in-out property <float> value;
+    in-out property <bool> disabled : false;
+    in property <float> step : 1.0;
+    in property <bool> strict : false;
+    in-out property <InputType> input-type : InputType.decimal;
+    callback accepted(float);
+    callback changed(float);
+    callback unexpect(float);
+    public function up() {
+        if disabled{
+            return;
+        }else{
+            input.text = input.text.to-float() + self.step;
+        }
+    }
+    public function down() {
+        if disabled{
+            return;
+        }else{
+            input.text = input.text.to-float() - self.step;
+        }
+    }
+    Rectangle {
+        x: 2px;
+        height: input.has-focus? root.height : 0px;
+        width: 2px;
+        background: disabled ? UseSurrealismFn.get-color(root.theme, ColorLevel.Weakest) :GlobalProps.active-color;
+        animate height {
+            duration: ROOT-STYLES.sur-an-duration;
+            easing: ROOT-STYLES.sur-an-easing;
+        }
+    }
+    view:= HorizontalLayout {
+        padding-left: root.padding-left;
+        
+        Rectangle {
+            input := TextInput {
+                property <length> computed_x;
+                property <length> padding-outer: view.padding-left + view.padding-right;
+                x: min(0px, max(parent.width - self.width, self.computed_x));
+                width: max(parent.width, self.preferred-width);
+                height: root.font-size * 2;
+                color: root.font-color;
+                horizontal-alignment: left;
+                vertical-alignment: center;
+                font-size: root.font-size;
+                font-weight: root.font-weight;
+                font-italic: root.font-italic;
+                font-family: root.font-family;
+                read-only: root.disabled;
+                single-line: true;
+                input-type: root.input-type;
+                wrap: no-wrap;
+                text: root.value;
+                accepted => {
+                  root.accepted(self.text.to-float())
+                }
+                edited => {
+                    if (root.strict) {
+                        if Math.mod(self.text.to-float(), root.step) != 0{
+                            root.unexpect(self.text.to-float());
+                            self.text = self.text.to-float() - Math.mod(self.text.to-float(), root.step);
+                        }
+                    }
+                    root.changed(self.text.to-float())
+                }
+      
+                cursor-position-changed(cpos) => {
+                  if (cpos.x + self.computed_x < self.padding-outer) {
+                    self.computed_x = - cpos.x + self.padding-outer;
+                  } else if (cpos.x + self.computed_x > parent.width - self.padding-outer) {
+                    self.computed_x = parent.width - cpos.x - self.padding-outer;
+                  }
+                }
+            }
+        }
+        VerticalLayout {
+            
+            up-wrap:= Rectangle {
+                background: UseSurrealismFn.get-color(root.theme, ColorLevel.Deeper);
+                up-icon:= SIcon {
+                    theme: root.theme;
+                    source: UseIcons.icons.Up;
+                    colorize: self.has-hover ? GlobalProps.active-color : self.get-colorize();
+                    animate colorize {
+                        duration: ROOT-STYLES.sur-an-duration;
+                        easing: ROOT-STYLES.sur-an-easing;
+                    }
+                    clicked => {
+                        root.up();
+                    }
+                }
+            }
+            down-wrap:= Rectangle {
+                background: UseSurrealismFn.get-color(root.theme, ColorLevel.Deeper);
+                down-icon:= SIcon {
+                    theme: root.theme;
+                    source: UseIcons.icons.Down;
+                    colorize: self.has-hover ? GlobalProps.active-color : self.get-colorize();
+                    animate colorize {
+                        duration: ROOT-STYLES.sur-an-duration;
+                        easing: ROOT-STYLES.sur-an-easing;
+                    }
+                    clicked => {
+                        root.down();
+                    }
+                }
+            }
+        }
+    }
+}
