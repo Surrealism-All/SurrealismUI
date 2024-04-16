@@ -15,21 +15,23 @@ export struct SDate{
 export component Calendar inherits SCard {
     width: 300px;
     height: 320px;
-    in-out property <SDate> current : {
+    in-out property <SDate> today : {
         year: 2024,
         month: 4,
         day: 15,
     };
     // zeller algorithm
     // https://en.wikipedia.org/wiki/Zeller%27s_congruence
-    in-out property <SDate> active-date: current;
+    in-out property <SDate> active-date: today;
+    in-out property <SDate> current-date: today;
+    in-out property <[string]> months: ["Jan","Fab","Mar", "Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
     private property <[string]> weekdays : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    private property <int> is_leap_year: UseSurrealismFn.is-leap-year(self.current.year) ? 1 : 0;
+    private property <int> is_leap_year: UseSurrealismFn.is-leap-year(self.today.year) ? 1 : 0;
     private property <[int]> days_in_month : [31, 28 + self.is_leap_year, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    private property <int> current-weekday : UseSurrealismFn.get-weekday(self.current.year, self.current.month, self.current.day);
-    private property <int> current-month-days: root.days_in_month[current.month - 1];
-    private property <int> end-day: UseSurrealismFn.get-weekday(self.current.year, self.current.month, current-month-days);
-    private property <int> start-day: UseSurrealismFn.get-weekday(self.current.year, self.current.month, 1);
+    private property <int> current-weekday : UseSurrealismFn.get-weekday(self.today.year, self.today.month, self.today.day);
+    private property <int> current-month-days: root.days_in_month[today.month - 1];
+    private property <int> end-day: UseSurrealismFn.get-weekday(self.today.year, self.today.month, current-month-days);
+    private property <int> start-day: UseSurrealismFn.get-weekday(self.today.year, self.today.month, 1);
     
     pure function fmt(v: int)-> string {
         if v < 10 {
@@ -51,11 +53,11 @@ export component Calendar inherits SCard {
         return ceil((root.current-month-days + root.start-day ) / 7);
     }
     function update() {
-        root.is_leap_year = UseSurrealismFn.is-leap-year(self.active-date.year) ? 1 : 0;
-        root.current-weekday = UseSurrealismFn.get-weekday(root.active-date.year, self.active-date.month, self.active-date.day);
-        root.current-month-days = root.days_in_month[active-date.month - 1];
-        root.end-day = UseSurrealismFn.get-weekday(self.active-date.year, self.active-date.month, current-month-days);
-        root.start-day = UseSurrealismFn.get-weekday(self.active-date.year, self.active-date.month, 1);
+        root.is_leap_year = UseSurrealismFn.is-leap-year(self.current-date.year) ? 1 : 0;
+        root.current-weekday = UseSurrealismFn.get-weekday(root.current-date.year, self.current-date.month, self.current-date.day);
+        root.current-month-days = root.days_in_month[current-date.month - 1];
+        root.end-day = UseSurrealismFn.get-weekday(self.current-date.year, self.current-date.month, current-month-days);
+        root.start-day = UseSurrealismFn.get-weekday(self.current-date.year, self.current-date.month, 1);
     }
     callback up(SDate);
     callback down(SDate);
@@ -65,21 +67,22 @@ export component Calendar inherits SCard {
         header:= HorizontalLayout{
 
             alignment: space-between;
-            height: 46px;
+            height: root.font-size * 3;
             Rectangle {
                 SText {
                     theme: root.theme;
                     font-weight: 700;
-                    font-size: 18px;
+                    font-size: root.font-size * 1.2;
                     color: UseSurrealismFn.active-color();
-                    text: @tr("Year: {}", root.active-date.year);
+                    text: @tr("Year: {}", root.current-date.year);
                 }
             }
             Rectangle {
                 SText {
-                    font-size: 14px;
+                    font-size: root.font-size * 0.9;
                     theme: root.theme;
-                    text: @tr("{}\n{}", fmt(root.active-date.month), fmt(root.active-date.day));
+                    horizontal-alignment: center;
+                    text: @tr("{}\n{}", months[root.current-date.month - 1], fmt(root.current-date.day));
                 }
             }
         }
@@ -95,14 +98,14 @@ export component Calendar inherits SCard {
                     z:111;
                     mouse-cursor: pointer;
                     clicked => {
-                        active-date.day = 1;
-                        active-date.month = active-date.month - 1;
-                        if active-date.month < 1 {
-                            active-date.month = 12;
-                            active-date.year = active-date.year - 1;
+                        current-date.day = 1;
+                        current-date.month = current-date.month - 1;
+                        if current-date.month > 12 {
+                            current-date.month = 1;
+                            current-date.year = current-date.year - 1;
                         }
                         root.update();
-                        root.up(active-date);
+                        root.up(current-date);
                     }
                     
                 }
@@ -131,8 +134,8 @@ export component Calendar inherits SCard {
                 for wItem[wIndex] in get-line-length(index) : Rectangle{
                     width: parent.width / 7;
                     SCard {
-                        private property <bool> is-today: get-day(wItem, index) == root.current.day && root.current.year == root.active-date.year && root.current.month == root.active-date.month;
-                        in-out property <bool> is-active : root.active-date.day == get-day(wItem, index);
+                        private property <bool> is-today: get-day(wItem, index) == root.today.day && root.today.year == root.current-date.year && root.today.month == root.current-date.month;
+                        in-out property <bool> is-active : root.active-date.day == get-day(wItem, index) && root.active-date.year == root.current-date.year && root.active-date.month == root.current-date.month;
                         theme: root.theme;
                         width: inner-text.font-size * 2;
                         height: inner-text.font-size * 2;
@@ -142,7 +145,10 @@ export component Calendar inherits SCard {
                         area:= TouchArea {
                             mouse-cursor: pointer;
                             clicked => {
-                                root.active-date.day = get-day(wItem, index);
+                                root.active-date.year = root.current-date.year;
+                                root.active-date.month = root.current-date.month;
+                                root.current-date.day = get-day(wItem, index);
+                                root.active-date.day = root.current-date.day;
                                 root.change(active-date);
                             }
                             inner-text:= SText {
@@ -168,14 +174,14 @@ export component Calendar inherits SCard {
                     z:111;
                     mouse-cursor: pointer;
                     clicked => {
-                        active-date.day = 1;
-                        active-date.month = active-date.month + 1;
-                        if active-date.month > 12 {
-                            active-date.month = 1;
-                            active-date.year = active-date.year + 1;
+                        current-date.day = 1;
+                        current-date.month = current-date.month + 1;
+                        if current-date.month > 12 {
+                            current-date.month = 1;
+                            current-date.year = current-date.year + 1;
                         }
                         root.update();
-                        root.down(active-date);
+                        root.down(current-date);
                     }
                     
                 }
@@ -191,16 +197,3 @@ export component Calendar inherits SCard {
     }
 }
 
-component TestCalendar inherits Window {
-    height: 500px;
-    width: 400px;
-    background: #333;
-    VerticalLayout {
-        padding: 16px;
-        Calendar {
-            theme: Light;
-            height: 464px;
-            width: 364px;
-        }
-    }
-}

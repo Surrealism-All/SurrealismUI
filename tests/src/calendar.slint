@@ -1,0 +1,28 @@
+import {SCalendar} from "../../index.slint";
+component TestCalendar inherits Window {
+    height: 500px;
+    width: 400px;
+    background: #333;
+    VerticalLayout {
+        padding: 16px;
+        SCalendar {
+            theme: Dark;
+            height: 464px;
+            width: 364px;
+        }
+    }
+}
+
+component TestCalendar2 inherits Window {
+    height: 500px;
+    width: 700px;
+    background: #333;
+    VerticalLayout {
+        padding: 16px;
+        SCalendar {
+            theme: Info;
+            height: 464px;
+            width: 664px;
+        }
+    }
+}
