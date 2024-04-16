@@ -20,16 +20,32 @@ export component Calendar inherits SCard {
         month: 4,
         day: 15,
     };
+    in-out property <int> active-day: self.current.day;
     // zeller algorithm
     // https://en.wikipedia.org/wiki/Zeller%27s_congruence
     private property <[string]> weekdays : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    private property <int> is_leap_year: UseSurrealismFn.is-leap-year(self.current.year) ? 1 : 0;
+    private property <[int]> days_in_month : [31, 28 + self.is_leap_year, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     private property <int> current-weekday : UseSurrealismFn.get-weekday(self.current.year, self.current.month, self.current.day);
-    private property <int> start-day :UseSurrealismFn.get-weekday(self.current.year, self.current.month, 1);
+    private property <int> current-month-days: root.days_in_month[current.month - 1];
+    private property <int> end-day: UseSurrealismFn.get-weekday(self.current.year, self.current.month, current-month-days);
+    private property <int> start-day: UseSurrealismFn.get-weekday(self.current.year, self.current.month, 1);
+    
     pure function fmt(v: int)-> string {
         if v < 10 {
             return "0" + v;
         }
         return v;
+    }
+    pure function get-line-length(index: int) -> int{
+        if index == 0 {
+            return 7 - root.start-day;
+        }
+       
+        return ((current-month-days - (7 - root.start-day)) / 7 / index) >= 1 ? 7 : (end-day + 1);
+    }
+    pure function get-day(item: int, index:int) -> int {
+        return ((item + 1) + index * 7) - (index == 0 ? 0 : root.start-day);
     }
     VerticalLayout {
         padding: 12px;
@@ -71,6 +87,7 @@ export component Calendar inherits SCard {
             }
             week-layout:=HorizontalLayout {
                 for weakItem in root.weekdays : Rectangle {
+                    width: parent.width / 7;
                     SText {
                         theme: root.theme;
                         text: weakItem;
@@ -79,17 +96,34 @@ export component Calendar inherits SCard {
                     }
                 }
             }
-            for item in 5 : HorizontalLayout{
-                for wItem in 7 : Rectangle{
+            for item[index] in 5 : HorizontalLayout{
+                if index == 0: Rectangle {
+                    width: parent.width / 7 * root.start-day;
+                }
+                for wItem[wIndex] in get-line-length(index) : Rectangle{
+                    width: parent.width / 7;
                     SCard {
+                        private property <bool> is-today: get-day(wItem, index) == root.current.day;
+                        in-out property <bool> is-active : root.active-day == get-day(wItem, index);
                         width: inner-text.font-size * 2;
                         height: inner-text.font-size * 2;
                         border-radius: self.height / 2;
-                        inner-text:= SText {
-                            text: wItem + 1;
+                        background: is-today ? UseSurrealismFn.active-color() : UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
+                        border-color: is-active ? UseSurrealismFn.active-color() : UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
+                        area:= TouchArea {
+                            mouse-cursor: pointer;
+                            clicked => {
+                                root.active-day = get-day(wItem, index);
+                            }
+                            inner-text:= SText {
+                                text: get-day(wItem, index);
+                                font-weight: 700;
+                                font-size: root.font-size;
+                            }
                         }
                     }
                 }
+
             }
             down-wrap:= Rectangle {
                 height: 30px;

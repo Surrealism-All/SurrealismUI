@@ -11,6 +11,15 @@ import {ROOT-STYLES} from "../../themes/src/theme.slint";
 
 
 export global UseSurrealismFn {
+  pure public function is-leap-year(year: int) -> bool {
+      if Math.mod(year, 4) == 0 {
+          if Math.mod(year, 100) == 0 {
+              return Math.mod(year, 400) == 0;
+          }
+          return true;
+      }
+      return false;
+  }
   // zeller algorithm to get days
   pure public function get-days(year: int, month: int, day: int) -> int {
     if month < 3 {
