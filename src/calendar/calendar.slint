@@ -101,10 +101,11 @@ export component Calendar inherits SCard {
                     clicked => {
                         current-date.day = 1;
                         current-date.month = current-date.month - 1;
-                        if current-date.month > 12 {
-                            current-date.month = 1;
+                        if current-date.month < 1 {
+                            current-date.month = 12;
                             current-date.year = current-date.year - 1;
                         }
+                        
                         root.update();
                         root.up(current-date);
                     }
