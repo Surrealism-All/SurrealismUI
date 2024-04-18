@@ -74,7 +74,7 @@ export component Calendar inherits SCard {
                     theme: root.theme;
                     font-weight: 700;
                     font-size: root.font-size * 1.5;
-                    color: UseSurrealismFn.active-color();
+                    color: ROOT-STYLES.radio-active;
                     text: @tr("{}", root.current-date.year);
                 }
             }
@@ -90,7 +90,7 @@ export component Calendar inherits SCard {
         body:= VerticalLayout{
             up-wrap:= Rectangle {
                 height: 30px;
-                background: up-area.has-hover ? UseSurrealismFn.active-color() : UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
+                background: up-area.has-hover ? ROOT-STYLES.radio-active : UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
                 animate background {
                     duration:ROOT-STYLES.sur-an-duration;
                     easing: ROOT-STYLES.sur-an-easing;
@@ -143,8 +143,8 @@ export component Calendar inherits SCard {
                         width: inner-text.font-size * 2;
                         height: inner-text.font-size * 2;
                         border-radius: self.height / 2;
-                        background: is-today ? UseSurrealismFn.active-color() : UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
-                        border-color: is-active ? UseSurrealismFn.active-color() : UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
+                        background: is-today ? ROOT-STYLES.radio-active : UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
+                        border-color: is-active ? ROOT-STYLES.radio-active : UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
                         area:= TouchArea {
                             mouse-cursor: pointer;
                             clicked => {
@@ -168,7 +168,7 @@ export component Calendar inherits SCard {
             }
             down-wrap:= Rectangle {
                 height: 30px;
-                background: down-area.has-hover ? UseSurrealismFn.active-color() : UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
+                background: down-area.has-hover ? ROOT-STYLES.radio-active : UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
                 animate background {
                     duration:ROOT-STYLES.sur-an-duration;
                     easing: ROOT-STYLES.sur-an-easing;
