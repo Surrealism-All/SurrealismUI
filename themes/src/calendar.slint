@@ -1,0 +1,28 @@
+import {Themes,PaddingType,ShadowType,BorderType,SDate} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+
+export global DefaultSCalendarProps {
+    //font
+    in-out property <int> font-weight : GlobalProps.font.font-weight;
+    in-out property <length> font-size: GlobalProps.font.font-size;
+    in-out property <brush> font-color : GlobalProps.font.color;
+    in-out property <bool> font-italic : GlobalProps.font.font-italic;
+    in-out property <string> font-family : GlobalProps.font.font-family;
+    //theme
+    in-out property <Themes> theme : GlobalProps.theme;
+    //hight-width
+    in-out property <length> card-height : GlobalProps.standard-height;
+    in-out property <length> card-width : GlobalProps.standard-width;
+    in-out property <PaddingType> padding-type:PaddingType.Normal;
+    in-out property <ShadowType> shadow-type: ShadowType.Low1;
+    in-out property <BorderType> border-type : BorderType.Normal;
+    in-out property <bool> clip : GlobalProps.clip;
+    in-out property <SDate> today;
+    // zeller algorithm
+    // https://en.wikipedia.org/wiki/Zeller%27s_congruence
+    in property <bool> bg-visible : false;
+    in-out property <SDate> active-date: today;
+    in-out property <SDate> current-date: today;
+    in-out property <[string]> months: ["Jan","Fab","Mar", "Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    in-out property <[string]> weekdays : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+}

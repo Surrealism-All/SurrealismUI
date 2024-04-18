@@ -1,0 +1,39 @@
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+import { ShadowType } from "./shadow.slint";
+import { BorderType } from "./border.slint";
+
+export struct SDate{
+    year: int,
+    month: int,
+    day: int,
+    hour: int,
+    minute: int,
+    second: int,
+}
+
+export struct SCalendarProps {
+    //font
+    font-weight : int,
+    font-size: length,
+    font-color : brush,
+    font-italic : bool,
+    font-family : string,
+    //theme
+    theme : Themes,
+    //hight-width
+    card-height : length,
+    card-width : length,
+    padding-type: PaddingType,
+    shadow-type: ShadowType,
+    border-type : BorderType,
+    clip : bool,
+    today: SDate,
+    // zeller algorithm
+    // https://en.wikipedia.org/wiki/Zeller%27s_congruence
+    bg-visible : bool,
+    active-date: SDate,
+    current-date: SDate,
+    months: [string],
+    weekdays :[string],
+  }

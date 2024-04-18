@@ -1,16 +1,8 @@
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
-import { UseSurrealismFn, UseIcons, ColorLevel } from "../../use/index.slint";
-import {ROOT-STYLES} from "../../themes/index.slint";
+import { UseSurrealismFn, UseIcons, ColorLevel, SDate } from "../../use/index.slint";
+import {ROOT-STYLES,DefaultSCalendarProps} from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
-export struct SDate{
-    year: int,
-    month: int,
-    day: int,
-    hour: int,
-    minute: int,
-    second: int,
-}
 
 export component Calendar inherits SCard {
     width: 300px;
@@ -25,8 +17,8 @@ export component Calendar inherits SCard {
     in property <bool> bg-visible <=> bg.visible;
     in-out property <SDate> active-date: today;
     in-out property <SDate> current-date: today;
-    in-out property <[string]> months: ["Jan","Fab","Mar", "Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    in-out property <[string]> weekdays : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    in-out property <[string]> months: DefaultSCalendarProps.months;
+    in-out property <[string]> weekdays : DefaultSCalendarProps.weekdays;
     private property <int> is_leap_year: UseSurrealismFn.is-leap-year(self.today.year) ? 1 : 0;
     private property <[int]> days_in_month : [31, 28 + self.is_leap_year, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     private property <int> current-weekday : UseSurrealismFn.get-weekday(self.today.year, self.today.month, self.today.day);
