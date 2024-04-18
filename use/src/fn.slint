@@ -22,14 +22,15 @@ export global UseSurrealismFn {
   }
   // zeller algorithm to get days
   pure public function get-days(year: int, month: int, day: int) -> int {
+    
     if month < 3 {
-        return mod((day + (13 * ((month + 12) + 1)) / 5 + mod((year - 1), 100) + ((year - 1) / 4) + ((year - 1) / 100 / 4) - 2 * ((year - 1) / 100)), 7);
+        return mod( day + floor((13 * ((month + 12) + 1)) / 5) + mod((year - 1) , 100) + floor(mod((year - 1) , 100) / 4) + floor((floor((year - 1) / 100)) / 4) - 2 * floor((year - 1) / 100) , 7);
     }
-    return mod((day + (13 * (month + 1)) / 5 + mod(year, 100) + (year / 4) + (year / 100 / 4) - 2 * (year / 100)), 7);
+    return mod( day + floor((13 * (month + 1)) / 5) + mod(year , 100) + floor(mod(year , 100) / 4) + floor((floor(year / 100)) / 4) - 2 * floor(year / 100) , 7);
   }
   // get the day of the week
   pure public function get-weekday(year: int, month: int, day: int) -> int {
-    return floor(Math.mod((get-days(year, month, day) + 5), 7)) - 1;
+    return Math.mod((get-days(year, month, day) + 5), 7);
   }
   // 计算组件高度
   pure public function count-height(h:length,padding:length)->length {
