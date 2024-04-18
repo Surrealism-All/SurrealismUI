@@ -33,6 +33,7 @@ import { DefaultSPaginationProps } from "./pagination.slint";
 import { DefaultKeyBoardProps } from "./keyboard.slint";
 import { DefaultSTimeLineProps } from "./timeline.slint";
 import { DefaultSCarouselProps } from "./carousel.slint";
+import { DefaultSCalendarProps } from "./calendar.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
@@ -40,11 +41,33 @@ import {
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
   SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps,STableProps,STableColumnProps,
   SMenuProps,SPopoverProps,SStepProps,SCheckboxProps,SPaginationProps,SKeyBoardProps,
-  STimeLineProps,SCarouselProps
+  STimeLineProps,SCarouselProps,SCalendarProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
     //component props 
+    in-out property <SCalendarProps> calendar:{
+        font-weight : DefaultSCalendarProps.font-weight,
+        font-size: DefaultSCalendarProps.font-size,
+        font-color : DefaultSCalendarProps.font-color,
+        font-italic : DefaultSCalendarProps.font-italic,
+        font-family : DefaultSCalendarProps.font-family,
+        //theme
+        theme : DefaultSCalendarProps.theme,
+        //hight-width
+        card-height : DefaultSCalendarProps.card-height,
+        card-width : DefaultSCalendarProps.card-width,
+        padding-type: DefaultSCalendarProps.padding-type,
+        shadow-type: DefaultSCalendarProps.shadow-type,
+        border-type : DefaultSCalendarProps.border-type,
+        clip : DefaultSCalendarProps.clip,
+        today: DefaultSCalendarProps.today,
+        bg-visible : DefaultSCalendarProps.bg-visible,
+        active-date: DefaultSCalendarProps.active-date,
+        current-date: DefaultSCalendarProps.current-date,
+        months: DefaultSCalendarProps.months,
+        weekdays: DefaultSCalendarProps.weekdays,
+    };
     in-out property <SCarouselProps> carousel:{
         sources: DefaultSCarouselProps.sources,
         fold-strench: DefaultSCarouselProps.fold-strench,
