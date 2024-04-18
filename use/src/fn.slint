@@ -23,13 +23,13 @@ export global UseSurrealismFn {
   // zeller algorithm to get days
   pure public function get-days(year: int, month: int, day: int) -> int {
     if month < 3 {
-        return 365 * (year - 1) + (year - 1) / 4 - (year - 1) / 100 + (year - 1) / 400 + (153 * (month + 12) - 457) / 5 + day - 306;
+        return mod((day + (13 * ((month + 12) + 1)) / 5 + mod((year - 1), 100) + ((year - 1) / 4) + ((year - 1) / 100 / 4) - 2 * ((year - 1) / 100)), 7);
     }
-    return 365 * year + year / 4 - year / 100 + year / 400 + (153 * month - 457) / 5 + day - 306;
+    return mod((day + (13 * (month + 1)) / 5 + mod(year, 100) + (year / 4) + (year / 100 / 4) - 2 * (year / 100)), 7);
   }
   // get the day of the week
   pure public function get-weekday(year: int, month: int, day: int) -> int {
-    return Math.mod(get-days(year, month, day), 7);
+    return floor(Math.mod((get-days(year, month, day) + 5), 7)) - 1;
   }
   // 计算组件高度
   pure public function count-height(h:length,padding:length)->length {
