@@ -6,6 +6,7 @@ component TestCalendar inherits Window {
     VerticalLayout {
         padding: 16px;
         SCalendar {
+            bg-visible: true;
             theme: Dark;
             height: 464px;
             width: 364px;
@@ -20,9 +21,22 @@ component TestCalendar2 inherits Window {
     VerticalLayout {
         padding: 16px;
         SCalendar {
+            bg-visible: true;
             theme: Info;
             height: 464px;
             width: 664px;
+            months: [
+                "一月","二月","三月","四月","五月","六月",
+                "七月","八月","九月","十月","十一月","十二月"
+            ];
+            today: {
+                year: 2024,
+                month: 1,
+                day: 1,
+            };
+            weekdays: [
+                "周日","周一","周二","周三","周四","周五","周六"
+            ];
         }
     }
 }

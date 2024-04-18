@@ -22,10 +22,11 @@ export component Calendar inherits SCard {
     };
     // zeller algorithm
     // https://en.wikipedia.org/wiki/Zeller%27s_congruence
+    in property <bool> bg-visible <=> bg.visible;
     in-out property <SDate> active-date: today;
     in-out property <SDate> current-date: today;
     in-out property <[string]> months: ["Jan","Fab","Mar", "Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    private property <[string]> weekdays : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    in-out property <[string]> weekdays : ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     private property <int> is_leap_year: UseSurrealismFn.is-leap-year(self.today.year) ? 1 : 0;
     private property <[int]> days_in_month : [31, 28 + self.is_leap_year, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     private property <int> current-weekday : UseSurrealismFn.get-weekday(self.today.year, self.today.month, self.today.day);
@@ -62,6 +63,14 @@ export component Calendar inherits SCard {
     callback up(SDate);
     callback down(SDate);
     callback change(SDate);
+    bg:= SText{
+        visible: false;
+        theme: root.theme;
+        font-weight: 700;
+        font-size: root.width / 2.8;
+        text: @tr("{}", root.current-date.year);
+        
+    }
     VerticalLayout {
         padding: 12px;
         header:= HorizontalLayout{
@@ -72,9 +81,9 @@ export component Calendar inherits SCard {
                 SText {
                     theme: root.theme;
                     font-weight: 700;
-                    font-size: root.font-size * 1.2;
+                    font-size: root.font-size * 1.5;
                     color: UseSurrealismFn.active-color();
-                    text: @tr("Year: {}", root.current-date.year);
+                    text: @tr("{}", root.current-date.year);
                 }
             }
             Rectangle {
@@ -120,6 +129,7 @@ export component Calendar inherits SCard {
                 for weakItem in root.weekdays : Rectangle {
                     width: parent.width / 7;
                     SText {
+                        wrap: no-wrap;
                         theme: root.theme;
                         text: weakItem;
                         font-size: 16px;
