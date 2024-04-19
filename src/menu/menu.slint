@@ -8,15 +8,17 @@
 * # SMenu
 * SMenu is a menu bar located on the left side that you can quickly generate through the menu-data property
 * ## properties
-* - in-out property <length> icon-box-size : menu item size ⛔
-* - in-out property <length> icon-size : menu item icon size ⛔;
-* - in property <[MenuData]> menu-data : menu item data (generate menus through it)
-* - in-out property <int> active : which item is active
-* - private property <brush> hover-icon-color : menu item icon color changed when hover
-* ## callbacks
-* - callback change(int,MenuData) : run if you click menu item
-* - callback clicked-account() : run if you click account icon
-* - callback clicked-setting() : run if you click setting icon
+* - in property <brush> active-color: Specifies the color for active menu items, using the default from `DefaultSMenuProps.active-color`.
+* - in property <length> tip-width: The width of the tip (if any) of the menu items, set by `DefaultSMenuProps.tip-width`.
+* - in-out property <length> icon-box-size: Specifies the size of the icon container in menu items, using a default size from `DefaultSMenuProps.icon-box-size`.
+* - in-out property <length> icon-size: Specifies the icon size within the icon box, using a default size from `DefaultSMenuProps.icon-size`.
+* - in property <[MenuData]> menu-data: An array containing data for each menu item, set by `DefaultSMenuProps.menu-data`.
+* - in-out property <[MenuData]> sub-menu-data: Data for any sub-menus that may be part of this menu component.
+* - in-out property <string> active: Keeps track of which menu item is currently active, initialized to "0".
+* - in property <length> more-height: Height of the "more" icon, set to the value of `icon-box-size`.
+* - in property <length> more-width: Calculates the width required to display a "more" icon based on the number of items and the icon box size.
+* ## Callbacks
+* - callback change(int, MenuData): Triggered when a menu item is selected or activated, passing the index and the data of the selected menu item.
 * ============================================
 */
 import { SCard } from "../card/index.slint";

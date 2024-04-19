@@ -377,6 +377,8 @@ https://github.com/Surrealism-All/SurrealismUI/wiki
 - `SPagination` ：A component designed for navigating through pages, providing options for customization and various interactions.
 - `SCarousel`：The Carousel component is designed to display a sequence of images (or slides) that users can navigate through. It provides a dynamic and visually engaging way to showcase multiple images without occupying too much space on the screen.
 - `STimeLine`：The timeline component is mainly used to display the changes of data over time, and it is usually used in data visualization to visually represent time series data
+- `SNumberInput`：A numeric input component that inherits from SCard, designed for inputting numerical values within a specified range. It allows adjustments through increment and decrement actions.
+- `SCalendar`：A calendar component that inherits from SCard. It is designed to display a month view with the ability to navigate and select dates.
 
 ## Updates
 
@@ -415,7 +417,12 @@ Thank you for reading, and if you have any questions, please send an email to sy
     - 增加`SNumInput`数字输入
     - 增加`SDate`时间日期
     - 修复`SAvatar`None异常
+    - 修复`SMenu`callback change
   - English
+    - Add `SNumInput` 
+    - Add `SDate`
+    - Fix `SAvatar` None Option unwrap
+    - Fix `SMenu`callback change
 - V0.4.2
   - 中文
     - 增加`SCarousel`走马灯
