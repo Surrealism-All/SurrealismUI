@@ -34,6 +34,7 @@ import { DefaultKeyBoardProps } from "./keyboard.slint";
 import { DefaultSTimeLineProps } from "./timeline.slint";
 import { DefaultSCarouselProps } from "./carousel.slint";
 import { DefaultSCalendarProps } from "./calendar.slint";
+import { DefaultSNumberInputProps} from "./number.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
@@ -41,11 +42,34 @@ import {
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
   SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps,STableProps,STableColumnProps,
   SMenuProps,SPopoverProps,SStepProps,SCheckboxProps,SPaginationProps,SKeyBoardProps,
-  STimeLineProps,SCarouselProps,SCalendarProps
+  STimeLineProps,SCarouselProps,SCalendarProps,SNumberInputProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
     //component props 
+    in-out property <SNumberInputProps> number-input: {
+        font-weight : DefaultSNumberInputProps.font-weight,
+        font-size: DefaultSNumberInputProps.font-size,
+        font-color : DefaultSNumberInputProps.font-color,
+        font-italic : DefaultSNumberInputProps.font-italic,
+        font-family : DefaultSNumberInputProps.font-family,
+        //theme
+        theme : DefaultSNumberInputProps.theme,
+        //hight-width
+        card-height : DefaultSNumberInputProps.card-height,
+        card-width : DefaultSNumberInputProps.card-width,
+        padding-type: DefaultSNumberInputProps.padding-type,
+        shadow-type: DefaultSNumberInputProps.shadow-type,
+        border-type : DefaultSNumberInputProps.border-type,
+        clip :DefaultSNumberInputProps.clip,
+        minimum: DefaultSNumberInputProps.minimum,
+        maximum: DefaultSNumberInputProps.maximum,
+        value: DefaultSNumberInputProps.value,
+        disabled : DefaultSNumberInputProps.disabled,
+        step : DefaultSNumberInputProps.step,
+        strict : DefaultSNumberInputProps.strict,
+        input-type : DefaultSNumberInputProps.input-type,
+    };
     in-out property <SCalendarProps> calendar:{
         font-weight : DefaultSCalendarProps.font-weight,
         font-size: DefaultSCalendarProps.font-size,

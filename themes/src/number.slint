@@ -1,0 +1,27 @@
+import {Themes,PaddingType,ShadowType,BorderType,UseSurrealismFn,ColorLevel} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+
+export global DefaultSNumberInputProps {
+    //font
+    in-out property <int> font-weight : GlobalProps.font.font-weight;
+    in-out property <length> font-size: GlobalProps.font.font-size;
+    in-out property <brush> font-color : UseSurrealismFn.get-color(root.theme, ColorLevel.Font);
+    in-out property <bool> font-italic : GlobalProps.font.font-italic;
+    in-out property <string> font-family : GlobalProps.font.font-family;
+    //theme
+    in-out property <Themes> theme : GlobalProps.theme;
+    //hight-width
+    in-out property <length> card-height : self.font-size;
+    in-out property <length> card-width : GlobalProps.standard-width;
+    in-out property <PaddingType> padding-type:PaddingType.Normal;
+    in-out property <ShadowType> shadow-type: ShadowType.Low1;
+    in-out property <BorderType> border-type : BorderType.Normal;
+    in-out property <bool> clip : true;
+    in-out property <float> minimum: 0;
+    in-out property <float> maximum: 100;
+    in-out property <float> value: 0;
+    in-out property <bool> disabled : false;
+    in property <float> step : 1.0;
+    in property <bool> strict : false;
+    in-out property <InputType> input-type : InputType.decimal;
+}

@@ -1,0 +1,29 @@
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+import { ShadowType } from "./shadow.slint";
+import { BorderType } from "./border.slint";
+
+export struct SNumberInputProps {
+  //font
+  font-weight : int,
+  font-size: length,
+  font-color : brush,
+  font-italic : bool,
+  font-family : string,
+  //theme
+  theme : Themes,
+  //hight-width
+  card-height : length,
+  card-width : length,
+  padding-type: PaddingType,
+  shadow-type: ShadowType,
+  border-type : BorderType,
+  clip : bool,
+  minimum: float,
+  maximum: float,
+  value: float,
+  disabled : bool,
+  step : float,
+  strict : bool,
+  input-type : InputType,
+}
