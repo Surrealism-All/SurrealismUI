@@ -117,8 +117,10 @@ export component Menu inherits SCard {
           icon-size: root.icon-size;
           theme: root.theme;
           clicked => {
-            root.active = item.id;
-            root.change(index,item);
+            if root.active != item.id{
+              root.active = item.id;
+              root.change(index,item);
+            }
           }
         }
       }
