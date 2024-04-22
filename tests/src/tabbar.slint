@@ -1,0 +1,57 @@
+import { STabbar } from "../../index.slint";
+import { UseIcons } from "../../use/index.slint";
+component TestTabbar {
+    height: 160px;
+    width: 360px;
+    VerticalLayout {
+        alignment: space-around;
+        STabbar {
+            theme: Dark;
+            tabs: [
+                {
+                    id: 0,
+                    name: "Setting",
+                    icon: UseIcons.icons.Setting-two
+                },
+                {
+                    id: 1,
+                    name: "Search",
+                    icon: UseIcons.icons.Search
+                },
+                {
+                    id: 2,
+                    name: "Help",
+                    icon: UseIcons.icons.Help
+                },
+                {
+                    id: 3,
+                    name: "Mine",
+                    icon: UseIcons.icons.Avatar
+                }
+            ];
+        }
+        STabbar {
+            theme: Info;
+            show-text: false;
+            icon-scale: 1.4;
+            active: 1;
+            tabs: [
+                {
+                    id: 0,
+                    name: "Setting",
+                    icon: UseIcons.icons.Setting-two
+                },
+                {
+                    id: 1,
+                    name: "Search",
+                    icon: UseIcons.icons.Search
+                },
+                {
+                    id: 2,
+                    name: "Mine",
+                    icon: UseIcons.icons.Avatar
+                }
+            ];
+        }
+    }
+}

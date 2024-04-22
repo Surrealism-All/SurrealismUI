@@ -1,0 +1,74 @@
+import { SCard } from "../card/index.slint";
+import { UseSurrealismFn, MenuData, ColorLevel } from "../../use/index.slint";
+import { ROOT_STYLES } from "../../themes/index.slint";
+import { SIcon } from "../icon/index.slint";
+import { SText } from "../text/index.slint";
+
+export component Tabbar inherits SCard {
+    card-height: 36px;
+    width: 100%;
+    font-size: 12px;
+    font-color: UseSurrealismFn.get-color(root.theme, ColorLevel.Font);
+    in-out property <[MenuData]> tabs;
+    in property <float> icon-scale: 1.66;
+    in property <length> tab-size: root.card-height / root.icon-scale;
+    in-out property <int> active: 0;
+    in property <bool> show-text: true;
+    callback change(MenuData);
+    
+    bar-area:= TouchArea {}
+    HorizontalLayout {
+        width: root.width;
+        alignment: space-around;
+        padding: 6px;
+        for item[index] in root.tabs: Rectangle{
+            clip: true;
+            width: (parent.width - parent.padding * 2) / root.tabs.length;
+            VerticalLayout {
+                alignment: center;
+                spacing: 4px;
+                Rectangle {
+                    clip: true;
+                    SIcon {
+                        theme: root.theme;
+                        colorize: root.active == item.id.to-float() ? ROOT_STYLES.radio-active : self.get-colorize();
+                        height:root.tab-size;
+                        width: root.tab-size;
+                        source: item.icon;
+                        clicked => {
+                            if root.active != item.id.to-float() {
+                                root.active = item.id.to-float();
+                                root.change(item);
+                            }
+                        }
+                    }
+                }
+                if root.show-text: Rectangle {
+                    clip: true;
+                    SText {
+                        theme: root.theme;
+                        font-size: root.font-size;
+                        text: item.name;
+                        wrap: TextWrap.no-wrap;
+                        color: root.active == item.id.to-float() ? ROOT_STYLES.radio-active : root.font-color;
+                        font-family: root.font-family;
+                        font-italic: root.font-italic;
+                        font-weight: root.font-weight;
+                    }
+                }
+            }
+        }
+    }
+    Rectangle {
+        y: root.height - self.height * 2;
+        height: 2px;
+        width:  bar-area.pressed ? root.width / 2.5 : root.width / 3.6;
+        border-radius: 2px;
+        background: ROOT-STYLES.radio-active;
+        animate width {
+            duration: ROOT-STYLES.sur-an-duration;
+            easing: ROOT-STYLES.sur-an-easing;
+        }
+    }
+}
+
