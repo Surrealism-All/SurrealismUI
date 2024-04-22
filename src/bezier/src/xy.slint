@@ -1,0 +1,141 @@
+import {SText} from "../../text/index.slint";
+import { Themes,UseSurrealismFn,ColorLevel } from "../../../use/index.slint";
+
+export struct Point {
+    x: float,
+    y: float,
+}
+
+export component XYChart inherits Rectangle{
+    height: 300px;
+    width: 300px;
+    in property <Themes> theme: Themes.Dark;
+    in property <length> font-size: 14px;
+    in property <length> header-height: 36px;
+    in property <string> title : "XY Chart: Line";
+    in-out property <length> y-vec-width: body.width / ((root.x-maximum + root.x-step) / root.x-step);
+    in-out property <length> x-vec-height: body.height / ((root.y-maximum + root.y-step) / root.y-step);
+    in-out property <float> y-maximum: 100;
+    in-out property <float> x-maximum: 10;
+    in-out property <float> y-step : 20;
+    in-out property <float> x-step : 2;
+    in-out property <string> commands;
+    
+    VerticalLayout {
+        header:= Rectangle{
+            height: root.header-height;
+            SText{
+                theme: Dark;
+                text: root.title;
+                font-weight: 700;
+                font-size: 14px;
+            }
+        }
+        body:= VerticalLayout{
+            height: root.height - root.header-height;
+            y-wrap:= HorizontalLayout{
+                alignment: space-between;
+                y-vec:= Rectangle{
+                    width: root.y-vec-width;
+                    VerticalLayout {
+                        for yItem in root.y-maximum / root.y-step : Rectangle {
+                            width: y-vec-width;
+                            height: x-vec-height;
+                            SText {
+                                font-size: parent.height / 2 < root.font-size ? parent.height / 2 : root.font-size;
+                                text: root.y-maximum - yItem * root.y-step;
+                                
+                            }
+                        }
+                    }
+                }
+                canvas:= Rectangle{
+                    height: body.height - x-vec.height;
+                    width: body.width - y-vec.width;
+                    xy-line-wrap:=VerticalLayout{
+                        z: 10;
+                        for y-lItem in (root.y-maximum) / root.y-step :xy-line:= Path {
+                            height: x-vec-height;
+                            width: parent.width;
+                            stroke: UseSurrealismFn.get-color(root.theme, ColorLevel.Font);
+                            stroke-width: 2px;
+                            MoveTo{
+                                x: 0;
+                                y: 0;
+                            }
+                            LineTo{
+                                x: xy-line.width / 1phx;
+                                y: 0;
+                            }
+                        }
+                    }
+                    @children
+                    // Path {
+                    //     z: 100;
+                    //     height: parent.height;
+                    //     width: parent.width;
+                    //     stroke: UseSurrealismFn.get-color(root.theme, ColorLevel.Font);
+                    //     stroke-width: 2px;
+                    //     commands: root.commands;
+                    // }
+                }
+                
+            }
+            x-vec:= HorizontalLayout{
+                height: x-vec-height;
+                for xItem in (root.x-maximum + root.x-step) / root.x-step: Rectangle {
+                    width: y-vec-width;
+                    SText {
+                        x: y-vec-width - self.width;
+                        y: x-vec-height - self.height;
+                        font-size: parent.height / 2 < root.font-size ? parent.height / 2 : root.font-size;
+                        text: xItem * root.x-step;
+                    }
+                }
+            }
+        }
+    }
+}
+
+component TestXY inherits Window {
+    height: 400px;
+    width: 400px;
+    background: #555;
+    private property <[Point]> points: [
+        {x: 2, y: 10},
+        {x: 4, y: 32},
+        {x: 6, y: 84},
+        {x: 10, y: 40},
+    ];
+    // how to calc
+    function build-x-y(x: float, y: float , h: length , w: length, xs: float, ys:float) -> string{
+       
+        return @tr("{} {}", x / xs * abs((w / 1phx)) / 2 , abs( y / ys * (h / 1phx)) / 2  );
+    }
+    function ml(m: bool, xy: string) -> string{
+        if m{
+            return @tr("M {}", xy);
+        }else{
+            return @tr("L {}", xy);
+        }   
+    }
+    chart:= XYChart{
+    //    commands: @tr("{} {}",
+    //     ml(true, build-x-y(points[0].x, points[0].y,chart.x-vec-height, chart.y-vec-width, chart.x-step, chart.y-step )),
+    //     ml(false, build-x-y(points[1].x, points[1].y,chart.x-vec-height, chart.y-vec-width, chart.x-step, chart.y-step ))
+       
+    //    );
+
+        Path {
+            z: 100;
+            height: parent.height;
+            width: parent.width;
+            stroke: red;
+            stroke-width: 2px;
+            commands: "M 50 22 L 100 70.4";
+       }
+       init => {
+         debug(self.commands);
+       }
+    }
+}

@@ -1,0 +1,14 @@
+export component Bezier inherits Path{
+    commands: "M 10 80 C 40 10, 65 10, 95 80 S 150 10, 180 80";
+    stroke: red;
+    stroke-width: 2px;
+}
+
+component TestGroup {
+    height: 480px;
+    width: 360px;
+    Bezier {
+        height: 200px;
+        width: 200px;
+    }
+}
