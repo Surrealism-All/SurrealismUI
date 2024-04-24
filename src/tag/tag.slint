@@ -23,6 +23,8 @@ import { Themes } from "../../use/index.slint";
 
 export component Tag inherits SCard { 
   in-out property <string> text : DefaultSTagProps.text;
+  out property <bool> hover <=> area.has-hover;
+  in property <MouseCursor> mouse-cursor <=> area.mouse-cursor;
   callback clicked(string);
   pure public function get() -> string {
     return inner.get();
@@ -42,8 +44,9 @@ export component Tag inherits SCard {
   border-type: DefaultSTagProps.border-type;
   shadow-type: DefaultSTagProps.shadow-type;
   theme: DefaultSTagProps.theme;
-  TouchArea {
+  area:= TouchArea {
     z: 13;
+    mouse-cursor: pointer;
     clicked => {
       root.clicked(root.text);
     }

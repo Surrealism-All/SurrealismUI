@@ -8,14 +8,15 @@ component TestWindow inherits Window {
     spacing: 20px;
     padding: 20px;
     STag {
-      text:"default";
+      text: "default";
       clicked(text) => {
         debug(self.get());
         self.set(@tr("clicked -> {}",text));
       }
     }
     STag {
-      text:"error!";
+      text:self.hover ? "hover" :"error!";
+      font-weight: 700;
       theme:Themes.Error;
     }
     STag {
