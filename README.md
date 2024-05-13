@@ -409,9 +409,11 @@ Thank you for reading, and if you have any questions, please send an email to sy
   - English
 - V0.4.4
   - 中文
-    - 增加`SGroup`分组
     - 增加`STabbar`
+    - `STag`增加hover
   - English
+    - Add `STabbar`
+    - Add hover to `STag`
 - V0.4.3
   - 中文
     - 增加`SNumInput`数字输入

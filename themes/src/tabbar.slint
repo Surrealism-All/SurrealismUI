@@ -1,0 +1,26 @@
+import {Themes,PaddingType,ShadowType,BorderType,MenuData} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+
+export global DefaultSTabbarProps {
+  //font
+  in-out property <int> font-weight : GlobalProps.font.font-weight;
+  in-out property <length> font-size: 12px;
+  in-out property <brush> font-color : GlobalProps.font.color;
+  in-out property <bool> font-italic : GlobalProps.font.font-italic;
+  in-out property <string> font-family : GlobalProps.font.font-family;
+  //theme
+  in-out property <Themes> theme : GlobalProps.theme;
+  //hight-width
+  in-out property <length> card-height :36px;
+  in-out property <length> card-width : GlobalProps.standard-width;
+  in-out property <PaddingType> padding-type:PaddingType.Normal;
+  in-out property <ShadowType> shadow-type: ShadowType.Low1;
+  in-out property <BorderType> border-type : BorderType.Normal;
+  in-out property <bool> clip : GlobalProps.clip;
+  in-out property <[MenuData]> tabs;
+  in property <float> icon-scale: 1.66;
+  in property <length> tab-size: card-height / icon-scale;
+  in-out property <int> active: 0;
+  in property <bool> show-text: true;
+
+}

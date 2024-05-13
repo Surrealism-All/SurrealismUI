@@ -35,6 +35,7 @@ import { DefaultSTimeLineProps } from "./timeline.slint";
 import { DefaultSCarouselProps } from "./carousel.slint";
 import { DefaultSCalendarProps } from "./calendar.slint";
 import { DefaultSNumberInputProps} from "./number.slint";
+import { DefaultSTabbarProps } from "./tabbar.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
@@ -42,11 +43,33 @@ import {
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
   SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps,STableProps,STableColumnProps,
   SMenuProps,SPopoverProps,SStepProps,SCheckboxProps,SPaginationProps,SKeyBoardProps,
-  STimeLineProps,SCarouselProps,SCalendarProps,SNumberInputProps
+  STimeLineProps,SCarouselProps,SCalendarProps,SNumberInputProps,STabbarProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
     //component props 
+    in-out property <STabbarProps> tabbar: {
+        //font
+        font-weight: DefaultSTabbarProps.font-weight,
+        font-size: DefaultSTabbarProps.font-size,
+        font-color : DefaultSTabbarProps.font-color,
+        font-italic : DefaultSTabbarProps.font-italic,
+        font-family : DefaultSTabbarProps.font-family,
+        //theme
+        theme : DefaultSTabbarProps.theme,
+        //hight-width
+        card-height : DefaultSTabbarProps.card-height,
+        card-width : DefaultSTabbarProps.card-width,
+        padding-type: DefaultSTabbarProps.padding-type,
+        shadow-type: DefaultSTabbarProps.shadow-type,
+        border-type : DefaultSTabbarProps.border-type,
+        clip : DefaultSTabbarProps.clip,
+        tabs: DefaultSTabbarProps.tabs,
+        icon-scale: DefaultSTabbarProps.icon-scale,
+        tab-size: DefaultSTabbarProps.tab-size,
+        active: DefaultSTabbarProps.active,
+        show-text: DefaultSTabbarProps.show-text,
+    };
     in-out property <SNumberInputProps> number-input: {
         font-weight : DefaultSNumberInputProps.font-weight,
         font-size: DefaultSNumberInputProps.font-size,
