@@ -8,40 +8,52 @@ component TestWindow inherits Window {
   SSelect {
     y: 20px;
     options: [
-      {id:0,label:"Shangai",value:"s01"},
-      {id:1,label:"Los Angeles",value:"l02"},
-      {id:2,label:"New York",value:"n03"},
-      {id:3,label:"Hong Kong",value:"h04"},
+      {label:"Shangai",value:"s01"},
+      {label:"Los Angeles",value:"l02"},
+      {label:"New York",value:"n03"},
+      {label:"Hong Kong",value:"h04"},
     ];
   }
   
   SSelect {
-    y: 200px;
+    y: 100px;
     font-weight: 700;
     is-show: true;
     theme: Error;
     card-width: 300px;
     options: [
-      {id:0,label:"Shangai",value:"s01"},
-      {id:1,label:"Los Angeles",value:"l02"},
-      {id:2,label:"New York",value:"n03"},
-      {id:3,label:"Hong Kong",value:"h04"},
+      {label:"Shangai",value:"s01"},
+      {label:"Los Angeles",value:"l02"},
+      {label:"New York",value:"n03"},
+      {label:"Hong Kong",value:"h04"},
     ];
-    changed(index,label,value)=>{
-      debug(index);
-      debug(label);
-      debug(value);
+    changed(index,item)=>{
+      t.index = index;
+      t.label = item.label;
+      t.value = item.value;
       self.close();
     }
   }
+
+  s3:= SSelect {
+    y: 260px;
+    font-weight: 700;
+    theme: Light;
+    active: 0;
+    options: [
+      {label:"Shangai",value:"s01"},
+      {label:"Los Angeles",value:"l02"},
+      {label:"New York",value:"n03"},
+      {label:"Hong Kong",value:"h04"},
+    ];
+  }
+
   t:=Text{
     y: 400px;
     font-size: 16px;
     in-out property <int> index;
-    in-out property <int> id;
     in-out property <string> label;
-    in-out property <string> vt;
     in-out property <string> value;
-    text: @tr("Index:{} Id:{} Label:{} Value:{} ValueType:{}",index,id,label,value,vt);
+    text: @tr("Index:{} Label:{} Value:{}",index,label,value);
   }
 }
