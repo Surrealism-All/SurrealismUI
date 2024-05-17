@@ -32,7 +32,7 @@ import { ROOT_STYLES,DefaultSProgressProps } from "../../themes/index.slint";
 import { Themes,BorderType } from "../../use/index.slint";
 import {  VerticalBox, Palette, Slider } from "std-widgets.slint";
 
-component LineProgress  inherits Rectangle {
+export component LineProgress inherits Rectangle {
   width: 100%;
   height: layout.height;
   in property <Themes> theme :DefaultSProgressProps.theme;
@@ -46,7 +46,9 @@ component LineProgress  inherits Rectangle {
   in-out property <length> stroke-width: 8px;
   in-out property <brush> stroke-color;
   private property <length> unit : self.width / 100;
-  
+  pure public function get-bar-hw() -> {height: length, width: length} {
+    return {height: bar.height, width: bar.width};  
+  }
   states [
     light when root.theme == Themes.Light: {
       outer.background : ROOT-STYLES.sur-theme-colors.light.weaker;
@@ -78,7 +80,7 @@ component LineProgress  inherits Rectangle {
     }
   ]
     layout:=VerticalLayout {
-      height: bar.height + txt-view.height;
+      height: root.text != "" ? bar.height + root.font-size * 2 : bar.height;
       padding-left: 4px;
       padding-right: 4px;
       bar:=Rectangle {
@@ -113,7 +115,7 @@ component LineProgress  inherits Rectangle {
           }
         }
       }
-      txt-view:=Rectangle{
+      if root.text != "" : txt-view:=Rectangle{
         height: txt.font-size * 2;
         txt:=SText { 
           theme: root.theme;

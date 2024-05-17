@@ -1,7 +1,7 @@
 import { SCard } from "../card/index.slint";
-import { Themes,BorderType } from "../../use/index.slint";
-import { Progress } from "../progress/progress.slint";
+import { Themes,BorderType,UseSurrealismFn,ColorLevel } from "../../use/index.slint";
 import { ROOT_STYLES,DefaultSProgressProps } from "../../themes/index.slint";
+import { LineProgress } from "../progress/index.slint";
 
 component HSlider {
     in property <float> maximum;
@@ -48,14 +48,13 @@ export component Slider {
     in-out property <bool> font-italic : DefaultSProgressProps.font-italic;
     in-out property <string> font-family : DefaultSProgressProps.font-family;
     in-out property <length> stroke-width: DefaultSProgressProps.stroke-width;
-    in-out property <brush> stroke-color;
-    Progress {
-        height: root.height;
-        width: root.width;
-        circle: circle;
+    in-out property <brush> stroke-color: UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
+    // private property <length> bar-height: target.get-bar-hw().height;
+    // private property <length> bar-width: target.get-bar-hw().width;
+    bar:= LineProgress {
         text: "";
         theme: theme;
-        progress: progress;
+        progress: progress * 100;
         font-weight: font-weight;
         font-size: font-size;
         font-color: font-color;
@@ -63,6 +62,21 @@ export component Slider {
         font-family: font-family;
         stroke-width: stroke-width;
         stroke-color: stroke-color;
+        bar-area:= TouchArea {
+            height: parent.height;
+            width: parent.width;
+            pointer-event(event) => {
+                if event.kind == PointerEventKind.down{
+                    debug(self.mouse-x);
+                    debug("down");
+                }
+                if event.kind == PointerEventKind.up{
+                    root.progress = self.mouse-x / parent.width;
+                    debug("up");
+                }
+                
+            }
+        }
     }
 
 }
@@ -73,6 +87,6 @@ component TestSlider {
     Slider {
         width: 360px;
         height: 120px;
-        progress: 10%;
+        progress: 0.3;
     }
 }
