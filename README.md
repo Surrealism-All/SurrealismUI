@@ -406,6 +406,9 @@ Thank you for reading, and if you have any questions, please send an email to sy
 - V0.4.5
   - 中文
     - 增加`SCatalog`目录
+    - 优化`SSwitch`动画
+    - 增加`SSelect` `active`
+    - 增加`SSlider`滑块
   - English
 - V0.4.4
   - 中文

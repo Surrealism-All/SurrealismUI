@@ -42,6 +42,7 @@ export component Switch inherits SCard{
   border-type: DefaultSSwitchProps.border-type;
   border-radius: self.height / 2;
   padding-type: DefaultSSwitchProps.padding-type;
+  
   switch-circle:=SCard{
     x: 2px;
     theme: root.theme;
@@ -52,6 +53,10 @@ export component Switch inherits SCard{
     padding-type: root.switch-padding-type;
     border-type: root.switch-border-type;
     shadow-type: root.switch-shadow-type;
+    animate  x{
+       duration: 300ms;
+       easing: ease-in-out-back;
+    }
     states [
       light when self.theme == Themes.Light: {
         switch-circle.background : ROOT-STYLES.sur-theme-colors.light.deepest;
