@@ -1,28 +1,8 @@
 import { SCard } from "../card/index.slint";
-import { Themes,BorderType,UseSurrealismFn,ColorLevel } from "../../use/index.slint";
+import { Themes,BorderType,UseSurrealismFn,ColorLevel,BarType } from "../../use/index.slint";
 import { ROOT_STYLES,DefaultSProgressProps } from "../../themes/index.slint";
 import { LineProgress } from "../progress/index.slint";
 
-component HSlider {
-    in property <float> maximum;
-    in property <float> minimum;
-    in-out property <float> value;
-
-    FocusScope {
-        slider-line := SCard {
-            height: root.height;
-            width: root.width;
-            border-radius: root.height / 2;
-            
-            Rectangle {
-                x: 0;
-                width: 30%;
-                background: red;
-            }
-        }
-    }
-    
-}
 
 component VSlider {
     in property <float> maximum;
@@ -38,7 +18,8 @@ component VSlider {
 }
 
 export component Slider {
-    in property <bool> circle: DefaultSProgressProps.circle;
+    in property <Orientation> orientation: Orientation.horizontal;
+    in property <BarType> bar-type: DefaultSProgressProps.bar-type;
     in property <string> text : @tr("now: {}%" , round(progress * 100));
     in property <Themes> theme :DefaultSProgressProps.theme;
     in-out property <float> progress : DefaultSProgressProps.progress;
@@ -49,9 +30,11 @@ export component Slider {
     in-out property <string> font-family : DefaultSProgressProps.font-family;
     in-out property <length> stroke-width: DefaultSProgressProps.stroke-width;
     in-out property <brush> stroke-color: UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
-    // private property <length> bar-height: target.get-bar-hw().height;
-    // private property <length> bar-width: target.get-bar-hw().width;
+    in property <length> border-radius <=> bar.border-radius;
+    in property <length> bar-height <=> bar.height;
+    // in property <length> bar-width <=> bar.width;
     bar:= LineProgress {
+        width: parent.width;
         text: "";
         theme: theme;
         progress: progress * 100;
@@ -65,16 +48,8 @@ export component Slider {
         bar-area:= TouchArea {
             height: parent.height;
             width: parent.width;
-            pointer-event(event) => {
-                if event.kind == PointerEventKind.down{
-                    debug(self.mouse-x);
-                    debug("down");
-                }
-                if event.kind == PointerEventKind.up{
-                    root.progress = self.mouse-x / parent.width;
-                    debug("up");
-                }
-                
+            moved => {
+                root.progress = self.mouse-x / parent.width;
             }
         }
     }
@@ -84,9 +59,28 @@ export component Slider {
 component TestSlider {
     height: 400px;
     width: 400px;
-    Slider {
-        width: 360px;
-        height: 120px;
-        progress: 0.3;
+    VerticalLayout {
+        spacing: 20px;
+        padding: 20px;
+        Slider {
+            theme: Light;
+            width: 360px;
+            height: 40px;
+            stroke-width: 16px;
+            progress: 0.3;
+        }
+        Slider {
+            width: 360px;
+            height: 40px;
+            progress: 80%;
+        }
+
+        Slider {
+            width: 30px;
+            height: 220px;
+            stroke-width: 220px;
+            progress: 80%;
+            orientation: Orientation.vertical;
+        }
     }
 }

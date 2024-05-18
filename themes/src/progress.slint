@@ -1,4 +1,4 @@
-import {Themes,PaddingType,ShadowType,BorderType} from "../../use/index.slint";
+import {Themes,PaddingType,ShadowType,BorderType,BarType} from "../../use/index.slint";
 import {GlobalProps} from "./index.slint";
 
 export global DefaultSProgressProps {
@@ -17,5 +17,5 @@ export global DefaultSProgressProps {
   in-out property <float> progress : 0;
   in-out property <length> stroke-width: 8px;
   in-out property <brush> stroke-color;
-  in property <bool> circle:false;
+  in property <BarType> bar-type: BarType.Horizontal;
 }

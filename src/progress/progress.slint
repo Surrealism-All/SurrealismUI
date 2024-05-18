@@ -29,7 +29,7 @@
 import { SText } from "../text/index.slint";
 import { SCard } from "../card/index.slint";
 import { ROOT_STYLES,DefaultSProgressProps } from "../../themes/index.slint";
-import { Themes,BorderType } from "../../use/index.slint";
+import { Themes,BorderType,BarType } from "../../use/index.slint";
 import {  VerticalBox, Palette, Slider } from "std-widgets.slint";
 
 export component LineProgress inherits Rectangle {
@@ -222,7 +222,8 @@ component CircularProgress inherits Rectangle{
 
 
 export component Progress {
-  in property <bool> circle: DefaultSProgressProps.circle;
+  in property <BarType> bar-type: DefaultSProgressProps.bar-type;
+  // in property <bool> circle: DefaultSProgressProps.circle;
   in property <string> text : @tr("now: {}%" , round(progress * 100));
   in property <Themes> theme :DefaultSProgressProps.theme;
   in-out property <float> progress : DefaultSProgressProps.progress;
@@ -272,7 +273,7 @@ export component Progress {
       stroke-color : ROOT-STYLES.sur-theme-colors.dark.deepest;
     }
   ]
-  if circle: CircularProgress {
+  if root.bar-type == BarType.Circle: CircularProgress {
     text:root.text;
     theme: root.theme;
     height: root.height;
@@ -290,7 +291,7 @@ export component Progress {
     }
   }
 
-  if !circle: LineProgress{
+  if root.bar-type == BarType.Horizontal: LineProgress{
     text: root.text;
     theme: root.theme;
     width: root.width;

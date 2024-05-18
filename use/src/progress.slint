@@ -1,5 +1,11 @@
 import { Themes } from "./theme.slint";
 
+export enum BarType{
+  Vertical,
+  Horizontal,
+  Circle
+}
+
 export struct SProgressProps {
   //font
   font-weight : int,
@@ -16,5 +22,5 @@ export struct SProgressProps {
   progress : float,
   stroke-width: length,
   stroke-color: brush,
-  circle:bool,
+  bar-type: BarType,
 }
