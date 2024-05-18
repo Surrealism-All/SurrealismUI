@@ -3,20 +3,6 @@ import { Themes,BorderType,UseSurrealismFn,ColorLevel,BarType } from "../../use/
 import { ROOT_STYLES,DefaultSProgressProps } from "../../themes/index.slint";
 import { LineProgress } from "../progress/index.slint";
 
-
-component VSlider {
-    in property <float> maximum;
-    in property <float> minimum;
-    in-out property <float> value;
-
-    slider-line := SCard {
-        height: root.height;
-        width: root.width;
-        border-radius: root.height / 2;
-        background: red;
-    }
-}
-
 export component Slider {
     in property <Orientation> orientation: Orientation.horizontal;
     in property <BarType> bar-type: DefaultSProgressProps.bar-type;
@@ -31,13 +17,12 @@ export component Slider {
     in-out property <length> stroke-width: DefaultSProgressProps.stroke-width;
     in-out property <brush> stroke-color: UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
     in property <length> border-radius <=> bar.border-radius;
-    in property <length> bar-height <=> bar.height;
-    // in property <length> bar-width <=> bar.width;
+    
     bar:= LineProgress {
         width: parent.width;
         text: "";
         theme: theme;
-        progress: progress * 100;
+        progress: root.progress * 100;
         font-weight: font-weight;
         font-size: font-size;
         font-color: font-color;
@@ -45,42 +30,18 @@ export component Slider {
         font-family: font-family;
         stroke-width: stroke-width;
         stroke-color: stroke-color;
+        orientation: root.orientation;
         bar-area:= TouchArea {
             height: parent.height;
             width: parent.width;
             moved => {
-                root.progress = self.mouse-x / parent.width;
+               if root.orientation == Orientation.horizontal{
+                    root.progress = self.mouse-x / parent.width;
+               }else{
+                    root.progress = 1 - self.mouse-y / parent.height;
+               }
             }
         }
     }
 
-}
-
-component TestSlider {
-    height: 400px;
-    width: 400px;
-    VerticalLayout {
-        spacing: 20px;
-        padding: 20px;
-        Slider {
-            theme: Light;
-            width: 360px;
-            height: 40px;
-            stroke-width: 16px;
-            progress: 0.3;
-        }
-        Slider {
-            width: 360px;
-            height: 40px;
-            progress: 80%;
-        }
-
-        Slider {
-            width: 30px;
-            height: 220px;
-            stroke-width: 220px;
-            progress: 80%;
-            orientation: Orientation.vertical;
-        }
-    }
 }

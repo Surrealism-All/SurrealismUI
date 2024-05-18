@@ -11,7 +11,7 @@ component TestProgress inherits Window {
     SProgress {
       theme: Error;
       height: 160px;
-      circle: true;
+      bar-type: Circle;
       progress: 56%;
       font-size: 32px;
       font-weight: 700;
@@ -21,7 +21,7 @@ component TestProgress inherits Window {
     }
     SProgress {
       height: 100px;
-      circle: false;
+      bar-type: Horizontal;
       progress: 89%;
       font-size: 16px;
       font-weight: 700;
@@ -29,12 +29,12 @@ component TestProgress inherits Window {
     }
     b:= SProgress {
       theme: Primary;
-      circle: false;
+      bar-type: Horizontal;
       progress: 10%;
     }
     a:= SProgress {
       height: 120px;
-      circle: true;
+      bar-type: Circle;
       progress: 10%;
     }
     HorizontalLayout {
