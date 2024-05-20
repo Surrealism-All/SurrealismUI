@@ -52,7 +52,7 @@ export component Alert inherits Window{
   z: 1111;
   in property <int> font-weight : DefaultSAlertProps.font-weight;
   in property <length> font-size: DefaultSAlertProps.font-size;
-  in property <brush> font-color : DefaultSAlertProps.color;
+  in property <brush> font-color <=> content-text.color;
   in property <bool> font-italic : DefaultSAlertProps.font-italic;
   in property <string> font-family : DefaultSAlertProps.font-family;
   in property <TextOverflow> overflow : DefaultSAlertProps.overflow;
@@ -140,6 +140,7 @@ export component Alert inherits Window{
       Rectangle {
         width: type-icon.width;
         type-icon:=SIcon {
+          theme: root.theme;
           colorize: self.get-colorize();
           source: root.icon;
           height: root.icon-size;
@@ -153,12 +154,12 @@ export component Alert inherits Window{
         font-size: root.font-size;
         font-italic: root.font-italic;
         font-weight: root.font-weight;
-        color: root.font-color;
         overflow: root.overflow;
       }
       Rectangle {
         width: close-icon.width;
         close-icon:=SIcon {
+          theme: root.theme;
           colorize: self.get-colorize();
           source: root.close-icon;
           height: root.icon-size;

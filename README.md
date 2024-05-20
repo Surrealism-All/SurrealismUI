@@ -379,6 +379,7 @@ https://github.com/Surrealism-All/SurrealismUI/wiki
 - `STimeLine`：The timeline component is mainly used to display the changes of data over time, and it is usually used in data visualization to visually represent time series data
 - `SNumberInput`：A numeric input component that inherits from SCard, designed for inputting numerical values within a specified range. It allows adjustments through increment and decrement actions.
 - `SCalendar`：A calendar component that inherits from SCard. It is designed to display a month view with the ability to navigate and select dates.
+- `STabbar`: provide bottom operation bar for page switching
 
 ## Updates
 
@@ -409,6 +410,9 @@ Thank you for reading, and if you have any questions, please send an email to sy
     - 优化`SSwitch`动画
     - 增加`SSelect` `active`
     - 增加`SSlider`滑块
+    - 增加`STabbar`文档
+    - 修改`SAlert`中`Info`主题文字颜色
+    - 优化`SNumberInput`严格模式
   - English
 - V0.4.4
   - 中文
