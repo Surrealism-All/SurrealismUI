@@ -17,6 +17,40 @@ export component Slider {
     in-out property <length> stroke-width: DefaultSProgressProps.stroke-width;
     in-out property <brush> stroke-color: UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
     in property <length> border-radius <=> bar.border-radius;
+    // back progress, range: [0,1]
+    // progress may has accuracy loss, so you need to check it in your code (recommend Math)
+    callback moved(float);
+    function check(){
+        if progress < 0 {
+            root.progress = 0;
+        }
+        if progress > 1 {
+            root.progress = 1;
+        }
+    }
+    public function set(progress: float) {
+        root.progress = progress;
+        root.check();
+        root.moved(root.progress);
+    }
+    public function add(len: float) {
+        root.progress += len;
+        root.check();
+        root.moved(root.progress);
+    }
+    public function sub(len: float) {
+        root.progress -= len;
+        root.check();
+        root.moved(root.progress);
+    }
+    public function full() {
+        root.progress = 1;
+        root.moved(root.progress);
+    }
+    public function clear() {
+        root.progress = 0;
+        root.moved(root.progress);
+    }
     
     bar:= LineProgress {
         width: parent.width;
@@ -40,6 +74,10 @@ export component Slider {
                }else{
                     root.progress = 1 - self.mouse-y / parent.height;
                }
+
+               root.check();
+
+               root.moved(root.progress);
             }
         }
     }
