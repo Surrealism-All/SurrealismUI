@@ -1,3 +1,22 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20240512
+* @version:0.4.4
+* @type:interface
+* # Tabbar
+* This component represents a tab bar with customizable tabs and icons.
+* ## properties
+* - in-out property <[MenuData]> tabs :  the array of menu data for the tabs.
+* - in property <float> icon-scale :  the scale factor for the icons.
+* - in property <length> tab-size :  the size of each tab.
+* - in-out property <int> active :  the index of the currently active tab.
+* - in property <bool> show-text :  whether text should be displayed alongside icons.
+* ## functions
+* ## callbacks
+* - callback change(MenuData):  This callback is triggered when the active tab is changed.
+* ============================================
+*/
 import { SCard } from "../card/index.slint";
 import { UseSurrealismFn, MenuData, ColorLevel } from "../../use/index.slint";
 import { ROOT_STYLES } from "../../themes/index.slint";
