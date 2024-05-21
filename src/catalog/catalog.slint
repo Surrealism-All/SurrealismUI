@@ -1,4 +1,5 @@
 import { Themes,CatalogItem, PaddingType, PaddingProps, UseSurrealismFn, ColorLevel } from "../../use/index.slint";
+import { ROOT_STYLES } from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { SText } from "../text/index.slint";
 
@@ -26,6 +27,10 @@ export component Catalog {
         for item[index] in root.items: catalog-item-wrap:= Rectangle{
             height: catalog-item-layout.height;
             background: root.has-active(catalog-item-area.has-hover, catalog-item-area.pressed) ? root.active-color : transparent;
+            animate background {
+                easing: ROOT-STYLES.sur-an-easing;
+                duration: ROOT-STYLES.sur-an-duration;
+            }
             catalog-item-area:= TouchArea{
                 mouse-cursor: pointer;
                 clicked => {
