@@ -1,0 +1,89 @@
+import {SCatalog} from "../../index.slint";
+import { CatalogItem, UseIcons } from "../../use/index.slint";
+component TestCatalog inherits Window{
+    height: 480px;
+    width: 400px;
+    in property <CatalogItem> base: {
+        left-icon: UseIcons.icons.Attention,
+        show-left-icon: true,
+        label: "Attention",
+        show-label: true,
+        value: "8uyf23rfgd",
+        right-icon: UseIcons.icons.Right,
+        show-right-icon: true,
+        align: LayoutAlignment.space-between,
+    };
+
+    VerticalLayout {
+        spacing: 10px;
+        SCatalog {
+            height: self.real-height;
+            items: [
+                {
+                    left-icon: UseIcons.icons.Attention,
+                    show-left-icon: true,
+                    label: "Attention",
+                    show-label: true,
+                    value: "8uyf23rfgd",
+                    right-icon: UseIcons.icons.Right,
+                    show-right-icon: true,
+                    align: LayoutAlignment.space-between,
+                },
+                {
+                    left-icon: UseIcons.icons.Help,
+                    show-left-icon: true,
+                    label: "Help",
+                    show-label: true,
+                    value: "8uyf23rfgd1",
+                    right-icon: UseIcons.icons.Right,
+                    show-right-icon: true,
+                    align: LayoutAlignment.space-between,
+                },
+                {
+                    left-icon: UseIcons.icons.More,
+                    show-left-icon: true,
+                    label: "More",
+                    show-label: true,
+                    value: "8uyf23rfgd2",
+                    right-icon: UseIcons.icons.Right,
+                    show-right-icon: true,
+                    align: LayoutAlignment.space-between,
+                }
+            ];
+        }
+        SCatalog {
+            theme: Primary;
+            height: self.real-height;
+            items: [
+                base,
+                {
+                    left-icon: UseIcons.icons.Folder-filled,
+                    show-left-icon: true,
+                    label: "Folder",
+                    show-label: true,
+                    value: "8uyf23rfgd2",
+                    right-icon: UseIcons.icons.Right,
+                    show-right-icon: false,
+                    align: LayoutAlignment.center,
+                },
+                base,
+                base,
+                {
+                    left-icon: UseIcons.icons.More,
+                    show-left-icon: true,
+                    label: "More",
+                    show-label: false,
+                    value: "8uyf23rfgd2",
+                    right-icon: UseIcons.icons.Right,
+                    show-right-icon: true,
+                    align: LayoutAlignment.space-between,
+                },
+                base,
+            ];
+            clicked(index, item) => {
+                debug(index);
+                debug(item.value);
+            }
+        }
+    }
+}

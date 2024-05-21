@@ -1,9 +1,72 @@
-export component Catalog {
-    
-}
+import { Themes,CatalogItem, PaddingType, PaddingProps, UseSurrealismFn, ColorLevel } from "../../use/index.slint";
+import { SIcon } from "../icon/index.slint";
+import { SText } from "../text/index.slint";
 
-component TestCatalog {
-    height: 480px;
-    width: 400px;
-    Catalog {}
+export component Catalog {
+    height: 100%;
+    width: 100%;
+    in property <PaddingType> padding-type: PaddingType.Normal;
+    in property <Themes> theme: Dark;
+    in property <[CatalogItem]> items;
+    in property <length> font-size: 16px;
+    in property <int> font-wight: 700;
+    in property <string> font-family: "Arial";
+    in property <bool> font-italic: false;
+    in property <length> spacing: UseSurrealismFn.get-space(root.width / 3);
+    in property <brush> active-color: UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
+    out property <length> real-height: items.length * root.item-height;
+    in-out property <length> item-height:  UseSurrealismFn.count-height(root.font-size,  padding-props.padding-same);
+    private property <length> icon-size: root.font-size + 2px;
+    private property <PaddingProps> padding-props: UseSurrealismFn.get-padding(root.padding-type);
+    pure function has-active(hover: bool, pressed: bool)-> bool {
+        return hover || pressed;
+    }
+    callback clicked(int, CatalogItem);
+    VerticalLayout {
+        for item[index] in root.items: catalog-item-wrap:= Rectangle{
+            height: catalog-item-layout.height;
+            background: root.has-active(catalog-item-area.has-hover, catalog-item-area.pressed) ? root.active-color : transparent;
+            catalog-item-area:= TouchArea{
+                mouse-cursor: pointer;
+                clicked => {
+                    root.clicked(index, item);
+                }
+                catalog-item-layout:= HorizontalLayout {
+                    height: root.item-height;
+                    alignment: item.align;
+                    padding-left: padding-props.padding-left;
+                        padding-right: padding-props.padding-right;
+                    HorizontalLayout {
+                        spacing: root.spacing;
+                        if item.show-left-icon: Rectangle {
+                            left-icon:= SIcon {
+                                theme: root.theme;
+                                colorize: self.get-colorize();
+                                height: root.icon-size;
+                                width: root.icon-size;
+                                source: item.left-icon;
+                            }
+                        }
+                        if item.show-label: SText {
+                            theme: root.theme;
+                            font-size: root.font-size;
+                            text: item.label;
+                            font-weight: root.font-wight;
+                            font-family: root.font-family;
+                            font-italic: root.font-italic;
+                        }
+                    }
+                    if item.show-right-icon: Rectangle {
+                        right-icon:= SIcon {
+                            theme: root.theme;
+                            colorize: self.get-colorize();
+                            height: root.icon-size;
+                            width: root.icon-size;
+                            source: item.right-icon;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
