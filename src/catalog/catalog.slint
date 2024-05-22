@@ -1,3 +1,30 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20240522
+* @version:0.4.5
+* @type:interface
+* # Catalog
+* The Catalog component is used to display a series of catalog items, each of which can contain labels and icons, and has click interaction functionality.
+* ## properties
+* - in property <PaddingType> padding-type :  catalog padding type
+* - in property <Themes> theme :  SurrealismUI theme
+* - in property <[CatalogItem]> items :  catalog items see `CatalogItem`
+* - in property <length> font-size :  catalog label font size, which affect the height of the catalog item
+* - in property <int> font-wight :  catalog label font weight
+* - in property <string> font-family :  catalog label font family
+* - in property <bool> font-italic : catalog label font italic
+* - in property <length> spacing :  spacing between left icon and label
+* - in property <brush> active-color :  catalog item active color
+* - out property <length> real-height :  real height of the catalog, you can use it to set the height of the catalog (recommend)
+* - in-out property <length> item-height :  height of the catalog item
+* - private property <length> icon-size :  size of the icon (include left and right icon)
+* ## functions
+* - pure function has-active(hover: bool, pressed: bool) -> bool : judge whether the catalog item is active
+* ## callbacks
+* - callback clicked(int, CatalogItem): click event callback, return the index of the clicked item and the item object
+* ============================================
+*/
 
 import { Themes,CatalogItem, PaddingType, PaddingProps, UseSurrealismFn, ColorLevel } from "../../use/index.slint";
 import { ROOT_STYLES, DefaultSCatalogProps } from "../../themes/index.slint";
