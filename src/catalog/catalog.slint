@@ -1,18 +1,19 @@
+
 import { Themes,CatalogItem, PaddingType, PaddingProps, UseSurrealismFn, ColorLevel } from "../../use/index.slint";
-import { ROOT_STYLES } from "../../themes/index.slint";
+import { ROOT_STYLES, DefaultSCatalogProps } from "../../themes/index.slint";
 import { SIcon } from "../icon/index.slint";
 import { SText } from "../text/index.slint";
 
 export component Catalog {
     height: 100%;
     width: 100%;
-    in property <PaddingType> padding-type: PaddingType.Normal;
-    in property <Themes> theme: Dark;
+    in property <PaddingType> padding-type: DefaultSCatalogProps.padding-type;
+    in property <Themes> theme: DefaultSCatalogProps.theme;
     in property <[CatalogItem]> items;
-    in property <length> font-size: 16px;
-    in property <int> font-wight: 700;
-    in property <string> font-family: "Arial";
-    in property <bool> font-italic: false;
+    in property <length> font-size: DefaultSCatalogProps.font-size;
+    in property <int> font-wight: DefaultSCatalogProps.font-wight;
+    in property <string> font-family: DefaultSCatalogProps.font-family;
+    in property <bool> font-italic: DefaultSCatalogProps.font-italic;
     in property <length> spacing: UseSurrealismFn.get-space(root.width / 3);
     in property <brush> active-color: UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
     out property <length> real-height: items.length * root.item-height;

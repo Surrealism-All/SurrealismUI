@@ -1,0 +1,16 @@
+import {Themes,PaddingType, CatalogItem} from "../../use/index.slint";
+import {GlobalProps} from "./index.slint";
+
+export global DefaultSCatalogProps {
+    in property <PaddingType> padding-type: PaddingType.Normal;
+    in property <Themes> theme: GlobalProps.theme;
+    in property <[CatalogItem]> items;
+    in property <length> font-size: GlobalProps.font.font-size;
+    in property <int> font-wight: GlobalProps.font.font-weight;
+    in property <string> font-family: GlobalProps.font.font-family;
+    in property <bool> font-italic: GlobalProps.font.font-italic;
+    in property <length> spacing;
+    in property <brush> active-color;
+    out property <length> real-height: items.length * root.item-height;
+    in-out property <length> item-height;
+}
