@@ -235,16 +235,9 @@ export component Input inherits SCard {
         eye:=SIcon {
           colorize: self.get-colorize();
           theme: root.theme;
-          source:UseIcons.icons.Preview-close;
+          source: root.type == InputType.password ? UseIcons.icons.Preview-close : UseIcons.icons.Preview-open;
           height: root.font-size;
           width: root.font-size;
-          init => {
-            if(root.type==InputType.password){
-              self.source = UseIcons.icons.Preview-close;
-            }else{
-              self.source = UseIcons.icons.Preview-open;
-            }
-          }
           clicked => {
             if(self.source==UseIcons.icons.Preview-close){
               root.type = InputType.text;

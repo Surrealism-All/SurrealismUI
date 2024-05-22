@@ -67,13 +67,6 @@ export component Select inherits SCard {
   function is-active() -> bool {
       return root.active >= 0 && root.active <= options.length - 1;
   }
-  // init => {
-  //   if(is-show){
-  //     root.open();
-  //   }else{
-  //     root.close();
-  //   }
-  // }
   selector:=TouchArea{
     z: 111;
     HorizontalLayout{
