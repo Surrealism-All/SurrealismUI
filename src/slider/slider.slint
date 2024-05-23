@@ -1,3 +1,28 @@
+/**
+* ============================================
+* @author:syf20020816@outlook.com
+* @since:20240523
+* @version:0.4.5
+* @type:interface
+* # Slider
+* The Slider component is used for creating a slider control that allows users to select a value within a range. It supports customization of orientation, theme, and visual properties.
+* ## properties
+* - in property <Orientation> orientation :  Sets the orientation of the slider.
+* - in property <Themes> theme :  Sets the theme of the slider.
+* - in-out property <float> progress :  Controls the progress value of the slider.
+* - in-out property <length> stroke-width :  Sets the stroke width of the slider.
+* - in-out property <brush> stroke-color :  Sets the stroke color of the slider.
+* - in property <length> border-radius :  Sets the border radius of the slider bar, linked to bar.border-radius.
+* ## functions
+* - public function set(progress: float) : Sets the slider progress to a specific value and triggers the moved callback.
+* - public function add(len: float) : Increases the slider progress by a specified value and triggers the moved callback.
+* - public function sub(len: float) : Decreases the slider progress by a specified value and triggers the moved callback.
+* - public function full() : Sets the slider progress to 1 (full) and triggers the moved callback.
+* - public function clear() : Sets the slider progress to 0 (empty) and triggers the moved callback.
+* ## callbacks
+* - callback moved(float) : Triggered when the slider is moved, passing the current progress value as a float.
+* ============================================
+*/
 import { SCard } from "../card/index.slint";
 import { Themes,BorderType,UseSurrealismFn,ColorLevel } from "../../use/index.slint";
 import { ROOT_STYLES,DefaultSSliderProps } from "../../themes/index.slint";
@@ -7,11 +32,6 @@ export component Slider {
     in property <Orientation> orientation: Orientation.horizontal;
     in property <Themes> theme :DefaultSSliderProps.theme;
     in-out property <float> progress : DefaultSSliderProps.progress;
-    in-out property <int> font-weight : DefaultSSliderProps.font-weight;
-    in-out property <length> font-size: DefaultSSliderProps.font-size;
-    in-out property <brush> font-color : DefaultSSliderProps.font-color;
-    in-out property <bool> font-italic : DefaultSSliderProps.font-italic;
-    in-out property <string> font-family : DefaultSSliderProps.font-family;
     in-out property <length> stroke-width: DefaultSSliderProps.stroke-width;
     in-out property <brush> stroke-color: UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
     in property <length> border-radius <=> bar.border-radius;
@@ -55,11 +75,6 @@ export component Slider {
         text: "";
         theme: root.theme;
         progress: root.progress * 100;
-        font-weight: root.font-weight;
-        font-size: root.font-size;
-        font-color: root.font-color;
-        font-italic: root.font-italic;
-        font-family: root.font-family;
         stroke-width: root.stroke-width;
         stroke-color: root.stroke-color;
         orientation: root.orientation;
