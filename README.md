@@ -413,6 +413,7 @@ Thank you for reading, and if you have any questions, please send an email to sy
     - 增加`STabbar`文档
     - 修改`SAlert`中`Info`主题文字颜色
     - 优化`SNumberInput`严格模式
+    - 修复`SSlider, SInput` `init` 回调崩溃
   - English
     - Add `SCatalog`
     - Optimize `SSwitch` animation
@@ -421,6 +422,7 @@ Thank you for reading, and if you have any questions, please send an email to sy
     - Add `STabbar` document
     - fix `SAlert` `info` theme font color
     - Optimize `SNumberInput` strict mode
+    - Fix `SSlider, SInput` `init` callback crash
 - V0.4.4
   - 中文
     - 增加`STabbar`
