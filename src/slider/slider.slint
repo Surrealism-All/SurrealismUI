@@ -1,20 +1,18 @@
 import { SCard } from "../card/index.slint";
-import { Themes,BorderType,UseSurrealismFn,ColorLevel,BarType } from "../../use/index.slint";
-import { ROOT_STYLES,DefaultSProgressProps } from "../../themes/index.slint";
+import { Themes,BorderType,UseSurrealismFn,ColorLevel } from "../../use/index.slint";
+import { ROOT_STYLES,DefaultSSliderProps } from "../../themes/index.slint";
 import { LineProgress } from "../progress/index.slint";
 
 export component Slider {
     in property <Orientation> orientation: Orientation.horizontal;
-    in property <BarType> bar-type: DefaultSProgressProps.bar-type;
-    in property <string> text : @tr("now: {}%" , round(progress * 100));
-    in property <Themes> theme :DefaultSProgressProps.theme;
-    in-out property <float> progress : DefaultSProgressProps.progress;
-    in-out property <int> font-weight : DefaultSProgressProps.font-weight;
-    in-out property <length> font-size: DefaultSProgressProps.font-size;
-    in-out property <brush> font-color : DefaultSProgressProps.font-color;
-    in-out property <bool> font-italic : DefaultSProgressProps.font-italic;
-    in-out property <string> font-family : DefaultSProgressProps.font-family;
-    in-out property <length> stroke-width: DefaultSProgressProps.stroke-width;
+    in property <Themes> theme :DefaultSSliderProps.theme;
+    in-out property <float> progress : DefaultSSliderProps.progress;
+    in-out property <int> font-weight : DefaultSSliderProps.font-weight;
+    in-out property <length> font-size: DefaultSSliderProps.font-size;
+    in-out property <brush> font-color : DefaultSSliderProps.font-color;
+    in-out property <bool> font-italic : DefaultSSliderProps.font-italic;
+    in-out property <string> font-family : DefaultSSliderProps.font-family;
+    in-out property <length> stroke-width: DefaultSSliderProps.stroke-width;
     in-out property <brush> stroke-color: UseSurrealismFn.get-color(root.theme, ColorLevel.Normal);
     in property <length> border-radius <=> bar.border-radius;
     // back progress, range: [0,1]
@@ -55,15 +53,15 @@ export component Slider {
     bar:= LineProgress {
         width: parent.width;
         text: "";
-        theme: theme;
+        theme: root.theme;
         progress: root.progress * 100;
-        font-weight: font-weight;
-        font-size: font-size;
-        font-color: font-color;
-        font-italic: font-italic;
-        font-family: font-family;
-        stroke-width: stroke-width;
-        stroke-color: stroke-color;
+        font-weight: root.font-weight;
+        font-size: root.font-size;
+        font-color: root.font-color;
+        font-italic: root.font-italic;
+        font-family: root.font-family;
+        stroke-width: root.stroke-width;
+        stroke-color: root.stroke-color;
         orientation: root.orientation;
         bar-area:= TouchArea {
             height: parent.height;

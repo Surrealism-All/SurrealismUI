@@ -36,6 +36,8 @@ import { DefaultSCarouselProps } from "./carousel.slint";
 import { DefaultSCalendarProps } from "./calendar.slint";
 import { DefaultSNumberInputProps} from "./number.slint";
 import { DefaultSTabbarProps } from "./tabbar.slint";
+import { DefaultSSliderProps } from "./slider.slint";
+import { DefaultSCatalogProps } from "./catalog.slint";
 import { 
   SButtonProps,STextProps,SPersonaProps,SLinkProps,SCardProps,SIconProps,
   STagProps,SResultProps,SAlertProps,SSwitchProps,SRadioProps,SAvatarProps,
@@ -43,11 +45,38 @@ import {
   STipProps,SSelectProps,SInputProps,SHeaderProps,SLoadingProps,SCollectionProps,
   SFileProps,SSwitchGroupProps,SProgressProps,SBadgeProps,STableProps,STableColumnProps,
   SMenuProps,SPopoverProps,SStepProps,SCheckboxProps,SPaginationProps,SKeyBoardProps,
-  STimeLineProps,SCarouselProps,SCalendarProps,SNumberInputProps,STabbarProps
+  STimeLineProps,SCarouselProps,SCalendarProps,SNumberInputProps,STabbarProps,
+  SSliderProps,SCatalogProps
 } from "../../use/index.slint";
 
 export global ComponentSchema {
     //component props 
+    in-out property <SCatalogProps> catalog: {
+        padding-type: DefaultSCatalogProps.padding-type,
+        theme: DefaultSCatalogProps.theme,
+        items: DefaultSCatalogProps.items,
+        font-size: DefaultSCatalogProps.font-size,
+        font-wight: DefaultSCatalogProps.font-wight,
+        font-family: DefaultSCatalogProps.font-family,
+        font-italic: DefaultSCatalogProps.font-italic,
+        spacing: DefaultSCatalogProps.spacing,
+        active-color: DefaultSCatalogProps.active-color,
+        real-height: DefaultSCatalogProps.real-height,
+        item-height: DefaultSCatalogProps.item-height,
+    };
+    in-out property <SSliderProps> slider: {
+        orientation: DefaultSSliderProps.orientation,
+        theme :DefaultSSliderProps.theme,
+        progress : DefaultSSliderProps.progress,
+        font-weight : DefaultSSliderProps.font-weight,
+        font-size: DefaultSSliderProps.font-size,
+        font-color : DefaultSSliderProps.font-color,
+        font-italic : DefaultSSliderProps.font-italic,
+        font-family : DefaultSSliderProps.font-family,
+        stroke-width: DefaultSSliderProps.stroke-width,
+        stroke-color: DefaultSSliderProps.stroke-color,
+        border-radius: DefaultSSliderProps.border-radius,
+    };
     in-out property <STabbarProps> tabbar: {
         //font
         font-weight: DefaultSTabbarProps.font-weight,
@@ -500,9 +529,9 @@ export global ComponentSchema {
         font-italic : DefaultSInputProps.font-italic,
         font-family : DefaultSInputProps.font-family,
         //theme
-    theme : DefaultSInputProps.theme,
+        theme : DefaultSInputProps.theme,
         //hight-width
-    card-height : DefaultSInputProps.card-height,
+        card-height : DefaultSInputProps.card-height,
         card-width : DefaultSInputProps.card-width,
         padding-type:DefaultSInputProps.padding-type,
         shadow-type: DefaultSInputProps.shadow-type,
@@ -511,7 +540,7 @@ export global ComponentSchema {
         disabled:DefaultSInputProps.disabled,
         clearable:DefaultSInputProps.clearable,
         //use eye-icon
-    password:DefaultSInputProps.password,
+        password:DefaultSInputProps.password,
         has-focus:DefaultSInputProps.has-focus,
         type : DefaultSInputProps.type,
         icon-color : DefaultSInputProps.icon-color,
@@ -527,9 +556,9 @@ export global ComponentSchema {
         font-italic : DefaultSHeaderProps.font-italic,
         font-family : DefaultSHeaderProps.font-family,
         //theme
-    theme : DefaultSHeaderProps.theme,
+        theme : DefaultSHeaderProps.theme,
         //hight-width
-    card-height : DefaultSHeaderProps.card-height,
+        card-height : DefaultSHeaderProps.card-height,
         card-width : DefaultSHeaderProps.card-width,
         padding-type: DefaultSHeaderProps.padding-type,
         shadow-type: DefaultSHeaderProps.shadow-type,
@@ -561,7 +590,7 @@ export global ComponentSchema {
         tabs : DefaultSFileProps.tabs,
         column-width :DefaultSFileProps.column-width,
         //tab
-    font-family : DefaultSFileProps.font-family,
+        font-family : DefaultSFileProps.font-family,
         font-weight : DefaultSFileProps.font-weight,
         font-size: DefaultSFileProps.font-size,
         font-color : DefaultSFileProps.font-color,
@@ -571,7 +600,7 @@ export global ComponentSchema {
         border-type : DefaultSFileProps.border-type,
         text-alignment: DefaultSFileProps.text-alignment,
         // item
-    files : DefaultSFileProps.files,
+        files : DefaultSFileProps.files,
         item-font-family : DefaultSFileProps.item-font-family,
         item-font-weight : DefaultSFileProps.item-font-weight,
         item-font-size: DefaultSFileProps.item-font-size,
@@ -616,9 +645,9 @@ export global ComponentSchema {
         font-italic : DefaultSBadgeProps.font-italic,
         font-family : DefaultSBadgeProps.font-family,
         //theme
-    theme : DefaultSBadgeProps.theme,
+        theme : DefaultSBadgeProps.theme,
         //hight-width
-    card-height : DefaultSBadgeProps.card-height,
+        card-height : DefaultSBadgeProps.card-height,
         card-width : DefaultSBadgeProps.card-width,
         text : DefaultSBadgeProps.text,
         icon : DefaultSBadgeProps.icon,
@@ -631,13 +660,13 @@ export global ComponentSchema {
         column-themes:DefaultSTableProps.column-themes,
         viewport-height:DefaultSTableProps.viewport-height,
         //tab
-    font-weight : DefaultSTableProps.font-weight,
+        font-weight : DefaultSTableProps.font-weight,
         font-size: DefaultSTableProps.font-size,
         font-color : DefaultSTableProps.font-color,
         font-italic : DefaultSTableProps.font-italic,
         font-family : DefaultSTableProps.font-family,
         //theme
-    theme : DefaultSTableProps.theme,
+        theme : DefaultSTableProps.theme,
         padding-type: DefaultSTableProps.padding-type,
         shadow-type: DefaultSTableProps.shadow-type,
         border-type : DefaultSTableProps.border-type,

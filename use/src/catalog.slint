@@ -1,3 +1,6 @@
+import { Themes } from "./theme.slint";
+import { PaddingType } from "./padding.slint";
+
 export struct CatalogItem {
     left-icon: image,
     show-left-icon: bool,
@@ -7,4 +10,18 @@ export struct CatalogItem {
     right-icon: image,
     show-right-icon: bool,
     align: LayoutAlignment,
+}
+
+export struct SCatalogProps {
+    padding-type: PaddingType,
+    theme: Themes,
+    items: [CatalogItem],
+    font-size: length,
+    font-wight: int,
+    font-family: string,
+    font-italic: bool,
+    spacing: length,
+    active-color: brush,
+    real-height: length,
+    item-height: length,
 }
