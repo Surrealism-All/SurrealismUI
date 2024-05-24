@@ -1,11 +1,11 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.4.4-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584"> <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.4.5-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584"> <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
-- updateDate：20240512
-- version：0.4.4
+- updateDate：20240526
+- version：0.4.5
 - email：syf20020816@outlook.com
 - discord：[Surrealism-UI](https://discord.gg/KSQqrSMCnU)
 - book：[SurrealismUI Book](https://surrealism-all.github.io/SurrealismUI.github.io/)
@@ -380,6 +380,8 @@ https://github.com/Surrealism-All/SurrealismUI/wiki
 - `SNumberInput`：A numeric input component that inherits from SCard, designed for inputting numerical values within a specified range. It allows adjustments through increment and decrement actions.
 - `SCalendar`：A calendar component that inherits from SCard. It is designed to display a month view with the ability to navigate and select dates.
 - `STabbar`: provide bottom operation bar for page switching
+- `SSlider`: The Slider component is used for creating a slider control that allows users to select a value within a range. It supports customization of orientation, theme, and visual properties.
+- `SCatalog`: The Catalog component is used to display a series of catalog items, each of which can contain labels and icons, and has click interaction functionality.
 
 ## Updates
 
