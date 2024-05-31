@@ -34,7 +34,7 @@ export component Tabbar inherits SCard {
     in-out property <int> active: 0;
     in property <bool> show-text: true;
     callback change(MenuData);
-    
+    callback clicked(MenuData);
     bar-area:= TouchArea {}
     HorizontalLayout {
         width: root.width;
@@ -55,6 +55,7 @@ export component Tabbar inherits SCard {
                         width: root.tab-size;
                         source: item.icon;
                         clicked => {
+                            root.clicked(item);
                             if root.active != item.id.to-float() {
                                 root.active = item.id.to-float();
                                 root.change(item);

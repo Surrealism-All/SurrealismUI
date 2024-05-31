@@ -405,7 +405,8 @@ Thank you for reading, and if you have any questions, please send an email to sy
 
 - V0.5.0+
   - 中文
-    - 尝试`SCode`代码编辑器
+    - 优化`SSwitchGroup`文字
+    - 增加`SSTabbar`点击回调事件
 - V0.4.5
   - 中文
     - 增加`SCatalog`目录
