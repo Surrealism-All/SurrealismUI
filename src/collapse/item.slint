@@ -76,7 +76,7 @@ export component CollapseItem inherits Rectangle{
     header:=SCard{
       z: 11;
       theme: root.theme;
-      card-width: root.width;
+      width: root.width;
       card-height: root.header-height;
       border-radius: 0;
       padding-type: header-padding-type;
@@ -131,7 +131,7 @@ export component CollapseItem inherits Rectangle{
     }
     details-view:=SCard{
       card-height: root.details-height;
-      card-width: header.card-width;
+      width: header.width;
       visible: false;
       border-radius: 0;
       drop-shadow-blur: 0;
