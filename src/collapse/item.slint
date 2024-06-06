@@ -66,9 +66,9 @@ export component CollapseItem inherits Rectangle{
       header.height
   }
   callback clicked();
-  init => {
-    details-view.height = 0;
-  }
+  // init => {
+  //   details-view.height = 0;
+  // }
   view:=VerticalLayout {
     height: root.height;
     width: header.width;
@@ -87,13 +87,21 @@ export component CollapseItem inherits Rectangle{
         clicked => {
           root.is-show=!root.is-show;
           if(is-show){
-            icon.source = UseIcons.icons.Down-one;
+            icon.rotation = {
+              rotation-angle: 90deg,
+              rotation-origin-x: icon.width / 2,
+              rotation-origin-y: icon.height / 2,
+            };
             root.height = root.details-height;
             details-view.height = root.height - header.height;
             details-view.visible = true;
             
           }else{
-            icon.source = UseIcons.icons.Right-one;
+            icon.rotation = {
+              rotation-angle: 0deg,
+              rotation-origin-x: icon.width / 2,
+              rotation-origin-y: icon.height / 2,
+            };
             root.height = header.height;
             details-view.height = 0;
             details-view.visible = false;
@@ -114,9 +122,9 @@ export component CollapseItem inherits Rectangle{
           font-italic: root.font-italic;
           font-size: root.font-size;
         }
-        icon-view:=Rectangle{
+        icon-view:= Rectangle{
           width:icon.width ;
-          icon:=SIcon { 
+          icon:= SIcon { 
             colorize: self.get-colorize();
             theme: root.theme;
             height: 16px;
@@ -129,8 +137,8 @@ export component CollapseItem inherits Rectangle{
         }
       }
     }
-    details-view:=SCard{
-      card-height: root.details-height;
+    details-view:= SCard{
+      height: root.is-show ? root.details-height : 0;
       width: header.width;
       visible: false;
       border-radius: 0;
@@ -139,6 +147,10 @@ export component CollapseItem inherits Rectangle{
       padding-type: details-padding-type;
       shadow-type: details-shadow-type;
       border-type: details-border-type;
+      animate height {
+        easing: ROOT-STYLES.sur-an-easing;
+        duration: ROOT-STYLES.sur-an-duration;
+      }
       @children
     }
   }

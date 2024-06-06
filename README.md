@@ -407,6 +407,10 @@ Thank you for reading, and if you have any questions, please send an email to sy
   - 中文
     - 优化`SSwitchGroup`文字
     - 增加`SSTabbar`点击回调事件
+    - 修复`SCollapse`宽度超出
+    - 优化`SCollapse`图标旋转代替图标替换
+    - 去除`SCollapse` `init callback`
+    - 优化`SIcon`旋转动画
 - V0.4.5
   - 中文
     - 增加`SCatalog`目录

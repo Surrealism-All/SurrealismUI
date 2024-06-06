@@ -75,6 +75,10 @@ export component Icon{
       source-clip-y: root.source-clip-y;
       height: root.height;
       width: root.width;
+      animate rotation-angle {
+        easing: ROOT-STYLES.sur-an-easing;
+        duration: ROOT-STYLES.sur-an-duration;
+      }
     }
     clicked => {
       root.clicked();
