@@ -1,11 +1,11 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.4.5-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584"> <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.5.0-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584"> <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
-- updateDate：20240526
-- version：0.4.5
+- updateDate：20240614
+- version：0.5.0
 - email：syf20020816@outlook.com
 - discord：[Surrealism-UI](https://discord.gg/KSQqrSMCnU)
 - book：[SurrealismUI Book](https://surrealism-all.github.io/SurrealismUI.github.io/)
@@ -406,11 +406,22 @@ Thank you for reading, and if you have any questions, please send an email to sy
 - V0.5.0+
   - 中文
     - 优化`SSwitchGroup`文字
-    - 增加`SSTabbar`点击回调事件
+    - 增加`STabbar`点击回调事件
     - 修复`SCollapse`宽度超出
     - 优化`SCollapse`图标旋转代替图标替换
     - 去除`SCollapse` `init callback`
     - 优化`SIcon`旋转动画
+    - 增加`SRadio`点击效果
+    - 增加`SCheckbox`点击效果
+  - English
+    - Optimize text in `SSwitchGroup`
+    - Add `STabbar` clicked callback
+    - Fix `SCollapse` width overflow
+    - Optimize `SCollapse` rotation icon
+    - remove `SCollapse` init callback
+    - Optimize `SIcon` rotation animation
+    - Add `SRadio` click effect
+    - Add `SCheckbox` click effect
 - V0.4.5
   - 中文
     - 增加`SCatalog`目录

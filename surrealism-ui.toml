@@ -1,6 +1,6 @@
 [package]
 name = "surrealism-ui"
-version = "0.4.5"
+version = "0.5.0"
 edition = "2024"
 description = "SurrealismUI is a third-party component library built entirely using Slint"
 authors = ["syf20020816@outlook.com"]

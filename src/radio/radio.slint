@@ -100,6 +100,7 @@ export component Radio inherits Rectangle {
                     drop-shadow-offset-x: 0;
                     drop-shadow-offset-y: 0;
                     touch-area := TouchArea {
+                        mouse-cursor: MouseCursor.pointer;
                         clicked => {
                             actived = !actived;
                             root.clicked(root.text,root.value,root.actived);

@@ -111,6 +111,7 @@ export component Checkbox inherits Rectangle {
                     drop-shadow-offset-x: 0;
                     drop-shadow-offset-y: 0;
                     toucharea := TouchArea {
+                        mouse-cursor: MouseCursor.pointer;
                         clicked => {
                             if !disabled {
                                 actived = !actived;
