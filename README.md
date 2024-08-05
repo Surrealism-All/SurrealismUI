@@ -403,7 +403,14 @@ After this major update, the writing of attributes in SurrealismUI is closer to 
 
 Thank you for reading, and if you have any questions, please send an email to syf20020816@outlook.com or raise them in a discussion or issue at the SurrealismUI repository
 
-- V0.5.0+
+- V0.5.1
+  - 中文
+    - 去除重复的`close-one`图标
+    - `SSelect`增加触摸区域
+  - English
+    - remove redundant icon `close-one`
+    - Add TouchArea into `SSelect`
+- V0.5.0
   - 中文
     - 优化`SSwitchGroup`文字
     - 增加`STabbar`点击回调事件

@@ -15,7 +15,7 @@ component TestWindow inherits Window {
     ];
   }
   
-  SSelect {
+  s2:= SSelect {
     y: 100px;
     font-weight: 700;
     is-show: true;
@@ -49,11 +49,17 @@ component TestWindow inherits Window {
   }
 
   t:=Text{
-    y: 400px;
+    y: 350px;
     font-size: 16px;
     in-out property <int> index;
     in-out property <string> label;
     in-out property <string> value;
     text: @tr("Index:{} Label:{} Value:{}",index,label,value);
+  }
+  Text{
+    y: 400px;
+    in property <string> hover: s3.has-hover? "hover-yes": "hover-no";
+    in property <string> expand: s2.expand-hover? "expand-yes": "expand-no";
+    text: @tr("{}, {}", hover, expand);
   }
 }

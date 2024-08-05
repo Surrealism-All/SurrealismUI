@@ -51,6 +51,8 @@ export component Select inherits SCard {
   in property <string> placeholder : DefaultSSelectProps.placeholder;
   in-out property <bool> is-show : DefaultSSelectProps.is-show;
   in-out property <int> active: -1;
+  out property <bool> has-hover <=> selector.has-hover;
+  out property <bool> expand-hover <=> expand-area.has-hover;
   callback changed(int, SOption);
   public function open() {
     expand.visible=true;
@@ -108,6 +110,12 @@ export component Select inherits SCard {
     y: parent.height + 6px;
     card-width: parent.card-width;
     height: UseSurrealismFn.count-height(root.item-font-size,root.card-padding.padding-top) * 3;
+    expand-area:= TouchArea {
+      mouse-cursor: pointer;
+      z: 110;
+      height: parent.height;
+      width: parent.width;
+    }
     list:=ListView { 
       padding-top: parent.padding-top;
       padding-bottom: parent.padding-bottom;
