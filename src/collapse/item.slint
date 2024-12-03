@@ -40,7 +40,7 @@ import { SIcon } from "../icon/index.slint";
 import { Themes,UseIcons,PaddingType,ShadowType,BorderType } from "../../use/index.slint";
 
 export component CollapseItem inherits Rectangle{
-  height: header.height;
+  height: is-show?details-height:header.height;
   background: transparent;
   in-out property <int> font-weight : DefaultSCollapseProps.font-weight;
   in-out property <length> font-size: DefaultSCollapseProps.font-size;
@@ -129,18 +129,27 @@ export component CollapseItem inherits Rectangle{
             theme: root.theme;
             height: 16px;
             width: 16px;
+            rotation: is-show?{
+              rotation-angle: 90deg,
+              rotation-origin-x: icon.width / 2,
+              rotation-origin-y: icon.height / 2,
+            }:{
+              rotation-angle: 0deg,
+              rotation-origin-x: icon.width / 2,
+              rotation-origin-y: icon.height / 2,
+            };
             source: root.collapse-icon;
             clicked => {
-             area.clicked()
+              area.clicked()
             }
           }
         }
       }
     }
     details-view:= SCard{
-      height: root.is-show ? root.details-height : 0;
+      height: root.is-show ? root.height - header.height : 0;
       width: header.width;
-      visible: false;
+      visible: root.is-show;
       border-radius: 0;
       drop-shadow-blur: 0;
       theme: root.theme;
