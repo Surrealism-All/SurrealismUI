@@ -112,6 +112,8 @@ export component Select inherits SCard {
     height: UseSurrealismFn.count-height(root.item-font-size,root.card-padding.padding-top) * 3;
     expand-area:= TouchArea {
       mouse-cursor: pointer;
+      x: parent.width;
+      y: parent.height;
       z: 110;
       height: parent.height;
       width: parent.width;
