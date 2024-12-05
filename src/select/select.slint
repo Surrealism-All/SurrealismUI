@@ -70,7 +70,6 @@ export component Select inherits SCard {
       return root.active >= 0 && root.active <= options.length - 1;
   }
   selector:=TouchArea{
-    z: 111;
     HorizontalLayout{
       padding-left: root.padding-left;
       padding-right: root.padding-right;
@@ -83,7 +82,6 @@ export component Select inherits SCard {
         font-italic: root.font-italic;
       }
       select-icon-view:=Rectangle{
-        z: 110;
         width: select-icon.width;
         select-icon:=SIcon{
           theme: root.theme;
@@ -112,41 +110,36 @@ export component Select inherits SCard {
     height: UseSurrealismFn.count-height(root.item-font-size,root.card-padding.padding-top) * 3;
     expand-area:= TouchArea {
       mouse-cursor: pointer;
-      x: parent.width;
-      y: parent.height;
-      z: 110;
       height: parent.height;
       width: parent.width;
-    }
-    list:=ListView { 
-      padding-top: parent.padding-top;
-      padding-bottom: parent.padding-bottom;
-      for range[index] in root.options : Rectangle{
-        height: area.height;
-        background:area.has-hover?expand.background.brighter(0.1):expand.background;
-        area:=TouchArea{
-          mouse-cursor: pointer;
-          z: 111;
-          height: list-item.height;
-          clicked => {
-            root.active = index;
-            root.changed(index, range);
-          }
-          list-item:= SText {
-            height: UseSurrealismFn.count-height(root.item-font-size,root.card-padding.padding-top);
-            padding-left: root.padding-left;
-            padding-right: root.padding-right;
-            width: root.width - self.padding-left - self.padding-right;
-            theme: root.theme;
-            text: range.label;
-            font-family: item-font-family;
-            font-size: item-font-size;
-            font-weight: item-font-weight;
-            font-italic: item-font-italic;
+      list:=ListView {
+        padding-top: parent.padding-top;
+        padding-bottom: parent.padding-bottom;
+        for range[index] in root.options : Rectangle{
+          height: area.height;
+          background:area.has-hover?expand.background.brighter(0.1):expand.background;
+          area:=TouchArea{
+            mouse-cursor: pointer;
+            height: list-item.height;
+            clicked => {
+              root.active = index;
+              root.changed(index, range);
+            }
+            list-item:= SText {
+              height: UseSurrealismFn.count-height(root.item-font-size,root.card-padding.padding-top);
+              padding-left: root.padding-left;
+              padding-right: root.padding-right;
+              width: root.width - self.padding-left - self.padding-right;
+              theme: root.theme;
+              text: range.label;
+              font-family: item-font-family;
+              font-size: item-font-size;
+              font-weight: item-font-weight;
+              font-italic: item-font-italic;
+            }
           }
         }
       }
     }
   }
 }
-    
