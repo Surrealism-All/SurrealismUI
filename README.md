@@ -4,8 +4,8 @@
 
 - author：syf20020816@outlook.com
 - createDate：20230908
-- updateDate：20240805
-- version：0.5.1
+- updateDate：20241208
+- version：0.5.2
 - email：syf20020816@outlook.com
 - discord：[Surrealism-UI](https://discord.gg/KSQqrSMCnU)
 - book：[SurrealismUI Book](https://surrealism-all.github.io/SurrealismUI.github.io/)
@@ -403,6 +403,11 @@ After this major update, the writing of attributes in SurrealismUI is closer to 
 
 Thank you for reading, and if you have any questions, please send an email to syf20020816@outlook.com or raise them in a discussion or issue at the SurrealismUI repository
 
+- V0.5.2
+  - 中文
+    - 优化`SSelect`层级结构
+  - English
+    - Optimize structure level for `SSelect`
 - V0.5.1
   - 中文
     - 去除重复的`close-one`图标
