@@ -42,7 +42,7 @@ export component Badge inherits SCard {
   font-family: DefaultSBadgeProps.font-family;
   in property <Position> position : DefaultSBadgeProps.position;
   in-out property <image> icon : DefaultSBadgeProps.icon;
-  in property <brush> icon-color <=> badge-icon.colorize;
+  in-out property <brush> icon-color <=> badge-icon.colorize;
   in-out property <string> text : DefaultSBadgeProps.text;
   clip: false;
   pure public function get-x(p_right:length)->length {

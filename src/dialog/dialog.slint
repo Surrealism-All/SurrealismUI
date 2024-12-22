@@ -87,6 +87,10 @@ export component Dialog inherits Window {
     in property <Themes> dialog-theme: DefaultSDialogProps.dialog-theme;
     in property <string> dialog-title: DefaultSDialogProps.dialog-title;
     in property <length> dialog-title-size: DefaultSDialogProps.dialog-title-size;
+    in property <TextWrap> dialog-title-wrap: DefaultSDialogProps.dialog-title-wrap;
+    in-out property <TextOverflow> dialog-title-overflow: DefaultSDialogProps.dialog-title-overflow;
+    in-out property <TextHorizontalAlignment> dialog-title-h-alignment: DefaultSDialogProps.dialog-title-h-alignment;
+    in-out property <TextVerticalAlignment> dialog-title-v-alignment: DefaultSDialogProps.dialog-title-v-alignment;
     in property <string> dialog-details: DefaultSDialogProps.dialog-details;
     in property <float> dialog-height: DefaultSDialogProps.dialog-height;
     in property <float> dialog-title-height: DefaultSDialogProps.dialog-title-height;
@@ -100,8 +104,8 @@ export component Dialog inherits Window {
     in property <PaddingType> padding-type:PaddingType.Normal;
     in property <ShadowType> shadow-type: ShadowType.Low1;
     in property <BorderType> border-type: BorderType.Normal;
-    in property <length> viewport-height <=> detail-scroll-view.viewport-height;
-    in property <length> viewport-width <=> detail-scroll-view.viewport-width;
+    in-out property <length> viewport-height <=> detail-scroll-view.viewport-height;
+    in-out property <length> viewport-width <=> detail-scroll-view.viewport-width;
     in-out property <bool> mask-close: false;
     in property <LayoutAlignment> dialog-details-alignment:DefaultSDialogProps.dialog-details-alignment;
     public function open() {
@@ -150,6 +154,10 @@ export component Dialog inherits Window {
                             font-italic: root.font-italic;
                             font-family: root.font-family;
                             theme: root.dialog-theme;
+                            wrap: root.dialog-title-wrap;
+                            overflow: root.dialog-title-overflow;
+                            horizontal-alignment: root.dialog-title-h-alignment;
+                            vertical-alignment: root.dialog-title-v-alignment;
                         }
                     }
 

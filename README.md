@@ -1,11 +1,11 @@
-<img src="https://img.shields.io/badge/SurrealismUI-0.5.2-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584"> <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
+<img src="https://img.shields.io/badge/SurrealismUI-0.5.3-orange?style=flat-square&logo=rust&logoColor=%23fff&labelColor=%23DEA584&color=%23DEA584"> <img src="https://img.shields.io/badge/License-MIT-orange?style=flat-square&logoColor=%23fff&labelColor=%2323B898&color=%2323B898">
 
 # SurrealismUI
 
 - author：syf20020816@outlook.com
 - createDate：20230908
 - updateDate：20241208
-- version：0.5.2
+- version：0.5.3
 - email：syf20020816@outlook.com
 - discord：[Surrealism-UI](https://discord.gg/KSQqrSMCnU)
 - book：[SurrealismUI Book](https://surrealism-all.github.io/SurrealismUI.github.io/)
@@ -403,6 +403,15 @@ After this major update, the writing of attributes in SurrealismUI is closer to 
 
 Thank you for reading, and if you have any questions, please send an email to syf20020816@outlook.com or raise them in a discussion or issue at the SurrealismUI repository
 
+- V0.5.3
+  - 中文
+    - 优化`SDialog`
+    - 修复警告
+    - Slint更新1.9.1
+  - English
+    - Optimize `SDialog`
+    - fix warning
+    - update slint to 1.9.1
 - V0.5.2
   - 中文
     - 优化`SSelect`层级结构
