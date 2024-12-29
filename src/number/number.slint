@@ -55,6 +55,7 @@ export component NumberInput inherits SCard{
             }else{
                 input.text = input.text.to-float() + self.step;
             }
+            self.value = input.text.to-float();
         }
     }
     public function down() {
@@ -66,6 +67,7 @@ export component NumberInput inherits SCard{
             }else{
                 input.text = input.text.to-float() - self.step;
             }
+            self.value = input.text.to-float();
         }
     }
     Rectangle {
@@ -101,7 +103,7 @@ export component NumberInput inherits SCard{
                 wrap: no-wrap;
                 text: root.value;
                 accepted => {
-                  root.accepted(self.text.to-float())
+                    root.accepted(self.text.to-float())
                 }
                 edited => {
                     if self.text.to-float() > root.maximum || self.text.to-float() < root.minimum{
@@ -114,9 +116,10 @@ export component NumberInput inherits SCard{
                             }
                         }
                     }
+                    root.value = self.text.to-float();
                     root.changed(self.text.to-float())
                 }
-      
+
                 cursor-position-changed(cpos) => {
                   if (cpos.x + self.computed_x < self.padding-outer) {
                     self.computed_x = - cpos.x + self.padding-outer;
